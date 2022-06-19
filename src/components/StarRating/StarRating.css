@@ -1,0 +1,16 @@
+.star {
+  cursor: pointer;
+  transition: color 200ms;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.star-rating-filled {
+  fill: gold;
+}
+
+.star-rating-blank {
+  fill: grey;
+}

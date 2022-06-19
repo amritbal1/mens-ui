@@ -1,0 +1,1 @@
+export const TOTAL_NUMBER_OF_SCREENS = 3;

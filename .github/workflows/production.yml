@@ -1,0 +1,30 @@
+name: Production Build
+on:
+  push:
+    branches:
+      - master
+      - '!qa'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: master
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with: 
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: eu-west-2
+    - name: Use Node.js 12
+      uses: actions/setup-node@v2
+      with:
+        node-version: 12.x
+    - name: Npm Install
+      run: npm install
+    - name: Production Build
+      run: npm run build-production
+    - name: Deploy to S3
+      run: aws s3 sync ./build s3://${{ secrets.AWS_S3_BUCKET }}

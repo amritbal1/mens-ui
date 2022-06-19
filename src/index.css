@@ -1,0 +1,369 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  @variants responsive {
+    .text-gradient-pink {
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-image: linear-gradient(to right, #de45b7 0%, #6772e5 100%);
+    }
+
+    .box-shadow-bottom {
+      box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.1);
+    }
+
+    .pt-10px {
+      padding-top: 10px;
+    }
+
+    .pt-80px {
+      padding-top: 80px;
+    }
+
+    .pt-100px {
+      padding-top: 100px;
+    }
+
+    .pt-120px {
+      padding-top: 120px;
+    }
+
+    .pb-65px {
+      padding-bottom: 65px;
+    }
+
+    .mt-120px {
+      margin-top: 120px;
+    }
+
+    .pb-10px {
+      padding-bottom: 10px;
+    }
+
+    .pb-150px {
+      padding-bottom: 150px;
+    }
+
+    .pl-10px {
+      padding-left: 10px;
+    }
+
+    .pl-30px {
+      padding-left: 30px;
+    }
+
+    .pr-10px {
+      padding-right: 10px;
+    }
+
+    .w-20px {
+      width: 20px;
+    }
+
+    .w-25px {
+      width: 25px;
+    }
+
+    .h-20px {
+      height: 20px;
+    }
+
+    .h-25px {
+      height: 25px;
+    }
+
+    .h-27px {
+      height: 27px;
+    }
+
+    .w-max-60px {
+      max-width: 60px;
+    }
+
+    .w-80px {
+      width: 80px;
+    }
+
+    .w-27px {
+      width: 27px;
+    }
+
+    .w-100px {
+      width: 100px;
+    }
+
+    .w-max-1600px {
+      max-width: 1600px;
+    }
+
+    .w-120px {
+      width: 120px;
+    }
+
+    .w-14px {
+      width: 14px;
+    }
+
+    .h-14px {
+      height: 14px;
+    }
+
+    .w-140px {
+      width: 140px;
+    }
+
+    .w-125px {
+      width: 125px;
+    }
+
+    .w-150px {
+      width: 150px;
+    }
+
+    .w-160px {
+      width: 160px;
+    }
+
+    .w-200px {
+      width: 200px;
+    }
+
+    .w-220px {
+      width: 220px;
+    }
+
+    .w-250px {
+      width: 250px;
+    }
+
+    .w-325px {
+      width: 325px;
+    }
+
+    .w-300px {
+      width: 300px;
+    }
+
+    .w-400px {
+      width: 400px;
+    }
+
+    .w-600px {
+      width: 600px;
+    }
+
+    .w-350px {
+      width: 350px;
+    }
+
+    .w-1100px {
+      width: 1100px;
+    }
+
+    .w-80vw {
+      width: 80vw;
+    }
+
+    .w-60vw {
+      width: 60vw;
+    }
+
+    .w-90vw {
+      width: 90vw;
+    }
+
+    .w-360px {
+      width: 360px;
+    }
+
+    .max-width-1300 {
+      max-width: 1300px;
+    }
+
+    .max-w-20 {
+      max-width: 20rem;
+    }
+
+    .max-w-16 {
+      max-width: 16rem;
+    }
+
+    .w-950px {
+      width: 950px;
+    }
+
+    .w-450px {
+      width: 450px;
+    }
+
+    .h-450px {
+      height: 450px;
+    }
+
+    .w-min-350px {
+      min-width: 350px;
+    }
+
+    .w-min-450px {
+      min-width: 450px;
+    }
+
+    .h-min-450px {
+      min-height: 450px;
+    }
+
+    .w-80px {
+      width: 80px;
+    }
+
+    .h-60px {
+      height: 60px;
+    }
+
+    .h-80px {
+      height: 80px;
+    }
+
+    .w-180px {
+      width: 180px;
+    }
+
+    .h-180px {
+      height: 180px;
+    }
+
+    .w-110px {
+      width: 110px;
+    }
+
+    .h-110px {
+      height: 110px;
+    }
+
+    .w-160px {
+      width: 160px;
+    }
+
+    .h-160px {
+      height: 160px;
+    }
+
+    .w-max-125px {
+      max-width: 125px;
+    }
+
+    .h-max-125px {
+      max-height: 125px;
+    }
+
+    .w-min-155px {
+      min-width: 155px;
+    }
+
+    .w-max-155px {
+      max-width: 155px;
+    }
+
+    .h-max-155px {
+      max-height: 155px;
+    }
+
+    .w-max-600px {
+      max-width: 600px;
+    }
+
+    .w-min-165px {
+      min-width: 165px;
+    }
+
+    .w-min-185px {
+      min-width: 185px;
+    }
+
+    .w-max-150px {
+      max-width: 150px;
+    }
+
+    .w-max-165px {
+      max-width: 165px;
+    }
+
+    .w-min-250px {
+      min-width: 250px;
+    }
+
+    .w-min-290px {
+      min-width: 290px;
+    }
+
+    .w-min-300px {
+      min-width: 300px;
+    }
+
+    .h-min-300px {
+      min-height: 300px;
+    }
+
+    .w-16px {
+      width: 16px;
+    }
+
+    .w-140px {
+      width: 140px;
+    }
+
+    .h-140px {
+      height: 140px;
+    }
+
+    .h-16px {
+      height: 16px;
+    }
+
+    .h-40px {
+      height: 40px;
+    }
+
+    .h-48px {
+      height: 48px;
+    }
+
+    .h-150px {
+      height: 150px;
+    }
+
+    .h-130px {
+      height: 130px;
+    }
+
+    .h-300px {
+      height: 300px;
+    }
+
+    .h-310px {
+      height: 310px;
+    }
+
+    .h-330px {
+      height: 330px;
+    }
+
+    .h-490px {
+      height: 490px;
+    }
+
+    .h-65px {
+      height: 65px;
+    }
+
+    .h-100px {
+      height: 100px;
+    }
+
+    .h-120px {
+      height: 120px;
+    }
+  }
+}
