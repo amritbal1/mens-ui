@@ -1,7 +1,7 @@
 import { CATEGORIES } from "../../enums";
 
 //Categories
-import * as exfoliator from "../../config/images/categories/exfoliator.png";
+//import * as exfoliator from "../../config/images/categories/exfoliator.png";
 import * as moisturiser from "../../config/images/categories/moisturiser.png";
 import * as cleanser from "../../config/images/categories/cleanser.png";
 //Skin Types
@@ -33,16 +33,16 @@ export const skincareConfig = {
       value: "Cleanser",
       imageUrl: cleanser.default,
     },
-    {
-      displayValue: "Eye Care",
-      value: "Eye Care",
-      imageUrl: exfoliator.default,
-    },
-    {
-      displayValue: "Serum",
-      value: "Serum",
-      imageUrl: exfoliator.default,
-    },
+    // {
+    //   displayValue: "Eye Care",
+    //   value: "Eye Care",
+    //   imageUrl: exfoliator.default,
+    // },
+    // {
+    //   displayValue: "Serum",
+    //   value: "Serum",
+    //   imageUrl: exfoliator.default,
+    // },
   ],
   reviews: [
     {
@@ -69,7 +69,7 @@ export const skincareConfig = {
       options: [
         { displayValue: "Acne", value: "Acne", imageUrl: acne.default },
         {
-          displayValue: "Aging, Fine Lines & Wrinkles",
+          displayValue: "Aging",
           value: "Aging",
           imageUrl: aging.default,
         },

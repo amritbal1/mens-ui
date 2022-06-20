@@ -21,14 +21,15 @@ export const getScreenToRender = ({
     handleNextButtonClick,
     handleSubmitButtonClick,
   };
+
   const screen1 = () => (
     <Screen
       key={"1"}
       index={"1"}
-      title={"Select a category"}
-      config={skincareConfig.subcategories}
-      parentAnswerStateVariable={"subCategoryAnswer"}
-      previousAnswers={subCategoryAnswer}
+      title={"What is your skin type?"}
+      config={skincareConfig.reviews[0].options}
+      parentAnswerStateVariable={"reviewAnswerSkinTypes"}
+      previousAnswers={reviewAnswerSkinTypes}
       handleOptionClick={handleOptionClick}
       isMultiSelect={false}
       {...commonProps}
@@ -38,10 +39,10 @@ export const getScreenToRender = ({
     <Screen
       key={"2"}
       index={"2"}
-      title={"Select your skin type"}
-      config={skincareConfig.reviews[0].options}
-      parentAnswerStateVariable={"reviewAnswerSkinTypes"}
-      previousAnswers={reviewAnswerSkinTypes}
+      title={"What is the main skin concern you would like to address?"}
+      config={skincareConfig.reviews[1].options}
+      parentAnswerStateVariable={"reviewAnswerSkinConcerns"}
+      previousAnswers={reviewAnswerSkinConcerns}
       handleOptionClick={handleOptionClick}
       isMultiSelect={false}
       {...commonProps}
@@ -51,12 +52,12 @@ export const getScreenToRender = ({
     <Screen
       key={"3"}
       index={"3"}
-      title={"Select your skin concerns"}
-      config={skincareConfig.reviews[1].options}
-      parentAnswerStateVariable={"reviewAnswerSkinConcerns"}
-      previousAnswers={reviewAnswerSkinConcerns}
+      title={"Which type of product are you looking for?"}
+      config={skincareConfig.subcategories}
+      parentAnswerStateVariable={"subCategoryAnswer"}
+      previousAnswers={subCategoryAnswer}
       handleOptionClick={handleOptionClick}
-      isMultiSelect={true}
+      isMultiSelect={false}
       {...commonProps}
     />
   );

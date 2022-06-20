@@ -6,6 +6,10 @@ module.exports = {
       transitionProperty: {
         visibility: "visibility",
       },
+      lineHeight: {
+        '11': '3rem',
+        '12': '3.5rem',
+      },
       backgroundImage: {
         "aqua-gradient":
           "linear-gradient(120deg,#b9dcd8 20%,hsla(0, 0%, 100%, 0) 60%), linear-gradient(90deg, hsla(0, 0%, 100%, 0) 60%, #b2cac7 120%)",
@@ -20,6 +24,7 @@ module.exports = {
         },
         "light-purple-gradient": "#A770EF",
         "dark-purple-gradient": "#CF8BF3",
+        "lilac-10": "#dff4f1",
         "lilac-50": "#E4FAF7",
         "lilac-100": "#BEECE6",
         "lilac-200": "#ABDAD5",

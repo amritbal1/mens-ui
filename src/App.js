@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withRouter } from "react-router-dom";
 import { Switch, Route } from "react-router-dom";
-import LandingPage from "./pages/LandingPage";
+import LandingPageProductFinder from "./pages/LandingPageProductFinder";
 import ResultsProvider from "./pages/ResultsPage/ResultsProvider";
 import ResultsPage from "./pages/ResultsPage/ResultsPage";
 import ReviewPage from "./pages/ReviewPage/ReviewPage";
@@ -31,14 +31,14 @@ class App extends PureComponent {
   }
   render() {
     return (
-      <Auth0Provider
-        domain="nova-reviews.eu.auth0.com"
-        clientId="je0CZT9jitVMcsTGxbENI2wlyp7nr7yz"
-        redirectUri={window.location.origin}
-        onRedirectCallback={this.onRedirectCallback}
-        audience="https://nova-reviews.eu.auth0.com/api/v2/"
-        scope="read:current_user"
-      >
+      // <Auth0Provider
+      //   domain="nova-reviews.eu.auth0.com"
+      //   clientId="je0CZT9jitVMcsTGxbENI2wlyp7nr7yz"
+      //   redirectUri={window.location.origin}
+      //   onRedirectCallback={this.onRedirectCallback}
+      //   audience="https://nova-reviews.eu.auth0.com/api/v2/"
+      //   scope="read:current_user"
+      // >
         <AppProvider>
           <section class="w-screen h-screen font-sans">
             <AppContext.Consumer>
@@ -55,7 +55,7 @@ class App extends PureComponent {
                         path="/"
                         render={(props) => {
                           const allProps = { ...props, backgroundOpacity };
-                          return <LandingPage {...allProps} />;
+                          return <LandingPageProductFinder {...allProps} />;
                         }}
                       />
 
@@ -153,7 +153,7 @@ class App extends PureComponent {
             </AppContext.Consumer>
           </section>
         </AppProvider>
-      </Auth0Provider>
+      // </Auth0Provider>
     );
   }
 }

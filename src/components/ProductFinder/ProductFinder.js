@@ -64,7 +64,7 @@ class ProductFinder extends PureComponent {
       handleSubmitButtonClick: this.handleSubmitButtonClick,
     });
     return (
-      <div class="relative w-full block overflow-auto shadow-2xl rounded-lg ring-1 ring-lilac-100 ring-opacity-5">
+      <div class="relative w-full block overflow-auto shadow-2xl rounded-lg ring-1 ring-lilac-100 ring-opacity-5 bg-white">
         {screenToRender}
       </div>
     );

@@ -2,18 +2,18 @@ import React, { PureComponent, createRef } from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { withRouter } from "react-router-dom";
 import { withAuth0 } from "@auth0/auth0-react";
-import ProfileIcon from "../ProfileIcon/ProfileIcon";
+// import ProfileIcon from "../ProfileIcon/ProfileIcon";
 import AppContext from "../../AppContext";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { Fragment } from "react";
+// import { MenuIcon, XIcon } from "@heroicons/react/outline";
+// import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { LOCAL_STORAGE_ITEM, SORTING_FIELD } from "../../utils/enums";
 import * as logo from "../../images/brand-logo.png";
 
-const navbarItemStyle =
-  "cursor-pointer lg:ml-10 text-slate-gray uppercase hover:opacity-70 rounded-full px-3 py-4 text-xs tracking-wider";
-const menuItemStyle =
-  "text-lg uppercase font-light text-slate-gray block rounded-md cursor-pointer cursor-pointer border-b py-4";
+// const navbarItemStyle =
+//   "cursor-pointer lg:ml-10 text-slate-gray uppercase hover:opacity-70 rounded-full px-3 py-4 text-xs tracking-wider";
+// const menuItemStyle =
+//   "text-lg uppercase font-light text-slate-gray block rounded-md cursor-pointer cursor-pointer border-b py-4";
 class Navbar extends PureComponent {
   state = {
     isPanelOpen: false,
@@ -106,13 +106,13 @@ class Navbar extends PureComponent {
   };
 
   render() {
-    const { auth0, displaySearchBar = false } = this.props;
-    const { isAuthenticated } = auth0;
+    const { displaySearchBar = false } = this.props;
+    // const { isAuthenticated } = auth0;
     const { isPanelOpen } = this.state;
     return (
       <div
         ref={this.wrapperRef}
-        class={`fixed h-60px top-0 z-50 bg-white w-full`}
+        class={`fixed h-60px top-0 z-50 bg-lilac-10 w-full`}
       >
         <Disclosure as="nav" className={`bg-white z-50 box-shadow-bottom`}>
           {({ open }) => (
@@ -171,15 +171,15 @@ class Navbar extends PureComponent {
                               All Products
                             </div>
                           </Fragment> */}
-                          <Fragment>
+                          {/* <Fragment>
                             <div
                               className={navbarItemStyle}
                               onClick={this.handleWriteReviewClick}
                             >
                               Write A Review
                             </div>
-                          </Fragment>
-                          <Fragment>
+                          </Fragment> */}
+                          {/* <Fragment>
                             {!isAuthenticated && (
                               <div
                                 className={navbarItemStyle}
@@ -189,14 +189,14 @@ class Navbar extends PureComponent {
                               </div>
                             )}
                             {isAuthenticated && <ProfileIcon />}
-                          </Fragment>
+                          </Fragment> */}
                         </div>
                       </Menu>
                     </div>
                   </div>
                   <div className="-mr-2 flex md:hidden">
                     {/* Mobile menu button */}
-                    <div onClick={this.handleMenuButtonClick}>
+                    {/* <div onClick={this.handleMenuButtonClick}>
                       <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-lilac-700 md:hover:text-white md:hover:opacity-70 focus:outline-none ">
                         <span className="sr-only">Open main menu</span>
                         {isPanelOpen ? (
@@ -208,7 +208,7 @@ class Navbar extends PureComponent {
                           />
                         )}
                       </Disclosure.Button>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -239,16 +239,16 @@ class Navbar extends PureComponent {
                         All Products
                       </div>
                     </Fragment> */}
-                    <Fragment>
+                    {/* <Fragment>
                       <div
                         className={menuItemStyle}
                         onClick={this.handleWriteReviewClick}
                       >
                         Write A Review
                       </div>
-                    </Fragment>
+                    </Fragment> */}
                     {/* If authenticated, show profile settings and log out or else show log in */}
-                    {isAuthenticated && (
+                    {/* {isAuthenticated && (
                       <div>
                         <Fragment>
                           <div
@@ -267,8 +267,8 @@ class Navbar extends PureComponent {
                           </div>
                         </Fragment>
                       </div>
-                    )}
-                    {!isAuthenticated && (
+                    )} */}
+                    {/* {!isAuthenticated && (
                       <div>
                         <Fragment>
                           <div
@@ -279,7 +279,7 @@ class Navbar extends PureComponent {
                           </div>
                         </Fragment>
                       </div>
-                    )}
+                    )} */}
                   </div>
                 </Disclosure.Panel>
               </Transition>
