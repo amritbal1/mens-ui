@@ -26,6 +26,7 @@ module.exports = {
         "dark-purple-gradient": "#CF8BF3",
         "lilac-10": "#dff4f1",
         "lilac-50": "#E4FAF7",
+        "lilac-70": "#d5f4f0",
         "lilac-100": "#BEECE6",
         "lilac-200": "#ABDAD5",
         "lilac-300": "#95CFC9",
@@ -36,6 +37,7 @@ module.exports = {
         aqua: "#e6f5f3",
         "aqua-dark": "#36615b",
         "slate-gray": "#2f3033",
+        "slate-teal": "#577c81"
       },
       gridTemplateColumns: {
         // Repeat with a min-width of 200px
