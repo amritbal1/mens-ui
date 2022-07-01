@@ -9,8 +9,7 @@ export const skinTypeOptions = [
   { displayValue: "Oily", value: "Oily" },
   { displayValue: "Dry", value: "Dry" },
   { displayValue: "Combination", value: "Combination" },
-  { displayValue: "Sensitive", value: "Sensitive" },
-  { displayValue: "Mature", value: "Mature" },
+  { displayValue: "Sensitive", value: "Sensitive" }
 ];
 
 const skinTypeValues = getOptionValues({ options: skinTypeOptions });

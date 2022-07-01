@@ -34,7 +34,6 @@ export const SKIN_TYPES = {
   OILY: "Oily",
   DRY: "Dry",
   SENSITIVE: "Sensitive",
-  MATURE: "Mature",
   COMBINATION: "Combination",
 };
 

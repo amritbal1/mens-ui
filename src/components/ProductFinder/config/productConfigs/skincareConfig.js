@@ -6,10 +6,9 @@ import * as moisturiser from "../../config/images/categories/moisturiser.png";
 import * as cleanser from "../../config/images/categories/cleanser.png";
 //Skin Types
 import * as combination from "../../config/images/skinTypes/combination.png";
-import * as mature from "../../config/images/skinTypes/mature.png";
 import * as sensitive from "../../config/images/skinTypes/sensitive.png";
 import * as oily from "../../config/images/skinTypes/oily.png";
-import * as dry from "../../config/images/skinTypes/dry.png";
+import * as dry from "../../config/images/skinConcerns/aging.png";
 import * as normal from "../../config/images/skinTypes/normal.png";
 //Skin Concerns
 import * as shine from "../../config/images/skinConcerns/shine.png";
@@ -60,8 +59,7 @@ export const skincareConfig = {
           displayValue: "Sensitive",
           value: "Sensitive",
           imageUrl: sensitive.default,
-        },
-        { displayValue: "Mature", value: "Mature", imageUrl: mature.default },
+        }
       ],
     },
     {

@@ -25,6 +25,5 @@ export const skinTypeOptions = [
   { value: "Oily", label: "Oily" },
   { value: "Dry", label: "Dry" },
   { value: "Sensitive", label: "Sensitive" },
-  { value: "Combination", label: "Combination" },
-  { value: "Mature", label: "Mature" },
+  { value: "Combination", label: "Combination" }
 ];
