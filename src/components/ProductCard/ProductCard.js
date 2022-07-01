@@ -76,10 +76,13 @@ class ProductCard extends PureComponent {
             <div class="text-xs font-extralight text-slate-gray mb-2">
               {brandName}
             </div>
-            <div class="flex justify-between mb-8 text-slate-gray">
+            <div class="flex justify-between mb-6 text-slate-gray">
               <div class="uppercase tracking-widest text-xs text-slate-gray">
                 {productName}
               </div>
+            </div>
+            <div class="flex-shrink-0 text-sm font-extralight text-slate-gray mb-4 underline">
+              What the reviews say
             </div>
             <div class="mb-4 flex">
               <span class="flex-shrink-0 text-sm font-extralight text-slate-gray mr-2">
@@ -92,7 +95,7 @@ class ProductCard extends PureComponent {
                 </span>
               </div>
             </div>
-            <div class="mb-8 flex">
+            <div class="mb-6 flex">
               <span class="text-sm font-extralight text-slate-gray mr-2">
                 Rated positively by users with
                 <br />
@@ -155,7 +158,11 @@ class ProductCard extends PureComponent {
                   </div>
                 </button>
               </a>
-              {price && <span class="font-normal text-sm px-2 text-slate-gray">£{price}</span>}
+              {price && (
+                <span class="font-normal text-sm px-2 text-slate-gray">
+                  £{price}
+                </span>
+              )}
             </div>
           </figcaption>
         </figure>
