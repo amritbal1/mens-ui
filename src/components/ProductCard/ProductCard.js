@@ -8,6 +8,7 @@ import {
   ThumbDownIcon,
 } from "@heroicons/react/outline";
 import { isEmpty } from "../../utils/objectUtils";
+import "./circle.css";
 class ProductCard extends PureComponent {
   state = {
     displayChevron: true,
@@ -24,7 +25,8 @@ class ProductCard extends PureComponent {
     const { data } = this.props;
     const { displayChevron } = this.state;
     const { dbg_recommendationScore, productDetails, reviewData } = data;
-    const { productName, brandName, mainImageUrl } = productDetails;
+    const { productName, brandName, mainImageUrl, affiliateProductUrl, price } =
+      productDetails;
     const s3ImageUrl = `https://s3.${REGION}.amazonaws.com/${S3_BUCKET}/${mainImageUrl}`;
     const { averageStarRating, criteriaData, pros, cons } = reviewData;
     const { skinTypeData, skinConcernData } = criteriaData;
@@ -33,22 +35,41 @@ class ProductCard extends PureComponent {
     return (
       <div class="p-1 sm:p-4 mb-8 sm:mb-4">
         <figure class="border rounded-md max-w-20 mx-auto cursor-pointer bg-white">
-          <div class="relative pt-full">
-          <div class="flex justify-end z-10 absolute top-0 right-0">
-            <div class="flex flex-col justify-center items-center m-3  rounded-full border">
-              <div class="text-lg text-slate-gray font-thin">
-                {dbg_recommendationScore}
+          <div class="flex justify-end mt-4 mr-4">
+            <div class="flex items-center justify-center rounded-full">
+              <div class="flex flex-col justify-center items-center">
+                <div
+                  class="pie"
+                  style={{
+                    "--p": dbg_recommendationScore,
+                    "--c": "#73B8B2",
+                    "--b": "3px",
+                  }}
+                >
+                  <div class="flex flex-col justify-center items-center">
+                    <div class="text-xl text-slate-gray font-thin mb-2">
+                      {dbg_recommendationScore}
+                    </div>
+                    <div class="text-xs text-slate-gray font-extralight">
+                      Matching
+                    </div>
+                    <div class="text-xs text-slate-gray font-extralight">
+                      Score
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="text-sm text-slate-gray font-thin">Matching</div>
-              <div class="text-sm text-slate-gray font-thin">Score</div>
             </div>
           </div>
-            <div class="absolute inset-0 h-full w-full my-auto mx-auto">
-              <img
-                src={s3ImageUrl}
-                alt="product"
-                class="h-full w-full object-cover rounded-t-md border-b"
-              />
+          <div>
+            <div class="relative pt-full">
+              <div class="absolute inset-0 h-full w-full my-auto mx-auto">
+                <img
+                  src={s3ImageUrl}
+                  alt="product"
+                  class="h-full w-full object-cover rounded-t-md border-b"
+                />
+              </div>
             </div>
           </div>
           <figcaption class="py-4 px-6">
@@ -90,7 +111,7 @@ class ProductCard extends PureComponent {
                   </span>
                   {pros.map((pro) => {
                     return (
-                      <div class="text-sm font-extralight text-slate-gray flex flex-shrink-0 border rounded-full mr-2 py-1 px-2">
+                      <div class="text-sm font-extralight text-slate-gray flex flex-shrink-0 border border-gray-300 rounded-full mr-2 py-1 px-2">
                         {pro}
                       </div>
                     );
@@ -104,7 +125,7 @@ class ProductCard extends PureComponent {
                   </span>
                   {cons.map((con) => {
                     return (
-                      <div class="text-sm font-extralight text-slate-gray flex flex-shrink-0 border rounded-full mr-2 py-1 px-2">
+                      <div class="text-sm font-extralight text-slate-gray flex flex-shrink-0 border border-gray-300 rounded-full mr-2 py-1 px-2">
                         {con}
                       </div>
                     );
@@ -112,10 +133,15 @@ class ProductCard extends PureComponent {
                 </div>
               )}
             </div>
-            <div class="mb-4">
-              <a href={"google.com"} target="_blank" rel="noopener noreferrer">
+            <div class="flex justify-between items-center mb-4">
+              <a
+                href={affiliateProductUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-4/5"
+              >
                 <button
-                  class="flex-shrink-0 bg-gray-900 text-gray-100 tracking-wide py-3 sm:py-2 px-6 rounded-lg shadow-md focus:outline-none w-full sm:hover:opacity-60"
+                  class="w-full flex-shrink-0 bg-gray-900 text-gray-50 tracking-wide py-3 sm:py-2 px-6 rounded-lg shadow-md focus:outline-none sm:hover:opacity-60"
                   onMouseEnter={this.handleMouseEnter}
                   onMouseLeave={this.handleMouseLeave}
                 >
@@ -129,6 +155,7 @@ class ProductCard extends PureComponent {
                   </div>
                 </button>
               </a>
+              {price && <span class="font-normal text-sm px-2 text-slate-gray">£{price}</span>}
             </div>
           </figcaption>
         </figure>
