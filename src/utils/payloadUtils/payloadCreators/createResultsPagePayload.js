@@ -27,7 +27,8 @@ export const createResultsPagePayload = ({ overridePageNum }) => {
       max: maxPriceValue,
     },
     ethnicity: null,
-    productCategories: getValueFromUrl({ param: "productCategories" }),
+    //Currently get all categories
+    productCategories: [],
     skinConcerns: getValueFromUrl({ param: "skinConcerns" }),
     skinTypes: getValueFromUrl({ param: "skinTypes" }),
     productCharacteristics: getValueFromUrl({

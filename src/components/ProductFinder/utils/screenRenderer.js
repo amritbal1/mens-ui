@@ -48,28 +48,25 @@ export const getScreenToRender = ({
       {...commonProps}
     />
   );
-  const screen3 = () => (
-    <Screen
-      key={"3"}
-      index={"3"}
-      title={"Which type of product are you looking for?"}
-      config={skincareConfig.subcategories}
-      parentAnswerStateVariable={"subCategoryAnswer"}
-      previousAnswers={subCategoryAnswer}
-      handleOptionClick={handleOptionClick}
-      isMultiSelect={false}
-      {...commonProps}
-    />
-  );
+  // const screen3 = () => (
+  //   <Screen
+  //     key={"3"}
+  //     index={"3"}
+  //     title={"Which type of product are you looking for?"}
+  //     config={skincareConfig.subcategories}
+  //     parentAnswerStateVariable={"subCategoryAnswer"}
+  //     previousAnswers={subCategoryAnswer}
+  //     handleOptionClick={handleOptionClick}
+  //     isMultiSelect={false}
+  //     {...commonProps}
+  //   />
+  // );
   switch (screenNumberToRender) {
     case 1: {
       return screen1();
     }
     case 2: {
       return screen2();
-    }
-    case 3: {
-      return screen3();
     }
     default: {
       return screen1;

@@ -8,15 +8,14 @@ import * as cleanser from "../../config/images/categories/cleanser.png";
 import * as combination from "../../config/images/skinTypes/combination.png";
 import * as sensitive from "../../config/images/skinTypes/sensitive.png";
 import * as oily from "../../config/images/skinTypes/oily.png";
-import * as dry from "../../config/images/skinConcerns/aging.png";
+import * as dry from "../../config/images/skinConcerns/dryness.png";
 import * as normal from "../../config/images/skinTypes/normal.png";
 //Skin Concerns
 import * as shine from "../../config/images/skinConcerns/shine.png";
 import * as aging from "../../config/images/skinConcerns/aging.png";
 import * as redness from "../../config/images/skinConcerns/redness.png";
-import * as darkcircles from "../../config/images/skinConcerns/darkcircles.png";
 import * as pigmentation from "../../config/images/skinConcerns/pigmentation.png";
-import * as dullness from "../../config/images/skinConcerns/dullness.png";
+import * as dryness from "../../config/images/skinConcerns/dryness.png";
 import * as acne from "../../config/images/skinConcerns/acne.png";
 
 export const skincareConfig = {
@@ -32,16 +31,6 @@ export const skincareConfig = {
       value: "Cleanser",
       imageUrl: cleanser.default,
     },
-    // {
-    //   displayValue: "Eye Care",
-    //   value: "Eye Care",
-    //   imageUrl: exfoliator.default,
-    // },
-    // {
-    //   displayValue: "Serum",
-    //   value: "Serum",
-    //   imageUrl: exfoliator.default,
-    // },
   ],
   reviews: [
     {
@@ -72,14 +61,9 @@ export const skincareConfig = {
           imageUrl: aging.default,
         },
         {
-          displayValue: "Dark Circles",
-          value: "Dark Circles",
-          imageUrl: darkcircles.default,
-        },
-        {
-          displayValue: "Dullness",
-          value: "Dullness",
-          imageUrl: dullness.default,
+          displayValue: "Dryness",
+          value: "Dryness",
+          imageUrl: dryness.default,
         },
         {
           displayValue: "Pigmentation",

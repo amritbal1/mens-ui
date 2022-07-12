@@ -18,7 +18,7 @@ export const getButtons = ({
     reviewAnswerSkinTypes,
     reviewAnswerSkinConcerns,
   });
-  const isSubmitButtonDisabled = isEmpty(subCategoryAnswer); //Last screen options
+  const isSubmitButtonDisabled = isEmpty(reviewAnswerSkinConcerns); //Last screen options
   const previousButton = (
     <FinderButton
       key={`${index}-previous`}
@@ -64,8 +64,8 @@ export const getNextButtonDisabledState = ({
       return isEmpty(reviewAnswerSkinTypes);
     case 2:
       return isEmpty(reviewAnswerSkinConcerns);
-    case 3:
-      return isEmpty(subCategoryAnswer);
+    // case 3:
+    //   return isEmpty(subCategoryAnswer);
     default:
       return false;
   }

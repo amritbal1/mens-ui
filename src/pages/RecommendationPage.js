@@ -17,7 +17,9 @@ class RecommendationPage extends PureComponent {
     const resultsData = await getProductResultsData({ payload });
     if (isEmpty(resultsData)) return;
     const { results = [] } = resultsData;
-    this.setState({ results });
+    const firstTwoResults =
+      !isEmpty(results) && results.length >= 2 ? [results[0], results[1]] : [];
+    this.setState({ results: firstTwoResults });
   }
 
   getFormattedResults = () => {
@@ -39,7 +41,7 @@ class RecommendationPage extends PureComponent {
           Analysis of 100+ reviews shows that these products are the
           <b> perfect matches</b> for you!
         </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-2">
+        <div class="grid sm:grid-cols-2 gap-x-2 gap-y-2">
           {this.getFormattedResults()}
         </div>
       </div>

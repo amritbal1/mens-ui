@@ -1,6 +1,7 @@
 import { PureComponent } from "react";
 import { REGION, S3_BUCKET } from "../../aws-config";
 import RatingStar from "../Rating/Rating";
+import { StarIcon } from "@heroicons/react/solid";
 import {
   ArrowRightIcon,
   ChevronRightIcon,
@@ -30,11 +31,11 @@ class ProductCard extends PureComponent {
     const s3ImageUrl = `https://s3.${REGION}.amazonaws.com/${S3_BUCKET}/${mainImageUrl}`;
     const { averageStarRating, criteriaData, pros, cons } = reviewData;
     const { skinTypeData, skinConcernData } = criteriaData;
-    const { skinType, percentage: skinTypePercentage } = skinTypeData;
-    const { skinConcern, percentage: skinConcernPercentage } = skinConcernData;
+    const { skinType, averageRating: skinTypeRating } = skinTypeData;
+    const { skinConcern, averageRating: skinConcernRating } = skinConcernData;
     return (
       <div class="p-1 sm:p-4 mb-8 sm:mb-4">
-        <figure class="border rounded-md max-w-20 mx-auto cursor-pointer bg-white">
+        <figure class="border rounded-md max-w-20 mx-auto bg-white">
           <div class="flex justify-end mt-4 mr-4">
             <div class="flex items-center justify-center rounded-full">
               <div class="flex flex-col justify-center items-center">
@@ -81,9 +82,9 @@ class ProductCard extends PureComponent {
                 {productName}
               </div>
             </div>
-            <div class="flex-shrink-0 text-sm font-extralight text-slate-gray mb-4 underline">
+            {/* <div class="flex-shrink-0 text-sm font-extralight text-slate-gray mb-4 underline">
               What the reviews say
-            </div>
+            </div> */}
             <div class="mb-4 flex">
               <span class="flex-shrink-0 text-sm font-extralight text-slate-gray mr-2">
                 Average rating
@@ -97,24 +98,35 @@ class ProductCard extends PureComponent {
             </div>
             <div class="mb-6 flex">
               <span class="text-sm font-extralight text-slate-gray mr-2">
-                Rated positively by users with
-                <br />
-                {` ${skinType} skin`}:{" "}
-                <span class="font-light">{skinTypePercentage}%</span>
-                <br />
-                {` ${skinConcern}`}:{" "}
-                <span class="font-light">{skinConcernPercentage}%</span>
+                Average review rating by customers with
+                <span class="flex flex-shrink-0 items-center">
+                  {` ${skinType} skin`}:
+                  <span class="text-sm font-light text-slate-gray ml-1">
+                    {skinTypeRating}
+                  </span>
+                  <StarIcon class="h-4 w-4" fill="#83C4BD" />
+                </span>
+                <span class="flex flex-shrink-0 items-center">
+                  {` ${skinConcern}`}:
+                  <span class="text-sm font-light text-slate-gray ml-1">
+                    {skinConcernRating}
+                  </span>
+                  <StarIcon class="h-4 w-4" fill="#83C4BD" />
+                </span>
               </span>
+            </div>
+            <div class="flex-shrink-0 text-sm font-extralight text-slate-gray mb-4 underline">
+              What the reviews say
             </div>
             <div class="mb-8">
               {!isEmpty(pros) && (
-                <div class="flex mb-4">
+                <div class="flex flex-wrap mb-4">
                   <span class="flex items-center mr-2">
                     <ThumbUpIcon class="h-4 w-4 stroke-1" />
                   </span>
                   {pros.map((pro) => {
                     return (
-                      <div class="text-sm font-extralight text-slate-gray flex flex-shrink-0 border border-gray-300 rounded-full mr-2 py-1 px-2">
+                      <div class="text-xs font-extralight text-slate-gray flex flex-shrink-0 border border-gray-300 rounded-full mr-2 py-1 px-2 mb-1">
                         {pro}
                       </div>
                     );
@@ -122,13 +134,13 @@ class ProductCard extends PureComponent {
                 </div>
               )}
               {!isEmpty(cons) && (
-                <div class="flex">
+                <div class="flex flex-wrap">
                   <span class="flex items-center mr-2">
                     <ThumbDownIcon class="h-4 w-4 stroke-1" />
                   </span>
                   {cons.map((con) => {
                     return (
-                      <div class="text-sm font-extralight text-slate-gray flex flex-shrink-0 border border-gray-300 rounded-full mr-2 py-1 px-2">
+                      <div class="text-xs font-extralight text-slate-gray flex flex-shrink-0 border border-gray-300 rounded-full mr-2 py-1 px-2 mb-1">
                         {con}
                       </div>
                     );

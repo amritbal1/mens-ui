@@ -1,1 +1,1 @@
-export const TOTAL_NUMBER_OF_SCREENS = 3;
+export const TOTAL_NUMBER_OF_SCREENS = 2;
