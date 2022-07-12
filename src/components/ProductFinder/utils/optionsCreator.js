@@ -8,8 +8,8 @@ export const getOption = ({
   clickHandlerFn,
 }) => {
   const selectedOptionStyles = isChecked ? "border border-gray-400" : "";
-  const hoverDivStyles = `${selectedOptionStyles} sm:mx-1 md:hover:border md:hover:border-2 rounded-3xl h-110px w-110px sm:h-140px sm:w-140px md:h-160px md:w-160px flex flex-grow flex-col justify-center items-center cursor-pointer md:hover:bg-gray-100`;
-  const outerDivStyle = `rounded-full h-110px sm:h-140px md:h-160px mb-8`;
+  const hoverDivStyles = `${selectedOptionStyles} sm:mx-1 md:hover:border md:hover:border-2 rounded-3xl w-110px sm:h-140px sm:w-140px md:h-160px md:w-160px flex flex-grow flex-col justify-center items-center cursor-pointer md:hover:bg-gray-100 p-2`;
+  const outerDivStyle = `rounded-full h-110px sm:h-140px md:h-160px mb-8 mx-1`;
   return (
     <div class={outerDivStyle} key={value}>
       <div class={hoverDivStyles} onClick={() => clickHandlerFn(value)}>

@@ -3,12 +3,25 @@ module.exports = {
   darkMode: false,
   theme: {
     extend: {
+      borderWidth: {
+        DEFAULT: "1px",
+        0: "0",
+        0.5: "0.5px",
+        2: "2px",
+        3: "3px",
+        4: "4px",
+        6: "6px",
+        8: "8px",
+      },
+      fontFamily: {
+        montserrat: ["Montserrat", "sans-serif"],
+      },
       transitionProperty: {
         visibility: "visibility",
       },
       lineHeight: {
-        '11': '3rem',
-        '12': '3.5rem',
+        11: "3rem",
+        12: "4rem",
       },
       backgroundImage: {
         "aqua-gradient":
@@ -37,7 +50,7 @@ module.exports = {
         aqua: "#e6f5f3",
         "aqua-dark": "#36615b",
         "slate-gray": "#2f3033",
-        "slate-teal": "#2A432E"
+        "slate-teal": "#3a5956",
       },
       gridTemplateColumns: {
         // Repeat with a min-width of 200px

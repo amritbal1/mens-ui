@@ -37,11 +37,11 @@ class RecommendationPage extends PureComponent {
       <div class="bg-lilac-10">
         <Navbar />
         <div class="h-60px"></div>
-        <div class="py-10 px-5 sm:px-10 text-slate-gray text-lg font-light tracking-tight text-center">
+        <div class="py-10 px-5 sm:px-10 text-slate-gray text-xl font-light tracking-tight text-center font-montserrat">
           Analysis of 100+ reviews shows that these products are the
           <b> perfect matches</b> for you!
         </div>
-        <div class="grid sm:grid-cols-2 gap-x-2 gap-y-2">
+        <div class="grid sm:grid-cols-2 gap-x-2 gap-y-2 font-montserrat">
           {this.getFormattedResults()}
         </div>
       </div>

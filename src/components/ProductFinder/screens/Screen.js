@@ -69,7 +69,7 @@ class Screen extends Component {
     });
     const buttonFlexStyle =
       buttons.length === 1 ? "justify-end" : "justify-between";
-    const buttonStyle = `${buttonFlexStyle} flex p-4 mb-4`;
+    const buttonStyle = `${buttonFlexStyle} flex mt-4 sm:mt-0 px-4 mb-8`;
     return (
       <div class="h-full" key={index}>
         <div class="flex h-full flex-row flex-wrap p-2">

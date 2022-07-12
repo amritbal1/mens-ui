@@ -78,7 +78,7 @@ class ProductCard extends PureComponent {
               {brandName}
             </div>
             <div class="flex justify-between mb-6 text-slate-gray">
-              <div class="uppercase tracking-widest text-xs text-slate-gray">
+              <div class="uppercase tracking-widest text- text-slate-gray">
                 {productName}
               </div>
             </div>
@@ -91,7 +91,7 @@ class ProductCard extends PureComponent {
               </span>
               <div class="flex flex-shrink-0">
                 <RatingStar value={averageStarRating} />
-                <span class="ml-2 text-sm font-light text-slate-gray">
+                <span class="ml-2 text-sm font-normal text-slate-gray">
                   {averageStarRating}
                 </span>
               </div>
@@ -101,21 +101,21 @@ class ProductCard extends PureComponent {
                 Average review rating by customers with
                 <span class="flex flex-shrink-0 items-center">
                   {` ${skinType} skin`}:
-                  <span class="text-sm font-light text-slate-gray ml-1">
+                  <span class="text-sm font-normal text-slate-gray ml-1">
                     {skinTypeRating}
                   </span>
                   <StarIcon class="h-4 w-4" fill="#83C4BD" />
                 </span>
                 <span class="flex flex-shrink-0 items-center">
                   {` ${skinConcern}`}:
-                  <span class="text-sm font-light text-slate-gray ml-1">
+                  <span class="text-sm font-normal text-slate-gray ml-1">
                     {skinConcernRating}
                   </span>
                   <StarIcon class="h-4 w-4" fill="#83C4BD" />
                 </span>
               </span>
             </div>
-            <div class="flex-shrink-0 text-sm font-extralight text-slate-gray mb-4 underline">
+            <div class="flex-shrink-0 text-sm font-light text-slate-gray mb-4 underline">
               What the reviews say
             </div>
             <div class="mb-8">
@@ -126,7 +126,7 @@ class ProductCard extends PureComponent {
                   </span>
                   {pros.map((pro) => {
                     return (
-                      <div class="text-xs font-extralight text-slate-gray flex flex-shrink-0 border border-gray-300 rounded-full mr-2 py-1 px-2 mb-1">
+                      <div class="text-xs font-extralight text-slate-gray flex flex-shrink-0 border-0.5 border-gray-300 rounded-full mr-2 py-1 px-2 mb-1">
                         {pro}
                       </div>
                     );
@@ -140,7 +140,7 @@ class ProductCard extends PureComponent {
                   </span>
                   {cons.map((con) => {
                     return (
-                      <div class="text-xs font-extralight text-slate-gray flex flex-shrink-0 border border-gray-300 rounded-full mr-2 py-1 px-2 mb-1">
+                      <div class="text-xs font-extralight text-slate-gray flex flex-shrink-0 border-0.5 border-gray-300 rounded-full mr-2 py-1 px-2 mb-1">
                         {con}
                       </div>
                     );
