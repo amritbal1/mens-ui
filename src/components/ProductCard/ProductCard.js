@@ -26,7 +26,7 @@ class ProductCard extends PureComponent {
     const { data } = this.props;
     const { displayChevron } = this.state;
     const { dbg_recommendationScore, productDetails, reviewData } = data;
-    const { productName, brandName, mainImageUrl, affiliateProductUrl, price } =
+    const { productName, brandName, mainImageUrl, affiliateProductUrl } =
       productDetails;
     const s3ImageUrl = `https://s3.${REGION}.amazonaws.com/${S3_BUCKET}/${mainImageUrl}`;
     const { averageStarRating, criteriaData, pros, cons } = reviewData;
@@ -120,7 +120,7 @@ class ProductCard extends PureComponent {
             </div>
             <div class="mb-8">
               {!isEmpty(pros) && (
-                <div class="flex flex-wrap mb-4">
+                <div class="flex flex-wrap mb-4 ml-1 sm:ml-0">
                   <span class="flex items-center mr-2">
                     <ThumbUpIcon class="h-4 w-4 stroke-1" />
                   </span>
@@ -134,7 +134,7 @@ class ProductCard extends PureComponent {
                 </div>
               )}
               {!isEmpty(cons) && (
-                <div class="flex flex-wrap">
+                <div class="flex flex-wrap ml-1 sm:ml-0">
                   <span class="flex items-center mr-2">
                     <ThumbDownIcon class="h-4 w-4 stroke-1" />
                   </span>
@@ -148,12 +148,11 @@ class ProductCard extends PureComponent {
                 </div>
               )}
             </div>
-            <div class="flex justify-between items-center mb-4">
+            <div class="mb-4">
               <a
                 href={affiliateProductUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-4/5"
               >
                 <button
                   class="w-full flex-shrink-0 bg-gray-900 text-gray-50 tracking-wide py-3 sm:py-2 px-6 rounded-lg shadow-md focus:outline-none sm:hover:opacity-60"
@@ -170,11 +169,6 @@ class ProductCard extends PureComponent {
                   </div>
                 </button>
               </a>
-              {price && (
-                <span class="font-normal text-sm px-2 text-slate-gray">
-                  £{price}
-                </span>
-              )}
             </div>
           </figcaption>
         </figure>
