@@ -120,13 +120,13 @@ class ProductCard extends PureComponent {
             </div>
             <div class="mb-8">
               {!isEmpty(pros) && (
-                <div class="flex flex-wrap mb-4 ml-1 sm:ml-0">
+                <div class="flex flex-wrap mb-4">
                   <span class="flex items-center mr-2">
                     <ThumbUpIcon class="h-4 w-4 stroke-1" />
                   </span>
                   {pros.map((pro) => {
                     return (
-                      <div class="text-xs font-extralight text-slate-gray flex flex-shrink-0 border-0.5 border-gray-300 rounded-full mr-2 py-1 px-2 mb-1">
+                      <div class="text-xs font-extralight text-slate-gray flex flex-shrink-0 border sm:border-0.5 border-gray-300 rounded-full mr-2 py-1 px-2 mb-1">
                         {pro}
                       </div>
                     );
@@ -134,13 +134,13 @@ class ProductCard extends PureComponent {
                 </div>
               )}
               {!isEmpty(cons) && (
-                <div class="flex flex-wrap ml-1 sm:ml-0">
+                <div class="flex flex-wrap">
                   <span class="flex items-center mr-2">
                     <ThumbDownIcon class="h-4 w-4 stroke-1" />
                   </span>
                   {cons.map((con) => {
                     return (
-                      <div class="text-xs font-extralight text-slate-gray flex flex-shrink-0 border-0.5 border-gray-300 rounded-full mr-2 py-1 px-2 mb-1">
+                      <div class="text-xs font-extralight text-slate-gray flex flex-shrink-0 border sm:border-0.5 border-gray-300 rounded-full mr-2 py-1 px-2 mb-1">
                         {con}
                       </div>
                     );
