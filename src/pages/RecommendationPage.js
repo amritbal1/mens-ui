@@ -35,7 +35,7 @@ class RecommendationPage extends PureComponent {
   render() {
     return (
       <div
-        class="h-screen bg-gradient-to-r
+        class="min-h-screen bg-gradient-to-r
       from-lilac-50
       via-lilac-100
       to-lilac-200"
