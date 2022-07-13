@@ -9,8 +9,7 @@ class LandingPage extends PureComponent {
         class="h-full pt-6 pb-6 mx-auto bg-gradient-to-r
       from-lilac-50
       via-lilac-100
-      to-lilac-200
-      background-animate"
+      to-lilac-200"
       >
         <Navbar />
         <div class="h-60px"></div>

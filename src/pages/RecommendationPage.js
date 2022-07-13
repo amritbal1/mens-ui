@@ -34,15 +34,29 @@ class RecommendationPage extends PureComponent {
 
   render() {
     return (
-      <div class="bg-lilac-10">
+      <div
+        class="bg-gradient-to-r
+      from-lilac-50
+      via-lilac-100
+      to-lilac-200"
+      >
         <Navbar />
         <div class="h-60px"></div>
-        <div class="py-10 px-5 sm:px-10 text-slate-gray text-xl font-light tracking-tight text-center font-montserrat">
-          Analysis of 100+ reviews shows that these products are the
-          <b> perfect matches</b> for you!
-        </div>
-        <div class="grid sm:grid-cols-2 gap-x-2 gap-y-2 font-montserrat">
-          {this.getFormattedResults()}
+        <div
+          class="h-screen bg-gradient-to-r
+      from-lilac-50
+      via-lilac-100
+      to-lilac-200"
+        >
+          <div class="py-10 px-5 sm:px-10 text-slate-gray text-xl font-light tracking-tight text-center font-montserrat">
+            Analysis of 100+ reviews shows that these products are the
+            <b> perfect matches</b> for you!
+          </div>
+          <div
+            class="h-full grid sm:grid-cols-2 gap-x-2 gap-y-2 font-montserrat"
+          >
+            {this.getFormattedResults()}
+          </div>
         </div>
       </div>
     );
