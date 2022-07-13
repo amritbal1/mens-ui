@@ -21,7 +21,7 @@ export const skinConcernOptions = [
   { displayValue: "Aging", value: "Aging" },
   { displayValue: "Dryness", value: "Dryness" },
   { displayValue: "Pigmentation", value: "Pigmentation" },
-  { displayValue: "Redness", value: "Redness" },
+  // { displayValue: "Redness", value: "Redness" },
   { displayValue: "Pores & Blackheads", value: "Pores" },
   { displayValue: "Shine & Oiliness", value: "Oiliness" },
 ];

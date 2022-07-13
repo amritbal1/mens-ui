@@ -24,7 +24,7 @@ export const SKIN_CONCERNS = {
   PIGMENTATION: "Pigment",
   BLACKHEADS: "Blackheads",
   FINE_LINES: "Fine Lines & Wrinkles",
-  REDNESS: "Redness",
+  // REDNESS: "Redness",
   PORES: "Pores",
 };
 
