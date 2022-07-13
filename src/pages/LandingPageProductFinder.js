@@ -6,7 +6,7 @@ class LandingPage extends PureComponent {
   render() {
     return (
       <div
-        class="h-full pt-6 pb-6 mx-auto bg-gradient-to-r
+        class="h-screen pt-6 pb-6 mx-auto bg-gradient-to-r
       from-lilac-50
       via-lilac-100
       to-lilac-200"
