@@ -13,9 +13,9 @@ class LandingPage extends PureComponent {
       >
         <Navbar />
         <div class="h-60px"></div>
-        <div class="h-full flex flex-col md:flex-row pt-4 md:pt-16 pb-7 px-2 sm:px-7 font-montserrat">
-          <div class="mx-auto w-full md:w-2/5 md:mr-10">
-            <div class="text-3xl sm:text-5xl text-center font-normal tracking-tight text-slate-teal leading-10 sm:leading-12 mb-6 md:mb-10">
+        <div class="h-screen flex flex-col lg:flex-row pt-4 md:pt-16 pb-7 px-2 lg:px-7 font-montserrat">
+          <div class="mx-auto w-full lg:w-2/5 lg:mr-10">
+            <div class="text-3xl sm:text-5xl text-center font-normal tracking-tight text-slate-teal leading-10 sm:leading-12 mb-6 lg:mb-10">
               {"Skincare recommendations."}
               <br />
               {"Powered by analysis of reviews."}
@@ -24,7 +24,7 @@ class LandingPage extends PureComponent {
               Discover products matching your skin type and skin concerns
             </div>
           </div>
-          <div class="h-5/6 w-full md:w-3/5 md:pr-10 mx-auto mt-3 md:mt-0">
+          <div class="h-5/6 w-full lg:w-3/5 lg:ml-10 mx-auto mt-3 lg:mt-0">
             <div>
               <ProductFinder />
             </div>

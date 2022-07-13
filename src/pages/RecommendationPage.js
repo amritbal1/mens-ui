@@ -35,7 +35,7 @@ class RecommendationPage extends PureComponent {
   render() {
     return (
       <div
-        class="bg-gradient-to-r
+        class="h-screen bg-gradient-to-r
       from-lilac-50
       via-lilac-100
       to-lilac-200"
@@ -43,7 +43,7 @@ class RecommendationPage extends PureComponent {
         <Navbar />
         <div class="h-60px"></div>
         <div
-          class="h-screen bg-gradient-to-r
+          class="bg-gradient-to-r
       from-lilac-50
       via-lilac-100
       to-lilac-200"
@@ -52,9 +52,7 @@ class RecommendationPage extends PureComponent {
             Analysis of 100+ reviews shows that these products are the
             <b> perfect matches</b> for you!
           </div>
-          <div
-            class="h-full grid sm:grid-cols-2 gap-x-2 gap-y-2 font-montserrat"
-          >
+          <div class="grid sm:grid-cols-2 gap-x-2 gap-y-2 font-montserrat">
             {this.getFormattedResults()}
           </div>
         </div>
