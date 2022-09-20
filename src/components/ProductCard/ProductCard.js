@@ -1,18 +1,16 @@
 import { PureComponent } from "react";
 import { REGION, S3_BUCKET } from "../../aws-config";
-import RatingStar from "../Rating/Rating";
-import { StarIcon } from "@heroicons/react/solid";
-import {
-  ArrowRightIcon,
-  ChevronRightIcon,
-  ThumbUpIcon,
-  ThumbDownIcon,
-} from "@heroicons/react/outline";
 import { isEmpty } from "../../utils/objectUtils";
+import { ATTRIBUTES } from "./attributes";
 import "./circle.css";
 class ProductCard extends PureComponent {
   state = {
     displayChevron: true,
+  };
+
+  handleProductCardClick = async ({ productId }) => {
+    const { history } = this.props;
+    history.push(`/product?productId=${productId}`);
   };
 
   handleMouseEnter = (e) => {
@@ -24,18 +22,29 @@ class ProductCard extends PureComponent {
 
   render() {
     const { data } = this.props;
-    const { displayChevron } = this.state;
     const { dbg_recommendationScore, productDetails, reviewData } = data;
-    const { productName, brandName, mainImageUrl, affiliateProductUrl } =
-      productDetails;
+    const { productName, brandName, mainImageUrl, productId } = productDetails;
     const s3ImageUrl = `https://s3.${REGION}.amazonaws.com/${S3_BUCKET}/${mainImageUrl}`;
-    const { averageStarRating, criteriaData, pros, cons } = reviewData;
-    const { skinTypeData, skinConcernData } = criteriaData;
-    const { skinType, averageRating: skinTypeRating } = skinTypeData;
-    const { skinConcern, averageRating: skinConcernRating } = skinConcernData;
+    const { criteriaData, pros, cons } = reviewData;
+    const { skinTypeAnalysis, skinConcernAnalysis, attributeAnalysis } =
+      criteriaData;
+    const { skinType, overallScore: skinTypeOverallScore } = skinTypeAnalysis;
+    const { skinConcern, overallScore: skinConcernOverallScore } =
+      skinConcernAnalysis;
+    const textureData = attributeAnalysis.find(
+      (el) => el.attribute === "texture"
+    );
+    const scentData = attributeAnalysis.find((el) => el.attribute === "scent");
+    const absorptionData = attributeAnalysis.find(
+      (el) => el.attribute === "absorb"
+    );
+    const attributesToDisplay = [textureData, scentData, absorptionData];
     return (
       <div class="p-1 sm:p-4 mb-8 sm:mb-4">
-        <figure class="border rounded-md max-w-20 mx-auto bg-white">
+        <figure
+          class="border rounded-md max-w-20 mx-auto bg-white cursor-pointer transition-transform transform md:hover:scale-105 md:hover:shadow-l"
+          onClick={() => this.handleProductCardClick({ productId: productId })}
+        >
           <div class="flex justify-end mt-4 mr-4">
             <div class="flex items-center justify-center rounded-full">
               <div class="flex flex-col justify-center items-center">
@@ -82,48 +91,38 @@ class ProductCard extends PureComponent {
                 {productName}
               </div>
             </div>
-            {/* <div class="flex-shrink-0 text-sm font-extralight text-slate-gray mb-4 underline">
-              What the reviews say
-            </div> */}
-            <div class="mb-4 flex">
-              <span class="flex-shrink-0 text-sm font-extralight text-slate-gray mr-2">
-                Average rating
-              </span>
-              <div class="flex flex-shrink-0">
-                <RatingStar value={averageStarRating} />
-                <span class="ml-2 text-sm font-normal text-slate-gray">
-                  {averageStarRating}
-                </span>
-              </div>
-            </div>
             <div class="mb-6 flex">
               <span class="text-sm font-extralight text-slate-gray mr-2">
-                Average review rating by customers with
-                <span class="flex flex-shrink-0 items-center">
+                <span class="underline">Score From Reviews</span>
+                <span class="flex flex-shrink-0 items-center mt-2">
                   {` ${skinType} skin`}:
                   <span class="text-sm font-normal text-slate-gray ml-1">
-                    {skinTypeRating}
+                    {skinTypeOverallScore}%
                   </span>
-                  <StarIcon class="h-4 w-4" fill="#83C4BD" />
                 </span>
                 <span class="flex flex-shrink-0 items-center">
                   {` ${skinConcern}`}:
                   <span class="text-sm font-normal text-slate-gray ml-1">
-                    {skinConcernRating}
+                    {skinConcernOverallScore}%
                   </span>
-                  <StarIcon class="h-4 w-4" fill="#83C4BD" />
                 </span>
+                {attributesToDisplay.map((data) => {
+                  if (!data) return null;
+                  return (
+                    <span class="flex flex-shrink-0 items-center">
+                      {`${ATTRIBUTES[data.attribute]}`}:
+                      <span class="text-sm font-normal text-slate-gray ml-1">
+                        {data.overallScore}%
+                      </span>
+                    </span>
+                  );
+                })}
               </span>
-            </div>
-            <div class="flex-shrink-0 text-sm font-light text-slate-gray mb-4 underline">
-              What the reviews say
             </div>
             <div class="mb-8">
               {!isEmpty(pros) && (
                 <div class="flex flex-wrap mb-4">
-                  <span class="flex items-center mr-2">
-                    <ThumbUpIcon class="h-4 w-4 stroke-1" />
-                  </span>
+                  <span class="flex items-center mr-2"></span>
                   {pros.map((pro) => {
                     return (
                       <div class="text-xs font-extralight text-slate-gray flex flex-shrink-0 border sm:border-0.5 border-gray-300 rounded-full mr-2 py-1 px-2 mb-1">
@@ -135,9 +134,7 @@ class ProductCard extends PureComponent {
               )}
               {!isEmpty(cons) && (
                 <div class="flex flex-wrap">
-                  <span class="flex items-center mr-2">
-                    <ThumbDownIcon class="h-4 w-4 stroke-1" />
-                  </span>
+                  <span class="flex items-center mr-2"></span>
                   {cons.map((con) => {
                     return (
                       <div class="text-xs font-extralight text-slate-gray flex flex-shrink-0 border sm:border-0.5 border-gray-300 rounded-full mr-2 py-1 px-2 mb-1">
@@ -147,28 +144,6 @@ class ProductCard extends PureComponent {
                   })}
                 </div>
               )}
-            </div>
-            <div class="mb-4">
-              <a
-                href={affiliateProductUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <button
-                  class="w-full flex-shrink-0 bg-gray-900 text-gray-50 tracking-wide py-3 sm:py-2 px-6 rounded-lg shadow-md focus:outline-none sm:hover:opacity-60"
-                  onMouseEnter={this.handleMouseEnter}
-                  onMouseLeave={this.handleMouseLeave}
-                >
-                  <div class="flex justify-center items-center text-sm">
-                    Shop Now
-                    {displayChevron ? (
-                      <ChevronRightIcon className="h-4 w-4 ml-3" />
-                    ) : (
-                      <ArrowRightIcon class="h-4 w-4 ml-3" />
-                    )}
-                  </div>
-                </button>
-              </a>
             </div>
           </figcaption>
         </figure>

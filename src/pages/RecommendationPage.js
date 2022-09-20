@@ -17,18 +17,17 @@ class RecommendationPage extends PureComponent {
     const resultsData = await getProductResultsData({ payload });
     if (isEmpty(resultsData)) return;
     const { results = [] } = resultsData;
-    const firstTwoResults =
-      !isEmpty(results) && results.length >= 2 ? [results[0], results[1]] : [];
-    this.setState({ results: firstTwoResults });
+    this.setState({ results });
   }
 
   getFormattedResults = () => {
+    const { history } = this.props;
     const { results } = this.state;
     return results.map((result) => {
       const {
         productDetails: { productId },
       } = result;
-      return <ProductCard key={productId} data={result} />;
+      return <ProductCard key={productId} data={result} history={history} />;
     });
   };
 
