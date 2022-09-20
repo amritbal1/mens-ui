@@ -51,6 +51,7 @@ module.exports = {
         "aqua-dark": "#36615b",
         "slate-gray": "#2f3033",
         "slate-teal": "#3a5956",
+        "light-purple": "#e6d9f8"
       },
       gridTemplateColumns: {
         // Repeat with a min-width of 200px

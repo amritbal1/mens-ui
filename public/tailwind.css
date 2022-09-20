@@ -2050,7 +2050,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .w-min-165px {
-  min-width: 165px;
+  min-width: 15px;
 }
 
 .w-min-185px {

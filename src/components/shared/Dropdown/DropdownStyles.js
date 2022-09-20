@@ -24,10 +24,6 @@ export const getSelectStyles = ({ overrideStyles = {} }) => {
       ...provided,
       display: "none",
     }),
-    indicatorsContainer: (provided) => ({
-      ...provided,
-      display: "none",
-    }),
     menu: (provided) => ({
       ...provided,
       marginTop: "3px",
@@ -50,7 +46,7 @@ export const getSelectStyles = ({ overrideStyles = {} }) => {
         overrideStyles && overrideStyles.valueContainerHeight
           ? overrideStyles.valueContainerHeight
           : provided.height,
-      padding: "0.2rem 1rem",
+      padding: "0.2rem 0.8rem",
       fontSize: "0.875rem",
       color: "#2f3033",
       fontWeight: 300,
