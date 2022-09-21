@@ -22,9 +22,8 @@ export const FILTER_PILL_NAME = {
 export const SKIN_CONCERNS = {
   ACNE: "Acne, Blemishes",
   PIGMENTATION: "Pigment",
-  BLACKHEADS: "Blackheads",
   FINE_LINES: "Fine Lines & Wrinkles",
-  // REDNESS: "Redness",
+  REDNESS: "Redness",
   PORES: "Pores",
 };
 

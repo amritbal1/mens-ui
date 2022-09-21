@@ -13,7 +13,7 @@ import * as normal from "../../config/images/skinTypes/normal.png";
 //Skin Concerns
 import * as shine from "../../config/images/skinConcerns/shine.png";
 import * as aging from "../../config/images/skinConcerns/aging.png";
-// import * as redness from "../../config/images/skinConcerns/redness.png";
+import * as redness from "../../config/images/skinConcerns/redness.png";
 import * as pigmentation from "../../config/images/skinConcerns/pigmentation.png";
 import * as dryness from "../../config/images/skinConcerns/dryness.png";
 import * as acne from "../../config/images/skinConcerns/acne.png";
@@ -54,7 +54,7 @@ export const skincareConfig = {
     {
       criteria: "skinConcern",
       options: [
-        { displayValue: "Acne", value: "Acne", imageUrl: acne.default },
+        { displayValue: "Acne, Blemishes", value: "Acne", imageUrl: acne.default },
         {
           displayValue: "Aging",
           value: "Aging",
@@ -70,13 +70,13 @@ export const skincareConfig = {
           value: "Pigmentation",
           imageUrl: pigmentation.default,
         },
-        // {
-        //   displayValue: "Redness",
-        //   value: "Redness",
-        //   imageUrl: redness.default,
-        // },
         {
-          displayValue: "Pores & Blackheads",
+          displayValue: "Redness",
+          value: "Redness",
+          imageUrl: redness.default,
+        },
+        {
+          displayValue: "Pores",
           value: "Pores",
           imageUrl: acne.default,
         },

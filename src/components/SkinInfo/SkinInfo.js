@@ -9,6 +9,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { isEmpty } from "../../utils/objectUtils";
 import { Dropdown } from "./dropdown";
+import { ATTRIBUTES } from "../ProductCard/attributes";
 
 class SkinInfo extends Component {
   state = {
@@ -100,8 +101,8 @@ class SkinInfo extends Component {
               <Dropdown
                 options={dropdownOptions}
                 handleChange={this.handleDropdownChange}
-                placeholder={selectedAttribute}
-                value={selectedAttribute}
+                placeholder={ATTRIBUTES[selectedAttribute]}
+                value={ATTRIBUTES[selectedAttribute]}
               />
             </div>
           </div>

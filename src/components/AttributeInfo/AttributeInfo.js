@@ -43,7 +43,7 @@ class AttributeInfo extends Component {
     return (
       <div class="rounded-t-lg rounded-b-lg shadow-xl mb-8 sm:mr-4">
         <div class="rounded-t-lg bg-lilac-100 text-slate-gray pt-6 pb-4 px-4">
-          <div class="flex flex-wrap justify-between items-center font-light uppercase tracking-wider mb-2 text-slate-teal">
+          <div class="flex flex-wrap justify-between items-center font-light uppercase tracking-wider text-slate-teal">
             <div class="sm:mr-6 font-semibold">
               {ATTRIBUTES[attribute] || attribute}
             </div>
