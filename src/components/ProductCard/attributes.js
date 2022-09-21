@@ -10,5 +10,17 @@ export const ATTRIBUTES = {
   plump: "Plumping",
   smooth: "Smoothening",
   firm: "Firming",
-  greasy: "Greasy"
+  greasy: "Greasy",
+  hydrate: "Hydrating",
+  red: "Redness",
+  shine: "Shine",
+  pigment: "Pigmentation",
+  aging: "Aging",
+  acne: "Acne, Blemishes",
+  lightweight: "Lightweight",
+  "oily skin": "Oily Skin",
+  "sensitive skin": "Sensitive Skin",
+  "dry skin": "Dry Skin",
+  "normal skin": "Normal Skin",
+  "combination skin": "Combination Skin"
 };

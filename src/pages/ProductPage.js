@@ -115,43 +115,37 @@ class ProductPage extends PureComponent {
             </div>
           </div>
 
-          <div class="pt-4 w-full px-6">
-            <div class="grid sm:grid-cols-2 gap-x-2 gap-y-2">
-              {!isEmpty(skinTypeAnalysis) && (
-                <SkinInfo
-                  analysisData={skinTypeAnalysis}
-                  infoValue={"skinType"}
-                />
-              )}
-              {!isEmpty(skinConcernAnalysis) && (
-                <SkinInfo
-                  analysisData={skinConcernAnalysis}
-                  infoValue={"skinConcern"}
-                />
-              )}
-            </div>
-            <div class="grid sm:grid-cols-2 gap-x-2 gap-y-2">
-              {!isEmpty(filteredAttributeAnalysis) &&
-                filteredAttributeAnalysis.map((analysisData) => {
-                  return <AttributeInfo analysisData={analysisData} />;
-                })}
-            </div>
-            <div class="grid sm:grid-cols-2 gap-x-2 gap-y-2">
-              {!isEmpty(finishAttributes) && (
-                <GroupedAttributeInfo
-                  analysisData={finishAttributes}
-                  title="Skin Finish"
-                />
-              )}
-            </div>
-            <div class="grid sm:grid-cols-2 gap-x-2 gap-y-2">
-              {!isEmpty(effectsAttributes) && (
-                <GroupedAttributeInfo
-                  analysisData={effectsAttributes}
-                  title="Skin Effects"
-                />
-              )}
-            </div>
+          <div class="pt-4 w-full px-6 grid sm:grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-2">
+            {!isEmpty(skinTypeAnalysis) && (
+              <SkinInfo
+                analysisData={skinTypeAnalysis}
+                infoValue={"skinType"}
+              />
+            )}
+            {!isEmpty(skinConcernAnalysis) && (
+              <SkinInfo
+                analysisData={skinConcernAnalysis}
+                infoValue={"skinConcern"}
+              />
+            )}
+            {!isEmpty(filteredAttributeAnalysis) &&
+              filteredAttributeAnalysis.map((analysisData) => {
+                return <AttributeInfo analysisData={analysisData} />;
+              })}
+
+            {!isEmpty(finishAttributes) && (
+              <GroupedAttributeInfo
+                analysisData={finishAttributes}
+                title="Skin Finish"
+              />
+            )}
+
+            {!isEmpty(effectsAttributes) && (
+              <GroupedAttributeInfo
+                analysisData={effectsAttributes}
+                title="Skin Effects"
+              />
+            )}
           </div>
         </div>
       </div>
