@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { StarIcon } from "@heroicons/react/solid";
+import { StarIcon } from "@heroicons/react/24/solid";
 import "./StarRating.css";
 
 class StarRating extends PureComponent {

@@ -3,6 +3,9 @@ module.exports = {
   darkMode: false,
   theme: {
     extend: {
+      lineClamp: {
+        10: '14',
+      },
       borderWidth: {
         DEFAULT: "1px",
         0: "0",
@@ -51,7 +54,7 @@ module.exports = {
         "aqua-dark": "#36615b",
         "slate-gray": "#2f3033",
         "slate-teal": "#3a5956",
-        "light-purple": "#e6d9f8"
+        "light-purple": "#e6d9f8",
       },
       gridTemplateColumns: {
         // Repeat with a min-width of 200px
@@ -88,5 +91,5 @@ module.exports = {
   variants: {
     extend: { opacity: ["disabled"] },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };

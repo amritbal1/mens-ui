@@ -110,12 +110,12 @@ class ProductPage extends PureComponent {
                 showCursorOnHover={true}
               />
             </div>
-            <div class="flex self-start w-full pt-4 lg:pt-0 lg:w-1/3 md:pl-0 md:pr-4 lg:ml-14 pb-4 px-6">
+            <div class="flex self-start w-full pt-4 lg:pt-0 md:w-1/3 md:pl-0 md:pr-4 lg:ml-14 pb-4 px-6">
               <ProductInfo productDetails={productData} />
             </div>
           </div>
 
-          <div class="pt-4 w-full px-6 grid sm:grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-2">
+          <div class="pt-4 w-full px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-2">
             {!isEmpty(skinTypeAnalysis) && (
               <SkinInfo
                 analysisData={skinTypeAnalysis}

@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 import * as skinTypeImage from "../../components/ProductFinder/config/images/skinTypes/oily.png";
 import * as skinConcernImage from "../../components/ProductFinder/config/images/skinConcerns/aging.png";
-import {
-  CheckIcon,
-  XMarkIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-} from "@heroicons/react/24/solid";
-import { isEmpty } from "../../utils/objectUtils";
+import { CheckIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Dropdown } from "./dropdown";
 import { ATTRIBUTES } from "../ProductCard/attributes";
+import { getReviewSection } from "./reviewSection";
 
 class SkinInfo extends Component {
   state = {
@@ -18,15 +13,6 @@ class SkinInfo extends Component {
     selectedNegativeReviews: [],
     selectedOverallScore: 0,
     dropdownOptions: [],
-    readMoreSelectedPositive: false,
-    readMoreSelectedNegative: false,
-  };
-
-  handleReadMoreClick = ({ reviewSection }) => {
-    const { readMoreSelectedPositive, readMoreSelectedNegative } = this.state;
-    reviewSection === "positive"
-      ? this.setState({ readMoreSelectedPositive: !readMoreSelectedPositive })
-      : this.setState({ readMoreSelectedNegative: !readMoreSelectedNegative });
   };
 
   componentDidMount() {
@@ -36,7 +22,7 @@ class SkinInfo extends Component {
     const dropdownOptions = analysisData.map((data) => {
       return {
         value: data[infoValue],
-        label: `${data[infoValue]} ${infoValue === "skinType" ? "skin" : ""}`,
+        label: `${ATTRIBUTES[data.attribute]}`,
       };
     });
     this.setState({
@@ -86,8 +72,6 @@ class SkinInfo extends Component {
       selectedPositiveReviews,
       selectedNegativeReviews,
       dropdownOptions,
-      readMoreSelectedPositive,
-      readMoreSelectedNegative,
     } = this.state;
     const { infoValue } = this.props;
     return (
@@ -138,90 +122,10 @@ class SkinInfo extends Component {
             </div>
           </div>
         </div>
-        <div class="bg-white pb-6 px-4 pt-6 rounded-b-lg">
-          {!isEmpty(selectedPositiveReviews) && (
-            <div class="mb-8">
-              <div class="font-light mb-4 font-light text-sm">
-                Positive Reviews
-              </div>
-              {readMoreSelectedPositive ? (
-                <div class="overflow-y-scroll h-60 sm:h-40">
-                  {selectedPositiveReviews.map((review) => {
-                    return (
-                      <div class="mb-6 text-sm font-thin">
-                        "{review.review_text}"
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div class="text-sm font-thin">
-                  "{selectedPositiveReviews[0].review_text}"
-                </div>
-              )}
-              {selectedPositiveReviews.length > 1 && (
-                <div class="text-right">
-                  <span
-                    class="text-gray-400 text-sm font-light"
-                    onClick={() =>
-                      this.handleReadMoreClick({ reviewSection: "positive" })
-                    }
-                  >
-                    <span class="text-xs text-lilac-700">
-                      {readMoreSelectedPositive ? "Read Less" : "Read More"}
-                    </span>
-                    {readMoreSelectedPositive ? (
-                      <ChevronUpIcon class="ml-1 h-4 w-4 inline text-lilac-700" />
-                    ) : (
-                      <ChevronDownIcon class="ml-1 h-4 w-4 inline text-lilac-700" />
-                    )}
-                  </span>
-                </div>
-              )}
-            </div>
-          )}
-          {!isEmpty(selectedNegativeReviews) && (
-            <div class="mb-4">
-              <div class="font-light mb-4 font-light text-sm">
-                Negative Reviews
-              </div>
-              {readMoreSelectedNegative ? (
-                <div class="overflow-y-scroll h-60 sm:h-40">
-                  {selectedNegativeReviews.map((review) => {
-                    return (
-                      <div class="mb-6 text-sm font-thin">
-                        "{review.review_text}"
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div class="text-sm font-thin">
-                  "{selectedNegativeReviews[0].review_text}"
-                </div>
-              )}
-              {selectedNegativeReviews.length > 1 && (
-                <div class="text-right">
-                  <span
-                    class="text-gray-400 text-sm font-light"
-                    onClick={() =>
-                      this.handleReadMoreClick({ reviewSection: "negative" })
-                    }
-                  >
-                    <span class="text-xs text-lilac-700">
-                      {readMoreSelectedNegative ? "Read Less" : "Read More"}
-                    </span>
-                    {readMoreSelectedNegative ? (
-                      <ChevronUpIcon class="ml-1 h-4 w-4 inline text-lilac-700" />
-                    ) : (
-                      <ChevronDownIcon class="ml-1 h-4 w-4 inline text-lilac-700" />
-                    )}
-                  </span>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
+        {getReviewSection({
+          positiveReviews: selectedPositiveReviews,
+          negativeReviews: selectedNegativeReviews,
+        })}
       </div>
     );
   }
