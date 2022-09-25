@@ -79,13 +79,11 @@ class ProductPage extends PureComponent {
       const currAttribute = curr.attribute;
       if (
         currAttribute === "matte" ||
-        currAttribute === "dewy" ||
         currAttribute === "glow"
       ) {
         finishAttributes = [...finishAttributes, curr];
         return acc;
       } else if (
-        currAttribute === "bright" ||
         currAttribute === "plump" ||
         currAttribute === "smooth" ||
         currAttribute === "firm"

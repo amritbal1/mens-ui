@@ -24,6 +24,8 @@ export const skinConcernOptions = [
   { displayValue: "Redness", value: "Redness" },
   { displayValue: "Pores", value: "Pores" },
   { displayValue: "Shine & Oiliness", value: "Oiliness" },
+  { displayValue: "Eczema", value: "Eczema" },
+  { displayValue: "Rosacea", value: "Rosacea" },
 ];
 
 const skinConcernValues = getOptionValues({ options: skinConcernOptions });

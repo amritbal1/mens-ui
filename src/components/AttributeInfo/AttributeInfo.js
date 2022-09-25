@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { ATTRIBUTES } from "../ProductCard/attributes";
 import { getReviewSection } from "../SkinInfo/reviewSection";
 class AttributeInfo extends Component {
-
   getMatchDescriptor = ({ overallScore }) => {
     switch (true) {
       case overallScore <= 50:

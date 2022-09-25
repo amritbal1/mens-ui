@@ -85,6 +85,16 @@ export const skincareConfig = {
           value: "Oiliness",
           imageUrl: shine.default,
         },
+        {
+          displayValue: "Eczema",
+          value: "Eczema",
+          imageUrl: dry.default,
+        },
+        {
+          displayValue: "Rosacea",
+          value: "Rosacea",
+          imageUrl: redness.default,
+        },
       ],
     },
   ],

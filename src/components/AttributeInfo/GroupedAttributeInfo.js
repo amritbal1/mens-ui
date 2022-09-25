@@ -20,7 +20,7 @@ class GroupedAttributeInfo extends Component {
               <div class="text-slate-gray uppercase font-light py-2">
                 {ATTRIBUTES[attribute]}
               </div>
-              <div class="overflow-y-scroll max-h-60 scrollbar">
+              <div class="overflow-y-scroll max-h-36 scrollbar">
                 {positiveReviews.map((review) => {
                   const starRatingValue = Number(review.stars.substring(0, 3));
                   return (

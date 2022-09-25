@@ -63,6 +63,15 @@ class SkinInfo extends Component {
       selectedNegativeReviews: negativeReviews,
       selectedOverallScore: overallScore,
     });
+    this.setScrollToTop();
+  };
+
+  setScrollToTop = () => {
+    const { infoValue} = this.props
+    let positiveDiv = document.getElementById(`${infoValue}-positive`);
+    let negativeDiv = document.getElementById(`${infoValue}-negative`);
+    if (positiveDiv) positiveDiv.scrollTop = 0;
+    if (negativeDiv) negativeDiv.scrollTop = 0;
   };
 
   render() {
@@ -125,6 +134,7 @@ class SkinInfo extends Component {
         {getReviewSection({
           positiveReviews: selectedPositiveReviews,
           negativeReviews: selectedNegativeReviews,
+          id: infoValue,
         })}
       </div>
     );
