@@ -25,7 +25,7 @@ export default function RatingStar({ value }) {
 
   return (
     <div className={classes.root}>
-      <StyledRating defaultValue={value} precision={0.1} readOnly />
+      <StyledRating value={value} precision={0.1} readOnly />
     </div>
   );
 }

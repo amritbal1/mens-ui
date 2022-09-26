@@ -74,21 +74,10 @@ class ProductPage extends PureComponent {
       },
     } = productData;
     let finishAttributes = [];
-    let effectsAttributes = [];
     const filteredAttributeAnalysis = attributeAnalysis.reduce((acc, curr) => {
       const currAttribute = curr.attribute;
-      if (
-        currAttribute === "matte" ||
-        currAttribute === "glow"
-      ) {
+      if (currAttribute === "matte" || currAttribute === "glow" || currAttribute === "smooth") {
         finishAttributes = [...finishAttributes, curr];
-        return acc;
-      } else if (
-        currAttribute === "plump" ||
-        currAttribute === "smooth" ||
-        currAttribute === "firm"
-      ) {
-        effectsAttributes = [...effectsAttributes, curr];
         return acc;
       } else return [...acc, curr];
     }, []);
@@ -135,13 +124,6 @@ class ProductPage extends PureComponent {
               <GroupedAttributeInfo
                 analysisData={finishAttributes}
                 title="Skin Finish"
-              />
-            )}
-
-            {!isEmpty(effectsAttributes) && (
-              <GroupedAttributeInfo
-                analysisData={effectsAttributes}
-                title="Skin Effects"
               />
             )}
           </div>

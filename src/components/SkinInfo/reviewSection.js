@@ -20,7 +20,7 @@ export const getReviewSection = ({ positiveReviews, negativeReviews, id }) => {
             }`}
             id={`${id}-positive`}
           >
-            {positiveReviews.map((review) => {
+            {positiveReviews.map((review, i) => {
               const starRatingValue = Number(review.stars.substring(0, 3));
               return (
                 <div class="mb-6 text-sm font-thin">
@@ -49,7 +49,7 @@ export const getReviewSection = ({ positiveReviews, negativeReviews, id }) => {
               }`}
               id={`${id}-negative`}
             >
-              {negativeReviews.map((review) => {
+              {negativeReviews.map((review, i) => {
                 const starRatingValue = Number(review.stars.substring(0, 3));
                 return (
                   <div class="mb-6 text-sm font-thin">

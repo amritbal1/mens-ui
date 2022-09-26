@@ -18,7 +18,8 @@ class GroupedAttributeInfo extends Component {
               key={`${i}-${attribute}`}
             >
               <div class="text-slate-gray uppercase font-light py-2">
-                {ATTRIBUTES[attribute]}
+                {`${ATTRIBUTES[attribute]}`}
+                <span class="lowercase text-xs font-thin ml-2">{`(${positiveReviews.length} mentions)`}</span>
               </div>
               <div class="overflow-y-scroll max-h-36 scrollbar">
                 {positiveReviews.map((review) => {
