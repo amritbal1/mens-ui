@@ -32,13 +32,14 @@ class AttributeInfo extends Component {
             <div class="sm:mr-6 font-semibold">
               {ATTRIBUTES[attribute] || attribute}
             </div>
-            <div class="normal-case text-slate-teal flex flex-shrink-0 items-center">
-              <span class="mr-2 text-lg font-normal">{`${overallScore}% `}</span>
-              <span class="text-xs">{"Analysis Score"}</span>
-            </div>
           </div>
         </div>
-        {getReviewSection({ positiveReviews, negativeReviews })}
+        {getReviewSection({
+          positiveReviews,
+          negativeReviews,
+          overallScore,
+          attribute,
+        })}
       </div>
     );
   };

@@ -1,27 +1,30 @@
 export const ATTRIBUTES = {
   absorb: "Absorption",
   scent: "Scent",
-  texture: "Texture",
   irritate: "Irritation",
-  matte: "Matte",
-  glow: "Glow/ Brightening/ Dewy",
-  smooth: "Softer/ Smoother Skin",
-  firm: "Firming",
-  greasy: "Greasy",
-  hydrate: "Hydrating",
-  red: "Redness",
-  redness: "Redness",
+  moisturise: "Moisturise",
   oiliness: "Oiliness",
   pigment: "Pigmentation",
   aging: "Aging",
-  acne: "Acne, Blemishes",
-  pores: "Pores",
-  rosacea: "rosacea",
-  eczema: "eczema",
-  lightweight: "Lightweight",
+  breakout: "Breakouts",
   "oily skin": "Oily Skin",
   "sensitive skin": "Sensitive Skin",
   "dry skin": "Dry Skin",
-  "normal skin": "Normal Skin",
-  "combination skin": "Combination Skin"
+  "combination skin": "Combination Skin",
+};
+
+export const ATTRIBUTE_LABELS_POSITIVE = {
+  absorb: "Absorbs well",
+  scent: "Smells pleasant",
+  irritate: "Not irritating",
+  moisturise: "Moisturises well",
+  breakout: "Reduces breakouts",
+};
+
+export const ATTRIBUTE_LABELS_NEGATIVE = {
+  absorb: "Absorbs badly",
+  scent: "Smells unpleasant",
+  irritate: "Irritating",
+  moisturise: "Moisturises badly",
+  breaskouts: "Causes breakouts",
 };

@@ -9,7 +9,6 @@ import Navbar from "../components/Navbar/Navbar";
 import Carousel from "../components/Carousel/Carousel";
 import SkinInfo from "../components/SkinInfo/SkinInfo";
 import AttributeInfo from "../components/AttributeInfo/AttributeInfo";
-import GroupedAttributeInfo from "../components/AttributeInfo/GroupedAttributeInfo";
 
 //Page to display information for a single product
 class ProductPage extends PureComponent {
@@ -73,14 +72,6 @@ class ProductPage extends PureComponent {
         skinConcernAnalysis,
       },
     } = productData;
-    let finishAttributes = [];
-    const filteredAttributeAnalysis = attributeAnalysis.reduce((acc, curr) => {
-      const currAttribute = curr.attribute;
-      if (currAttribute === "matte" || currAttribute === "glow" || currAttribute === "smooth") {
-        finishAttributes = [...finishAttributes, curr];
-        return acc;
-      } else return [...acc, curr];
-    }, []);
 
     return (
       <div>
@@ -115,17 +106,10 @@ class ProductPage extends PureComponent {
                 infoValue={"skinConcern"}
               />
             )}
-            {!isEmpty(filteredAttributeAnalysis) &&
-              filteredAttributeAnalysis.map((analysisData) => {
+            {!isEmpty(attributeAnalysis) &&
+              attributeAnalysis.map((analysisData) => {
                 return <AttributeInfo analysisData={analysisData} />;
               })}
-
-            {!isEmpty(finishAttributes) && (
-              <GroupedAttributeInfo
-                analysisData={finishAttributes}
-                title="Skin Finish"
-              />
-            )}
           </div>
         </div>
       </div>

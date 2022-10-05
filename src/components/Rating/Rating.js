@@ -4,7 +4,7 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 const StyledRating = withStyles({
   iconFilled: {
-    color: "#8c98cb",
+    color: "#95CFC9",
     fontSize: "1.2rem"
   },
   iconEmpty: {

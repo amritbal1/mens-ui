@@ -1,7 +1,6 @@
 import { PureComponent } from "react";
 import { REGION, S3_BUCKET } from "../../aws-config";
 import { isEmpty } from "../../utils/objectUtils";
-import { ATTRIBUTES } from "./attributes";
 import "./circle.css";
 class ProductCard extends PureComponent {
   state = {
@@ -26,19 +25,11 @@ class ProductCard extends PureComponent {
     const { productName, brandName, mainImageUrl, productId } = productDetails;
     const s3ImageUrl = `https://s3.${REGION}.amazonaws.com/${S3_BUCKET}/${mainImageUrl}`;
     const { criteriaData, pros, cons } = reviewData;
-    const { skinTypeAnalysis, skinConcernAnalysis, attributeAnalysis } =
+    const { skinTypeAnalysis, skinConcernAnalysis } =
       criteriaData;
     const { skinType, overallScore: skinTypeOverallScore } = skinTypeAnalysis;
     const { skinConcern, overallScore: skinConcernOverallScore } =
       skinConcernAnalysis;
-    const textureData = attributeAnalysis.find(
-      (el) => el.attribute === "texture"
-    );
-    const scentData = attributeAnalysis.find((el) => el.attribute === "scent");
-    const absorptionData = attributeAnalysis.find(
-      (el) => el.attribute === "absorb"
-    );
-    const attributesToDisplay = [textureData, scentData, absorptionData];
     return (
       <div class="p-1 sm:p-4 mb-8 sm:mb-4">
         <figure
@@ -106,17 +97,6 @@ class ProductCard extends PureComponent {
                     {skinConcernOverallScore}%
                   </span>
                 </span>
-                {attributesToDisplay.map((data) => {
-                  if (!data) return null;
-                  return (
-                    <span class="flex flex-shrink-0 items-center">
-                      {`${ATTRIBUTES[data.attribute]}`}:
-                      <span class="text-sm font-normal text-slate-gray ml-1">
-                        {data.overallScore}%
-                      </span>
-                    </span>
-                  );
-                })}
               </span>
             </div>
             <div class="mb-8">

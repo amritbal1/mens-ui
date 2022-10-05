@@ -51,7 +51,7 @@ class RecommendationPage extends PureComponent {
             Analysis of 100+ reviews shows that these products are the
             <b> perfect matches</b> for you!
           </div>
-          <div class="grid sm:grid-cols-2 gap-x-2 gap-y-2 font-montserrat">
+          <div class="grid sm:grid-cols-3 gap-x-2 gap-y-2 font-montserrat">
             {this.getFormattedResults()}
           </div>
         </div>

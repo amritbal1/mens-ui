@@ -1,10 +1,12 @@
+const percentageWidth = require('tailwindcss-percentage-width');
+
 module.exports = {
   purge: ["./src/**/*.{js,jsx}", "./public/index.html"],
   darkMode: false,
   theme: {
     extend: {
       lineClamp: {
-        10: '14',
+        10: "14",
       },
       borderWidth: {
         DEFAULT: "1px",
@@ -38,6 +40,8 @@ module.exports = {
           washed: "#d2b9f8",
           light: "#faf7ff",
         },
+        "score-green": "#77c990",
+        "score-red": "#d4665b",
         "light-purple-gradient": "#A770EF",
         "dark-purple-gradient": "#CF8BF3",
         "lilac-10": "#d8f3f1",
@@ -91,5 +95,5 @@ module.exports = {
   variants: {
     extend: { opacity: ["disabled"] },
   },
-  plugins: [require("@tailwindcss/line-clamp")],
+  plugins: [require("@tailwindcss/line-clamp"), percentageWidth],
 };

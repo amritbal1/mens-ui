@@ -67,7 +67,7 @@ class SkinInfo extends Component {
   };
 
   setScrollToTop = () => {
-    const { infoValue} = this.props
+    const { infoValue } = this.props;
     let positiveDiv = document.getElementById(`${infoValue}-positive`);
     let negativeDiv = document.getElementById(`${infoValue}-negative`);
     if (positiveDiv) positiveDiv.scrollTop = 0;
@@ -90,14 +90,14 @@ class SkinInfo extends Component {
             <div class="sm:mr-6 font-semibold">
               {infoValue === "skinType" ? "Skin Type" : "Skin Concern"}
             </div>
-            <div class="w-min-165px">
+            {/* <div class="w-min-165px">
               <Dropdown
                 options={dropdownOptions}
                 handleChange={this.handleDropdownChange}
                 placeholder={ATTRIBUTES[selectedAttribute]}
                 value={ATTRIBUTES[selectedAttribute]}
               />
-            </div>
+            </div> */}
           </div>
           <div class="flex uppercase">
             <img
@@ -110,9 +110,13 @@ class SkinInfo extends Component {
               class="ml-4 h-16 w-16 bg-white rounded-full p-1"
             />
             <div class="ml-8">
-              <div class="normal-case text-slate-teal flex flex-shrink-0 items-center">
-                <span class="mr-2 text-lg font-normal">{`${selectedOverallScore}% `}</span>
-                <span class="text-xs">{"Analysis Score"}</span>
+              <div class="w-min-185px mb-3">
+                <Dropdown
+                  options={dropdownOptions}
+                  handleChange={this.handleDropdownChange}
+                  placeholder={ATTRIBUTES[selectedAttribute]}
+                  value={ATTRIBUTES[selectedAttribute]}
+                />
               </div>
               <div class="flex items-center flex-shrink-0 mt-1 text-slate-teal">
                 <span class="mr-1">
@@ -132,9 +136,11 @@ class SkinInfo extends Component {
           </div>
         </div>
         {getReviewSection({
+          overallScore: selectedOverallScore,
           positiveReviews: selectedPositiveReviews,
           negativeReviews: selectedNegativeReviews,
-          id: infoValue,
+          attribute: selectedAttribute,
+          type: "skinInfo",
         })}
       </div>
     );

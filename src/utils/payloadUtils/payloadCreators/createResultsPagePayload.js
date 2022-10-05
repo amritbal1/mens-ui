@@ -37,6 +37,7 @@ export const createResultsPagePayload = ({ overridePageNum }) => {
     brands: brandsPayloadValue,
     starRating: starRating,
   };
+  console.log("Filters", filters)
   return {
     pageSize: PAGE_SIZE.PRODUCT_RESULTS,
     pageNumber: overridePageNum || getValueFromUrl({ param: "pageNumber" }),

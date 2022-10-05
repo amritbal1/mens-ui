@@ -120,7 +120,7 @@ class ResultsPage extends PureComponent {
                   }
                 >
                   {/* Had to add this hack of pb-48 to make the div go below the viewport because the infinite scroll shows Loading text on Ipad Pro (https://github.com/ankeetmaini/react-infinite-scroll-component/issues/47) */}
-                  <div class="grid grid-cols-2 gap-x-4 md:grid-cols-3 lg:gap-y-8 lg:grid-cols-4 mt-5 pb-48">
+                  <div class="grid grid-cols-3 gap-x-4 lg:gap-y-8 lg:grid-cols-4 mt-5 pb-48">
                     {formattedResults}
                   </div>
                 </InfiniteScroll>
