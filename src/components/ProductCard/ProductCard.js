@@ -1,3 +1,4 @@
+import { HandThumbUpIcon } from "@heroicons/react/24/outline";
 import { PureComponent } from "react";
 import { REGION, S3_BUCKET } from "../../aws-config";
 import { isEmpty } from "../../utils/objectUtils";
@@ -25,8 +26,7 @@ class ProductCard extends PureComponent {
     const { productName, brandName, mainImageUrl, productId } = productDetails;
     const s3ImageUrl = `https://s3.${REGION}.amazonaws.com/${S3_BUCKET}/${mainImageUrl}`;
     const { criteriaData, pros, cons } = reviewData;
-    const { skinTypeAnalysis, skinConcernAnalysis } =
-      criteriaData;
+    const { skinTypeAnalysis, skinConcernAnalysis } = criteriaData;
     const { skinType, overallScore: skinTypeOverallScore } = skinTypeAnalysis;
     const { skinConcern, overallScore: skinConcernOverallScore } =
       skinConcernAnalysis;
@@ -84,17 +84,19 @@ class ProductCard extends PureComponent {
             </div>
             <div class="mb-6 flex">
               <span class="text-sm font-extralight text-slate-gray mr-2">
-                <span class="underline">Score From Reviews</span>
+                <span class="underline">Rating From Reviews</span>
                 <span class="flex flex-shrink-0 items-center mt-2">
                   {` ${skinType} skin`}:
                   <span class="text-sm font-normal text-slate-gray ml-1">
-                    {skinTypeOverallScore}%
+                    {skinTypeOverallScore}%{" "}
+                    <HandThumbUpIcon class="inline h-3 w-4" />
                   </span>
                 </span>
                 <span class="flex flex-shrink-0 items-center">
                   {` ${skinConcern}`}:
                   <span class="text-sm font-normal text-slate-gray ml-1">
                     {skinConcernOverallScore}%
+                    <HandThumbUpIcon class="inline h-3 w-4" />
                   </span>
                 </span>
               </span>

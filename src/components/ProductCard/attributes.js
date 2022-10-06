@@ -16,7 +16,7 @@ export const ATTRIBUTES = {
 export const ATTRIBUTE_LABELS_POSITIVE = {
   absorb: "Absorbs well",
   scent: "Smells pleasant",
-  irritate: "Not irritating",
+  irritate: "Gentle",
   moisturise: "Moisturises well",
   breakout: "Reduces breakouts",
 };

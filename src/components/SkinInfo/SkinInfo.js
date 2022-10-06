@@ -19,7 +19,9 @@ class SkinInfo extends Component {
     const { analysisData, infoValue } = this.props;
     const { attribute, positiveReviews, negativeReviews, overallScore } =
       analysisData[0];
+
     const dropdownOptions = analysisData.map((data) => {
+      console.log("data", data.attribute);
       return {
         value: data[infoValue],
         label: `${ATTRIBUTES[data.attribute]}`,
