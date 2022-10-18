@@ -48,10 +48,10 @@ class RecommendationPage extends PureComponent {
       to-lilac-200"
         >
           <div class="py-10 px-5 sm:px-10 text-slate-gray text-xl font-light tracking-tight text-center font-montserrat">
-            Analysis of 100+ reviews shows that these products are the
+            Analysis of thousands of reviews shows these products are the
             <b> perfect matches</b> for you!
           </div>
-          <div class="grid sm:grid-cols-3 gap-x-2 gap-y-2 font-montserrat">
+          <div class="px-3 sm:px-0 grid grid-cols-2 sm:grid-cols-3 gap-x-1 sm:gap-x-2 gap-y-2 font-montserrat">
             {this.getFormattedResults()}
           </div>
         </div>

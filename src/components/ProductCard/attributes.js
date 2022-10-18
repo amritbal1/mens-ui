@@ -2,11 +2,11 @@ export const ATTRIBUTES = {
   absorb: "Absorption",
   scent: "Scent",
   irritate: "Irritation",
-  moisturise: "Moisturise",
+  moisturise: "Moisturising",
+  breakout: "Breakouts",
   oiliness: "Oiliness",
   pigment: "Pigmentation",
   aging: "Aging",
-  breakout: "Breakouts",
   "oily skin": "Oily Skin",
   "sensitive skin": "Sensitive Skin",
   "dry skin": "Dry Skin",
@@ -14,17 +14,19 @@ export const ATTRIBUTES = {
 };
 
 export const ATTRIBUTE_LABELS_POSITIVE = {
+  ...ATTRIBUTES,
   absorb: "Absorbs well",
   scent: "Smells pleasant",
   irritate: "Gentle",
   moisturise: "Moisturises well",
-  breakout: "Reduces breakouts",
+  breakout: "Helps with breakouts",
 };
 
 export const ATTRIBUTE_LABELS_NEGATIVE = {
-  absorb: "Absorbs badly",
+  ...ATTRIBUTES,
+  absorb: "Absorbs poorly",
   scent: "Smells unpleasant",
   irritate: "Irritating",
-  moisturise: "Moisturises badly",
-  breaskouts: "Causes breakouts",
+  moisturise: "Moisturises poorly",
+  breakout: "Causes breakouts",
 };

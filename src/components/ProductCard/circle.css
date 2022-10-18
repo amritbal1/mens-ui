@@ -9,6 +9,7 @@
   --b:22px;    /* the thickness */
   --c:darkred; /* the color */
   --w:5.3rem;   /* the size*/
+  --l:.95rem; /* the lien height*/
   
   width:var(--w);
   aspect-ratio:1/1;
@@ -19,7 +20,7 @@
   font-family:sans-serif;
   color: rgba(47, 48, 51);
   letter-spacing: -0.05em;
-  line-height: .95rem;
+  line-height:var(--l);
 }
 .pie:before,
 .pie:after {

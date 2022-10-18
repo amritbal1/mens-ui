@@ -21,7 +21,6 @@ class SkinInfo extends Component {
       analysisData[0];
 
     const dropdownOptions = analysisData.map((data) => {
-      console.log("data", data.attribute);
       return {
         value: data[infoValue],
         label: `${ATTRIBUTES[data.attribute]}`,
@@ -92,14 +91,6 @@ class SkinInfo extends Component {
             <div class="sm:mr-6 font-semibold">
               {infoValue === "skinType" ? "Skin Type" : "Skin Concern"}
             </div>
-            {/* <div class="w-min-165px">
-              <Dropdown
-                options={dropdownOptions}
-                handleChange={this.handleDropdownChange}
-                placeholder={ATTRIBUTES[selectedAttribute]}
-                value={ATTRIBUTES[selectedAttribute]}
-              />
-            </div> */}
           </div>
           <div class="flex uppercase">
             <img
@@ -141,8 +132,7 @@ class SkinInfo extends Component {
           overallScore: selectedOverallScore,
           positiveReviews: selectedPositiveReviews,
           negativeReviews: selectedNegativeReviews,
-          attribute: selectedAttribute,
-          type: "skinInfo",
+          attribute: selectedAttribute
         })}
       </div>
     );

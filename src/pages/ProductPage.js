@@ -89,7 +89,7 @@ class ProductPage extends PureComponent {
               />
             </div>
             <div class="flex self-start w-full pt-4 lg:pt-0 md:w-1/3 md:pl-0 md:pr-4 lg:ml-14 pb-4 px-6">
-              <ProductInfo productDetails={productData} />
+              <ProductInfo productDetails={productData} attributeAnalysis={attributeAnalysis} />
             </div>
           </div>
 

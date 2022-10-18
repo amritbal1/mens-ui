@@ -1,8 +1,16 @@
-import { HandThumbUpIcon } from "@heroicons/react/24/outline";
+import {
+  HandThumbUpIcon,
+  HandThumbDownIcon,
+} from "@heroicons/react/24/outline";
 import { PureComponent } from "react";
 import { REGION, S3_BUCKET } from "../../aws-config";
 import { isEmpty } from "../../utils/objectUtils";
 import "./circle.css";
+
+const isSmallBreakpoint = window.screen.width <= 640;
+const styleObj = isSmallBreakpoint
+  ? { "--w": "3.3rem", "--l": "0.7rem" }
+  : { "--w": "5.3rem", "--l": "0.95rem" };
 class ProductCard extends PureComponent {
   state = {
     displayChevron: true,
@@ -33,7 +41,7 @@ class ProductCard extends PureComponent {
     return (
       <div class="p-1 sm:p-4 mb-8 sm:mb-4">
         <figure
-          class="border rounded-md max-w-20 mx-auto bg-white cursor-pointer transition-transform transform md:hover:scale-105 md:hover:shadow-l"
+          class="border rounded-md max-w-20 mx-auto bg-white cursor-pointer transition-transform transform sm:hover:scale-105 sm:hover:shadow-l"
           onClick={() => this.handleProductCardClick({ productId: productId })}
         >
           <div class="flex justify-end mt-4 mr-4">
@@ -45,16 +53,17 @@ class ProductCard extends PureComponent {
                     "--p": dbg_recommendationScore,
                     "--c": "#73B8B2",
                     "--b": "3px",
+                    ...styleObj
                   }}
                 >
                   <div class="flex flex-col justify-center items-center">
-                    <div class="text-xl text-slate-gray font-thin mb-2">
+                    <div class="text-sm sm:text-xl text-slate-gray font-thin mb-1 sm:mb-2">
                       {dbg_recommendationScore}
                     </div>
-                    <div class="text-xs text-slate-gray font-extralight">
+                    <div class="text-xxs sm:text-xs text-slate-gray font-extralight">
                       Matching
                     </div>
-                    <div class="text-xs text-slate-gray font-extralight">
+                    <div class="text-xxs sm:text-xs text-slate-gray font-extralight">
                       Score
                     </div>
                   </div>
@@ -68,40 +77,50 @@ class ProductCard extends PureComponent {
                 <img
                   src={s3ImageUrl}
                   alt="product"
-                  class="h-full w-full object-cover rounded-t-md border-b"
+                  class="h-full w-full object-cover rounded-t-md"
                 />
               </div>
             </div>
           </div>
-          <figcaption class="py-4 px-6">
+          <div class="h-2 border-b" />
+          <figcaption class="px-2 py-2 sm:py-4 sm:px-6">
             <div class="text-xs font-extralight text-slate-gray mb-2">
               {brandName}
             </div>
-            <div class="flex justify-between mb-6 text-slate-gray">
-              <div class="uppercase tracking-widest text- text-slate-gray">
+            <div class="flex justify-between mb-4 text-slate-gray">
+              <div class="text-xxs sm:text-sm uppercase tracking-wide text-slate-gray">
                 {productName}
               </div>
             </div>
-            <div class="mb-6 flex">
-              <span class="text-sm font-extralight text-slate-gray mr-2">
-                <span class="underline">Rating From Reviews</span>
-                <span class="flex flex-shrink-0 items-center mt-2">
+            <div class="mb-2 sm:mb-4 flex">
+              <span class="text-xs sm:text-sm font-extralight text-slate-gray mr-2">
+                <span class="flex flex-shrink-0 items-center">
                   {` ${skinType} skin`}:
-                  <span class="text-sm font-normal text-slate-gray ml-1">
-                    {skinTypeOverallScore}%{" "}
-                    <HandThumbUpIcon class="inline h-3 w-4" />
+                  <span class="text-xs sm:text-sm font-normal text-slate-gray ml-1">
+                    {skinTypeOverallScore}%
+                    {" "}
+                    {skinTypeOverallScore >= 50 ? (
+                      <HandThumbUpIcon class="inline h-4 w-4" />
+                    ) : (
+                      <HandThumbDownIcon class="inline h-4 w-4" />
+                    )}
                   </span>
                 </span>
                 <span class="flex flex-shrink-0 items-center">
                   {` ${skinConcern}`}:
-                  <span class="text-sm font-normal text-slate-gray ml-1">
+                  <span class="text-xs sm:text-sm font-normal text-slate-gray ml-1">
                     {skinConcernOverallScore}%
-                    <HandThumbUpIcon class="inline h-3 w-4" />
+                    {" "}
+                    {skinConcernOverallScore >= 50 ? (
+                      <HandThumbUpIcon class="inline h-4 w-4" />
+                    ) : (
+                      <HandThumbDownIcon class="inline h-4 w-4" />
+                    )}
                   </span>
                 </span>
               </span>
             </div>
-            <div class="mb-8">
+            <div>
               {!isEmpty(pros) && (
                 <div class="flex flex-wrap mb-4">
                   <span class="flex items-center mr-2"></span>

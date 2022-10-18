@@ -5,7 +5,6 @@ import {
 } from "@heroicons/react/24/outline";
 import { isEmpty } from "../../utils/objectUtils.js";
 import {
-  ATTRIBUTES,
   ATTRIBUTE_LABELS_NEGATIVE,
   ATTRIBUTE_LABELS_POSITIVE,
 } from "../ProductCard/attributes.js";
@@ -15,7 +14,6 @@ export const getReviewSection = ({
   negativeReviews,
   overallScore,
   attribute,
-  type,
 }) => {
   const allReviews = [...positiveReviews, ...negativeReviews];
   return (
@@ -38,17 +36,13 @@ export const getReviewSection = ({
               {overallScore > 0 && (
                 <span>
                   <HandThumbUpIcon class="h-3 w-3 inline" />{" "}
-                  {type === "skinInfo"
-                    ? ATTRIBUTES[attribute]
-                    : ATTRIBUTE_LABELS_POSITIVE[attribute]}
+                  {ATTRIBUTE_LABELS_POSITIVE[attribute]}
                 </span>
               )}
               {overallScore < 100 && (
                 <span>
                   <HandThumbDownIcon class="h-3 w-3 inline mr-1" />
-                  {type === "skinInfo"
-                    ? ATTRIBUTES[attribute]
-                    : ATTRIBUTE_LABELS_NEGATIVE[attribute]}
+                  {ATTRIBUTE_LABELS_NEGATIVE[attribute]}
                 </span>
               )}
             </div>

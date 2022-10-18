@@ -1,10 +1,13 @@
-const percentageWidth = require('tailwindcss-percentage-width');
+const percentageWidth = require("tailwindcss-percentage-width");
 
 module.exports = {
   purge: ["./src/**/*.{js,jsx}", "./public/index.html"],
   darkMode: false,
   theme: {
     extend: {
+      letterSpacing: {
+        "wide-x": "0.15em",
+      },
       lineClamp: {
         10: "14",
       },
@@ -17,6 +20,9 @@ module.exports = {
         4: "4px",
         6: "6px",
         8: "8px",
+      },
+      fontSize: {
+        xxs: "0.65rem",
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
