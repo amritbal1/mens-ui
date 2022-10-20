@@ -13,21 +13,39 @@ class SkinInfo extends Component {
     selectedNegativeReviews: [],
     selectedOverallScore: 0,
     dropdownOptions: [],
+    analysisData: [],
   };
 
   componentDidMount() {
     const { analysisData, infoValue } = this.props;
     const { attribute, positiveReviews, negativeReviews, overallScore } =
       analysisData[0];
+    let amendedAnalysisData = analysisData;
+    //Currently the Dryness skin concern has a attribute of dry skin which is the same as the skinType dry skin attribute. Need to differentiate it by changing it to Dryness
+    const amendedAttribute =
+      infoValue === "skinConcern" && attribute === "dry skin"
+        ? "dryness"
+        : attribute;
+    if (
+      infoValue === "skinConcern" &&
+      analysisData.find((el) => el.attribute === "dry skin")
+    ) {
+      amendedAnalysisData = analysisData.map((data) => {
+        return data.attribute === "dry skin"
+          ? { ...data, attribute: "dryness" }
+          : data;
+      });
+    }
 
-    const dropdownOptions = analysisData.map((data) => {
+    const dropdownOptions = amendedAnalysisData.map((data) => {
       return {
         value: data[infoValue],
         label: `${ATTRIBUTES[data.attribute]}`,
       };
     });
     this.setState({
-      selectedAttribute: attribute,
+      analysisData: amendedAnalysisData,
+      selectedAttribute: amendedAttribute,
       selectedPositiveReviews: positiveReviews,
       selectedNegativeReviews: negativeReviews,
       selectedOverallScore: overallScore,
@@ -53,7 +71,8 @@ class SkinInfo extends Component {
 
   handleDropdownChange = (selectedOption) => {
     const { value } = selectedOption;
-    const { analysisData, infoValue } = this.props;
+    const { infoValue } = this.props;
+    const { analysisData } = this.state;
     const selectedData = analysisData.find((el) => el[infoValue] === value);
 
     const { attribute, positiveReviews, negativeReviews, overallScore } =
@@ -69,10 +88,8 @@ class SkinInfo extends Component {
 
   setScrollToTop = () => {
     const { infoValue } = this.props;
-    let positiveDiv = document.getElementById(`${infoValue}-positive`);
-    let negativeDiv = document.getElementById(`${infoValue}-negative`);
-    if (positiveDiv) positiveDiv.scrollTop = 0;
-    if (negativeDiv) negativeDiv.scrollTop = 0;
+    let scrollDiv = document.getElementById(`${infoValue}`);
+    if (scrollDiv) scrollDiv.scrollTop = 0;
   };
 
   render() {
@@ -132,7 +149,8 @@ class SkinInfo extends Component {
           overallScore: selectedOverallScore,
           positiveReviews: selectedPositiveReviews,
           negativeReviews: selectedNegativeReviews,
-          attribute: selectedAttribute
+          attribute: selectedAttribute,
+          infoValue: infoValue,
         })}
       </div>
     );

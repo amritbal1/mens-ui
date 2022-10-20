@@ -7,6 +7,7 @@ export const ATTRIBUTES = {
   oiliness: "Oiliness",
   pigment: "Pigmentation",
   aging: "Aging",
+  dryness: "Dryness",
   "oily skin": "Oily Skin",
   "sensitive skin": "Sensitive Skin",
   "dry skin": "Dry Skin",
