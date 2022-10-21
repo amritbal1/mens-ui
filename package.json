@@ -12,6 +12,7 @@
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@mui/material": "^5.4.3",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "aws-sdk": "^2.999.0",
     "axios": "^0.21.1",
     "highcharts": "^9.1.0",
@@ -27,7 +28,8 @@
     "react-scripts": "4.0.3",
     "react-select": "^4.1.0",
     "react-slick": "^0.28.1",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "tailwindcss-percentage-width": "^1.0.3"
   },
   "scripts": {
     "start": "craco start",

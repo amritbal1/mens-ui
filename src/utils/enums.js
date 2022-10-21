@@ -25,6 +25,8 @@ export const SKIN_CONCERNS = {
   FINE_LINES: "Fine Lines & Wrinkles",
   REDNESS: "Redness",
   PORES: "Pores",
+  ECZEMA: "Eczema",
+  ROSACEA: "Rosacea",
 };
 
 export const SKIN_TYPES = {

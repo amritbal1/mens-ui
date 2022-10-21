@@ -1,8 +1,16 @@
+const percentageWidth = require("tailwindcss-percentage-width");
+
 module.exports = {
   purge: ["./src/**/*.{js,jsx}", "./public/index.html"],
   darkMode: false,
   theme: {
     extend: {
+      letterSpacing: {
+        "wide-x": "0.15em",
+      },
+      lineClamp: {
+        10: "14",
+      },
       borderWidth: {
         DEFAULT: "1px",
         0: "0",
@@ -12,6 +20,9 @@ module.exports = {
         4: "4px",
         6: "6px",
         8: "8px",
+      },
+      fontSize: {
+        xxs: "0.65rem",
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
@@ -35,6 +46,8 @@ module.exports = {
           washed: "#d2b9f8",
           light: "#faf7ff",
         },
+        "score-green": "#77c990",
+        "score-red": "#d4665b",
         "light-purple-gradient": "#A770EF",
         "dark-purple-gradient": "#CF8BF3",
         "lilac-10": "#d8f3f1",
@@ -51,7 +64,7 @@ module.exports = {
         "aqua-dark": "#36615b",
         "slate-gray": "#2f3033",
         "slate-teal": "#3a5956",
-        "light-purple": "#e6d9f8"
+        "light-purple": "#e6d9f8",
       },
       gridTemplateColumns: {
         // Repeat with a min-width of 200px
@@ -88,5 +101,5 @@ module.exports = {
   variants: {
     extend: { opacity: ["disabled"] },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp"), percentageWidth],
 };

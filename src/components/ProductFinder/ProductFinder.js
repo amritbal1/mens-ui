@@ -37,8 +37,12 @@ class ProductFinder extends PureComponent {
       reviewAnswerSkinTypes,
       reviewAnswerSkinConcerns,
     } = this.state;
-    const concernsList = reviewAnswerSkinConcerns.join();
-    const skinTypesList = reviewAnswerSkinTypes.join();
+    //Currently can only select 1 skin concern and type so array only has 1 value
+    const [skinTypeAnswer] = reviewAnswerSkinTypes;
+    const [skinConcernAnswer] = reviewAnswerSkinConcerns;
+    const concernsList =
+      skinConcernAnswer === "None" ? "null" : skinConcernAnswer;
+    const skinTypesList = skinTypeAnswer === "None" ? "null" : skinTypeAnswer;
     const categoriesList = subCategoryAnswer.join();
     const urlParams = `?skinConcerns=${concernsList}&skinTypes=${skinTypesList}&productCategories=${categoriesList}&sort=${SORTING_FIELD.RECOMMENDED}&starRating=null&productCharacteristics=null&brands=null&minPrice=null&maxPrice=null&pageNumber=1`;
     const encodedParams = encodeURI(urlParams);

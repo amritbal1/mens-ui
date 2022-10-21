@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 import * as skinTypeImage from "../../components/ProductFinder/config/images/skinTypes/oily.png";
 import * as skinConcernImage from "../../components/ProductFinder/config/images/skinConcerns/aging.png";
-import {
-  CheckIcon,
-  XMarkIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-} from "@heroicons/react/24/solid";
-import { isEmpty } from "../../utils/objectUtils";
+import { CheckIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Dropdown } from "./dropdown";
 import { ATTRIBUTES } from "../ProductCard/attributes";
+import { getReviewSection } from "./reviewSection";
 
 class SkinInfo extends Component {
   state = {
@@ -18,29 +13,39 @@ class SkinInfo extends Component {
     selectedNegativeReviews: [],
     selectedOverallScore: 0,
     dropdownOptions: [],
-    readMoreSelectedPositive: false,
-    readMoreSelectedNegative: false,
-  };
-
-  handleReadMoreClick = ({ reviewSection }) => {
-    const { readMoreSelectedPositive, readMoreSelectedNegative } = this.state;
-    reviewSection === "positive"
-      ? this.setState({ readMoreSelectedPositive: !readMoreSelectedPositive })
-      : this.setState({ readMoreSelectedNegative: !readMoreSelectedNegative });
+    analysisData: [],
   };
 
   componentDidMount() {
     const { analysisData, infoValue } = this.props;
     const { attribute, positiveReviews, negativeReviews, overallScore } =
       analysisData[0];
-    const dropdownOptions = analysisData.map((data) => {
+    let amendedAnalysisData = analysisData;
+    //Currently the Dryness skin concern has a attribute of dry skin which is the same as the skinType dry skin attribute. Need to differentiate it by changing it to Dryness
+    const amendedAttribute =
+      infoValue === "skinConcern" && attribute === "dry skin"
+        ? "dryness"
+        : attribute;
+    if (
+      infoValue === "skinConcern" &&
+      analysisData.find((el) => el.attribute === "dry skin")
+    ) {
+      amendedAnalysisData = analysisData.map((data) => {
+        return data.attribute === "dry skin"
+          ? { ...data, attribute: "dryness" }
+          : data;
+      });
+    }
+
+    const dropdownOptions = amendedAnalysisData.map((data) => {
       return {
         value: data[infoValue],
-        label: `${data[infoValue]} ${infoValue === "skinType" ? "skin" : ""}`,
+        label: `${ATTRIBUTES[data.attribute]}`,
       };
     });
     this.setState({
-      selectedAttribute: attribute,
+      analysisData: amendedAnalysisData,
+      selectedAttribute: amendedAttribute,
       selectedPositiveReviews: positiveReviews,
       selectedNegativeReviews: negativeReviews,
       selectedOverallScore: overallScore,
@@ -66,7 +71,8 @@ class SkinInfo extends Component {
 
   handleDropdownChange = (selectedOption) => {
     const { value } = selectedOption;
-    const { analysisData, infoValue } = this.props;
+    const { infoValue } = this.props;
+    const { analysisData } = this.state;
     const selectedData = analysisData.find((el) => el[infoValue] === value);
 
     const { attribute, positiveReviews, negativeReviews, overallScore } =
@@ -77,6 +83,13 @@ class SkinInfo extends Component {
       selectedNegativeReviews: negativeReviews,
       selectedOverallScore: overallScore,
     });
+    this.setScrollToTop();
+  };
+
+  setScrollToTop = () => {
+    const { infoValue } = this.props;
+    let scrollDiv = document.getElementById(`${infoValue}`);
+    if (scrollDiv) scrollDiv.scrollTop = 0;
   };
 
   render() {
@@ -86,8 +99,6 @@ class SkinInfo extends Component {
       selectedPositiveReviews,
       selectedNegativeReviews,
       dropdownOptions,
-      readMoreSelectedPositive,
-      readMoreSelectedNegative,
     } = this.state;
     const { infoValue } = this.props;
     return (
@@ -96,14 +107,6 @@ class SkinInfo extends Component {
           <div class="flex justify-between font-light uppercase tracking-wider mb-2 text-slate-teal">
             <div class="sm:mr-6 font-semibold">
               {infoValue === "skinType" ? "Skin Type" : "Skin Concern"}
-            </div>
-            <div class="w-min-165px">
-              <Dropdown
-                options={dropdownOptions}
-                handleChange={this.handleDropdownChange}
-                placeholder={ATTRIBUTES[selectedAttribute]}
-                value={ATTRIBUTES[selectedAttribute]}
-              />
             </div>
           </div>
           <div class="flex uppercase">
@@ -117,9 +120,13 @@ class SkinInfo extends Component {
               class="ml-4 h-16 w-16 bg-white rounded-full p-1"
             />
             <div class="ml-8">
-              <div class="normal-case text-slate-teal flex flex-shrink-0 items-center">
-                <span class="mr-2 text-lg font-normal">{`${selectedOverallScore}% `}</span>
-                <span class="text-xs">{"Analysis Score"}</span>
+              <div class="w-min-185px mb-3">
+                <Dropdown
+                  options={dropdownOptions}
+                  handleChange={this.handleDropdownChange}
+                  placeholder={ATTRIBUTES[selectedAttribute]}
+                  value={ATTRIBUTES[selectedAttribute]}
+                />
               </div>
               <div class="flex items-center flex-shrink-0 mt-1 text-slate-teal">
                 <span class="mr-1">
@@ -138,90 +145,13 @@ class SkinInfo extends Component {
             </div>
           </div>
         </div>
-        <div class="bg-white pb-6 px-4 pt-6 rounded-b-lg">
-          {!isEmpty(selectedPositiveReviews) && (
-            <div class="mb-8">
-              <div class="font-light mb-4 font-light text-sm">
-                Positive Reviews
-              </div>
-              {readMoreSelectedPositive ? (
-                <div class="overflow-y-scroll h-60 sm:h-40">
-                  {selectedPositiveReviews.map((review) => {
-                    return (
-                      <div class="mb-6 text-sm font-thin">
-                        "{review.review_text}"
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div class="text-sm font-thin">
-                  "{selectedPositiveReviews[0].review_text}"
-                </div>
-              )}
-              {selectedPositiveReviews.length > 1 && (
-                <div class="text-right">
-                  <span
-                    class="text-gray-400 text-sm font-light"
-                    onClick={() =>
-                      this.handleReadMoreClick({ reviewSection: "positive" })
-                    }
-                  >
-                    <span class="text-xs text-lilac-700">
-                      {readMoreSelectedPositive ? "Read Less" : "Read More"}
-                    </span>
-                    {readMoreSelectedPositive ? (
-                      <ChevronUpIcon class="ml-1 h-4 w-4 inline text-lilac-700" />
-                    ) : (
-                      <ChevronDownIcon class="ml-1 h-4 w-4 inline text-lilac-700" />
-                    )}
-                  </span>
-                </div>
-              )}
-            </div>
-          )}
-          {!isEmpty(selectedNegativeReviews) && (
-            <div class="mb-4">
-              <div class="font-light mb-4 font-light text-sm">
-                Negative Reviews
-              </div>
-              {readMoreSelectedNegative ? (
-                <div class="overflow-y-scroll h-60 sm:h-40">
-                  {selectedNegativeReviews.map((review) => {
-                    return (
-                      <div class="mb-6 text-sm font-thin">
-                        "{review.review_text}"
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div class="text-sm font-thin">
-                  "{selectedNegativeReviews[0].review_text}"
-                </div>
-              )}
-              {selectedNegativeReviews.length > 1 && (
-                <div class="text-right">
-                  <span
-                    class="text-gray-400 text-sm font-light"
-                    onClick={() =>
-                      this.handleReadMoreClick({ reviewSection: "negative" })
-                    }
-                  >
-                    <span class="text-xs text-lilac-700">
-                      {readMoreSelectedNegative ? "Read Less" : "Read More"}
-                    </span>
-                    {readMoreSelectedNegative ? (
-                      <ChevronUpIcon class="ml-1 h-4 w-4 inline text-lilac-700" />
-                    ) : (
-                      <ChevronDownIcon class="ml-1 h-4 w-4 inline text-lilac-700" />
-                    )}
-                  </span>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
+        {getReviewSection({
+          overallScore: selectedOverallScore,
+          positiveReviews: selectedPositiveReviews,
+          negativeReviews: selectedNegativeReviews,
+          attribute: selectedAttribute,
+          infoValue: infoValue,
+        })}
       </div>
     );
   }

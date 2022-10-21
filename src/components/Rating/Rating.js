@@ -5,11 +5,11 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 const StyledRating = withStyles({
   iconFilled: {
     color: "#95CFC9",
-    fontSize: "1.3rem"
+    fontSize: "1.2rem"
   },
   iconEmpty: {
     color: "#e8e8e8",
-    fontSize: "1.3rem"
+    fontSize: "1.2rem"
   },
 })(Rating);
 
@@ -25,7 +25,7 @@ export default function RatingStar({ value }) {
 
   return (
     <div className={classes.root}>
-      <StyledRating defaultValue={value} precision={0.1} readOnly />
+      <StyledRating value={value} precision={0.1} readOnly />
     </div>
   );
 }

@@ -3,6 +3,25 @@
 @tailwind utilities;
 
 @layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 20px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+  }
+
   @variants responsive {
     .text-gradient-pink {
       -webkit-text-fill-color: transparent;
@@ -254,6 +273,9 @@
       max-width: 125px;
     }
 
+    .h-max-100 {
+      max-height: 30rem;
+    }
     .h-max-125px {
       max-height: 125px;
     }

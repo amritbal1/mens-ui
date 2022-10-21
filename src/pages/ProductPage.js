@@ -9,7 +9,6 @@ import Navbar from "../components/Navbar/Navbar";
 import Carousel from "../components/Carousel/Carousel";
 import SkinInfo from "../components/SkinInfo/SkinInfo";
 import AttributeInfo from "../components/AttributeInfo/AttributeInfo";
-import GroupedAttributeInfo from "../components/AttributeInfo/GroupedAttributeInfo";
 
 //Page to display information for a single product
 class ProductPage extends PureComponent {
@@ -73,27 +72,6 @@ class ProductPage extends PureComponent {
         skinConcernAnalysis,
       },
     } = productData;
-    let finishAttributes = [];
-    let effectsAttributes = [];
-    const filteredAttributeAnalysis = attributeAnalysis.reduce((acc, curr) => {
-      const currAttribute = curr.attribute;
-      if (
-        currAttribute === "matte" ||
-        currAttribute === "dewy" ||
-        currAttribute === "glow"
-      ) {
-        finishAttributes = [...finishAttributes, curr];
-        return acc;
-      } else if (
-        currAttribute === "bright" ||
-        currAttribute === "plump" ||
-        currAttribute === "smooth" ||
-        currAttribute === "firm"
-      ) {
-        effectsAttributes = [...effectsAttributes, curr];
-        return acc;
-      } else return [...acc, curr];
-    }, []);
 
     return (
       <div>
@@ -107,15 +85,15 @@ class ProductPage extends PureComponent {
                   "w-min-300px h-min-300px md:w-min-450px md:h-min-450px"
                 }
                 handleImageClickFn={this.handleImageClickFn}
-                showCursorOnHover={true}
+                showCursorOnHover={false}
               />
             </div>
-            <div class="flex self-start w-full pt-4 lg:pt-0 lg:w-1/3 md:pl-0 md:pr-4 lg:ml-14 pb-4 px-6">
-              <ProductInfo productDetails={productData} />
+            <div class="flex self-start w-full pt-4 lg:pt-0 md:w-1/3 md:pl-0 md:pr-4 lg:ml-14 pb-4 px-6">
+              <ProductInfo productDetails={productData} attributeAnalysis={attributeAnalysis} />
             </div>
           </div>
 
-          <div class="pt-4 w-full px-6 grid sm:grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-2">
+          <div class="pt-4 w-full px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-2">
             {!isEmpty(skinTypeAnalysis) && (
               <SkinInfo
                 analysisData={skinTypeAnalysis}
@@ -128,24 +106,10 @@ class ProductPage extends PureComponent {
                 infoValue={"skinConcern"}
               />
             )}
-            {!isEmpty(filteredAttributeAnalysis) &&
-              filteredAttributeAnalysis.map((analysisData) => {
+            {!isEmpty(attributeAnalysis) &&
+              attributeAnalysis.map((analysisData) => {
                 return <AttributeInfo analysisData={analysisData} />;
               })}
-
-            {!isEmpty(finishAttributes) && (
-              <GroupedAttributeInfo
-                analysisData={finishAttributes}
-                title="Skin Finish"
-              />
-            )}
-
-            {!isEmpty(effectsAttributes) && (
-              <GroupedAttributeInfo
-                analysisData={effectsAttributes}
-                title="Skin Effects"
-              />
-            )}
           </div>
         </div>
       </div>
