@@ -85,7 +85,7 @@ class ProductPage extends PureComponent {
                   "w-min-300px h-min-300px md:w-min-450px md:h-min-450px"
                 }
                 handleImageClickFn={this.handleImageClickFn}
-                showCursorOnHover={true}
+                showCursorOnHover={false}
               />
             </div>
             <div class="flex self-start w-full pt-4 lg:pt-0 md:w-1/3 md:pl-0 md:pr-4 lg:ml-14 pb-4 px-6">
