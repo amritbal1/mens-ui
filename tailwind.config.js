@@ -1,5 +1,3 @@
-const percentageWidth = require("tailwindcss-percentage-width");
-
 module.exports = {
   purge: ["./src/**/*.{js,jsx}", "./public/index.html"],
   darkMode: false,
@@ -101,5 +99,5 @@ module.exports = {
   variants: {
     extend: { opacity: ["disabled"] },
   },
-  plugins: [require("@tailwindcss/line-clamp"), percentageWidth],
+  plugins: [require("@tailwindcss/line-clamp"), require("tailwindcss-percentage-width")],
 };
