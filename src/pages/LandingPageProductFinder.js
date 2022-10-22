@@ -15,12 +15,12 @@ class LandingPage extends PureComponent {
         <div class="h-60px"></div>
         <div class="flex flex-col lg:flex-row md:pt-8 pb-7 px-2 lg:px-7 font-montserrat">
           <div class="mx-auto w-full lg:w-2/5 lg:mr-10">
-            <div class="text-3xl sm:text-5xl text-center font-normal tracking-tight text-slate-teal leading-10 sm:leading-12 lg:mb-10">
+            <div class="pt-4 text-3xl sm:text-5xl text-center font-normal tracking-tight text-slate-teal leading-10 sm:leading-12 mb-4 lg:mb-10">
               {"Skincare recommendations."}
               <br />
               {"Powered by AI analysis of reviews."}
             </div>
-            <div class="hidden sm:block text-lg sm:text-2xl text-center font-light tracking-tight text-slate-teal mb-10">
+            <div class="hidden sm:block text-lg sm:text-2xl text-center font-light tracking-tight text-slate-teal mb-2 sm:mb-10">
               Discover products matching your skin type and skin concerns
             </div>
           </div>
