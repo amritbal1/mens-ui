@@ -84,16 +84,16 @@ class ProductCard extends PureComponent {
           </div>
           <div class="h-2 border-b" />
           <figcaption class="px-2 py-2 sm:py-4 sm:px-6">
-            <div class="text-xs font-extralight text-slate-gray mb-2">
+            <div class="text-xs font-light text-slate-gray mb-2">
               {brandName}
             </div>
             <div class="flex justify-between mb-4 text-slate-gray">
-              <div class="text-xxs sm:text-sm uppercase tracking-wide text-slate-gray">
+              <div class="text-xs sm:text-sm uppercase tracking-wide text-slate-gray">
                 {productName}
               </div>
             </div>
             <div class="mb-2 sm:mb-4 flex">
-              <span class="text-xs sm:text-sm font-extralight text-slate-gray mr-2">
+              <span class="text-xs sm:text-sm font-light text-slate-gray mr-2">
                 <span class="flex flex-shrink-0 items-center">
                   {` ${skinType} skin`}:
                   <span class="text-xs sm:text-sm font-normal text-slate-gray ml-1">
