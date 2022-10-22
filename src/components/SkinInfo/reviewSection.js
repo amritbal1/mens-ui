@@ -8,6 +8,7 @@ import {
   ATTRIBUTE_LABELS_NEGATIVE,
   ATTRIBUTE_LABELS_POSITIVE,
 } from "../ProductCard/attributes.js";
+import "./scorebar.css";
 
 export const getReviewSection = ({
   positiveReviews,
@@ -17,6 +18,10 @@ export const getReviewSection = ({
   infoValue = "",
 }) => {
   const allReviews = [...positiveReviews, ...negativeReviews];
+  const borderRadius =
+    overallScore < 100
+      ? { borderTopLeftRadius: "9999px", borderBottomLeftRadius: "9999px" }
+      : { borderRadius: "9999px" };
   return (
     <div class="bg-white pb-6 px-4 pt-6 rounded-b-lg leading-5 sm:h-max-100">
       {!isEmpty(allReviews) && (
@@ -28,9 +33,13 @@ export const getReviewSection = ({
           <div class="mb-8">
             <div class="bg-score-red h-2 rounded-full mb-1">
               <div
-                class={`w-${overallScore}% bg-score-green h-2 ${
-                  overallScore < 100 ? "rounded-l-full" : "rounded-full"
-                }`}
+                class="scorebar"
+                style={{
+                  "--w": `${overallScore}%`,
+                  backgroundColor: "#77c990",
+                  height: "0.5rem",
+                  ...borderRadius,
+                }}
               ></div>
             </div>
             <div class="flex justify-between font-light text-xs">

@@ -6,9 +6,6 @@ module.exports = {
       letterSpacing: {
         "wide-x": "0.15em",
       },
-      lineClamp: {
-        10: "14",
-      },
       borderWidth: {
         DEFAULT: "1px",
         0: "0",
@@ -98,6 +95,5 @@ module.exports = {
   },
   variants: {
     extend: { opacity: ["disabled"] },
-  },
-  plugins: [require("@tailwindcss/line-clamp"), require("tailwindcss-percentage-width")],
+  }
 };

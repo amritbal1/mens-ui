@@ -1,0 +1,4 @@
+.scorebar {
+  --w:5.3rem; 
+  width:var(--w);
+}

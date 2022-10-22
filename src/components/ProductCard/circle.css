@@ -9,7 +9,7 @@
   --b:22px;    /* the thickness */
   --c:darkred; /* the color */
   --w:5.3rem;   /* the size*/
-  --l:.95rem; /* the lien height*/
+  --l:.95rem; /* the line height*/
   
   width:var(--w);
   aspect-ratio:1/1;
