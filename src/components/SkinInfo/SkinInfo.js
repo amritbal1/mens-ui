@@ -25,7 +25,6 @@ class SkinInfo extends Component {
     const { positiveReviews, negativeReviews, overallScore } =
       analysisData[0];
     let amendedAnalysisData = analysisData;
-    //Currently the Dryness skin concern has a attribute of dry skin which is the same as the skinType dry skin attribute. Need to differentiate it by changing it to Dryness
     const amendedAttribute =
       infoValue === "skinConcern"
         ? SKIN_CONCERN_ATTRIBUTES[queryTerm]
