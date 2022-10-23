@@ -1,15 +1,9 @@
 import React, { PureComponent } from "react";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
-import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { isEmpty } from "../../utils/objectUtils";
-import {
-  ATTRIBUTE_LABELS_POSITIVE,
-  ATTRIBUTE_LABELS_NEGATIVE,
-} from "../ProductCard/attributes";
 
 class ProductInfo extends PureComponent {
   render() {
-    const { productDetails, attributeAnalysis } = this.props;
+    const { productDetails } = this.props;
     const {
       brandName,
       productName,
@@ -52,31 +46,6 @@ class ProductInfo extends PureComponent {
             </button>
           </a>
         </div>
-        {!isEmpty(attributeAnalysis) && (
-          <div class="sm:pt-4">
-            <div class="font-light text-sm font-normal mb-2 uppercase tracking-wider text-slate-gray">
-              What the reviews say
-            </div>
-            <div class="flex flex-wrap">
-              {attributeAnalysis.map((attribute) => {
-                const { overallScore, attribute: attributeName } = attribute;
-                return overallScore > 50
-                  ? ATTRIBUTE_LABELS_POSITIVE[attributeName] && (
-                      <span class="text-xs font-light text-slate-gray border rounded-full p-1 mb-1 mr-1 px-2">
-                        {ATTRIBUTE_LABELS_POSITIVE[attributeName]}
-                        <CheckIcon class="ml-1 inline h-3 w-3 text-green-700" />
-                      </span>
-                    )
-                  : ATTRIBUTE_LABELS_NEGATIVE[attributeName] && (
-                      <span class="text-xs font-light text-slate-gray border rounded-full p-1 mb-1 mr-1 px-2">
-                        {ATTRIBUTE_LABELS_NEGATIVE[attributeName]}
-                        <XMarkIcon class="ml-1 inline h-3 w-3 text-red-700" />
-                      </span>
-                    );
-              })}
-            </div>
-          </div>
-        )}
       </div>
     );
   }
