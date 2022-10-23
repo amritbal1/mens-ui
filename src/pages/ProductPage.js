@@ -9,12 +9,18 @@ import Navbar from "../components/Navbar/Navbar";
 import Carousel from "../components/Carousel/Carousel";
 import SkinInfo from "../components/SkinInfo/SkinInfo";
 import AttributeInfo from "../components/AttributeInfo/AttributeInfo";
+import {
+  ATTRIBUTE_LABELS_POSITIVE,
+  ATTRIBUTE_LABELS_NEGATIVE,
+} from "../components/ProductCard/attributes";
+import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 //Page to display information for a single product
 class ProductPage extends PureComponent {
   state = {
     productData: null,
     allProductImageUrls: [],
+    selectedAttribute: {},
   };
 
   getImageUrls = ({ images }) => {
@@ -28,15 +34,23 @@ class ProductPage extends PureComponent {
   async componentDidMount() {
     const searchParams = queryString.parse(this.props.location.search);
     const { productId, skinType, skinConcern } = searchParams;
-    const productData = await getProductData({ productId, skinType, skinConcern });
+    const productData = await getProductData({
+      productId,
+      skinType,
+      skinConcern,
+    });
     if (!productData) return;
-    const { additionalImages } = productData;
+    const {
+      additionalImages,
+      overallMetrics: { attributeAnalysis },
+    } = productData;
     //NB - must update the new image URLs here otherwise they don't update when user navigates to a different product page
     const allProductImageUrls = this.getImageUrls({ images: additionalImages });
 
     this.setState({
       productData,
       allProductImageUrls,
+      selectedAttribute: attributeAnalysis[0],
     });
   }
 
@@ -63,8 +77,16 @@ class ProductPage extends PureComponent {
     }
   }
 
+  handleAttributeChange = ({ attributeName }) => {
+    const { productData } = this.state;
+    const selectedAttribute = productData.overallMetrics.attributeAnalysis.find(
+      (el) => el.attribute === attributeName
+    );
+    this.setState({ selectedAttribute });
+  };
+
   renderProduct = ({ productData }) => {
-    const { allProductImageUrls } = this.state;
+    const { allProductImageUrls, selectedAttribute } = this.state;
     const {
       overallMetrics: {
         attributeAnalysis,
@@ -72,7 +94,7 @@ class ProductPage extends PureComponent {
         skinConcernAnalysis,
       },
       querySkinType,
-      querySkinConcern
+      querySkinConcern,
     } = productData;
 
     return (
@@ -91,9 +113,46 @@ class ProductPage extends PureComponent {
               />
             </div>
             <div class="flex self-start w-full pt-4 lg:pt-0 md:w-1/3 md:pl-0 md:pr-4 lg:ml-14 pb-4 px-6">
-              <ProductInfo productDetails={productData} attributeAnalysis={attributeAnalysis} />
+              <ProductInfo
+                productDetails={productData}
+                attributeAnalysis={attributeAnalysis}
+              />
             </div>
           </div>
+
+          {!isEmpty(attributeAnalysis) && (
+            <div class="sm:pt-4 w-full px-6">
+              <div class="font-light text-sm font-normal mb-2 uppercase tracking-wider text-slate-gray">
+                What the reviews say
+              </div>
+              <div class="flex flex-wrap">
+                {attributeAnalysis.map((attribute) => {
+                  const { overallScore, attribute: attributeName } = attribute;
+                  return overallScore > 50 ? (
+                    <span
+                      class="text-xs font-light text-slate-gray border rounded-full p-1 mb-1 mr-1 px-2 cursor-pointer"
+                      onClick={() =>
+                        this.handleAttributeChange({ attributeName })
+                      }
+                    >
+                      {ATTRIBUTE_LABELS_POSITIVE[attributeName]}
+                      <CheckIcon class="ml-1 inline h-3 w-3 text-green-700" />
+                    </span>
+                  ) : (
+                    <span
+                      class="text-xs font-light text-slate-gray border rounded-full p-1 mb-1 mr-1 px-2 cursor-pointer"
+                      onClick={() =>
+                        this.handleAttributeChange({ attributeName })
+                      }
+                    >
+                      {ATTRIBUTE_LABELS_NEGATIVE[attributeName]}
+                      <XMarkIcon class="ml-1 inline h-3 w-3 text-red-700" />
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           <div class="pt-4 w-full px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-2">
             {!isEmpty(skinTypeAnalysis) && (
@@ -110,10 +169,9 @@ class ProductPage extends PureComponent {
                 queryTerm={querySkinConcern}
               />
             )}
-            {!isEmpty(attributeAnalysis) &&
-              attributeAnalysis.map((analysisData) => {
-                return <AttributeInfo analysisData={analysisData} />;
-              })}
+            {!isEmpty(selectedAttribute) && (
+              <AttributeInfo analysisData={selectedAttribute} />
+            )}
           </div>
         </div>
       </div>
