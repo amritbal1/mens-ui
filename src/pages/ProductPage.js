@@ -81,16 +81,44 @@ class ProductPage extends PureComponent {
         productData.overallMetrics.attributeAnalysis.find(
           (el) => el.attribute === attributeName
         );
-      this.setState({
-        selectedAttribute,
-        skinTypeSelected: false,
-        skinConcernSelected: false,
-      });
+      this.setState(
+        {
+          selectedAttribute,
+          skinTypeSelected: false,
+          skinConcernSelected: false,
+        },
+        () => {
+          this.setScrollToTop({ infoValue: attributeName });
+        }
+      );
     } else if (type === "skinType") {
-      this.setState({ skinTypeSelected: true, skinConcernSelected: false });
+      this.setState(
+        {
+          skinTypeSelected: true,
+          skinConcernSelected: false,
+          selectedAttribute: {},
+        },
+        () => {
+          this.setScrollToTop({ infoValue: "skinType" });
+        }
+      );
     } else if (type === "skinConcern") {
-      this.setState({ skinConcernSelected: true, skinTypeSelected: false });
+      this.setState(
+        {
+          skinConcernSelected: true,
+          skinTypeSelected: false,
+          selectedAttribute: {},
+        },
+        () => {
+          this.setScrollToTop({ infoValue: "skinConcern" });
+        }
+      );
     }
+  };
+
+  setScrollToTop = ({ infoValue }) => {
+    let scrollDiv = document.getElementById(`${infoValue}`);
+    if (scrollDiv) scrollDiv.scrollTop = 0;
   };
 
   renderProduct = ({ productData }) => {
@@ -112,13 +140,11 @@ class ProductPage extends PureComponent {
     const selectedAttributeName = selectedAttribute.attribute;
     const pillStyle =
       "text-xs font-light text-slate-gray border rounded-full mb-2 sm:mb-1 mr-1 p-2 sm:px-3 cursor-pointer";
-      const selectedPillStyle = `${pillStyle} bg-gray-100 border border-gray-400`
+    const selectedPillStyle = `${pillStyle} bg-gray-100 border border-gray-400`;
     const attributePills = attributeAnalysis.map((attribute) => {
       const { overallScore, attribute: attributeName } = attribute;
       const isSelected = attributeName === selectedAttributeName;
-      const style = isSelected
-        ? selectedPillStyle
-        : pillStyle;
+      const style = isSelected ? selectedPillStyle : pillStyle;
       return overallScore > 50 ? (
         <span
           class={style}
@@ -151,7 +177,7 @@ class ProductPage extends PureComponent {
     );
     const skinConcernPill = (
       <span
-      class={skinConcernSelected ? selectedPillStyle : pillStyle}
+        class={skinConcernSelected ? selectedPillStyle : pillStyle}
         onClick={() => this.handlePillChange({ type: "skinConcern" })}
       >
         Skin Concerns
@@ -209,7 +235,9 @@ class ProductPage extends PureComponent {
             {!skinTypeSelected &&
               !skinConcernSelected &&
               !isEmpty(selectedAttribute) && (
-                <AttributeInfo analysisData={selectedAttribute} />
+                <AttributeInfo
+                  analysisData={selectedAttribute}
+                />
               )}
           </div>
         </div>

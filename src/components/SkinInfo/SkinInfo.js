@@ -153,7 +153,7 @@ class SkinInfo extends Component {
           negativeReviews={selectedNegativeReviews}
           overallScore={selectedOverallScore}
           attribute={selectedAttribute}
-          infoValue={selectedAttribute}
+          infoValue={infoValue}
         />
       </div>
     );
