@@ -19,6 +19,7 @@ export const Dropdown = ({
       components={{ Option: CustomOption }}
       noOptionsMessage={() => null}
       readOnly={true}
+      isSearchable={false}
     />
   );
 };
