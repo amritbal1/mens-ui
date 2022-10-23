@@ -8,7 +8,7 @@ import {
   SKIN_CONCERN_ATTRIBUTES,
   SKIN_TYPE_ATTRIBUTES,
 } from "../ProductCard/attributes";
-import ReviewSection from "../SkinInfo/ReviewSection";
+import ReviewSection from "./ReviewSection";
 
 class SkinInfo extends Component {
   state = {
