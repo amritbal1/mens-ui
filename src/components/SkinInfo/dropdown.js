@@ -18,6 +18,7 @@ export const Dropdown = ({
       styles={getSelectStyles({})}
       components={{ Option: CustomOption }}
       noOptionsMessage={() => null}
+      readOnly={true}
     />
   );
 };
