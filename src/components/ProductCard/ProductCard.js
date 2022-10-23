@@ -44,7 +44,6 @@ class ProductCard extends PureComponent {
     const { skinType, overallScore: skinTypeOverallScore } = skinTypeAnalysis;
     const { skinConcern, overallScore: skinConcernOverallScore } =
       skinConcernAnalysis;
-      console.log("sk", skinConcern)
     return (
       <div class="p-1 sm:p-4 mb-8 sm:mb-4">
         <figure
