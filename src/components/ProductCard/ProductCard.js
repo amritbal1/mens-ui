@@ -94,9 +94,9 @@ class ProductCard extends PureComponent {
             </div>
             <div class="mb-2 sm:mb-4 flex">
               <span class="text-xs sm:text-sm font-light text-slate-gray mr-2">
-                <span class="flex flex-shrink-0 items-center">
+                <span class="flex flex-shrink-0 items-start">
                   {` ${skinType} skin`}:
-                  <span class="text-xs sm:text-sm font-normal text-slate-gray ml-1">
+                  <span class="flex flex-shrink-0 text-xs sm:text-sm font-normal text-slate-gray ml-1">
                     {skinTypeOverallScore}%
                     {" "}
                     {skinTypeOverallScore >= 50 ? (
@@ -106,9 +106,9 @@ class ProductCard extends PureComponent {
                     )}
                   </span>
                 </span>
-                <span class="flex flex-shrink-0 items-center">
+                <span class="flex flex-shrink-0 items-start">
                   {` ${skinConcern}`}:
-                  <span class="text-xs sm:text-sm font-normal text-slate-gray ml-1">
+                  <span class="flex flex-shrink-0 text-xs sm:text-sm font-normal text-slate-gray ml-1">
                     {skinConcernOverallScore}%
                     {" "}
                     {skinConcernOverallScore >= 50 ? (
