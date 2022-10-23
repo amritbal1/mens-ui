@@ -9,7 +9,6 @@ import {
   ATTRIBUTE_LABELS_POSITIVE,
 } from "../ProductCard/attributes.js";
 import "./scorebar.css";
-// import { VariableSizeList as List } from "react-window";
 
 export const getReviewSection = ({
   positiveReviews,
@@ -19,11 +18,6 @@ export const getReviewSection = ({
   infoValue = "",
 }) => {
   const data = [...positiveReviews, ...negativeReviews];
-  // const rowHeights = data.map(() => 100);
-  // const getItemSize = (index) => {
-  //   console.log("returning height of", rowHeights[index])
-  //   return rowHeights[index];
-  // };
   const borderRadius =
     overallScore < 100
       ? { borderTopLeftRadius: "9999px", borderBottomLeftRadius: "9999px" }
@@ -67,28 +61,6 @@ export const getReviewSection = ({
             Reviews
           </div>
           <div id={infoValue} class={"overflow-y-scroll scrollbar max-h-72"}>
-            {/* <List
-              height={150}
-              itemCount={data.length}
-              itemSize={getItemSize}
-              width={300}
-              itemData={data}
-            >
-              {({ data, index, style }) => {
-                const starRatingValue =
-                  Number(data[index].stars.substring(0, 3)) || 2;
-                return (
-                  <li style={style}>
-                    {
-                      <div class="mb-6 text-sm font-thin">
-                        <Rating value={starRatingValue} />"
-                        {data[index].review_text}"
-                      </div>
-                    }
-                  </li>
-                );
-              }}
-            </List> */}
             {data.map((review, i) => {
               const starRatingValue = Number(review.stars.substring(0, 3));
               return (
