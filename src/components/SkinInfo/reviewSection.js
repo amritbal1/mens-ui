@@ -60,7 +60,7 @@ export const getReviewSection = ({
           <div class="font-light mb-4 font-semibold text-sm uppercase flex items-center">
             Reviews
           </div>
-          <div id={infoValue} class={"overflow-y-scroll scrollbar max-h-72"}>
+          <div id={infoValue} class={"overflow-y-scroll max-h-72"}>
             {data.map((review, i) => {
               const starRatingValue = Number(review.stars.substring(0, 3));
               return (
