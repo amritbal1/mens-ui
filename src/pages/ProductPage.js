@@ -21,6 +21,8 @@ class ProductPage extends PureComponent {
     productData: null,
     allProductImageUrls: [],
     selectedAttribute: {},
+    skinTypeSelected: true,
+    skinConcernSelected: false,
   };
 
   getImageUrls = ({ images }) => {
@@ -40,17 +42,12 @@ class ProductPage extends PureComponent {
       skinConcern,
     });
     if (!productData) return;
-    const {
-      additionalImages,
-      overallMetrics: { attributeAnalysis },
-    } = productData;
+    const { additionalImages } = productData;
     //NB - must update the new image URLs here otherwise they don't update when user navigates to a different product page
     const allProductImageUrls = this.getImageUrls({ images: additionalImages });
-
     this.setState({
       productData,
       allProductImageUrls,
-      selectedAttribute: attributeAnalysis[0],
     });
   }
 
@@ -77,16 +74,32 @@ class ProductPage extends PureComponent {
     }
   }
 
-  handleAttributeChange = ({ attributeName }) => {
+  handlePillChange = ({ attributeName, type }) => {
     const { productData } = this.state;
-    const selectedAttribute = productData.overallMetrics.attributeAnalysis.find(
-      (el) => el.attribute === attributeName
-    );
-    this.setState({ selectedAttribute });
+    if (type === "attribute") {
+      const selectedAttribute =
+        productData.overallMetrics.attributeAnalysis.find(
+          (el) => el.attribute === attributeName
+        );
+      this.setState({
+        selectedAttribute,
+        skinTypeSelected: false,
+        skinConcernSelected: false,
+      });
+    } else if (type === "skinType") {
+      this.setState({ skinTypeSelected: true, skinConcernSelected: false });
+    } else if (type === "skinConcern") {
+      this.setState({ skinConcernSelected: true, skinTypeSelected: false });
+    }
   };
 
   renderProduct = ({ productData }) => {
-    const { allProductImageUrls, selectedAttribute } = this.state;
+    const {
+      allProductImageUrls,
+      selectedAttribute,
+      skinTypeSelected,
+      skinConcernSelected,
+    } = this.state;
     const {
       overallMetrics: {
         attributeAnalysis,
@@ -96,6 +109,55 @@ class ProductPage extends PureComponent {
       querySkinType,
       querySkinConcern,
     } = productData;
+    const selectedAttributeName = selectedAttribute.attribute;
+    const pillStyle =
+      "text-xs font-light text-slate-gray border rounded-full mb-2 sm:mb-1 mr-1 p-2 sm:px-3 cursor-pointer";
+      const selectedPillStyle = `${pillStyle} bg-gray-100 border border-gray-400`
+    const attributePills = attributeAnalysis.map((attribute) => {
+      const { overallScore, attribute: attributeName } = attribute;
+      const isSelected = attributeName === selectedAttributeName;
+      const style = isSelected
+        ? selectedPillStyle
+        : pillStyle;
+      return overallScore > 50 ? (
+        <span
+          class={style}
+          onClick={() =>
+            this.handlePillChange({ attributeName, type: "attribute" })
+          }
+        >
+          {ATTRIBUTE_LABELS_POSITIVE[attributeName]}
+          <CheckIcon class="ml-1 inline h-3 w-3 text-green-700" />
+        </span>
+      ) : (
+        <span
+          class={style}
+          onClick={() =>
+            this.handlePillChange({ attributeName, type: "attribute" })
+          }
+        >
+          {ATTRIBUTE_LABELS_NEGATIVE[attributeName]}
+          <XMarkIcon class="ml-1 inline h-3 w-3 text-red-700" />
+        </span>
+      );
+    });
+    const skinTypePill = (
+      <span
+        class={skinTypeSelected ? selectedPillStyle : pillStyle}
+        onClick={() => this.handlePillChange({ type: "skinType" })}
+      >
+        Skin Types
+      </span>
+    );
+    const skinConcernPill = (
+      <span
+      class={skinConcernSelected ? selectedPillStyle : pillStyle}
+        onClick={() => this.handlePillChange({ type: "skinConcern" })}
+      >
+        Skin Concerns
+      </span>
+    );
+    const allPills = [skinTypePill, skinConcernPill, ...attributePills];
 
     return (
       <div>
@@ -120,58 +182,35 @@ class ProductPage extends PureComponent {
             </div>
           </div>
 
-          {!isEmpty(attributeAnalysis) && (
+          {!isEmpty(allPills) && (
             <div class="sm:pt-4 w-full px-6">
               <div class="font-light text-sm font-normal mb-2 uppercase tracking-wider text-slate-gray">
                 What the reviews say
               </div>
-              <div class="flex flex-wrap">
-                {attributeAnalysis.map((attribute) => {
-                  const { overallScore, attribute: attributeName } = attribute;
-                  return overallScore > 50 ? (
-                    <span
-                      class="text-xs font-light text-slate-gray border rounded-full p-1 mb-1 mr-1 px-2 cursor-pointer"
-                      onClick={() =>
-                        this.handleAttributeChange({ attributeName })
-                      }
-                    >
-                      {ATTRIBUTE_LABELS_POSITIVE[attributeName]}
-                      <CheckIcon class="ml-1 inline h-3 w-3 text-green-700" />
-                    </span>
-                  ) : (
-                    <span
-                      class="text-xs font-light text-slate-gray border rounded-full p-1 mb-1 mr-1 px-2 cursor-pointer"
-                      onClick={() =>
-                        this.handleAttributeChange({ attributeName })
-                      }
-                    >
-                      {ATTRIBUTE_LABELS_NEGATIVE[attributeName]}
-                      <XMarkIcon class="ml-1 inline h-3 w-3 text-red-700" />
-                    </span>
-                  );
-                })}
-              </div>
+              <div class="flex flex-wrap">{allPills}</div>
             </div>
           )}
 
           <div class="pt-4 w-full px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-2">
-            {!isEmpty(skinTypeAnalysis) && (
+            {skinTypeSelected && (
               <SkinInfo
                 analysisData={skinTypeAnalysis}
                 infoValue={"skinType"}
                 queryTerm={querySkinType}
               />
             )}
-            {!isEmpty(skinConcernAnalysis) && (
+            {skinConcernSelected && (
               <SkinInfo
                 analysisData={skinConcernAnalysis}
                 infoValue={"skinConcern"}
                 queryTerm={querySkinConcern}
               />
             )}
-            {!isEmpty(selectedAttribute) && (
-              <AttributeInfo analysisData={selectedAttribute} />
-            )}
+            {!skinTypeSelected &&
+              !skinConcernSelected &&
+              !isEmpty(selectedAttribute) && (
+                <AttributeInfo analysisData={selectedAttribute} />
+              )}
           </div>
         </div>
       </div>
