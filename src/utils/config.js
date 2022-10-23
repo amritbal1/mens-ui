@@ -17,7 +17,7 @@ const skinTypeValues = getOptionValues({ options: skinTypeOptions });
 ///////SKIN CONCERNS/////////
 
 export const skinConcernOptions = [
-  { displayValue: "Acne, Blemishes", value: "Acne" },
+  { displayValue: "Breakouts", value: "Breakout" },
   { displayValue: "Aging", value: "Aging" },
   { displayValue: "Dryness", value: "Dryness" },
   { displayValue: "Pigmentation", value: "Pigmentation" },

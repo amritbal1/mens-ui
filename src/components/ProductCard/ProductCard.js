@@ -22,7 +22,9 @@ class ProductCard extends PureComponent {
     const searchParams = queryString.parse(window.location.search);
     const skinType = searchParams["skinTypes"];
     const skinConcern = searchParams["skinConcerns"];
-    history.push(`/product?productId=${productId}&skinType=${skinType}&skinConcern=${skinConcern}`);
+    history.push(
+      `/product?productId=${productId}&skinType=${skinType}&skinConcern=${skinConcern}`
+    );
   };
 
   handleMouseEnter = (e) => {
@@ -42,6 +44,7 @@ class ProductCard extends PureComponent {
     const { skinType, overallScore: skinTypeOverallScore } = skinTypeAnalysis;
     const { skinConcern, overallScore: skinConcernOverallScore } =
       skinConcernAnalysis;
+      console.log("sk", skinConcern)
     return (
       <div class="p-1 sm:p-4 mb-8 sm:mb-4">
         <figure
@@ -57,7 +60,7 @@ class ProductCard extends PureComponent {
                     "--p": dbg_recommendationScore,
                     "--c": "#73B8B2",
                     "--b": "3px",
-                    ...styleObj
+                    ...styleObj,
                   }}
                 >
                   <div class="flex flex-col justify-center items-center">
@@ -101,8 +104,7 @@ class ProductCard extends PureComponent {
                 <span class="flex flex-shrink-0 items-start">
                   {` ${skinType} skin`}:
                   <span class="flex flex-shrink-0 text-xs sm:text-sm font-normal text-slate-gray ml-1">
-                    {skinTypeOverallScore}%
-                    {" "}
+                    {skinTypeOverallScore}%{" "}
                     {skinTypeOverallScore >= 50 ? (
                       <HandThumbUpIcon class="inline h-4 w-4" />
                     ) : (
@@ -111,10 +113,10 @@ class ProductCard extends PureComponent {
                   </span>
                 </span>
                 <span class="flex flex-shrink-0 items-start">
-                  {` ${skinConcern}`}:
+                  {` ${skinConcern[0] === "Breakout" ? "Breakouts" : skinConcern}`}
+                  :
                   <span class="flex flex-shrink-0 text-xs sm:text-sm font-normal text-slate-gray ml-1">
-                    {skinConcernOverallScore}%
-                    {" "}
+                    {skinConcernOverallScore}%{" "}
                     {skinConcernOverallScore >= 50 ? (
                       <HandThumbUpIcon class="inline h-4 w-4" />
                     ) : (

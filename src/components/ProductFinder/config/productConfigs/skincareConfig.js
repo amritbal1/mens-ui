@@ -14,7 +14,7 @@ import * as shine from "../../config/images/skinConcerns/shine.png";
 import * as aging from "../../config/images/skinConcerns/aging.png";
 import * as pigmentation from "../../config/images/skinConcerns/pigmentation.png";
 import * as dryness from "../../config/images/skinConcerns/dryness.png";
-import * as acne from "../../config/images/skinConcerns/acne.png";
+import * as breakout from "../../config/images/skinConcerns/breakout.png";
 
 export const skincareConfig = {
   name: CATEGORIES.SKINCARE,
@@ -68,8 +68,8 @@ export const skincareConfig = {
         },
         {
           displayValue: "Breakouts",
-          value: "Acne",
-          imageUrl: acne.default,
+          value: "Breakout",
+          imageUrl: breakout.default,
         },
         {
           displayValue: "Dryness",

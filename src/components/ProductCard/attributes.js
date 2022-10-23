@@ -40,7 +40,7 @@ export const SKIN_TYPE_ATTRIBUTES = {
 };
 
 export const SKIN_CONCERN_ATTRIBUTES = {
-  Acne: "breakout",
+  Breakout: "breakout",
   Pigmentation: "pigment",
   Aging: "aging",
   Dryness: "dryness",
