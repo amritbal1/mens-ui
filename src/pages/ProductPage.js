@@ -96,6 +96,9 @@ class ProductPage extends PureComponent {
       querySkinType,
       querySkinConcern,
     } = productData;
+    const selectedAttributeName = selectedAttribute.attribute;
+    const pillStyle =
+      "text-xs font-light text-slate-gray border rounded-full mb-2 sm:mb-1 mr-1 p-2 sm:px-2 cursor-pointer";
 
     return (
       <div>
@@ -128,9 +131,13 @@ class ProductPage extends PureComponent {
               <div class="flex flex-wrap">
                 {attributeAnalysis.map((attribute) => {
                   const { overallScore, attribute: attributeName } = attribute;
+                  const isSelected = attributeName === selectedAttributeName;
+                  const style = isSelected
+                    ? `${pillStyle} bg-gray-100 border border-gray-400`
+                    : pillStyle;
                   return overallScore > 50 ? (
                     <span
-                      class="text-xs font-light text-slate-gray border rounded-full p-1 mb-1 mr-1 px-2 cursor-pointer"
+                      class={style}
                       onClick={() =>
                         this.handleAttributeChange({ attributeName })
                       }
@@ -140,7 +147,7 @@ class ProductPage extends PureComponent {
                     </span>
                   ) : (
                     <span
-                      class="text-xs font-light text-slate-gray border rounded-full p-1 mb-1 mr-1 px-2 cursor-pointer"
+                      class={style}
                       onClick={() =>
                         this.handleAttributeChange({ attributeName })
                       }
