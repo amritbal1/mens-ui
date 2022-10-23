@@ -31,3 +31,18 @@ export const ATTRIBUTE_LABELS_NEGATIVE = {
   moisturise: "Moisturises poorly",
   breakout: "Causes breakouts",
 };
+
+export const SKIN_TYPE_ATTRIBUTES = {
+  Oily: "oily skin",
+  Dry: "dry skin",
+  Combination: "combination skin",
+  Sensitive: "sensitive skin",
+};
+
+export const SKIN_CONCERN_ATTRIBUTES = {
+  Breakouts: "breakout",
+  Pigmentation: "pigment",
+  Aging: "aging",
+  Dryness: "dryness",
+  Oiliness: "oiliness",
+};

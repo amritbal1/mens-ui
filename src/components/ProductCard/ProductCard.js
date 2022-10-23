@@ -6,6 +6,7 @@ import { PureComponent } from "react";
 import { REGION, S3_BUCKET } from "../../aws-config";
 import { isEmpty } from "../../utils/objectUtils";
 import "./circle.css";
+import queryString from "query-string";
 
 const isSmallBreakpoint = window.screen.width <= 640;
 const styleObj = isSmallBreakpoint
@@ -18,7 +19,10 @@ class ProductCard extends PureComponent {
 
   handleProductCardClick = async ({ productId }) => {
     const { history } = this.props;
-    history.push(`/product?productId=${productId}`);
+    const searchParams = queryString.parse(window.location.search);
+    const skinType = searchParams["skinTypes"];
+    const skinConcern = searchParams["skinConcerns"];
+    history.push(`/product?productId=${productId}&skinType=${skinType}&skinConcern=${skinConcern}`);
   };
 
   handleMouseEnter = (e) => {

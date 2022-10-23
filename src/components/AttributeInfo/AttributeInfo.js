@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ATTRIBUTES } from "../ProductCard/attributes";
-import { getReviewSection } from "../SkinInfo/reviewSection";
+import ReviewSection from "../SkinInfo/ReviewSection";
 class AttributeInfo extends Component {
   getMatchDescriptor = ({ overallScore }) => {
     switch (true) {
@@ -34,12 +34,13 @@ class AttributeInfo extends Component {
             </div>
           </div>
         </div>
-        {getReviewSection({
-          positiveReviews,
-          negativeReviews,
-          overallScore,
-          attribute,
-        })}
+        <ReviewSection
+          positiveReviews={positiveReviews}
+          negativeReviews={negativeReviews}
+          overallScore={overallScore}
+          attribute={attribute}
+          infoValue={attribute}
+        />
       </div>
     );
   };

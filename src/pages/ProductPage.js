@@ -27,8 +27,8 @@ class ProductPage extends PureComponent {
 
   async componentDidMount() {
     const searchParams = queryString.parse(this.props.location.search);
-    const { productId } = searchParams;
-    const productData = await getProductData({ productId });
+    const { productId, skinType, skinConcern } = searchParams;
+    const productData = await getProductData({ productId, skinType, skinConcern });
     if (!productData) return;
     const { additionalImages } = productData;
     //NB - must update the new image URLs here otherwise they don't update when user navigates to a different product page
@@ -71,6 +71,8 @@ class ProductPage extends PureComponent {
         skinTypeAnalysis,
         skinConcernAnalysis,
       },
+      querySkinType,
+      querySkinConcern
     } = productData;
 
     return (
@@ -98,12 +100,14 @@ class ProductPage extends PureComponent {
               <SkinInfo
                 analysisData={skinTypeAnalysis}
                 infoValue={"skinType"}
+                queryTerm={querySkinType}
               />
             )}
             {!isEmpty(skinConcernAnalysis) && (
               <SkinInfo
                 analysisData={skinConcernAnalysis}
                 infoValue={"skinConcern"}
+                queryTerm={querySkinConcern}
               />
             )}
             {!isEmpty(attributeAnalysis) &&

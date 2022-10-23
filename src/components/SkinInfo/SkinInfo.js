@@ -3,8 +3,12 @@ import * as skinTypeImage from "../../components/ProductFinder/config/images/ski
 import * as skinConcernImage from "../../components/ProductFinder/config/images/skinConcerns/aging.png";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Dropdown } from "./dropdown";
-import { ATTRIBUTES } from "../ProductCard/attributes";
-import { getReviewSection } from "./reviewSection";
+import {
+  ATTRIBUTES,
+  SKIN_CONCERN_ATTRIBUTES,
+  SKIN_TYPE_ATTRIBUTES,
+} from "../ProductCard/attributes";
+import ReviewSection from "../SkinInfo/ReviewSection";
 
 class SkinInfo extends Component {
   state = {
@@ -17,15 +21,15 @@ class SkinInfo extends Component {
   };
 
   componentDidMount() {
-    const { analysisData, infoValue } = this.props;
+    const { analysisData, infoValue, queryTerm } = this.props;
     const { attribute, positiveReviews, negativeReviews, overallScore } =
       analysisData[0];
     let amendedAnalysisData = analysisData;
     //Currently the Dryness skin concern has a attribute of dry skin which is the same as the skinType dry skin attribute. Need to differentiate it by changing it to Dryness
     const amendedAttribute =
-      infoValue === "skinConcern" && attribute === "dry skin"
-        ? "dryness"
-        : attribute;
+      infoValue === "skinConcern"
+        ? SKIN_CONCERN_ATTRIBUTES[queryTerm]
+        : SKIN_TYPE_ATTRIBUTES[queryTerm];
     if (
       infoValue === "skinConcern" &&
       analysisData.find((el) => el.attribute === "dry skin")
@@ -145,13 +149,13 @@ class SkinInfo extends Component {
             </div>
           </div>
         </div>
-        {getReviewSection({
-          overallScore: selectedOverallScore,
-          positiveReviews: selectedPositiveReviews,
-          negativeReviews: selectedNegativeReviews,
-          attribute: selectedAttribute,
-          infoValue: infoValue,
-        })}
+        <ReviewSection
+          positiveReviews={selectedPositiveReviews}
+          negativeReviews={selectedNegativeReviews}
+          overallScore={selectedOverallScore}
+          attribute={selectedAttribute}
+          infoValue={selectedAttribute}
+        />
       </div>
     );
   }
