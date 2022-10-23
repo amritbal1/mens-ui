@@ -4,7 +4,7 @@ import queryString from "query-string";
 import { getProductData } from "../services/ProductDataService/ProductDataService";
 import ProductInfo from "../components/ProductInfo/ProductInfo";
 import { isEmpty } from "../utils/objectUtils";
-import { REGION, S3_BUCKET } from "../aws-config";
+// import { REGION, S3_BUCKET } from "../aws-config";
 import Navbar from "../components/Navbar/Navbar";
 // import Carousel from "../components/Carousel/Carousel";
 import SkinInfo from "../components/SkinInfo/SkinInfo";
