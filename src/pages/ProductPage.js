@@ -8,7 +8,7 @@ import { isEmpty } from "../utils/objectUtils";
 import Navbar from "../components/Navbar/Navbar";
 // import Carousel from "../components/Carousel/Carousel";
 import SkinInfo from "../components/SkinInfo/SkinInfo";
-import AttributeInfo from "../components/AttributeInfo/AttributeInfo";
+// import AttributeInfo from "../components/AttributeInfo/AttributeInfo";
 
 //Page to display information for a single product
 class ProductPage extends PureComponent {
@@ -70,7 +70,7 @@ class ProductPage extends PureComponent {
       overallMetrics: {
         attributeAnalysis,
         skinTypeAnalysis,
-        skinConcernAnalysis,
+        // skinConcernAnalysis,
       },
     } = productData;
 
@@ -104,7 +104,7 @@ class ProductPage extends PureComponent {
                 infoValue={"skinType"}
               />
             )}
-            {!isEmpty(skinConcernAnalysis) && (
+            {/* {!isEmpty(skinConcernAnalysis) && (
               <SkinInfo
                 analysisData={skinConcernAnalysis}
                 infoValue={"skinConcern"}
@@ -113,7 +113,7 @@ class ProductPage extends PureComponent {
             {!isEmpty(attributeAnalysis) &&
               attributeAnalysis.map((analysisData) => {
                 return <AttributeInfo analysisData={analysisData} />;
-              })}
+              })} */}
           </div>
         </div>
       </div>
