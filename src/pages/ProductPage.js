@@ -6,7 +6,7 @@ import ProductInfo from "../components/ProductInfo/ProductInfo";
 import { isEmpty } from "../utils/objectUtils";
 import { REGION, S3_BUCKET } from "../aws-config";
 import Navbar from "../components/Navbar/Navbar";
-import Carousel from "../components/Carousel/Carousel";
+// import Carousel from "../components/Carousel/Carousel";
 import SkinInfo from "../components/SkinInfo/SkinInfo";
 import AttributeInfo from "../components/AttributeInfo/AttributeInfo";
 
@@ -17,13 +17,13 @@ class ProductPage extends PureComponent {
     allProductImageUrls: [],
   };
 
-  getImageUrls = ({ images }) => {
-    return !isEmpty(images)
-      ? images.map((imageUrl) => {
-          return `https://s3.${REGION}.amazonaws.com/${S3_BUCKET}/${imageUrl}`;
-        })
-      : [];
-  };
+  // getImageUrls = ({ images }) => {
+  //   return !isEmpty(images)
+  //     ? images.map((imageUrl) => {
+  //         return `https://s3.${REGION}.amazonaws.com/${S3_BUCKET}/${imageUrl}`;
+  //       })
+  //     : [];
+  // };
 
   async componentDidMount() {
     const searchParams = queryString.parse(this.props.location.search);
@@ -64,7 +64,7 @@ class ProductPage extends PureComponent {
   }
 
   renderProduct = ({ productData }) => {
-    const { allProductImageUrls } = this.state;
+    // const { allProductImageUrls } = this.state;
     const {
       overallMetrics: {
         attributeAnalysis,
@@ -77,7 +77,7 @@ class ProductPage extends PureComponent {
       <div>
         <div class="flex flex-col items-center mb-2 sm:mb-6 justify-center">
           <div class="flex flex-col sm:flex sm:flex-row sm:mb-6">
-            <div class="w-300px h-300px md:w-450px md:h-450px sm:mr-4 self-center">
+            {/* <div class="w-300px h-300px md:w-450px md:h-450px sm:mr-4 self-center">
               <Carousel
                 images={allProductImageUrls}
                 slidesToShow={1}
@@ -87,7 +87,7 @@ class ProductPage extends PureComponent {
                 handleImageClickFn={this.handleImageClickFn}
                 showCursorOnHover={false}
               />
-            </div>
+            </div> */}
             <div class="flex self-start w-full pt-4 lg:pt-0 md:w-1/3 md:pl-0 md:pr-4 lg:ml-14 pb-4 px-6">
               <ProductInfo productDetails={productData} attributeAnalysis={attributeAnalysis} />
             </div>
