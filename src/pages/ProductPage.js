@@ -16,7 +16,7 @@ import {
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const PILL_STYLE =
-  "text-xs font-light text-slate-gray border rounded-full mb-2 sm:mb-1 mr-1 p-2 sm:px-3 cursor-pointer";
+  "text-xs font-light text-slate-gray border rounded-full mr-1 p-2 sm:px-3 cursor-pointer";
 const SELECTED_PILL_STYLE = `${PILL_STYLE} bg-gray-100 border border-gray-400`;
 
 //Page to display information for a single product
@@ -160,13 +160,12 @@ class ProductPage extends PureComponent {
       querySkinConcern,
     } = productData;
     const selectedAttributeName = selectedAttribute.attribute;
-    const pillStyle =
-      "text-xs font-light text-slate-gray border rounded-full mb-2 sm:mb-1 mr-1 p-2 sm:px-3 cursor-pointer";
-    const selectedPillStyle = `${pillStyle} bg-gray-100 border border-gray-400`;
     const attributePills = attributeAnalysis.map((attribute) => {
       const { overallScore, attribute: attributeName } = attribute;
       const style =
-        attributeName === selectedAttributeName ? selectedPillStyle : pillStyle;
+        attributeName === selectedAttributeName
+          ? SELECTED_PILL_STYLE
+          : PILL_STYLE;
       return overallScore > 50 ? (
         <span
           class={style}
@@ -223,11 +222,15 @@ class ProductPage extends PureComponent {
               <div class="font-light text-sm font-normal mb-2 uppercase tracking-wider text-slate-gray">
                 What the reviews say
               </div>
-              <div class="flex flex-wrap">{allPills}</div>
+              <div class="mt-2 overflow-x-scroll scrollbar">
+                <div class="mb-2 mt-4 whitespace-nowrap">
+                  {allPills}
+                </div>
+              </div>
             </div>
           )}
 
-          <div class="pt-4 w-full px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-2">
+          <div class="pt-4 w-full px-6">
             {skinTypeSelected && (
               <SkinInfo
                 analysisData={skinTypeAnalysis}
