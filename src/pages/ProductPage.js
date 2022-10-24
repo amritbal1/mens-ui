@@ -15,6 +15,10 @@ import {
 } from "../components/ProductCard/attributes";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
+const PILL_STYLE =
+  "text-xs font-light text-slate-gray border rounded-full mb-2 sm:mb-1 mr-1 p-2 sm:px-3 cursor-pointer";
+const SELECTED_PILL_STYLE = `${PILL_STYLE} bg-gray-100 border border-gray-400`;
+
 //Page to display information for a single product
 class ProductPage extends PureComponent {
   state = {
@@ -116,6 +120,24 @@ class ProductPage extends PureComponent {
     }
   };
 
+  skinTypePill = ({ skinTypeSelected }) => (
+    <span
+      class={skinTypeSelected ? SELECTED_PILL_STYLE : PILL_STYLE}
+      onClick={() => this.handlePillChange({ type: "skinType" })}
+    >
+      Skin Types
+    </span>
+  );
+
+  skinConcernPill = ({ skinConcernSelected }) => (
+    <span
+      class={skinConcernSelected ? SELECTED_PILL_STYLE : PILL_STYLE}
+      onClick={() => this.handlePillChange({ type: "skinConcern" })}
+    >
+      Skin Concerns
+    </span>
+  );
+
   setScrollToTop = ({ infoValue }) => {
     let scrollDiv = document.getElementById(`${infoValue}`);
     if (scrollDiv) scrollDiv.scrollTop = 0;
@@ -143,8 +165,8 @@ class ProductPage extends PureComponent {
     const selectedPillStyle = `${pillStyle} bg-gray-100 border border-gray-400`;
     const attributePills = attributeAnalysis.map((attribute) => {
       const { overallScore, attribute: attributeName } = attribute;
-      const isSelected = attributeName === selectedAttributeName;
-      const style = isSelected ? selectedPillStyle : pillStyle;
+      const style =
+        attributeName === selectedAttributeName ? selectedPillStyle : pillStyle;
       return overallScore > 50 ? (
         <span
           class={style}
@@ -167,23 +189,11 @@ class ProductPage extends PureComponent {
         </span>
       );
     });
-    const skinTypePill = (
-      <span
-        class={skinTypeSelected ? selectedPillStyle : pillStyle}
-        onClick={() => this.handlePillChange({ type: "skinType" })}
-      >
-        Skin Types
-      </span>
-    );
-    const skinConcernPill = (
-      <span
-        class={skinConcernSelected ? selectedPillStyle : pillStyle}
-        onClick={() => this.handlePillChange({ type: "skinConcern" })}
-      >
-        Skin Concerns
-      </span>
-    );
-    const allPills = [skinTypePill, skinConcernPill, ...attributePills];
+    const allPills = [
+      this.skinTypePill({ skinTypeSelected }),
+      this.skinConcernPill({ skinConcernSelected }),
+      ...attributePills,
+    ];
 
     return (
       <div>
@@ -235,9 +245,7 @@ class ProductPage extends PureComponent {
             {!skinTypeSelected &&
               !skinConcernSelected &&
               !isEmpty(selectedAttribute) && (
-                <AttributeInfo
-                  analysisData={selectedAttribute}
-                />
+                <AttributeInfo analysisData={selectedAttribute} />
               )}
           </div>
         </div>
