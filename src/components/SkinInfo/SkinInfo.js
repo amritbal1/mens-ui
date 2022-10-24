@@ -22,13 +22,12 @@ class SkinInfo extends Component {
 
   componentDidMount() {
     const { analysisData, infoValue, queryTerm } = this.props;
-    const { positiveReviews, negativeReviews, overallScore } =
-      analysisData[0];
     let amendedAnalysisData = analysisData;
     const amendedAttribute =
       infoValue === "skinConcern"
         ? SKIN_CONCERN_ATTRIBUTES[queryTerm]
         : SKIN_TYPE_ATTRIBUTES[queryTerm];
+
     if (
       infoValue === "skinConcern" &&
       analysisData.find((el) => el.attribute === "dry skin")
@@ -39,6 +38,11 @@ class SkinInfo extends Component {
           : data;
       });
     }
+
+    const selectedAttr = amendedAnalysisData.find(
+      (el) => el.attribute === amendedAttribute
+    );
+    const { positiveReviews, negativeReviews, overallScore } = selectedAttr;
 
     const dropdownOptions = amendedAnalysisData.map((data) => {
       return {
