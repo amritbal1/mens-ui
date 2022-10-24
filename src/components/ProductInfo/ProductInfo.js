@@ -9,6 +9,7 @@ class ProductInfo extends PureComponent {
       productName,
       affiliateData = [{ productUrl: "" }],
     } = productDetails;
+    const price = affiliateData[0].priceData.affiliatePrice;
     return (
       <div class="h-full w-full flex flex-col sm:justify-between">
         <div>
@@ -25,14 +26,19 @@ class ProductInfo extends PureComponent {
             </div>
           </div>
         </div>
-        <div class="mb-6">
+        <div class="mb-6 sm:mt-6">
+          {price && (
+            <span class="text-slate-gray uppercase font-light">
+              ~£{(Math.round(price * 100) / 100).toFixed(2)}
+            </span>
+          )}
           <a
             href={affiliateData[0].productUrl}
             target="_blank"
             rel="noopener noreferrer"
           >
             <button
-              class="w-full bg-gray-900 text-gray-50 tracking-wide py-3 sm:py-2 px-6 rounded-lg shadow-md focus:outline-none sm:hover:opacity-60"
+              class="mt-2 w-full bg-gray-900 text-gray-50 tracking-wide py-3 sm:py-2 px-6 rounded-lg shadow-md focus:outline-none sm:hover:opacity-60"
               onMouseEnter={this.handleMouseEnter}
               onMouseLeave={this.handleMouseLeave}
             >
