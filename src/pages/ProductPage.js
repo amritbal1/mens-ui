@@ -219,10 +219,10 @@ class ProductPage extends PureComponent {
 
           {!isEmpty(allPills) && (
             <div class="sm:pt-4 w-full px-6">
-              <div class="font-light text-sm font-normal mb-2 uppercase tracking-wider text-slate-gray">
+              <div class="font-light text-sm font-normal uppercase tracking-wider text-slate-gray">
                 What the reviews say
               </div>
-              <div class="mt-2 overflow-x-scroll scrollbar">
+              <div class="overflow-x-scroll scrollbar">
                 <div class="mb-2 mt-4 whitespace-nowrap">
                   {allPills}
                 </div>
