@@ -198,7 +198,7 @@ class ProductPage extends PureComponent {
       <div>
         <div class="flex flex-col items-center mb-2 sm:mb-6 justify-center">
           <div class="flex flex-col sm:flex sm:flex-row sm:mb-6">
-            <div class="w-300px h-300px md:w-450px md:h-450px sm:mr-4 self-center">
+            <div class="w-300px h-300px md:w-450px md:h-450px self-center">
               <Carousel
                 images={allProductImageUrls}
                 slidesToShow={1}
@@ -209,7 +209,7 @@ class ProductPage extends PureComponent {
                 showCursorOnHover={false}
               />
             </div>
-            <div class="flex self-start w-full pt-4 lg:pt-0 md:w-1/3 md:pl-0 md:pr-4 lg:ml-14 pb-4 px-6">
+            <div class="flex self-start w-full pt-4 lg:pt-0 sm:max-w-xs md:pl-0 md:pr-4 lg:ml-14 pb-4 px-6">
               <ProductInfo
                 productDetails={productData}
                 attributeAnalysis={attributeAnalysis}
