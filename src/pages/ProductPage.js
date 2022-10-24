@@ -218,7 +218,7 @@ class ProductPage extends PureComponent {
           </div>
 
           {!isEmpty(allPills) && (
-            <div class="sm:pt-4 w-full px-6">
+            <div class="sm:pt-4 max-w-full px-6">
               <div class="font-light text-sm font-normal uppercase tracking-wider text-slate-gray">
                 What the reviews say
               </div>
@@ -230,7 +230,7 @@ class ProductPage extends PureComponent {
             </div>
           )}
 
-          <div class="pt-4 max-w-2xl px-6 self-start">
+          <div class="pt-4 max-w-2xl px-6">
             {skinTypeSelected && (
               <SkinInfo
                 analysisData={skinTypeAnalysis}
