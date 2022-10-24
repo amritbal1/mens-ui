@@ -192,6 +192,7 @@ class ProductPage extends PureComponent {
           }
         >
           {ATTRIBUTE_LABELS_NEGATIVE[attributeName]}
+          {` (${selectedAttributeReviewNumber})`}
           <XMarkIcon class="ml-1 inline h-3 w-3 text-red-700" />
         </span>
       );
