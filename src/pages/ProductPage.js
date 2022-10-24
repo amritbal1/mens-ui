@@ -230,7 +230,7 @@ class ProductPage extends PureComponent {
             </div>
           )}
 
-          <div class="pt-4 w-full px-6">
+          <div class="pt-4 max-w-2xl px-6 self-start">
             {skinTypeSelected && (
               <SkinInfo
                 analysisData={skinTypeAnalysis}
