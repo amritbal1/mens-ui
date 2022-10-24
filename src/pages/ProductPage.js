@@ -160,8 +160,15 @@ class ProductPage extends PureComponent {
       querySkinConcern,
     } = productData;
     const selectedAttributeName = selectedAttribute.attribute;
+
     const attributePills = attributeAnalysis.map((attribute) => {
       const { overallScore, attribute: attributeName } = attribute;
+      const attr = attributeAnalysis.find(
+        (el) => el.attribute === attributeName
+      );
+      const selectedAttributeReviewNumber = !isEmpty(attr)
+        ? attr.positiveReviews.length + attr.negativeReviews.length
+        : 0;
       const style =
         attributeName === selectedAttributeName
           ? SELECTED_PILL_STYLE
@@ -174,6 +181,7 @@ class ProductPage extends PureComponent {
           }
         >
           {ATTRIBUTE_LABELS_POSITIVE[attributeName]}
+          {` (${selectedAttributeReviewNumber})`}
           <CheckIcon class="ml-1 inline h-3 w-3 text-green-700" />
         </span>
       ) : (
@@ -223,9 +231,7 @@ class ProductPage extends PureComponent {
                 What the reviews say
               </div>
               <div class="overflow-x-scroll scrollbar">
-                <div class="mb-2 mt-4 whitespace-nowrap">
-                  {allPills}
-                </div>
+                <div class="mb-2 mt-4 whitespace-nowrap">{allPills}</div>
               </div>
             </div>
           )}
