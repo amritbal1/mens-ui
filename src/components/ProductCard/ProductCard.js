@@ -36,7 +36,9 @@ class ProductCard extends PureComponent {
 
   render() {
     const { data } = this.props;
-    const { dbg_recommendationScore, productDetails, reviewData } = data;
+    const { dbg_recommendationScore, productDetails, reviewData, dbg_price } =
+      data;
+    const [price] = dbg_price;
     const { productName, brandName, mainImageUrl, productId } = productDetails;
     const s3ImageUrl = `https://s3.${REGION}.amazonaws.com/${S3_BUCKET}/${mainImageUrl}`;
     const { criteriaData, pros, cons } = reviewData;
@@ -98,8 +100,9 @@ class ProductCard extends PureComponent {
                 {productName}
               </div>
             </div>
+            <div class="pb-3 sm:pb-4 text-xs sm:text-sm font-normal text-slate-gray">{`~£ ${(Math.round(price * 100) / 100).toFixed(2)}`}</div>
             <div class="mb-2 sm:mb-4 flex">
-              <span class="text-xs sm:text-sm font-light text-slate-gray mr-2">
+              <span class="text-xs sm:text-sm font-light text-slate-gray mr-2">               
                 <span class="flex flex-shrink-0 items-start">
                   {` ${skinType} skin`}:
                   <span class="flex flex-shrink-0 text-xs sm:text-sm font-normal text-slate-gray ml-1">
@@ -112,7 +115,9 @@ class ProductCard extends PureComponent {
                   </span>
                 </span>
                 <span class="flex flex-shrink-0 items-start">
-                  {` ${skinConcern[0] === "Breakout" ? "Breakouts" : skinConcern}`}
+                  {` ${
+                    skinConcern[0] === "Breakout" ? "Breakouts" : skinConcern
+                  }`}
                   :
                   <span class="flex flex-shrink-0 text-xs sm:text-sm font-normal text-slate-gray ml-1">
                     {skinConcernOverallScore}%{" "}

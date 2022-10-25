@@ -29,7 +29,7 @@ class ProductInfo extends PureComponent {
         <div class="mb-6 sm:mt-6">
           {price && (
             <span class="text-slate-gray uppercase font-light">
-              ~£{(Math.round(price * 100) / 100).toFixed(2)}
+              {`~£ ${(Math.round(price * 100) / 100).toFixed(2)}`}
             </span>
           )}
           <a
