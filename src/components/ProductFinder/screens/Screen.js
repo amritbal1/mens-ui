@@ -5,6 +5,10 @@ import { FinderHeading } from "../../shared/headings";
 import { getPreviouslySelectedAnswers } from "../utils/screenRenderer";
 import { getButtons } from "../utils/buttonDisabledRenderer";
 
+const SCREEN_VALUE = {
+  1: "skinType",
+  2: "skinConcerns"
+}
 class Screen extends Component {
   state = {
     selectedOptions: getPreviouslySelectedAnswers({
@@ -56,6 +60,7 @@ class Screen extends Component {
         options: config,
         selectedOptions: selectedOptions,
         clickHandlerFn: this.handleClick,
+        screenValue: SCREEN_VALUE[screenNumberToRender]
       });
     const buttons = getButtons({
       index,

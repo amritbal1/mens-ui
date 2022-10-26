@@ -76,6 +76,10 @@ module.exports = {
     flex: {
       auto: "1 1 0",
       2: "2 1 0",
+      50: "0 1 40%",
+      30: "0 1 30%",
+      25: "0 1 20%",
+      20: "0 1 18%"
     },
     fontSize: {
       xs: ".75rem",
@@ -95,5 +99,5 @@ module.exports = {
   },
   variants: {
     extend: { opacity: ["disabled"] },
-  }
+  },
 };

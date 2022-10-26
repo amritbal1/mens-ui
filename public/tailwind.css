@@ -1993,6 +1993,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 27px;
 }
 
+.w-90px {
+  width: 90px;
+}
+
+.min-w-90px {
+  min-width: 90px;
+}
+
 .w-100px {
   width: 100px;
 }
