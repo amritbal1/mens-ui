@@ -39,12 +39,12 @@ export const getScreenToRender = ({
     <Screen
       key={"2"}
       index={"2"}
-      title={"What is the main skin concern you would like to address?"}
+      title={"What are your skin concerns?"}
       config={skincareConfig.reviews[1].options}
       parentAnswerStateVariable={"reviewAnswerSkinConcerns"}
       previousAnswers={reviewAnswerSkinConcerns}
       handleOptionClick={handleOptionClick}
-      isMultiSelect={false}
+      isMultiSelect={true}
       {...commonProps}
     />
   );

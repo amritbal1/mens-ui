@@ -100,34 +100,42 @@ class ProductCard extends PureComponent {
                 {productName}
               </div>
             </div>
-            <div class="pb-3 sm:pb-4 text-xs sm:text-sm font-normal text-slate-gray">{`~£ ${(Math.round(price * 100) / 100).toFixed(2)}`}</div>
+            <div class="pb-3 sm:pb-4 text-xs sm:text-sm font-normal text-slate-gray">{`~£ ${(
+              Math.round(price * 100) / 100
+            ).toFixed(2)}`}</div>
             <div class="mb-2 sm:mb-4 flex">
-              <span class="text-xs sm:text-sm font-light text-slate-gray mr-2">               
+              <span class="text-xs sm:text-sm font-light text-slate-gray mr-2">
                 <span class="flex flex-shrink-0 items-start">
                   {` ${skinType} skin`}:
                   <span class="flex flex-shrink-0 text-xs sm:text-sm font-normal text-slate-gray ml-1">
                     {skinTypeOverallScore}%{" "}
                     {skinTypeOverallScore >= 50 ? (
-                      <HandThumbUpIcon class="inline h-4 w-4" />
+                      <HandThumbUpIcon class="inline self-center h-3 w-3 ml-1" />
                     ) : (
-                      <HandThumbDownIcon class="inline h-4 w-4" />
+                      <HandThumbDownIcon class="inline self-center h-3 w-3 ml-1" />
                     )}
                   </span>
                 </span>
-                <span class="flex flex-shrink-0 items-start">
-                  {` ${
-                    skinConcern[0] === "Breakout" ? "Breakouts" : skinConcern
-                  }`}
-                  :
-                  <span class="flex flex-shrink-0 text-xs sm:text-sm font-normal text-slate-gray ml-1">
-                    {skinConcernOverallScore}%{" "}
-                    {skinConcernOverallScore >= 50 ? (
-                      <HandThumbUpIcon class="inline h-4 w-4" />
-                    ) : (
-                      <HandThumbDownIcon class="inline h-4 w-4" />
-                    )}
-                  </span>
-                </span>
+                {skinConcern.map((concern, i) => {
+                  return (
+                    <span class="flex flex-shrink-0 items-start">
+                      {` ${
+                        concern === "Breakout"
+                          ? "Breakouts"
+                          : concern
+                      }`}
+                      :
+                      <span class="flex flex-shrink-0 text-xs sm:text-sm font-normal text-slate-gray ml-1">
+                        {skinConcernOverallScore[i]}%{" "}
+                        {skinConcernOverallScore[i] >= 50 ? (
+                          <HandThumbUpIcon class="inline self-center h-3 w-3 ml-1" />
+                        ) : (
+                          <HandThumbDownIcon class="inline self-center h-3 w-3 ml-1" />
+                        )}
+                      </span>
+                    </span>
+                  );
+                })}
               </span>
             </div>
             <div>

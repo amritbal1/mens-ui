@@ -41,3 +41,11 @@ export const getValueFromUrl = ({ param }) => {
   }
   return [];
 };
+
+export const getArrayValue = ({ parameterValue }) => {
+  return parameterValue !== "null"
+    ? parameterValue.indexOf(",") > -1
+      ? parameterValue.split(",")
+      : [parameterValue]
+    : [];
+};

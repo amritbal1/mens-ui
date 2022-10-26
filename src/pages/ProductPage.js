@@ -14,6 +14,7 @@ import {
   ATTRIBUTE_LABELS_NEGATIVE,
 } from "../components/ProductCard/attributes";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { getArrayValue } from "../utils/urlUtils/urlValueGetter";
 
 const PILL_STYLE =
   "text-xs font-light text-slate-gray border rounded-full mr-1 p-2 sm:px-3 cursor-pointer";
@@ -40,10 +41,11 @@ class ProductPage extends PureComponent {
   async componentDidMount() {
     const searchParams = queryString.parse(this.props.location.search);
     const { productId, skinType, skinConcern } = searchParams;
+    const skinConcerns = getArrayValue({ parameterValue: skinConcern });
     const productData = await getProductData({
       productId,
       skinType,
-      skinConcern,
+      skinConcerns,
     });
     if (!productData) return;
     const { additionalImages } = productData;
