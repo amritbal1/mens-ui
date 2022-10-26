@@ -1,7 +1,7 @@
 import {
   HandThumbUpIcon,
   HandThumbDownIcon,
-  ArrowRightIcon
+  ArrowRightIcon,
 } from "@heroicons/react/24/outline";
 import { PureComponent } from "react";
 import { REGION, S3_BUCKET } from "../../aws-config";
@@ -131,10 +131,10 @@ class ProductCard extends PureComponent {
                     </span>
                   );
                 })}
-                <div class="flex justify-end w-full pt-1">
-                  <ArrowRightIcon class="text-slate-gray h-4 w-5 self-end" />
-                </div>
               </span>
+            </div>
+            <div class="flex justify-end w-full pt-1 pb-1">
+              <ArrowRightIcon class="text-slate-gray h-4 w-5 self-end mr-2" />
             </div>
           </figcaption>
         </figure>
