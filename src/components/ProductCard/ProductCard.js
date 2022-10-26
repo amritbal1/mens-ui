@@ -1,10 +1,10 @@
 import {
   HandThumbUpIcon,
   HandThumbDownIcon,
+  ArrowRightIcon
 } from "@heroicons/react/24/outline";
 import { PureComponent } from "react";
 import { REGION, S3_BUCKET } from "../../aws-config";
-import { isEmpty } from "../../utils/objectUtils";
 import "./circle.css";
 import queryString from "query-string";
 
@@ -41,15 +41,15 @@ class ProductCard extends PureComponent {
     const [price] = dbg_price;
     const { productName, brandName, mainImageUrl, productId } = productDetails;
     const s3ImageUrl = `https://s3.${REGION}.amazonaws.com/${S3_BUCKET}/${mainImageUrl}`;
-    const { criteriaData, pros, cons } = reviewData;
+    const { criteriaData } = reviewData;
     const { skinTypeAnalysis, skinConcernAnalysis } = criteriaData;
     const { skinType, overallScore: skinTypeOverallScore } = skinTypeAnalysis;
     const { skinConcern, overallScore: skinConcernOverallScore } =
       skinConcernAnalysis;
     return (
-      <div class="p-1 sm:p-4 mb-8 sm:mb-4">
+      <div class="p-0.5 sm:p-4 mb-8 sm:mb-4">
         <figure
-          class="border rounded-md max-w-20 mx-auto bg-white cursor-pointer transition-transform transform sm:hover:scale-105 sm:hover:shadow-lg shadow-xl"
+          class="border rounded-xl max-w-20 mx-auto bg-white cursor-pointer transition-transform transform sm:hover:scale-105 sm:hover:shadow-lg shadow-xl"
           onClick={() => this.handleProductCardClick({ productId: productId })}
         >
           <div class="flex justify-end mt-4 mr-4">
@@ -119,12 +119,7 @@ class ProductCard extends PureComponent {
                 {skinConcern.map((concern, i) => {
                   return (
                     <span class="flex flex-shrink-0 items-start">
-                      {` ${
-                        concern === "Breakout"
-                          ? "Breakouts"
-                          : concern
-                      }`}
-                      :
+                      {` ${concern === "Breakout" ? "Breakouts" : concern}`}:
                       <span class="flex flex-shrink-0 text-xs sm:text-sm font-normal text-slate-gray ml-1">
                         {skinConcernOverallScore[i]}%{" "}
                         {skinConcernOverallScore[i] >= 50 ? (
@@ -136,33 +131,10 @@ class ProductCard extends PureComponent {
                     </span>
                   );
                 })}
+                <div class="flex justify-end w-full pt-1">
+                  <ArrowRightIcon class="text-slate-gray h-4 w-5 self-end" />
+                </div>
               </span>
-            </div>
-            <div>
-              {!isEmpty(pros) && (
-                <div class="flex flex-wrap mb-4">
-                  <span class="flex items-center mr-2"></span>
-                  {pros.map((pro) => {
-                    return (
-                      <div class="text-xs font-extralight text-slate-gray flex flex-shrink-0 border sm:border-0.5 border-gray-300 rounded-full mr-2 py-1 px-2 mb-1">
-                        {pro}
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-              {!isEmpty(cons) && (
-                <div class="flex flex-wrap">
-                  <span class="flex items-center mr-2"></span>
-                  {cons.map((con) => {
-                    return (
-                      <div class="text-xs font-extralight text-slate-gray flex flex-shrink-0 border sm:border-0.5 border-gray-300 rounded-full mr-2 py-1 px-2 mb-1">
-                        {con}
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
             </div>
           </figcaption>
         </figure>

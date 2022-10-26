@@ -10,7 +10,7 @@ export const getOption = ({
 }) => {
   const selectedOptionStyles = isChecked ? "border-b-2 border-slate-teal" : "";
   const hoverDivStyles = `${selectedOptionStyles} sm:mx-1 md:hover:border md:hover:border-2 sm:h-140px sm:w-140px md:h-160px md:w-160px flex flex-grow flex-col justify-center items-center cursor-pointer md:hover:bg-gray-100 py-2 mx-4 sm:p-2`;
-  const outerDivStyle = `w-90px sm:min-w-90px sm:h-140px md:h-160px mb-4 sm:mb-8 mx-0.5 sm:mx-1 py-2 mx-4 ${screenValue === "skinType" ? "flex-50 sm:flex-25" : "flex-30 sm:flex-20"}`;
+  const outerDivStyle = `w-90px sm:min-w-90px sm:h-140px md:h-160px mb-4 sm:mb-8 mx-0.5 sm:mx-1 py-2 mx-4 ${screenValue === "skinType" ? "flex-50 xs:flex-25" : "flex-30 xs:flex-20"}`;
   return (
     <div class={outerDivStyle} key={value}>
       <div class={hoverDivStyles} onClick={() => clickHandlerFn(value)}>

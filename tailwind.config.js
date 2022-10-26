@@ -3,6 +3,9 @@ module.exports = {
   darkMode: false,
   theme: {
     extend: {
+      screens: {
+        xs: "470px",
+      },
       letterSpacing: {
         "wide-x": "0.15em",
       },
@@ -79,7 +82,7 @@ module.exports = {
       50: "0 1 40%",
       30: "0 1 30%",
       25: "0 1 20%",
-      20: "0 1 18%"
+      20: "0 1 18%",
     },
     fontSize: {
       xs: ".75rem",
