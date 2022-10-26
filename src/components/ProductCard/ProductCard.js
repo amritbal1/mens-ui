@@ -49,7 +49,7 @@ class ProductCard extends PureComponent {
     return (
       <div class="p-1 sm:p-4 mb-8 sm:mb-4">
         <figure
-          class="border rounded-md max-w-20 mx-auto bg-white cursor-pointer transition-transform transform sm:hover:scale-105 sm:hover:shadow-l"
+          class="border rounded-md max-w-20 mx-auto bg-white cursor-pointer transition-transform transform sm:hover:scale-105 sm:hover:shadow-lg shadow-xl"
           onClick={() => this.handleProductCardClick({ productId: productId })}
         >
           <div class="flex justify-end mt-4 mr-4">
@@ -104,7 +104,7 @@ class ProductCard extends PureComponent {
               Math.round(price * 100) / 100
             ).toFixed(2)}`}</div>
             <div class="mb-2 sm:mb-4 flex">
-              <span class="text-xs sm:text-sm font-light text-slate-gray mr-2">
+              <span class="text-xs sm:text-sm font-light text-slate-gray">
                 <span class="flex flex-shrink-0 items-start">
                   {` ${skinType} skin`}:
                   <span class="flex flex-shrink-0 text-xs sm:text-sm font-normal text-slate-gray ml-1">
