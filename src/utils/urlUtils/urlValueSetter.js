@@ -1,17 +1,14 @@
 import { isEmpty } from "../objectUtils";
 import { getValueFromUrl } from "./urlValueGetter";
 
-export const setResultsPageUrl = ({
-  fieldValuePair
-}) => {
+export const setResultsPageUrl = ({ fieldValuePair }) => {
   const [field, value] = fieldValuePair;
-  let productCategoryValues = "null";
   if (field === "productCategories") {
-    productCategoryValues = !isEmpty(value)
-      ? value
-      : "null";
+    return !isEmpty(value) ? value : "null";
   }
-  return `${productCategoryValues}`;
+  if (field === "minPrice" || field === "maxPrice") {
+    return value && !isEmpty(value) && !isNaN(value) ? Number(value) : "null";
+  }
 };
 
 export const setReviewListUrl = ({

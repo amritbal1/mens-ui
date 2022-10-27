@@ -57,17 +57,24 @@ class RecommendationWrapper extends Component {
       const allOptions = configValues[allValuesField];
       filterValue = isSelectAllSelected ? allOptions : [];
     } else {
-      //For single value fields
-      const currentFilterFieldValues = getValueFromUrl({ param: urlParam });
-      if (isSingleSelect) {
-        filterValue = isSelected ? [optionId] : [];
-      } else if (isOnlyOption) {
-        //Deselect all other selected options
-        filterValue = [optionId];
+      if (
+        filterField === "filterMinPrice" ||
+        filterField === "filterMaxPrice"
+      ) {
+        filterValue = optionId;
       } else {
-        filterValue = isSelected
-          ? [...currentFilterFieldValues, optionId]
-          : currentFilterFieldValues.filter((option) => option !== optionId);
+        //For single value fields
+        const currentFilterFieldValues = getValueFromUrl({ param: urlParam });
+        if (isSingleSelect) {
+          filterValue = isSelected ? [optionId] : [];
+        } else if (isOnlyOption) {
+          //Deselect all other selected options
+          filterValue = [optionId];
+        } else {
+          filterValue = isSelected
+            ? [...currentFilterFieldValues, optionId]
+            : currentFilterFieldValues.filter((option) => option !== optionId);
+        }
       }
     }
     const fieldValuePair = [urlParam, filterValue];
@@ -81,7 +88,7 @@ class RecommendationWrapper extends Component {
     });
     const searchParams = queryString.parse(window.location.search);
     const newParams = { ...searchParams, [urlParam]: encodedParams };
-    const stringified = queryString.stringify(newParams)
+    const stringified = queryString.stringify(newParams);
     this.props.history.push({
       pathname: this.props.match.path,
       search: stringified,

@@ -1,6 +1,7 @@
-import { FILTER_PILL_NAME } from "../../../../utils/enums";
+import { FILTER_PILL_NAME, MAX_PRICE_FILTER } from "../../../../utils/enums";
 import { configValues } from "../../../../utils/config";
 import { getValueFromUrl } from "../../../../utils/urlUtils/urlValueGetter";
+import { isEmpty } from "../../../../utils/objectUtils";
 
 const calculatePillLabel = ({
   selectedValues,
@@ -23,5 +24,15 @@ export const getPillName = ({ label }) => {
       allValuesLength: configValues.productCharacteristicValues.length,
       filterPillName: FILTER_PILL_NAME.PRODUCT_CATEGORIES,
     });
+  }
+  if (label === FILTER_PILL_NAME.PRICE) {
+    const maxPrice = getValueFromUrl({ param: "maxPrice" });
+    const minPrice = getValueFromUrl({ param: "minPrice" });
+    const showPlusIcon = maxPrice === MAX_PRICE_FILTER;
+    if (isEmpty(minPrice) && isEmpty(maxPrice)) return "Price";
+    if (isEmpty(minPrice))
+      return `up to £${maxPrice}${showPlusIcon ? "+" : ""}`;
+    if (!isEmpty(minPrice) && !isEmpty(maxPrice))
+      return `£${minPrice} to £${maxPrice}${showPlusIcon ? "+" : ""}`;
   }
 };

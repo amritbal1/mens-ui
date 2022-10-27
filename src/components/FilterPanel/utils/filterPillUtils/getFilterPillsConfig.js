@@ -14,7 +14,14 @@ export const getFilterPillsConfig = ({ filterOptionClickFn }) => {
     isSingleSelect: false,
   };
 
+   const pricePill = {
+    label: FILTER_PILL_NAME.PRICE,
+    filterField: "filterMinPrice",
+    filterOptionClickFn: filterOptionClickFn,
+  };
+
   return [
-    productCategoriesPill
+    productCategoriesPill,
+    pricePill
   ];
 };

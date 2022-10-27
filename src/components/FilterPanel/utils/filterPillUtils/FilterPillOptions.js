@@ -1,7 +1,9 @@
 import FilterOption from "../../FilterOption";
 import SelectAllOption from "./selectAllOption";
-
+import PricePill from "./PricePill/PricePill";
 import React, { useEffect, useRef } from "react";
+import { FILTER_PILL_NAME } from "../../../../utils/enums";
+import { getValueFromUrl } from "../../../../utils/urlUtils/urlValueGetter";
 
 const FilterPillOptions = ({
   data,
@@ -30,6 +32,19 @@ const FilterPillOptions = ({
     };
     //eslint-disable-next-line
   }, []);
+
+  if (label === FILTER_PILL_NAME.PRICE) {
+    return (
+      <div ref={optionsRef}>
+        <PricePill
+          filterField={filterField}
+          filterOptionClickFn={filterOptionClickFn}
+          filterMinPrice={getValueFromUrl({ param: "minPrice" })}
+          filterMaxPrice={getValueFromUrl({ param: "maxPrice" })}
+        />
+      </div>
+    );
+  }
 
   if (!data) return null;
   const options = data.map((filterOption, i) => {

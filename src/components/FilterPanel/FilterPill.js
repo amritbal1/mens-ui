@@ -42,13 +42,27 @@ class FilterPill extends Component {
   handleClearOptions = (e) => {
     const { filterField, filterOptionClickFn, allValuesField, urlParam } =
       this.props;
-    filterOptionClickFn({
-      isSelectAll: true,
-      allValuesField,
-      filterField,
-      isSelectAllSelected: false,
-      urlParam: urlParam,
-    });
+    if (filterField === "filterMinPrice") {
+      //In the filter pills config we only set the filter field to "filterMinPrice" in order to recognise it here, however when we hit the Clear button we want to reset both minPrice and maxPrice to null hence why we call the filterFn with both fields
+      filterOptionClickFn({
+        optionId: null,
+        filterField: "filterMinPrice",
+        urlParam: "minPrice"
+      });
+      filterOptionClickFn({
+        optionId: null,
+        filterField: "filterMaxPrice",
+        urlParam: "maxPrice"
+      });
+    } else {
+      filterOptionClickFn({
+        isSelectAll: true,
+        allValuesField,
+        filterField,
+        isSelectAllSelected: false,
+        urlParam: urlParam,
+      });
+    }
   };
 
   handlePillClick = (e) => {
