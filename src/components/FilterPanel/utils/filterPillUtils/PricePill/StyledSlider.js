@@ -7,8 +7,6 @@ export const getSlider = (props) => {
     onChangeCommittedFn,
     filterOptionClickFn,
     ariaLabelledBy,
-    step,
-    marks,
     min,
     max,
     ref,
@@ -47,11 +45,10 @@ export const getSlider = (props) => {
     <div ref={ref}>
       <NewSlider
         value={value}
-        step={step}
+        // step={step}
         valueLabelDisplay="on"
         getAriaLabel={() => ariaLabelledBy}
-        defaultValue={0}
-        marks={marks}
+        defaultValue={[0,80]}
         min={min}
         max={max}
         onChangeCommitted={(e, value) =>
