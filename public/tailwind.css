@@ -2037,6 +2037,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   min-width: 350px;
 }
 
+.w-min-220px {
+  min-width: 220px;
+}
+
 .w-80px {
   width: 80px;
 }
@@ -2562,8 +2566,12 @@ Ensure the default browser behavior of the `hidden` attribute.
     align-self: flex-start;
   }
 
-  .md\:overflow-visible {
+  .overflow-visible {
     overflow: visible;
+  }
+
+  .overflow-x-overlay {
+    overflow-x: overlay;
   }
 
   .md\:px-10 {

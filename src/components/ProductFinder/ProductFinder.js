@@ -3,6 +3,7 @@ import { getScreenToRender } from "./utils/screenRenderer";
 import { skincareConfig } from "./config/productConfigs/skincareConfig";
 import { withRouter } from "react-router-dom";
 import { SORTING_FIELD } from "../../utils/enums";
+import { isEmpty } from "../../utils/objectUtils";
 
 class ProductFinder extends PureComponent {
   state = {
@@ -40,9 +41,11 @@ class ProductFinder extends PureComponent {
     //Currently can only select 1 skin concern and type so array only has 1 value
     const [skinTypeAnswer] = reviewAnswerSkinTypes;
     const concernsList =
-    reviewAnswerSkinConcerns === "None" ? "null" : reviewAnswerSkinConcerns;
+      reviewAnswerSkinConcerns === "None" ? "null" : reviewAnswerSkinConcerns;
     const skinTypesList = skinTypeAnswer === "None" ? "null" : skinTypeAnswer;
-    const categoriesList = subCategoryAnswer.join();
+    const categoriesList = !isEmpty(subCategoryAnswer)
+      ? subCategoryAnswer.join()
+      : "null";
     const urlParams = `?skinConcerns=${concernsList}&skinTypes=${skinTypesList}&productCategories=${categoriesList}&sort=${SORTING_FIELD.RECOMMENDED}&starRating=null&productCharacteristics=null&brands=null&minPrice=null&maxPrice=null&pageNumber=1`;
     const encodedParams = encodeURI(urlParams);
     history.push(`/finder-results${encodedParams}`);

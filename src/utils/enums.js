@@ -16,7 +16,7 @@ export const FILTER_PILL_NAME = {
   BRANDS: "Brands",
   PRODUCT_CHARACTERISTICS: "Product Characteristics",
   PRICE: "Price",
-  PRODUCT_CATEGORIES: "Product Category",
+  PRODUCT_CATEGORIES: "Category",
 };
 
 export const SKIN_CONCERNS = {

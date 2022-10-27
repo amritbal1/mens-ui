@@ -79,8 +79,9 @@ const brandValues = getOptionValues({ options: brandOptions });
 
 ////////////// PRODUCT CATEGORIES //////////////
 const productCategoryOptions = [
-  { displayValue: "Eye Care", value: "Eye Care" },
   { displayValue: "Moisturiser", value: "Moisturiser" },
+  { displayValue: "Cleanser", value: "Cleanser" },
+  { displayValue: "Serum", value: "Serum" },
 ];
 
 const productCategoryValues = getOptionValues({

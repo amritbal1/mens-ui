@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { Switch, Route } from "react-router-dom";
 import LandingPageProductFinder from "./pages/LandingPageProductFinder";
 import ProductPage from "./pages/ProductPage";
-import RecommendationPage from "./pages/RecommendationPage.js";
+import RecommendationWrapper from "./pages/RecommendationWrapper.js";
 import AppProvider from "./AppProvider";
 import { isEmpty } from "./utils/objectUtils";
 import AppContext from "./AppContext";
@@ -45,7 +45,7 @@ class App extends PureComponent {
                       exact
                       path="/finder-results"
                       render={() => {
-                        return <RecommendationPage />;
+                        return <RecommendationWrapper />;
                       }}
                     />
                     <Route

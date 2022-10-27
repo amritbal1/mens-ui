@@ -28,7 +28,7 @@ export const createResultsPagePayload = ({ overridePageNum }) => {
     },
     ethnicity: null,
     //Currently get all categories
-    productCategories: [],
+    productCategories:  getValueFromUrl({ param: "productCategories" }),
     skinConcerns: getValueFromUrl({ param: "skinConcerns" }),
     skinTypes: getValueFromUrl({ param: "skinTypes" }),
     productCharacteristics: getValueFromUrl({
