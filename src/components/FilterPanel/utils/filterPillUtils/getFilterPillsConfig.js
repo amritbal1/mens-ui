@@ -1,18 +1,18 @@
-// import { config } from "../../../../utils/config.js";
+import { config } from "../../../../utils/config.js";
 import { FILTER_PILL_NAME } from "../../../../utils/enums.js";
 
 export const getFilterPillsConfig = ({ filterOptionClickFn }) => {
-  // const { productCategoryOptions: productCategories } = config;
+  const { productCategoryOptions: productCategories } = config;
 
-  // const productCategoriesPill = {
-  //   label: FILTER_PILL_NAME.PRODUCT_CATEGORIES,
-  //   data: productCategories,
-  //   filterField: "filterProductCategoryValues",
-  //   allValuesField: "productCategoryValues",
-  //   urlParam: "productCategories",
-  //   filterOptionClickFn: filterOptionClickFn,
-  //   isSingleSelect: false,
-  // };
+  const productCategoriesPill = {
+    label: FILTER_PILL_NAME.PRODUCT_CATEGORIES,
+    data: productCategories,
+    filterField: "filterProductCategoryValues",
+    allValuesField: "productCategoryValues",
+    urlParam: "productCategories",
+    filterOptionClickFn: filterOptionClickFn,
+    isSingleSelect: false,
+  };
 
   const pricePill = {
     label: FILTER_PILL_NAME.PRICE,
@@ -20,5 +20,5 @@ export const getFilterPillsConfig = ({ filterOptionClickFn }) => {
     filterOptionClickFn: filterOptionClickFn,
   };
 
-  return [pricePill];
+  return [productCategoriesPill, pricePill];
 };

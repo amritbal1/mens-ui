@@ -6,7 +6,10 @@ import Navbar from "../components/Navbar/Navbar";
 import RecommendationPage from "./RecommendationPage";
 import FilterPanel from "../components/FilterPanel/FilterPanel";
 import { getFilterPillsConfig } from "../components/FilterPanel/utils/filterPillUtils/getFilterPillsConfig";
-import { getValueFromUrl } from "../utils/urlUtils/urlValueGetter.js";
+import {
+  getValueFromUrl,
+  splitArray,
+} from "../utils/urlUtils/urlValueGetter.js";
 import { setResultsPageUrl } from "../utils/urlUtils/urlValueSetter.js";
 import { configValues } from "../utils/config";
 import { withRouter } from "react-router-dom";
@@ -83,11 +86,14 @@ class RecommendationWrapper extends Component {
 
   pushNewParamsToUrl = ({ fieldValuePair }) => {
     const urlParam = fieldValuePair[0];
-    const encodedParams = setResultsPageUrl({
+    const createdParams = setResultsPageUrl({
       fieldValuePair,
     });
+    const param = Array.isArray(createdParams)
+      ? splitArray({ arr: createdParams })
+      : createdParams;
     const searchParams = queryString.parse(window.location.search);
-    const newParams = { ...searchParams, [urlParam]: encodedParams };
+    const newParams = { ...searchParams, [urlParam]: param };
     const stringified = queryString.stringify(newParams);
     this.props.history.push({
       pathname: this.props.match.path,

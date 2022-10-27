@@ -135,7 +135,7 @@ export const PAGE_SIZE = {
   PRODUCT_RESULTS: 50,
 };
 
-export const MAX_PRICE_FILTER = 100;
+export const MAX_PRICE_FILTER = 80;
 
 export const LOCAL_STORAGE_ITEM = {
   USER_ID: "userId",

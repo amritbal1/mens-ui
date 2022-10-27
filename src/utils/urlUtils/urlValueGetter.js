@@ -6,15 +6,13 @@ export const getValueFromUrl = ({ param }) => {
   const parameterValue = searchParams[param];
   if (param === "minPrice" || param === "maxPrice") {
     return parameterValue === "null" ? null : Number(parameterValue);
-  }
-  if (!isEmpty(parameterValue)) {
+  } else if (!isEmpty(parameterValue)) {
     return parameterValue !== "null"
       ? parameterValue.indexOf(",") > -1
         ? parameterValue.split(",")
         : [parameterValue]
       : [];
-  }
-  return [];
+  } else return [];
 };
 
 export const getArrayValue = ({ parameterValue }) => {
@@ -23,4 +21,10 @@ export const getArrayValue = ({ parameterValue }) => {
       ? parameterValue.split(",")
       : [parameterValue]
     : [];
+};
+
+export const splitArray = ({ arr }) => {
+  if (isEmpty(arr)) return "";
+  if(arr.length === 1) return arr[0];
+  if(arr.length > 1) return arr.join(",")
 };
