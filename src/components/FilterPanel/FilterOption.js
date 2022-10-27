@@ -7,7 +7,7 @@ import {
 import { getValueFromUrl } from "../../utils/urlUtils/urlValueGetter";
 
 class FilterOption extends Component {
-  state = { showOnlyButton: false, hoverOnlyButton: false };
+  // state = { showOnlyButton: false, hoverOnlyButton: false };
 
   handleClick = ({isSelected }) => {
     const { filterField, id, allValuesField, isSingleSelect, filterOptionClickFn, urlParam } = this.props;
@@ -22,44 +22,44 @@ class FilterOption extends Component {
     });
   };
 
-  handleOnlyButtonClick = () => {
-    const { filterField, id, allValuesField, filterOptionClickFn, urlParam } = this.props;
-    filterOptionClickFn({
-      optionId: id,
-      filterField,
-      isSelected: true,
-      allValuesField,
-      isOnlyOption: true,
-      urlParam
-    });
-  };
+  // handleOnlyButtonClick = () => {
+  //   const { filterField, id, allValuesField, filterOptionClickFn, urlParam } = this.props;
+  //   filterOptionClickFn({
+  //     optionId: id,
+  //     filterField,
+  //     isSelected: true,
+  //     allValuesField,
+  //     isOnlyOption: true,
+  //     urlParam
+  //   });
+  // };
 
-  handleOptionMouseEnter = () => {
-    this.setState({ showOnlyButton: true });
-  };
+  // handleOptionMouseEnter = () => {
+  //   this.setState({ showOnlyButton: true });
+  // };
 
-  handleOptionMouseLeave = () => {
-    this.setState({ showOnlyButton: false });
-  };
+  // handleOptionMouseLeave = () => {
+  //   this.setState({ showOnlyButton: false });
+  // };
 
-  handleOnlyButtonMouseEnter = () => {
-    this.setState({ hoverOnlyButton: true });
-  };
+  // handleOnlyButtonMouseEnter = () => {
+  //   this.setState({ hoverOnlyButton: true });
+  // };
 
-  handleOnlyButtonMouseLeave = () => {
-    this.setState({ hoverOnlyButton: false });
-  };
+  // handleOnlyButtonMouseLeave = () => {
+  //   this.setState({ hoverOnlyButton: false });
+  // };
 
   getFilterOption = () => {
     const { label, id, urlParam } = this.props;
-    const { showOnlyButton, hoverOnlyButton } = this.state;
+    // const { showOnlyButton, hoverOnlyButton } = this.state;
     const value = getValueFromUrl({ param: urlParam });
     const isSelected = Array.isArray(value) ? value.includes(id) : value === id;
-    const onlyButtonDisplayStyle = showOnlyButton ? "" : "hidden";
-    const onlyButtonHoverStyle = hoverOnlyButton
-      ? "bg-lilac-50 text-lilac-700"
-      : "text-lilac-500";
-    const onlyButtonStyle = `${onlyButtonHoverStyle} ${onlyButtonDisplayStyle} rounded-md px-2 py-1 my-auto text-xs`;
+    // const onlyButtonDisplayStyle = showOnlyButton ? "" : "hidden";
+    // const onlyButtonHoverStyle = hoverOnlyButton
+    //   ? "bg-lilac-50 text-lilac-700"
+    //   : "text-lilac-500";
+    // const onlyButtonStyle = `${onlyButtonHoverStyle} ${onlyButtonDisplayStyle} rounded-md px-2 py-1 my-auto text-xs`;
     return (
       <div
         class="cursor-pointer px-1 py-1 sm:px-2 sm:py-0"
@@ -77,14 +77,14 @@ class FilterOption extends Component {
             </div>
             <span class="text-sm font-light text-slate-gray">{label}</span>
           </div>
-          <span
+          {/* <span
             class={onlyButtonStyle}
             onMouseEnter={this.handleOnlyButtonMouseEnter}
             onMouseLeave={this.handleOnlyButtonMouseLeave}
             onClick={() => this.handleOnlyButtonClick()}
           >
             Only
-          </span>
+          </span> */}
         </div>
       </div>
     );
