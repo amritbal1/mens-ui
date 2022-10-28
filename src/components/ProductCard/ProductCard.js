@@ -49,7 +49,7 @@ class ProductCard extends PureComponent {
     return (
       <div class="p-0.5 sm:p-4 mb-8 sm:mb-4">
         <figure
-          class="border rounded-xl max-w-20 mx-auto bg-white cursor-pointer transition-transform transform sm:hover:scale-105 sm:hover:shadow-lg hover:opacity-70 sm:hover:opacity-100 shadow-xl"
+          class="border rounded-xl max-w-20 mx-auto bg-white cursor-pointer transition-transform transform sm:hover:scale-105 sm:hover:shadow-lg hover:opacity-50 sm:hover:opacity-100 shadow-xl"
           onClick={() => this.handleProductCardClick({ productId: productId })}
         >
           <div class="flex justify-end mt-4 mr-4">
