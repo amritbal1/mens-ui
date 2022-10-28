@@ -7,7 +7,7 @@ import RecommendationWrapper from "./pages/RecommendationWrapper.js";
 import AppProvider from "./AppProvider";
 import { isEmpty } from "./utils/objectUtils";
 import AppContext from "./AppContext";
-
+import { StyledEngineProvider } from "@mui/material/styles";
 class App extends PureComponent {
   onRedirectCallback = (appState) => {
     this.props.history.push(
@@ -24,44 +24,48 @@ class App extends PureComponent {
   }
   render() {
     return (
-      <AppProvider>
-        <section class="w-screen h-screen font-sans">
-          <AppContext.Consumer>
-            {(context) => {
-              const { isBackgroundBlurred } = context;
-              const backgroundOpacity = isBackgroundBlurred ? "opacity-25" : "";
-              return (
-                <div>
-                  <Switch>
-                    <Route
-                      exact
-                      path="/"
-                      render={(props) => {
-                        const allProps = { ...props, backgroundOpacity };
-                        return <LandingPageProductFinder {...allProps} />;
-                      }}
-                    />
-                    <Route
-                      exact
-                      path="/finder-results"
-                      render={() => {
-                        return <RecommendationWrapper />;
-                      }}
-                    />
-                    <Route
-                      path="/product"
-                      render={(props) => {
-                        const allProps = { ...props, backgroundOpacity };
-                        return <ProductPage {...allProps} />;
-                      }}
-                    />
-                  </Switch>
-                </div>
-              );
-            }}
-          </AppContext.Consumer>
-        </section>
-      </AppProvider>
+      <StyledEngineProvider injectFirst>
+        <AppProvider>
+          <section class="w-screen h-screen font-sans">
+            <AppContext.Consumer>
+              {(context) => {
+                const { isBackgroundBlurred } = context;
+                const backgroundOpacity = isBackgroundBlurred
+                  ? "opacity-25"
+                  : "";
+                return (
+                  <div>
+                    <Switch>
+                      <Route
+                        exact
+                        path="/"
+                        render={(props) => {
+                          const allProps = { ...props, backgroundOpacity };
+                          return <LandingPageProductFinder {...allProps} />;
+                        }}
+                      />
+                      <Route
+                        exact
+                        path="/finder-results"
+                        render={() => {
+                          return <RecommendationWrapper />;
+                        }}
+                      />
+                      <Route
+                        path="/product"
+                        render={(props) => {
+                          const allProps = { ...props, backgroundOpacity };
+                          return <ProductPage {...allProps} />;
+                        }}
+                      />
+                    </Switch>
+                  </div>
+                );
+              }}
+            </AppContext.Consumer>
+          </section>
+        </AppProvider>
+      </StyledEngineProvider>
     );
   }
 }

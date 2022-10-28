@@ -1,9 +1,16 @@
 import React, { PureComponent } from "react";
-import { isEmpty } from "../../../../../utils/objectUtils";
 import { MAX_PRICE_FILTER } from "../../../../../utils/enums";
 import { getSlider } from "./StyledSlider";
 
 class PricePill extends PureComponent {
+  state = {
+    sliderValues: [0, MAX_PRICE_FILTER],
+  };
+
+  handleSliderChange = (e, value) => {
+    this.setState({ sliderValues: value });
+  };
+
   handleSliderValueChange = (e, value, filterOptionClickFn) => {
     const [minPriceValue, maxPriceValue] = value;
     filterOptionClickFn({
@@ -35,23 +42,20 @@ class PricePill extends PureComponent {
     return `${value}`;
   };
 
-  getPricePill = () => {
-    const { filterOptionClickFn, filterMinPrice, filterMaxPrice } = this.props;
-    const minPrice = isEmpty(filterMinPrice) ? 0 : Number(filterMinPrice);
-    const maxPrice = isEmpty(filterMaxPrice)
-      ? MAX_PRICE_FILTER
-      : Number(filterMaxPrice);
+  getPricePill = ({ sliderValues }) => {
+    const { filterOptionClickFn } = this.props;
     return (
       <div class="mt-10 px-3 pt-5 py-3 w-95vw">
         {getSlider({
           ref: null,
-          value: [minPrice, maxPrice],
+          value: sliderValues,
           onChangeCommittedFn: this.handleSliderValueChange,
           filterOptionClickFn,
           ariaLabelledBy: "range-slider",
           min: 0,
           max: MAX_PRICE_FILTER,
           steps: false,
+          onChangeFn: this.handleSliderChange,
         })}
         <div class="flex justify-end py-2">
           <div>
@@ -71,7 +75,8 @@ class PricePill extends PureComponent {
     );
   };
   render() {
-    return this.getPricePill();
+    const { sliderValues } = this.state;
+    return this.getPricePill({ sliderValues });
   }
 }
 

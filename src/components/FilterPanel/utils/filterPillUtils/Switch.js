@@ -8,7 +8,7 @@ const useStylesSwitch = makeStyles(() => ({
   switchBase: {
     color: "#abdad5",
     "&.Mui-checked + .MuiSwitch-track": {
-      backgroundColor: "#85dfd5",
+      backgroundColor: "#73B8B2",
     },
   },
   track: {

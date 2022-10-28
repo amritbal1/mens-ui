@@ -6,7 +6,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { getPillName } from "./utils/filterPillUtils/filterPillNameUtils";
 import FilterPillOptions from "./utils/filterPillUtils/FilterPillOptions";
-
+const isSmallScreen = window.screen.width <= 470;
 class FilterPill extends Component {
   state = {
     isPillClicked: false,
@@ -129,7 +129,7 @@ class FilterPill extends Component {
                 filter:
                   "drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08))",
                 backgroundColor: "white",
-                minWidth: "220px",
+                minWidth: `${isSmallScreen ? "220px" : "250px"}`,
                 marginTop: "0.5rem",
                 paddingBottom: "0.5rem",
                 paddingLeft: "0.5rem",

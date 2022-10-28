@@ -1,5 +1,22 @@
+import "./slider.css";
 import Slider from "@mui/material/Slider";
-import { styled } from "@mui/material/styles";
+import { MAX_PRICE_FILTER } from "../../../../../utils/enums";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const finalTheme = createTheme({
+  components: {
+    MuiSlider: {
+      styleOverrides: {
+        valueLabel: ({ ownerState, theme }) => ({
+          backgroundColor: "#73B8B2",
+          color: "white",
+          borderRadius: "20%",
+          padding: "0.25rem 0.55rem",
+        }),
+      },
+    },
+  },
+});
 
 export const getSlider = (props) => {
   const {
@@ -10,51 +27,24 @@ export const getSlider = (props) => {
     min,
     max,
     ref,
+    onChangeFn,
   } = props;
-  const NewSlider = styled(Slider)({
-    color: "#509B95",
-    height: 8,
-    "& .MuiSlider-track": {
-      border: "none",
-    },
-    "& .MuiSlider-thumb": {
-      height: 20,
-      width: 20,
-      backgroundColor: "#fff",
-      border: "2px solid currentColor",
-      "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
-        boxShadow: "inherit",
-      },
-      "&:before": {
-        display: "none",
-      },
-    },
-    "& .MuiSlider-valueLabel": {
-      lineHeight: 1.2,
-      fontSize: 13,
-      background: "unset",
-      padding: 0,
-      width: 32,
-      height: 32,
-      color: "white",
-      borderRadius: "20% 20% 20% 20%",
-      backgroundColor: "#83C4BD",
-    },
-  });
   return (
     <div ref={ref}>
-      <NewSlider
-        value={value}
-        // step={step}
-        valueLabelDisplay="on"
-        getAriaLabel={() => ariaLabelledBy}
-        defaultValue={[0,80]}
-        min={min}
-        max={max}
-        onChangeCommitted={(e, value) =>
-          onChangeCommittedFn(e, value, filterOptionClickFn)
-        }
-      />
+      <ThemeProvider theme={finalTheme}>
+        <Slider
+          value={value}
+          valueLabelDisplay="on"
+          getAriaLabel={() => ariaLabelledBy}
+          defaultValue={[0, MAX_PRICE_FILTER]}
+          min={min}
+          max={max}
+          onChangeCommitted={(e, value) =>
+            onChangeCommittedFn(e, value, filterOptionClickFn)
+          }
+          onChange={(e, value) => onChangeFn(e, value)}
+        />
+      </ThemeProvider>
     </div>
   );
 };

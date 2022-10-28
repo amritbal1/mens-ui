@@ -1,0 +1,15 @@
+
+.MuiSlider-root {
+  color: #73B8B2;
+}
+
+.MuiSlider-thumb {
+  height: 20;
+  width: 20;
+  background-color: "#fff";
+  border: "2px solid currentColor";
+}
+
+.MuiSlider-track {
+  border: "none";
+}
