@@ -116,11 +116,11 @@ class RecommendationWrapper extends Component {
         <Navbar />
         <div class="h-60px"></div>
         <div class="bg-gradient-to-r from-lilac-50 via-lilac-100 to-lilac-200">
-          <div class="py-10 px-5 sm:px-10 text-slate-gray text-xl font-light tracking-tight text-center font-montserrat">
+          <div class="py-6 sm:py-10 px-5 sm:px-10 text-slate-gray text-base sm:text-xl font-light tracking-tight text-center font-montserrat">
             Analysis of thousands of reviews shows these products are the
             <b> perfect matches</b> for you!
           </div>
-          <div class="pl-4 mb-2">
+          <div class="pl-4 mb-4">
             <FilterPanel filterPillsConfig={filterPillsConfig} />
           </div>
           <div>
