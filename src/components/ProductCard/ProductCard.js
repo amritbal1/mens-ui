@@ -1,12 +1,13 @@
 import {
-  HandThumbUpIcon,
-  HandThumbDownIcon,
+  // HandThumbUpIcon,
+  // HandThumbDownIcon,
   ArrowRightIcon,
 } from "@heroicons/react/24/outline";
 import { PureComponent } from "react";
 import { REGION, S3_BUCKET } from "../../aws-config";
 import "./circle.css";
 import queryString from "query-string";
+import { getMatchDescriptor } from "../../utils/matchScore";
 
 const isSmallBreakpoint = window.screen.width <= 640;
 const styleObj = isSmallBreakpoint
@@ -36,16 +37,16 @@ class ProductCard extends PureComponent {
 
   render() {
     const { data } = this.props;
-    const { dbg_recommendationScore, productDetails, reviewData, dbg_price } =
+    const { dbg_recommendationScore, productDetails } =
       data;
-    const [price] = dbg_price;
+    // const [price] = dbg_price;
     const { productName, brandName, mainImageUrl, productId } = productDetails;
     const s3ImageUrl = `https://s3.${REGION}.amazonaws.com/${S3_BUCKET}/${mainImageUrl}`;
-    const { criteriaData } = reviewData;
-    const { skinTypeAnalysis, skinConcernAnalysis } = criteriaData;
-    const { skinType, overallScore: skinTypeOverallScore } = skinTypeAnalysis;
-    const { skinConcern, overallScore: skinConcernOverallScore } =
-      skinConcernAnalysis;
+    // const { criteriaData } = reviewData;
+    // const { skinTypeAnalysis, skinConcernAnalysis } = criteriaData;
+    // const { skinType, overallScore: skinTypeOverallScore } = skinTypeAnalysis;
+    // const { skinConcern, overallScore: skinConcernOverallScore } =
+    //   skinConcernAnalysis;
     return (
       <div class="p-0.5 sm:p-4 mb-8 sm:mb-4">
         <figure
@@ -96,15 +97,21 @@ class ProductCard extends PureComponent {
               {brandName}
             </div>
             <div class="flex justify-between mb-4 text-slate-gray">
-              <div class="text-xs sm:text-sm uppercase tracking-wide text-slate-gray">
+              <div class="text-xs sm:text-sm tracking-wide text-slate-gray">
                 {productName}
               </div>
             </div>
-            <div class="pb-3 sm:pb-4 text-xs sm:text-sm font-normal text-slate-gray">{`~£ ${(
+            {/* <div class="pb-3 sm:pb-4 text-xs sm:text-sm font-normal text-slate-gray">{`~£ ${(
               Math.round(price * 100) / 100
-            ).toFixed(2)}`}</div>
-            <div class="mb-2 sm:mb-4 flex">
-              <span class="text-xs sm:text-sm font-light text-slate-gray">
+            ).toFixed(2)}`}</div> */}
+            <div class="mb-2 sm:mb-4 flex justify-between w-full">
+              <div class="text-slate-gray font-semibold uppercase text-sm sm:text-base">{`${getMatchDescriptor({
+                overallScore: dbg_recommendationScore,
+              })} Match`}</div>
+              <div class="pt-1 pb-1">
+                <ArrowRightIcon class="text-slate-gray h-4 w-5 self-end mr-2" />
+              </div>
+              {/* <span class="text-xs sm:text-sm font-light text-slate-gray">
                 <span class="flex flex-shrink-0 items-start">
                   {` ${skinType} skin`}:
                   <span class="flex flex-shrink-0 text-xs sm:text-sm font-normal text-slate-gray ml-1">
@@ -131,10 +138,7 @@ class ProductCard extends PureComponent {
                     </span>
                   );
                 })}
-              </span>
-            </div>
-            <div class="flex justify-end w-full pt-1 pb-1">
-              <ArrowRightIcon class="text-slate-gray h-4 w-5 self-end mr-2" />
+              </span> */}
             </div>
           </figcaption>
         </figure>
