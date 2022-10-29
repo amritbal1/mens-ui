@@ -25,7 +25,7 @@ class SkinInfo extends Component {
     let amendedAnalysisData = analysisData;
     const amendedAttribute =
       infoValue === "skinConcern"
-        ? SKIN_CONCERN_ATTRIBUTES[queryTerm]
+        ? SKIN_CONCERN_ATTRIBUTES[queryTerm[0]]
         : SKIN_TYPE_ATTRIBUTES[queryTerm];
 
     if (
@@ -42,7 +42,11 @@ class SkinInfo extends Component {
     const selectedAttr = amendedAnalysisData.find(
       (el) => el.attribute === amendedAttribute
     );
-    const { positiveReviews, negativeReviews, overallScore } = selectedAttr;
+    const {
+      positiveReviews = [],
+      negativeReviews = [],
+      overallScore = 0,
+    } = selectedAttr;
 
     const dropdownOptions = amendedAnalysisData.map((data) => {
       return {

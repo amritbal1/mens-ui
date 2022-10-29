@@ -12,10 +12,15 @@ import AttributeInfo from "../components/AttributeInfo/AttributeInfo";
 import {
   ATTRIBUTE_LABELS_POSITIVE,
   ATTRIBUTE_LABELS_NEGATIVE,
+  SKIN_TYPE_ATTRIBUTES,
+  SKIN_CONCERN_ATTRIBUTES,
 } from "../components/ProductCard/attributes";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { getArrayValue } from "../utils/urlUtils/urlValueGetter";
-
+import {
+  HandThumbUpIcon,
+  HandThumbDownIcon,
+} from "@heroicons/react/24/outline";
 const PILL_STYLE =
   "text-xs font-light text-slate-gray border rounded-full mr-1 p-2 sm:px-3 cursor-pointer";
 const SELECTED_PILL_STYLE = `${PILL_STYLE} bg-gray-100 border border-gray-400`;
@@ -162,6 +167,15 @@ class ProductPage extends PureComponent {
       querySkinConcern,
     } = productData;
     const selectedAttributeName = selectedAttribute.attribute;
+    const matchingSkinType = skinTypeAnalysis.find(
+      (el) => el.attribute === SKIN_TYPE_ATTRIBUTES[querySkinType]
+    );
+    const matchingSkinConcerns = querySkinConcern.map((skinConcern) => {
+      const matching = skinConcernAnalysis.find(
+        (el) => el.attribute === SKIN_CONCERN_ATTRIBUTES[skinConcern]
+      );
+      return matching.overallScore;
+    });
 
     const attributePills = attributeAnalysis.map((attribute) => {
       const { overallScore, attribute: attributeName } = attribute;
@@ -220,12 +234,41 @@ class ProductPage extends PureComponent {
                 showCursorOnHover={false}
               />
             </div>
-            <div class="flex self-start w-full pt-4 lg:pt-0 sm:max-w-xs md:pl-0 md:pr-4 lg:ml-14 pb-4 px-6">
+            <div class="flex self-start w-full pt-4 lg:pt-0 sm:max-w-xs md:pl-0 md:pr-4 lg:ml-14 sm:pb-4 px-6">
               <ProductInfo
                 productDetails={productData}
                 attributeAnalysis={attributeAnalysis}
               />
             </div>
+          </div>
+          {/* MATCHING SCORES  */}
+          <div class="text-sm font-light text-slate-gray pb-4 self-start sm:self-center sm:flex px-6">
+            <span class="flex flex-shrink-0 items-start sm:mr-5">
+              {` ${querySkinType} skin`}:
+              <span class="flex flex-shrink-0 text-sm font-normal text-slate-gray ml-1">
+                {matchingSkinType.overallScore}%{" "}
+                {matchingSkinType.overallScore >= 50 ? (
+                  <HandThumbUpIcon class="inline self-center h-3 w-3 ml-1" />
+                ) : (
+                  <HandThumbDownIcon class="inline self-center h-3 w-3 ml-1" />
+                )}
+              </span>
+            </span>
+            {querySkinConcern.map((concern, i) => {
+              return (
+                <span class="flex flex-shrink-0 items-start sm:mr-5">
+                  {` ${concern === "Breakout" ? "Breakouts" : concern}`}:
+                  <span class="flex flex-shrink-0 text-sm font-normal text-slate-gray ml-1">
+                    {matchingSkinConcerns[i]}%{" "}
+                    {matchingSkinConcerns[i] >= 50 ? (
+                      <HandThumbUpIcon class="inline self-center h-3 w-3 ml-1" />
+                    ) : (
+                      <HandThumbDownIcon class="inline self-center h-3 w-3 ml-1" />
+                    )}
+                  </span>
+                </span>
+              );
+            })}
           </div>
 
           {!isEmpty(allPills) && (
