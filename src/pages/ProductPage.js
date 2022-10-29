@@ -170,8 +170,15 @@ class ProductPage extends PureComponent {
     const matchingSkinType = skinTypeAnalysis.find(
       (el) => el.attribute === SKIN_TYPE_ATTRIBUTES[querySkinType]
     );
+
+    const amendedAnalysisData = skinConcernAnalysis.map((data) => {
+      return data.attribute === "dry skin"
+        ? { ...data, attribute: "dryness" }
+        : data;
+    });
+
     const matchingSkinConcerns = querySkinConcern.map((skinConcern) => {
-      const matching = skinConcernAnalysis.find(
+      const matching = amendedAnalysisData.find(
         (el) => el.attribute === SKIN_CONCERN_ATTRIBUTES[skinConcern]
       );
       return matching.overallScore;
