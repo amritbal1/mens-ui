@@ -101,9 +101,12 @@ class Screen extends Component {
         <div class="flex justify-between w-full items-center">
           {includeTooltip && (
             <div class="flex">
-              <div class="pl-4 sm:pl-12" onClick={this.handleTooltipClick}>
+              <div class="pl-4 sm:pl-12">
                 <div class="relative flex items-center justify-center">
-                  <InformationCircleIcon class="inline h-5 w-5 text-gray-400 mr-1 cursor-pointer" />
+                  <InformationCircleIcon
+                    onClick={this.handleTooltipClick}
+                    class="inline h-5 w-5 text-gray-400 mr-1 cursor-pointer"
+                  />
 
                   <div class="absolute bottom-0 left-2 flex flex-col items-center mb-6 group-hover:flex">
                     {showTooltipDiv && (
@@ -132,7 +135,12 @@ class Screen extends Component {
                   </div>
                 </div>
               </div>
-              <span class="text-sm text-gray-400 flex-shrink-0">What is my skin type?</span>
+              <span
+                class="text-sm text-gray-400 flex-shrink-0 cursor-pointer"
+                onClick={this.handleTooltipClick}
+              >
+                What is my skin type?
+              </span>
             </div>
           )}
           <div class={buttonStyle}>{[...buttons]}</div>
