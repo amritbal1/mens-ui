@@ -32,6 +32,7 @@ export const getScreenToRender = ({
       previousAnswers={reviewAnswerSkinTypes}
       handleOptionClick={handleOptionClick}
       isMultiSelect={false}
+      includeTooltip={true}
       {...commonProps}
     />
   );

@@ -1,3 +1,5 @@
+const { screens } = require("tailwindcss/defaultTheme");
+
 module.exports = {
   purge: ["./src/**/*.{js,jsx}", "./public/index.html"],
   darkMode: false,
@@ -5,6 +7,7 @@ module.exports = {
     extend: {
       screens: {
         xs: "470px",
+        ...screens,
       },
       letterSpacing: {
         "wide-x": "0.15em",

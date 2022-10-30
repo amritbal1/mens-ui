@@ -97,6 +97,38 @@
       height: 27px;
     }
 
+    .h-14rem {
+      height: 14rem;
+    }
+
+    .h-22rem {
+      height: 22rem;
+    }
+
+    .h-26rem {
+      height: 26rem;
+    }
+
+    .w-20rem {
+      width: 20rem;
+    }
+
+    .w-26rem {
+      width: 26rem;
+    }
+
+    .w-30rem {
+      width: 30rem;
+    }
+
+    .w-44rem {
+      width: 44rem;
+    }
+
+    .w-64rem {
+      width: 64rem;
+    }
+
     .w-max-60px {
       max-width: 60px;
     }

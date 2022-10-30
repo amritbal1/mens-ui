@@ -4,16 +4,28 @@ import { getSelectableOptions } from "../utils/optionsCreator";
 import { FinderHeading } from "../../shared/headings";
 import { getPreviouslySelectedAnswers } from "../utils/screenRenderer";
 import { getButtons } from "../utils/buttonDisabledRenderer";
+import { InformationCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { SKIN_TYPE_DESCRIPTION } from "../constants";
 
 const SCREEN_VALUE = {
   1: "skinType",
-  2: "skinConcerns"
-}
+  2: "skinConcerns",
+};
 class Screen extends Component {
   state = {
+    showTooltipDiv: false,
     selectedOptions: getPreviouslySelectedAnswers({
       previousAnswers: this.props.previousAnswers,
     }),
+  };
+
+  handleTooltipClick = () => {
+    const { showTooltipDiv } = this.state;
+    this.setState({ showTooltipDiv: !showTooltipDiv });
+  };
+
+  handleTooltipClose = () => {
+    this.setState({ showTooltipDiv: false });
   };
 
   handleClick = (selectedValue) => {
@@ -41,7 +53,7 @@ class Screen extends Component {
   };
 
   render() {
-    const { selectedOptions } = this.state;
+    const { selectedOptions, showTooltipDiv } = this.state;
     const {
       index,
       config,
@@ -53,6 +65,7 @@ class Screen extends Component {
       handlePreviousButtonClick,
       handleNextButtonClick,
       handleSubmitButtonClick,
+      includeTooltip = false,
     } = this.props;
     const displayOptions =
       !isEmpty(config) &&
@@ -60,7 +73,7 @@ class Screen extends Component {
         options: config,
         selectedOptions: selectedOptions,
         clickHandlerFn: this.handleClick,
-        screenValue: SCREEN_VALUE[screenNumberToRender]
+        screenValue: SCREEN_VALUE[screenNumberToRender],
       });
     const buttons = getButtons({
       index,
@@ -74,7 +87,7 @@ class Screen extends Component {
     });
     const buttonFlexStyle =
       buttons.length === 1 ? "justify-end" : "justify-between";
-    const buttonStyle = `${buttonFlexStyle} flex px-4 mb-4 sm:mb-8`;
+    const buttonStyle = `${buttonFlexStyle} w-full flex px-4 mb-4 sm:mb-8`;
     return (
       <div class="h-full" key={index}>
         <div class="flex h-full flex-row flex-wrap p-2">
@@ -85,7 +98,45 @@ class Screen extends Component {
             </div>
           </div>
         </div>
-        <div class={buttonStyle}>{[...buttons]}</div>
+        <div class="flex justify-between w-full items-center">
+          {includeTooltip && (
+            <div class="flex">
+              <div class="pl-4 sm:pl-12" onClick={this.handleTooltipClick}>
+                <div class="relative flex items-center justify-center">
+                  <InformationCircleIcon class="inline h-5 w-5 text-gray-400 mr-1 cursor-pointer" />
+
+                  <div class="absolute bottom-0 left-2 flex flex-col items-center mb-6 group-hover:flex">
+                    {showTooltipDiv && (
+                      <span class="z-10 text-xs leading-none text-slate-gray bg-white shadow-xl border rounded-lg h-22rem w-20rem xs:w-26rem xs:h-14rem overflow-x-scroll scrollbar px-4 pt-2 sm:pt-4">
+                        <span
+                          class="text-slate-gray flex items-center cursor-pointer hover:bg-gray-200 w-16 rounded-md pr-2 py-1"
+                          onClick={this.handleTooltipClose}
+                        >
+                          <XMarkIcon class="h-4 w-4 mr-1 inline" />
+                          <span>Close</span>
+                        </span>
+                        <div class="mt-2">
+                          {SKIN_TYPE_DESCRIPTION.map((skinType) => {
+                            return (
+                              <div class="pb-4 leading-4">
+                                <span class="font-semibold">
+                                  {skinType.skinType}:{" "}
+                                </span>
+                                <span>{skinType.description}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <span class="text-sm text-gray-400 flex-shrink-0">What is my skin type?</span>
+            </div>
+          )}
+          <div class={buttonStyle}>{[...buttons]}</div>
+        </div>
       </div>
     );
   }
