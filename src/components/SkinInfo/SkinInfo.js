@@ -111,7 +111,7 @@ class SkinInfo extends Component {
     } = this.state;
     const { infoValue } = this.props;
     return (
-      <div class="rounded-b-lg shadow-xl mb-8">
+      <div class="rounded-b-lg shadow-xl">
         <div class="text-slate-gray pt-4 sm:pb-0 px-2 sm:px-4">
           <div class="flex uppercase">
             <div class="flex w-full items-center justify-between">
@@ -131,7 +131,7 @@ class SkinInfo extends Component {
                     <XMarkIcon class="h-5 w-5 text-red-800" />
                   )}
                 </span>
-                <div class="text-sm sm:text-base text-slate-teal">
+                <div class="text-sm sm:text-base text-slate-gray">
                   {`${this.getMatchDescriptor({
                     overallScore: selectedOverallScore,
                   })} match`}

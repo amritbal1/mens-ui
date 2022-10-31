@@ -25,7 +25,7 @@ class AttributeInfo extends Component {
     negativeReviews,
   }) => {
     return (
-      <div class="rounded-b-lg shadow-xl mb-8">
+      <div class="rounded-b-lg shadow-xl">
         <ReviewSection
           positiveReviews={positiveReviews}
           negativeReviews={negativeReviews}

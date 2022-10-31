@@ -61,7 +61,7 @@ const ReviewSection = ({
               </div>
             )}
           </div>
-          <div class="font-light mb-4 font-semibold text-sm uppercase flex items-center">
+          <div class="font-light mb-4 font-semibold text-sm uppercase flex items-center text-slate-gray">
             Reviews
           </div>
 
