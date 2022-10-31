@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import * as skinTypeImage from "../../components/ProductFinder/config/images/skinTypes/oily.png";
-import * as skinConcernImage from "../../components/ProductFinder/config/images/skinConcerns/aging.png";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Dropdown } from "./dropdown";
 import {
@@ -113,25 +111,11 @@ class SkinInfo extends Component {
     } = this.state;
     const { infoValue } = this.props;
     return (
-      <div class="rounded-t-lg rounded-b-lg shadow-xl mb-8 sm:mr-4">
-        <div class="rounded-t-lg bg-lilac-100 text-slate-gray py-2 sm:py-4 px-4">
-          <div class="flex justify-between font-light uppercase tracking-wider mb-2 text-slate-teal">
-            <div class="sm:mr-6 font-semibold">
-              {infoValue === "skinType" ? "Skin Types" : "Skin Concerns"}
-            </div>
-          </div>
+      <div class="rounded-b-lg shadow-xl mb-8">
+        <div class="text-slate-gray pt-4 sm:pb-0 px-2 sm:px-4">
           <div class="flex uppercase">
-            <img
-              src={
-                infoValue === "skinType"
-                  ? skinTypeImage.default
-                  : skinConcernImage.default
-              }
-              alt="icon"
-              class="ml-4 h-16 w-16 bg-white rounded-full p-1"
-            />
-            <div class="ml-8">
-              <div class="w-min-185px mb-3">
+            <div class="flex w-full items-center justify-between">
+              <div class="w-min-165px sm:w-min-185px mr-2 sm:mr-3">
                 <Dropdown
                   options={dropdownOptions}
                   handleChange={this.handleDropdownChange}
@@ -139,7 +123,7 @@ class SkinInfo extends Component {
                   value={ATTRIBUTES[selectedAttribute]}
                 />
               </div>
-              <div class="flex items-center flex-shrink-0 mt-1 text-slate-teal">
+              <div class="flex items-center flex-shrink-0 mt-1 text-slate-teal mr-4">
                 <span class="mr-1">
                   {selectedOverallScore >= 60 ? (
                     <CheckIcon class="h-5 w-5 text-green-800" />
@@ -147,7 +131,7 @@ class SkinInfo extends Component {
                     <XMarkIcon class="h-5 w-5 text-red-800" />
                   )}
                 </span>
-                <div class="text-base text-slate-teal">
+                <div class="text-sm sm:text-base text-slate-teal">
                   {`${this.getMatchDescriptor({
                     overallScore: selectedOverallScore,
                   })} match`}
