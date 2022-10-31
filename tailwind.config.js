@@ -65,6 +65,7 @@ module.exports = {
         "aqua-dark": "#36615b",
         "slate-gray": "#2f3033",
         "slate-teal": "#3a5956",
+        "dark-teal": "#195558",
         "light-purple": "#e6d9f8",
       },
       gridTemplateColumns: {

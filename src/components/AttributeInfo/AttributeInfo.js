@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { ATTRIBUTES } from "../ProductCard/attributes";
 import ReviewSection from "../SkinInfo/ReviewSection";
 class AttributeInfo extends Component {
   getMatchDescriptor = ({ overallScore }) => {
@@ -26,14 +25,7 @@ class AttributeInfo extends Component {
     negativeReviews,
   }) => {
     return (
-      <div class="rounded-t-lg rounded-b-lg shadow-xl mb-8 sm:mr-4">
-        <div class="rounded-t-lg bg-lilac-100 text-slate-gray py-2 sm:py-4 px-4">
-          <div class="flex flex-wrap justify-between items-center font-light uppercase tracking-wider text-slate-teal">
-            <div class="sm:mr-6 font-semibold">
-              {ATTRIBUTES[attribute] || attribute}
-            </div>
-          </div>
-        </div>
+      <div class="rounded-b-lg shadow-xl mb-8">
         <ReviewSection
           positiveReviews={positiveReviews}
           negativeReviews={negativeReviews}

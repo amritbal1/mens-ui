@@ -10,29 +10,30 @@ import Carousel from "../components/Carousel/Carousel";
 import SkinInfo from "../components/SkinInfo/SkinInfo";
 import AttributeInfo from "../components/AttributeInfo/AttributeInfo";
 import {
-  ATTRIBUTE_LABELS_POSITIVE,
-  ATTRIBUTE_LABELS_NEGATIVE,
   SKIN_TYPE_ATTRIBUTES,
   SKIN_CONCERN_ATTRIBUTES,
+  ATTRIBUTES,
 } from "../components/ProductCard/attributes";
-import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+} from "@heroicons/react/24/outline";
 import { getArrayValue } from "../utils/urlUtils/urlValueGetter";
 import {
   HandThumbUpIcon,
   HandThumbDownIcon,
 } from "@heroicons/react/24/outline";
-const PILL_STYLE =
-  "text-xs font-light text-slate-gray border rounded-full mr-1 p-2 sm:px-3 cursor-pointer";
-const SELECTED_PILL_STYLE = `${PILL_STYLE} bg-gray-100 border border-gray-400`;
+import { Disclosure } from "@headlessui/react";
 
+const DISCLOSURE_BUTTON_STYLE =
+  "w-full flex justify-between rounded-lg bg-lilac-100 px-4 py-2 text-left text-sm font-medium text-dark-teal hover:bg-lilac-200 focus:outline-none focus-visible:ring focus-visible:ring-lilac-500 focus-visible:ring-opacity-75 w-96";
+const DISCLOSURE_PANEL_STYLE = "pb-2 text-sm text-gray-500";
+const CHEVRON_STYLE = "h-5 w-5 text-dark-teal";
 //Page to display information for a single product
 class ProductPage extends PureComponent {
   state = {
     productData: null,
     allProductImageUrls: [],
-    selectedAttribute: {},
-    skinTypeSelected: true,
-    skinConcernSelected: false,
   };
 
   getImageUrls = ({ images }) => {
@@ -85,78 +86,13 @@ class ProductPage extends PureComponent {
     }
   }
 
-  handlePillChange = ({ attributeName, type }) => {
-    const { productData } = this.state;
-    if (type === "attribute") {
-      const selectedAttribute =
-        productData.overallMetrics.attributeAnalysis.find(
-          (el) => el.attribute === attributeName
-        );
-      this.setState(
-        {
-          selectedAttribute,
-          skinTypeSelected: false,
-          skinConcernSelected: false,
-        },
-        () => {
-          this.setScrollToTop({ infoValue: attributeName });
-        }
-      );
-    } else if (type === "skinType") {
-      this.setState(
-        {
-          skinTypeSelected: true,
-          skinConcernSelected: false,
-          selectedAttribute: {},
-        },
-        () => {
-          this.setScrollToTop({ infoValue: "skinType" });
-        }
-      );
-    } else if (type === "skinConcern") {
-      this.setState(
-        {
-          skinConcernSelected: true,
-          skinTypeSelected: false,
-          selectedAttribute: {},
-        },
-        () => {
-          this.setScrollToTop({ infoValue: "skinConcern" });
-        }
-      );
-    }
-  };
-
-  skinTypePill = ({ skinTypeSelected }) => (
-    <span
-      class={skinTypeSelected ? SELECTED_PILL_STYLE : PILL_STYLE}
-      onClick={() => this.handlePillChange({ type: "skinType" })}
-    >
-      Skin Types
-    </span>
-  );
-
-  skinConcernPill = ({ skinConcernSelected }) => (
-    <span
-      class={skinConcernSelected ? SELECTED_PILL_STYLE : PILL_STYLE}
-      onClick={() => this.handlePillChange({ type: "skinConcern" })}
-    >
-      Skin Concerns
-    </span>
-  );
-
   setScrollToTop = ({ infoValue }) => {
     let scrollDiv = document.getElementById(`${infoValue}`);
     if (scrollDiv) scrollDiv.scrollTop = 0;
   };
 
   renderProduct = ({ productData }) => {
-    const {
-      allProductImageUrls,
-      selectedAttribute,
-      skinTypeSelected,
-      skinConcernSelected,
-    } = this.state;
+    const { allProductImageUrls } = this.state;
     const {
       overallMetrics: {
         attributeAnalysis,
@@ -166,7 +102,6 @@ class ProductPage extends PureComponent {
       querySkinType,
       querySkinConcern,
     } = productData;
-    const selectedAttributeName = selectedAttribute.attribute;
     const matchingSkinType = skinTypeAnalysis.find(
       (el) => el.attribute === SKIN_TYPE_ATTRIBUTES[querySkinType]
     );
@@ -184,48 +119,6 @@ class ProductPage extends PureComponent {
       return matching.overallScore;
     });
 
-    const attributePills = attributeAnalysis.map((attribute) => {
-      const { overallScore, attribute: attributeName } = attribute;
-      const attr = attributeAnalysis.find(
-        (el) => el.attribute === attributeName
-      );
-      const selectedAttributeReviewNumber = !isEmpty(attr)
-        ? attr.positiveReviews.length + attr.negativeReviews.length
-        : 0;
-      const style =
-        attributeName === selectedAttributeName
-          ? SELECTED_PILL_STYLE
-          : PILL_STYLE;
-      return overallScore > 50 ? (
-        <span
-          class={style}
-          onClick={() =>
-            this.handlePillChange({ attributeName, type: "attribute" })
-          }
-        >
-          {ATTRIBUTE_LABELS_POSITIVE[attributeName]}
-          {` (${selectedAttributeReviewNumber})`}
-          <CheckIcon class="ml-1 inline h-3 w-3 text-green-700" />
-        </span>
-      ) : (
-        <span
-          class={style}
-          onClick={() =>
-            this.handlePillChange({ attributeName, type: "attribute" })
-          }
-        >
-          {ATTRIBUTE_LABELS_NEGATIVE[attributeName]}
-          {` (${selectedAttributeReviewNumber})`}
-          <XMarkIcon class="ml-1 inline h-3 w-3 text-red-700" />
-        </span>
-      );
-    });
-    const allPills = [
-      this.skinTypePill({ skinTypeSelected }),
-      this.skinConcernPill({ skinConcernSelected }),
-      ...attributePills,
-    ];
-
     return (
       <div>
         <div class="flex flex-col items-center mb-2 sm:mb-6 justify-center">
@@ -241,74 +134,126 @@ class ProductPage extends PureComponent {
                 showCursorOnHover={false}
               />
             </div>
-            <div class="flex self-start w-full pt-4 lg:pt-0 sm:max-w-xs md:pl-0 md:pr-4 lg:ml-14 sm:pb-4 px-6">
+            <div class="flex self-start w-screen pt-4 lg:pt-0 sm:max-w-xs md:pl-0 md:pr-4 lg:ml-14 sm:pb-4 px-5">
               <ProductInfo
                 productDetails={productData}
                 attributeAnalysis={attributeAnalysis}
               />
             </div>
           </div>
-          {/* MATCHING SCORES  */}
-          <div class="text-sm font-light text-slate-gray pb-4 self-start sm:self-center sm:flex px-6">
-            <span class="flex flex-shrink-0 items-start sm:mr-5">
-              {` ${querySkinType} skin`}:
-              <span class="flex flex-shrink-0 text-sm font-normal text-slate-gray ml-1">
-                {matchingSkinType.overallScore}%{" "}
-                {matchingSkinType.overallScore >= 50 ? (
-                  <HandThumbUpIcon class="inline self-center h-3 w-3 ml-1" />
-                ) : (
-                  <HandThumbDownIcon class="inline self-center h-3 w-3 ml-1" />
-                )}
-              </span>
-            </span>
-            {querySkinConcern.map((concern, i) => {
-              return (
+
+          <div className="max-w-2xl min-w-full pl-5 pr-3">
+            <div className="mx-auto w-full max-w-md rounded-2xl bg-white">
+              {/* MATCHING SCORES  */}
+              <div class="text-sm font-light text-slate-gray pb-6 sm:pb-8 self-start sm:self-center sm:flex">
                 <span class="flex flex-shrink-0 items-start sm:mr-5">
-                  {` ${concern === "Breakout" ? "Breakouts" : concern}`}:
+                  {` ${querySkinType} skin`}:
                   <span class="flex flex-shrink-0 text-sm font-normal text-slate-gray ml-1">
-                    {matchingSkinConcerns[i]}%{" "}
-                    {matchingSkinConcerns[i] >= 50 ? (
+                    {matchingSkinType.overallScore}%{" "}
+                    {matchingSkinType.overallScore >= 50 ? (
                       <HandThumbUpIcon class="inline self-center h-3 w-3 ml-1" />
                     ) : (
                       <HandThumbDownIcon class="inline self-center h-3 w-3 ml-1" />
                     )}
                   </span>
                 </span>
-              );
-            })}
-          </div>
-
-          {!isEmpty(allPills) && (
-            <div class="sm:pt-4 max-w-full px-6">
-              <div class="font-light text-sm font-normal uppercase tracking-wider text-slate-gray">
+                {querySkinConcern.map((concern, i) => {
+                  return (
+                    <span class="flex flex-shrink-0 items-start sm:mr-5">
+                      {` ${concern === "Breakout" ? "Breakouts" : concern}`}:
+                      <span class="flex flex-shrink-0 text-sm font-normal text-slate-gray ml-1">
+                        {matchingSkinConcerns[i]}%{" "}
+                        {matchingSkinConcerns[i] >= 50 ? (
+                          <HandThumbUpIcon class="inline self-center h-3 w-3 ml-1" />
+                        ) : (
+                          <HandThumbDownIcon class="inline self-center h-3 w-3 ml-1" />
+                        )}
+                      </span>
+                    </span>
+                  );
+                })}
+              </div>
+              {/* REVIEWS */}
+              <div class="font-light text-sm font-normal uppercase tracking-wider text-slate-gray pb-4">
                 What the reviews say
               </div>
-              <div class="overflow-x-scroll scrollbar">
-                <div class="mb-2 mt-4 whitespace-nowrap">{allPills}</div>
-              </div>
+              <Disclosure>
+                {({ open }) => (
+                  <>
+                    <Disclosure.Button className={DISCLOSURE_BUTTON_STYLE}>
+                      <span>Skin Types</span>
+                      {open ? (
+                        <ChevronDownIcon className={CHEVRON_STYLE} />
+                      ) : (
+                        <ChevronUpIcon className={CHEVRON_STYLE} />
+                      )}
+                    </Disclosure.Button>
+                    <Disclosure.Panel className={DISCLOSURE_PANEL_STYLE}>
+                      <SkinInfo
+                        analysisData={skinTypeAnalysis}
+                        infoValue={"skinType"}
+                        queryTerm={querySkinType}
+                      />
+                    </Disclosure.Panel>
+                  </>
+                )}
+              </Disclosure>
+              <Disclosure as="div" className="mt-2">
+                {({ open }) => (
+                  <>
+                    <Disclosure.Button className={DISCLOSURE_BUTTON_STYLE}>
+                      <span>Skin Concerns</span>
+                      {open ? (
+                        <ChevronDownIcon className={CHEVRON_STYLE} />
+                      ) : (
+                        <ChevronUpIcon className={CHEVRON_STYLE} />
+                      )}
+                    </Disclosure.Button>
+                    <Disclosure.Panel className={DISCLOSURE_PANEL_STYLE}>
+                      <SkinInfo
+                        analysisData={skinConcernAnalysis}
+                        infoValue={"skinConcern"}
+                        queryTerm={querySkinConcern}
+                      />
+                    </Disclosure.Panel>
+                  </>
+                )}
+              </Disclosure>
+              {attributeAnalysis.map((attribute) => {
+                const { attribute: attributeName, overallScore } = attribute;
+                return (
+                  <Disclosure as="div" className="mt-2">
+                    {({ open }) => (
+                      <>
+                        <Disclosure.Button className={DISCLOSURE_BUTTON_STYLE}>
+                          <span>{ATTRIBUTES[attributeName]}</span>
+                          <div class="flex">
+                            <span class="mr-1">{overallScore}%</span>
+                            {overallScore > 60 ? (
+                              <span>
+                                <HandThumbUpIcon class="h-4 w-4 inline mr-4" />
+                              </span>
+                            ) : (
+                              <span>
+                                <HandThumbDownIcon class="h-4 w-4 inline mr-4" />
+                              </span>
+                            )}
+                            {open ? (
+                              <ChevronDownIcon className={CHEVRON_STYLE} />
+                            ) : (
+                              <ChevronUpIcon className={CHEVRON_STYLE} />
+                            )}
+                          </div>
+                        </Disclosure.Button>
+                        <Disclosure.Panel className={DISCLOSURE_PANEL_STYLE}>
+                          <AttributeInfo analysisData={attribute} />
+                        </Disclosure.Panel>
+                      </>
+                    )}
+                  </Disclosure>
+                );
+              })}
             </div>
-          )}
-
-          <div class="pt-4 max-w-2xl px-6">
-            {skinTypeSelected && (
-              <SkinInfo
-                analysisData={skinTypeAnalysis}
-                infoValue={"skinType"}
-                queryTerm={querySkinType}
-              />
-            )}
-            {skinConcernSelected && (
-              <SkinInfo
-                analysisData={skinConcernAnalysis}
-                infoValue={"skinConcern"}
-                queryTerm={querySkinConcern}
-              />
-            )}
-            {!skinTypeSelected &&
-              !skinConcernSelected &&
-              !isEmpty(selectedAttribute) && (
-                <AttributeInfo analysisData={selectedAttribute} />
-              )}
           </div>
         </div>
       </div>
