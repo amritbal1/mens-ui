@@ -47,12 +47,12 @@ class FilterPill extends Component {
       filterOptionClickFn({
         optionId: null,
         filterField: "filterMinPrice",
-        urlParam: "minPrice"
+        urlParam: "minPrice",
       });
       filterOptionClickFn({
         optionId: null,
         filterField: "filterMaxPrice",
-        urlParam: "maxPrice"
+        urlParam: "maxPrice",
       });
     } else {
       filterOptionClickFn({
@@ -80,7 +80,7 @@ class FilterPill extends Component {
       isPillClicked || userHasSelectedOptions
         ? "bg-gray-100 border-gray-700"
         : "bg-white md:hover:border-gray-700";
-    const pillStyling = `font-light rounded-full border px-4 py-2 cursor-pointer flex ${pillClickedStyling}`;
+    const pillStyling = `font-light rounded-full border px-3 sm:px-4 py-2 cursor-pointer flex ${pillClickedStyling}`;
     let iconToDisplay;
     if (userHasSelectedOptions) {
       iconToDisplay = (
@@ -107,7 +107,9 @@ class FilterPill extends Component {
         />
       );
     }
-    const parentElement = document.getElementById(`${label}-parent`);
+    const parentElement = document.getElementById(
+      `${label.split(" ").join("_")}-parent`
+    );
     return (
       <div>
         <div class={pillStyling}>

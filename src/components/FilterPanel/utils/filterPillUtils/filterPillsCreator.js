@@ -19,7 +19,7 @@ export const createFilterPills = ({
     } = pill;
     return (
       <div
-        id={`${label}-parent`}
+        id={`${label.split(' ').join('_')}-parent`}
         key={label}
         class="mr-1 md:mr-2 mb-2 flex-shrink-0"
       >

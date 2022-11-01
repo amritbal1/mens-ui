@@ -46,7 +46,7 @@ class FilterPanel extends PureComponent {
     const { isPillClicked } = this.state;
     return (
       <div ref={this.wrapperRef} class="text-sm">
-        <div class="flex flex-nowrap md:flex-wrap overflow-x-auto overflow-y-visible">
+        <div class="flex flex-wrap overflow-x-auto overflow-y-visible">
           <span class="mr-2 flex-shrink-0 self-center text-slate-gray text-xs font-light">
             Filter
           </span>
