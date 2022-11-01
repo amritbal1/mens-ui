@@ -17,8 +17,8 @@ export const FILTER_PILL_NAME = {
   PRODUCT_CHARACTERISTICS: "Product Characteristics",
   PRICE: "Price",
   PRODUCT_CATEGORIES: "Category",
-  WITH_INGREDIENTS: "With Ingredients",
-  WITHOUT_INGREDIENTS: "Without Ingredients"
+  WITH_INGREDIENTS: "Include Ingredients",
+  WITHOUT_INGREDIENTS: "Exclude Ingredients"
 };
 
 export const SKIN_CONCERNS = {
