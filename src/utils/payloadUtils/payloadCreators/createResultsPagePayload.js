@@ -36,6 +36,8 @@ export const createResultsPagePayload = ({ overridePageNum }) => {
     }),
     brands: brandsPayloadValue,
     starRating: starRating,
+    withIngredients: getValueFromUrl({ param: "withIngredients" }),
+    withoutIngredients: getValueFromUrl({ param: "withoutIngredients" }),
   };
   return {
     pageSize: PAGE_SIZE.PRODUCT_RESULTS,

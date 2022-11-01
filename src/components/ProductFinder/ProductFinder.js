@@ -46,7 +46,7 @@ class ProductFinder extends PureComponent {
     const categoriesList = !isEmpty(subCategoryAnswer)
       ? subCategoryAnswer.join()
       : "null";
-    const urlParams = `?skinConcerns=${concernsList}&skinTypes=${skinTypesList}&productCategories=${categoriesList}&sort=${SORTING_FIELD.RECOMMENDED}&starRating=null&productCharacteristics=null&brands=null&minPrice=null&maxPrice=null&pageNumber=1`;
+    const urlParams = `?skinConcerns=${concernsList}&skinTypes=${skinTypesList}&productCategories=${categoriesList}&sort=${SORTING_FIELD.RECOMMENDED}&withIngredients=null&withoutIngredients=null&starRating=null&productCharacteristics=null&brands=null&minPrice=null&maxPrice=null&pageNumber=1`;
     const encodedParams = encodeURI(urlParams);
     history.push(`/finder-results${encodedParams}`);
   };

@@ -8,12 +8,24 @@ const calculatePillLabel = ({
   allValuesLength,
   filterPillName,
 }) => {
+  const isIngredientsPill =
+    filterPillName === FILTER_PILL_NAME.WITH_INGREDIENTS ||
+    filterPillName === FILTER_PILL_NAME.WITHOUT_INGREDIENTS;
   if (selectedValues.length === 0) return filterPillName;
-  if (selectedValues.length === 1) return selectedValues[0];
+  if (selectedValues.length === 1)
+    return isIngredientsPill
+      ? configValues.ingredientsEnum[selectedValues[0]]
+      : selectedValues[0];
   if (selectedValues.length > 1) {
     if (allValuesLength === selectedValues.length) return filterPillName;
     const additionalValuesLength = selectedValues.length - 1;
-    return `${selectedValues[0]} + ${additionalValuesLength}`;
+    if (isIngredientsPill) {
+      return `${
+        configValues.ingredientsEnum[selectedValues[0]]
+      } + ${additionalValuesLength}`;
+    } else {
+      return `${selectedValues[0]} + ${additionalValuesLength}`;
+    }
   }
 };
 
@@ -23,6 +35,20 @@ export const getPillName = ({ label }) => {
       selectedValues: getValueFromUrl({ param: "productCategories" }),
       allValuesLength: configValues.productCharacteristicValues.length,
       filterPillName: FILTER_PILL_NAME.PRODUCT_CATEGORIES,
+    });
+  }
+  if (label === FILTER_PILL_NAME.WITH_INGREDIENTS) {
+    return calculatePillLabel({
+      selectedValues: getValueFromUrl({ param: "withIngredients" }),
+      allValuesLength: configValues.withIngredientsValues.length,
+      filterPillName: FILTER_PILL_NAME.WITH_INGREDIENTS,
+    });
+  }
+  if (label === FILTER_PILL_NAME.WITHOUT_INGREDIENTS) {
+    return calculatePillLabel({
+      selectedValues: getValueFromUrl({ param: "withoutIngredients" }),
+      allValuesLength: configValues.withoutIngredientsValues.length,
+      filterPillName: FILTER_PILL_NAME.WITHOUT_INGREDIENTS,
     });
   }
   if (label === FILTER_PILL_NAME.PRICE) {

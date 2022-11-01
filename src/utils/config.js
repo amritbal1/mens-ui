@@ -9,7 +9,7 @@ export const skinTypeOptions = [
   { displayValue: "Oily", value: "Oily" },
   { displayValue: "Dry", value: "Dry" },
   { displayValue: "Combination", value: "Combination" },
-  { displayValue: "Sensitive", value: "Sensitive" }
+  { displayValue: "Sensitive", value: "Sensitive" },
 ];
 
 const skinTypeValues = getOptionValues({ options: skinTypeOptions });
@@ -88,12 +88,63 @@ const productCategoryValues = getOptionValues({
   options: productCategoryOptions,
 });
 
+////////////// WITH INGREDIENTS //////////////
+const ingredientsEnum = {
+  "Sodium Hyaluronate": "Hyaluronic Acid",
+  Retinol: "Retinol",
+  "Salicylic Acid": "BHA",
+  "Lactic Acid": "AHA",
+  "Ascorbic Acid": "Vitamin C",
+  Niacinamide: "Niacinamide",
+  Squalane: "Squalane",
+  Urea: "Urea",
+  "Diazolidinyl Urea": "Diazolidinyl Urea",
+  "Alpha-Arbutin": "Arbutin",
+};
+const withIngredientsOptions = [
+  { displayValue: "Hyaluronic Acid", value: "Sodium Hyaluronate" },
+  { displayValue: "Retinol", value: "Retinol" },
+  { displayValue: "BHA", value: "Salicylic Acid" },
+  { displayValue: "AHA", value: "Lactic Acid" }, //add glycolic acid
+  { displayValue: "Vitamin C", value: "Ascorbic Acid" },
+  { displayValue: "Niacinamide", value: "Niacinamide" },
+  { displayValue: "Squalane", value: "Squalane" },
+  { displayValue: "Urea", value: "Urea" },
+  { displayValue: "Diazolidinyl Urea", value: "Diazolidinyl Urea" },
+  { displayValue: "Arbutin", value: "Alpha-Arbutin" },
+];
+
+const withIngredientsValues = getOptionValues({
+  options: withIngredientsOptions,
+});
+
+////////////// WITHOUT INGREDIENTS //////////////
+const withoutIngredientsOptions = [
+  { displayValue: "Hyaluronic Acid", value: "Sodium Hyaluronate" },
+  { displayValue: "Retinol", value: "Retinol" },
+  { displayValue: "BHA", value: "Salicylic Acid" },
+  { displayValue: "AHA", value: "Lactic Acid" }, //add glycolic acid
+  { displayValue: "Vit C", value: "Ascorbic Acid" },
+  { displayValue: "Niacinamide", value: "Niacinamide" },
+  { displayValue: "Squalane", value: "Squalane" },
+  { displayValue: "Urea", value: "Urea" },
+  { displayValue: "Diazolidinyl Urea", value: "Diazolidinyl Urea" },
+  { displayValue: "Arbutin", value: "Alpha-Arbutin" },
+];
+
+const withoutIngredientsValues = getOptionValues({
+  options: withoutIngredientsOptions,
+});
+
 export const configValues = {
   brandValues,
   skinTypeValues,
   skinConcernValues,
   productCharacteristicValues,
   productCategoryValues,
+  withIngredientsValues,
+  withoutIngredientsValues,
+  ingredientsEnum
 };
 
 export const config = {
@@ -102,4 +153,6 @@ export const config = {
   skinTypeOptions,
   productCharacteristicsOptions,
   productCategoryOptions,
+  withIngredientsOptions,
+  withoutIngredientsOptions,
 };

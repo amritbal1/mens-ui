@@ -69,7 +69,7 @@ class FilterOption extends Component {
       >
         <div class="flex justify-between w-min-165px">
           <div
-            class="flex py-1 w-full items-center"
+            class="flex py-1 w-full items-center sm:hover:bg-lilac-50"
             onClick={() => this.handleClick({ isSelected })}
           >
             <div class={getCheckboxStyle()}>
