@@ -1977,8 +1977,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 20px;
 }
 
-.h-27px {
-  height: 27px;
+.h-24px {
+  height: 24px;
 }
 
 .w-max-60px {
@@ -1989,8 +1989,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 80px;
 }
 
-.w-27px {
-  width: 27px;
+.w-24px {
+  width: 24px;
 }
 
 .w-90px {

@@ -1,10 +1,10 @@
 import { isEmpty } from "../../../../utils/objectUtils";
 import FilterPill from "../../FilterPill";
-
 import React, { Component } from "react";
 
 class FilterPillsCreator extends Component {
-  state = { pillLeftPositions: [] };
+  state = { pillPositions: [] };
+
   componentDidMount() {
     const scrollDiv = document.getElementById("scrollable-filters");
     scrollDiv.addEventListener("scroll", this.onScroll);
@@ -12,7 +12,7 @@ class FilterPillsCreator extends Component {
 
   onScroll = () => {
     const { filterPillsConfig } = this.props;
-    const pillLeftPositions = filterPillsConfig.map((pill) => {
+    const pillPositions = filterPillsConfig.map((pill) => {
       const { label } = pill;
       const parentWrapperPill = document.getElementById(
         `${label.split(" ").join("_")}-parent`
@@ -21,14 +21,17 @@ class FilterPillsCreator extends Component {
         .getElementById("filter-wrapper")
         .getBoundingClientRect().left;
       const wrapperLeft = parentWrapperPill.getBoundingClientRect().left;
-      const difference = wrapperLeft - scrollDivLeft;
-      return { label: label.split(" ").join("_"), left: difference };
+      const leftDifference = wrapperLeft - scrollDivLeft;
+      return {
+        label: label.split(" ").join("_"),
+        left: leftDifference,
+      };
     });
-    this.setState({ pillLeftPositions });
+    this.setState({ pillPositions });
   };
 
   render() {
-    const { pillLeftPositions } = this.state;
+    const { pillPositions } = this.state;
     const {
       filterPillsConfig,
       isPillClicked,
@@ -46,7 +49,7 @@ class FilterPillsCreator extends Component {
         filterOptionClickFn,
       } = pill;
       const amendedLabel = label.split(" ").join("_");
-      const pillLeftPosition = pillLeftPositions.find(
+      const pillPosition = pillPositions.find(
         (el) => el.label === amendedLabel
       );
       return (
@@ -68,7 +71,7 @@ class FilterPillsCreator extends Component {
               handleClickOutsideOptionsContainer
             }
             filterOptionClickFn={filterOptionClickFn}
-            pillLeftPosition={pillLeftPosition}
+            pillPosition={pillPosition}
           />
         </div>
       );

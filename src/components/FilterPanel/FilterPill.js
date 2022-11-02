@@ -7,7 +7,7 @@ import {
 import { getPillName } from "./utils/filterPillUtils/filterPillNameUtils";
 import FilterPillOptions from "./utils/filterPillUtils/FilterPillOptions";
 import { isEmpty } from "../../utils/objectUtils";
-const isSmallScreen = window.screen.width <= 470;
+const isSmallScreen = window.screen.width <= 650;
 class FilterPill extends Component {
   state = {
     isPillClicked: false,
@@ -73,7 +73,7 @@ class FilterPill extends Component {
   };
 
   getFilterPill = () => {
-    const { label, pillLeftPosition } = this.props;
+    const { label, pillPosition } = this.props;
     const { isPillClicked } = this.state;
     const pillLabel = getPillName({ label });
     const amendedLabel = label.split(" ").join("_");
@@ -112,14 +112,12 @@ class FilterPill extends Component {
     }
 
     let leftPosition = !isEmpty(parentElement) ? parentElement.offsetLeft : 0;
-    if (!isEmpty(pillLeftPosition)) {
-      leftPosition = isSmallScreen
-        ? pillLeftPosition.left - 30
-        : pillLeftPosition.left;
+    if (!isEmpty(pillPosition)) {
+      leftPosition = isSmallScreen ? pillPosition.left - 30 : pillPosition.left;
     } else {
       leftPosition = isSmallScreen ? leftPosition - 30 : leftPosition;
     }
-
+    // For the last pill (Exclude ingredients), set the right position to 12 so the menu item does not overflow on the right hand side of the page
     return (
       <div>
         <div class={pillStyling}>
@@ -133,7 +131,14 @@ class FilterPill extends Component {
             id={"menu"}
             style={{
               top: `${parentElement.offsetTop + 30}px`,
-              left: `${leftPosition}px`,
+              left: `${
+                isSmallScreen && label !== "Exclude Ingredients"
+                  ? leftPosition
+                  : null
+              }px`,
+              right: `${
+                isSmallScreen && label === "Exclude Ingredients" ? 12 : null
+              }px`,
               position: "absolute",
               zIndex: "9999",
               borderRadius: "0.375rem",
