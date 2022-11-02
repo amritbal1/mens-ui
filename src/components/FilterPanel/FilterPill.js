@@ -113,9 +113,9 @@ class FilterPill extends Component {
 
     let leftPosition = !isEmpty(parentElement) ? parentElement.offsetLeft : 0;
     if (!isEmpty(pillPosition)) {
-      leftPosition = isSmallScreen ? pillPosition.left - 30 : pillPosition.left;
+      leftPosition = isSmallScreen ? pillPosition.left - 20 : pillPosition.left;
     } else {
-      leftPosition = isSmallScreen ? leftPosition - 30 : leftPosition;
+      leftPosition = isSmallScreen ? leftPosition - 20 : leftPosition;
     }
     // For the last pill (Exclude ingredients), set the right position to 12 so the menu item does not overflow on the right hand side of the page
     return (
