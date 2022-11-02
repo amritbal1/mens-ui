@@ -1,5 +1,5 @@
 import React, { PureComponent, createRef } from "react";
-import { createFilterPills } from "./utils/filterPillUtils/filterPillsCreator";
+import FilterPillsCreator from "./utils/filterPillUtils/FilterPillsCreator";
 
 class FilterPanel extends PureComponent {
   state = {
@@ -45,17 +45,18 @@ class FilterPanel extends PureComponent {
     const { filterPillsConfig } = this.props;
     const { isPillClicked } = this.state;
     return (
-      <div ref={this.wrapperRef} class="text-sm">
-        <div class="flex flex-wrap overflow-x-auto overflow-y-visible">
+      <div id={"filter-wrapper"} ref={this.wrapperRef} class="text-sm">
+        <div id={"scrollable-filters"} class="flex flex-nowrap md:flex-wrap overflow-x-auto overflow-y-visible">
           <span class="mr-2 flex-shrink-0 self-center text-slate-gray text-xs font-light">
             Filter
           </span>
-          {createFilterPills({
-            filterPillsConfig,
-            isPillClicked,
-            handleClickOutsideOptionsContainer:
-              this.handleClickOutsideOptionsContainer,
-          })}
+          <FilterPillsCreator
+            filterPillsConfig={filterPillsConfig}
+            isPillClicked={isPillClicked}
+            handleClickOutsideOptionsContainer={
+              this.handleClickOutsideOptionsContainer
+            }
+          />
         </div>
       </div>
     );

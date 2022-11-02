@@ -120,7 +120,7 @@ class RecommendationWrapper extends Component {
             Analysis of thousands of reviews shows these products are the
             <b> perfect matches</b> for you!
           </div>
-          <div class="pl-4 mb-4">
+          <div class="px-4 mb-4">
             <FilterPanel filterPillsConfig={filterPillsConfig} />
           </div>
           <div>

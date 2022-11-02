@@ -6,6 +6,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { getPillName } from "./utils/filterPillUtils/filterPillNameUtils";
 import FilterPillOptions from "./utils/filterPillUtils/FilterPillOptions";
+import { isEmpty } from "../../utils/objectUtils";
 const isSmallScreen = window.screen.width <= 470;
 class FilterPill extends Component {
   state = {
@@ -72,9 +73,11 @@ class FilterPill extends Component {
   };
 
   getFilterPill = () => {
-    const { label } = this.props;
+    const { label, pillLeftPosition } = this.props;
     const { isPillClicked } = this.state;
     const pillLabel = getPillName({ label });
+    const amendedLabel = label.split(" ").join("_");
+    const parentElement = document.getElementById(`${amendedLabel}-parent`);
     const userHasSelectedOptions = pillLabel !== label;
     const pillClickedStyling =
       isPillClicked || userHasSelectedOptions
@@ -107,9 +110,16 @@ class FilterPill extends Component {
         />
       );
     }
-    const parentElement = document.getElementById(
-      `${label.split(" ").join("_")}-parent`
-    );
+
+    let leftPosition = !isEmpty(parentElement) ? parentElement.offsetLeft : 0;
+    if (!isEmpty(pillLeftPosition)) {
+      leftPosition = isSmallScreen
+        ? pillLeftPosition.left - 30
+        : pillLeftPosition.left;
+    } else {
+      leftPosition = isSmallScreen ? leftPosition - 30 : leftPosition;
+    }
+
     return (
       <div>
         <div class={pillStyling}>
@@ -119,28 +129,26 @@ class FilterPill extends Component {
           {iconToDisplay}
         </div>
         {isPillClicked && parentElement && (
-          <div>
-            <div
-              id={"menu"}
-              style={{
-                "--t": `${parentElement.offsetTop}px`,
-                "--l": `${parentElement.offsetLeft}px`,
-                position: "absolute",
-                zIndex: "9999",
-                borderRadius: "0.375rem",
-                filter:
-                  "drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08))",
-                backgroundColor: "white",
-                minWidth: `${isSmallScreen ? "220px" : "250px"}`,
-                marginTop: "0.5rem",
-                paddingBottom: "0.5rem",
-                paddingLeft: "0.5rem",
-                paddingRight: "0.5rem",
-              }}
-            >
-              <div>
-                <FilterPillOptions {...this.props} />
-              </div>
+          <div
+            id={"menu"}
+            style={{
+              top: `${parentElement.offsetTop + 30}px`,
+              left: `${leftPosition}px`,
+              position: "absolute",
+              zIndex: "9999",
+              borderRadius: "0.375rem",
+              filter:
+                "drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08))",
+              backgroundColor: "white",
+              minWidth: `${isSmallScreen ? "220px" : "250px"}`,
+              marginTop: "0.5rem",
+              paddingBottom: "0.5rem",
+              paddingLeft: "0.5rem",
+              paddingRight: "0.5rem",
+            }}
+          >
+            <div>
+              <FilterPillOptions {...this.props} />
             </div>
           </div>
         )}
