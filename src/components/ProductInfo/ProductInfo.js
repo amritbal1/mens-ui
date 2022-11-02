@@ -2,14 +2,20 @@ import React, { PureComponent } from "react";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 
 class ProductInfo extends PureComponent {
+  state = {
+    userCoulocalCurrencyntry: null,
+  };
+
+  componentDidMount() {
+    const localCurrency = localStorage.getItem("localCurrency") || "£";
+    this.setState({ localCurrency });
+  }
   render() {
+    const { localCurrency } = this.state;
     const { productDetails } = this.props;
-    const {
-      brandName,
-      productName,
-      affiliateData = [{ productUrl: "" }],
-    } = productDetails;
-    const price = affiliateData[0].priceData.affiliatePrice;
+    const { brandName, productName, pricingData } = productDetails;
+    const affiliateLink = pricingData[0].affiliateLinks[0];
+    const { price } = affiliateLink;
     return (
       <div class="h-full w-full flex flex-col sm:justify-between">
         <div>
@@ -29,11 +35,13 @@ class ProductInfo extends PureComponent {
         <div class="mb-6 sm:mt-6">
           {price && (
             <span class="text-slate-gray uppercase font-light">
-              {`~£ ${(Math.round(price * 100) / 100).toFixed(2)}`}
+              {`~${localCurrency} ${(Math.round(price * 100) / 100).toFixed(
+                2
+              )}`}
             </span>
           )}
           <a
-            href={affiliateData[0].productUrl}
+            href={affiliateLink.productUrl || ""}
             target="_blank"
             rel="noopener noreferrer"
           >

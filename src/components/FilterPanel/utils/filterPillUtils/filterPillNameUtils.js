@@ -30,6 +30,7 @@ const calculatePillLabel = ({
 };
 
 export const getPillName = ({ label }) => {
+  const localCurrency = localStorage.getItem("localCurrency") || "£";
   if (label === FILTER_PILL_NAME.PRODUCT_CATEGORIES) {
     return calculatePillLabel({
       selectedValues: getValueFromUrl({ param: "productCategories" }),
@@ -57,8 +58,10 @@ export const getPillName = ({ label }) => {
     const showPlusIcon = maxPrice === MAX_PRICE_FILTER;
     if (isEmpty(minPrice) && isEmpty(maxPrice)) return "Price";
     if (isEmpty(minPrice))
-      return `up to £${maxPrice}${showPlusIcon ? "+" : ""}`;
+      return `up to ${localCurrency}${maxPrice}${showPlusIcon ? "+" : ""}`;
     if (!isEmpty(minPrice) && !isEmpty(maxPrice))
-      return `£${minPrice} to £${maxPrice}${showPlusIcon ? "+" : ""}`;
+      return `${localCurrency}${minPrice} to ${localCurrency}${maxPrice}${
+        showPlusIcon ? "+" : ""
+      }`;
   }
 };
