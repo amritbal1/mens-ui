@@ -3,3 +3,9 @@ export const CURRENCIES = {
   US: "$",
   CA: "$",
 };
+
+export const CURRENCY_LETTERS = {
+  GB: "GBP",
+  US: "USD",
+  CA: "CAD",
+};

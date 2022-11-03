@@ -21,7 +21,7 @@ class RecommendationWrapper extends Component {
   };
 
   async componentDidMount() {
-    const payload = createResultsPagePayload({});
+    const payload = await createResultsPagePayload({});
     const resultsData = await getProductResultsData({ payload });
     if (isEmpty(resultsData)) return;
     const { results = [] } = resultsData;
@@ -34,7 +34,7 @@ class RecommendationWrapper extends Component {
       const urlHasNewParams =
         this.props.location.search !== prevProps.location.search;
       if (urlHasNewParams) {
-        const payload = createResultsPagePayload({});
+        const payload = await createResultsPagePayload({});
         const resultsData = await getProductResultsData({ payload });
         if (!resultsData) return;
         const { results } = resultsData;

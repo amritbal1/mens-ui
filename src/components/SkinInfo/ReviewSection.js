@@ -80,7 +80,7 @@ const ReviewSection = ({
                       return (
                         <div
                           ref={i === data.length - 1 ? ref : null}
-                          class="mb-6 text-sm font-light"
+                          class="mb-6 text-sm font-normal"
                         >
                           <Rating value={starRatingValue} />"
                           {review.review_text}"

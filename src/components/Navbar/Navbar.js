@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { withAuth0 } from "@auth0/auth0-react";
 import AppContext from "../../AppContext";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { LOCAL_STORAGE_ITEM, SORTING_FIELD } from "../../utils/enums";
+import { SORTING_FIELD } from "../../utils/enums";
 import * as logo from "../../images/brand-logo.png";
 
 class Navbar extends PureComponent {
@@ -53,10 +53,10 @@ class Navbar extends PureComponent {
   handleLogout = () => {
     const { auth0 } = this.props;
     const { logout } = auth0;
-    localStorage.setItem(LOCAL_STORAGE_ITEM.IS_USER_LOGGED_IN, "false");
-    localStorage.setItem(LOCAL_STORAGE_ITEM.IS_USER_SIGNED_UP, "false");
-    localStorage.setItem(LOCAL_STORAGE_ITEM.USER_PROFILE_INFORMATION, "null");
-    localStorage.setItem(LOCAL_STORAGE_ITEM.USER_ID, "null");
+    // localStorage.setItem(LOCAL_STORAGE_ITEM.IS_USER_LOGGED_IN, "false");
+    // localStorage.setItem(LOCAL_STORAGE_ITEM.IS_USER_SIGNED_UP, "false");
+    // localStorage.setItem(LOCAL_STORAGE_ITEM.USER_PROFILE_INFORMATION, "null");
+    // localStorage.setItem(LOCAL_STORAGE_ITEM.USER_ID, "null");
     logout({ returnTo: window.location.origin });
   };
 
@@ -85,7 +85,7 @@ class Navbar extends PureComponent {
       history.push("/new-review");
     } else {
       const { loginWithRedirect } = auth0;
-      localStorage.setItem(LOCAL_STORAGE_ITEM.IS_USER_LOGGED_IN, "true");
+      // localStorage.setItem(LOCAL_STORAGE_ITEM.IS_USER_LOGGED_IN, "true");
       await loginWithRedirect({ appState: { returnTo: "/new-review" } });
     }
   };
@@ -93,7 +93,7 @@ class Navbar extends PureComponent {
   handleUserLogin = async () => {
     const { auth0 } = this.props;
     const { loginWithRedirect } = auth0;
-    localStorage.setItem(LOCAL_STORAGE_ITEM.IS_USER_LOGGED_IN, "true");
+    // localStorage.setItem(LOCAL_STORAGE_ITEM.IS_USER_LOGGED_IN, "true");
     await loginWithRedirect();
   };
 
