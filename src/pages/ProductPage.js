@@ -14,16 +14,14 @@ import {
   SKIN_CONCERN_ATTRIBUTES,
   ATTRIBUTES,
 } from "../components/ProductCard/attributes";
-import {
-  ChevronDownIcon,
-  ChevronUpIcon,
-} from "@heroicons/react/24/outline";
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import { getArrayValue } from "../utils/urlUtils/urlValueGetter";
 import {
   HandThumbUpIcon,
   HandThumbDownIcon,
 } from "@heroicons/react/24/outline";
 import { Disclosure } from "@headlessui/react";
+import { getPricingData } from "../services/PricingDataService";
 
 const DISCLOSURE_BUTTON_STYLE =
   "w-full flex justify-between rounded-lg bg-lilac-100 px-4 py-2 text-left text-sm font-medium text-dark-teal hover:bg-lilac-200 focus:outline-none focus-visible:ring focus-visible:ring-lilac-500 focus-visible:ring-opacity-75 w-96";
@@ -48,6 +46,7 @@ class ProductPage extends PureComponent {
     const searchParams = queryString.parse(this.props.location.search);
     const { productId, skinType, skinConcern } = searchParams;
     const skinConcerns = getArrayValue({ parameterValue: skinConcern });
+    const pricingData = await getPricingData({ productId });
     const productData = await getProductData({
       productId,
       skinType,
@@ -60,6 +59,7 @@ class ProductPage extends PureComponent {
     this.setState({
       productData,
       allProductImageUrls,
+      pricingData
     });
   }
 
@@ -72,6 +72,7 @@ class ProductPage extends PureComponent {
     );
     //If the URL params (productId) change, fetch new data which gets passed into ReviewListProvider
     if (prevProductId !== currentProductId) {
+      const pricingData = await getPricingData({ productId: currentProductId });
       const productData = await getProductData({ productId: currentProductId });
       if (!productData) return;
       const { additionalImages } = productData;
@@ -82,6 +83,7 @@ class ProductPage extends PureComponent {
       this.setState({
         productData,
         allProductImageUrls,
+        pricingData
       });
     }
   }
@@ -92,7 +94,7 @@ class ProductPage extends PureComponent {
   };
 
   renderProduct = ({ productData }) => {
-    const { allProductImageUrls } = this.state;
+    const { allProductImageUrls, pricingData } = this.state;
     const {
       overallMetrics: {
         attributeAnalysis,
@@ -136,6 +138,7 @@ class ProductPage extends PureComponent {
             </div>
             <div class="flex self-start w-screen pt-4 lg:pt-0 sm:max-w-xs md:pl-0 md:pr-4 lg:ml-14 sm:pb-4 px-5">
               <ProductInfo
+                pricingData={pricingData}
                 productDetails={productData}
                 attributeAnalysis={attributeAnalysis}
               />

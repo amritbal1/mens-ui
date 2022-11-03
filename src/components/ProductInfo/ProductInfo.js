@@ -1,20 +1,22 @@
 import React, { PureComponent } from "react";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
-
+import { CURRENCIES } from "../../utils/currencyEnum";
 class ProductInfo extends PureComponent {
   state = {
     userCoulocalCurrencyntry: null,
   };
 
   componentDidMount() {
-    const localCurrency = localStorage.getItem("localCurrency") || "£";
-    this.setState({ localCurrency });
+    const { pricingData } = this.props;
+    const country = pricingData.country || "GB";
+    this.setState({ localCurrency: CURRENCIES[country] });
   }
   render() {
     const { localCurrency } = this.state;
-    const { productDetails } = this.props;
-    const { brandName, productName, pricingData } = productDetails;
-    const affiliateLink = pricingData[0].affiliateLinks[0];
+    const { productDetails, pricingData } = this.props;
+    const { brandName, productName } = productDetails;
+    //TODO: Handle multiple affiliate Links
+    const affiliateLink = pricingData.affiliateLinks[0];
     const { price } = affiliateLink;
     return (
       <div class="h-full w-full flex flex-col sm:justify-between">
