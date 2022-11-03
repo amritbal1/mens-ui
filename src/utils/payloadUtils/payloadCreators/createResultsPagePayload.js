@@ -1,3 +1,4 @@
+import { getConvertedCurrency } from "../../../services/ExchangeRateService";
 import { configValues } from "../../config";
 import {
   MAX_PRICE_FILTER,
@@ -7,10 +8,21 @@ import {
 } from "../../enums";
 import { getValueFromUrl } from "../../urlUtils/urlValueGetter";
 
-export const createResultsPagePayload = ({ overridePageNum }) => {
+const USER_COUNTRY = localStorage.getItem("ipCountry");
+
+export const createResultsPagePayload = async ({ overridePageNum }) => {
   const starRating = getValueFromUrl({ param: "starRating" });
   const maxPrice = getValueFromUrl({ param: "maxPrice" });
   const maxPriceValue = maxPrice === MAX_PRICE_FILTER ? null : maxPrice;
+  const maxPriceAmount =
+    USER_COUNTRY !== "GB" && maxPriceValue !== null
+      ? await getConvertedCurrency({ amount: maxPriceValue })
+      : maxPriceValue;
+  const minPriceValue = getValueFromUrl({ param: "minPrice" });
+  const minPriceAmount =
+    USER_COUNTRY !== "GB" && minPriceValue !== null
+      ? await getConvertedCurrency({ amount: minPriceValue })
+      : minPriceValue;
   const [sortingField] = getValueFromUrl({ param: "sort" });
   const sortArray = getSortingValues({
     sortingField,
@@ -23,12 +35,12 @@ export const createResultsPagePayload = ({ overridePageNum }) => {
       : brandsUrlValue;
   const filters = {
     price: {
-      min: getValueFromUrl({ param: "minPrice" }),
-      max: maxPriceValue,
+      min: minPriceAmount,
+      max: maxPriceAmount,
     },
     ethnicity: null,
     //Currently get all categories
-    productCategories:  getValueFromUrl({ param: "productCategories" }),
+    productCategories: getValueFromUrl({ param: "productCategories" }),
     skinConcerns: getValueFromUrl({ param: "skinConcerns" }),
     skinTypes: getValueFromUrl({ param: "skinTypes" }),
     productCharacteristics: getValueFromUrl({

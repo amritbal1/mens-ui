@@ -8,6 +8,7 @@ import AppProvider from "./AppProvider";
 import { isEmpty } from "./utils/objectUtils";
 import AppContext from "./AppContext";
 import { StyledEngineProvider } from "@mui/material/styles";
+import { getUserLocation } from "./services/GeoLocationService";
 class App extends PureComponent {
   onRedirectCallback = (appState) => {
     this.props.history.push(
@@ -21,6 +22,7 @@ class App extends PureComponent {
     window.onbeforeunload = function () {
       window.scrollTo(0, 0);
     };
+    getUserLocation()
   }
   render() {
     return (

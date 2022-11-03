@@ -1,15 +1,28 @@
 import React, { PureComponent } from "react";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
-
+import { CURRENCIES } from "../../utils/currencyEnum";
+import { isEmpty } from "../../utils/objectUtils";
 class ProductInfo extends PureComponent {
+  state = {
+    userCoulocalCurrencyntry: null,
+  };
+
+  componentDidMount() {
+    const { pricingData } = this.props;
+    const country =
+      pricingData && pricingData.country ? pricingData.country : "GB";
+    this.setState({ localCurrency: CURRENCIES[country] });
+  }
   render() {
-    const { productDetails } = this.props;
-    const {
-      brandName,
-      productName,
-      affiliateData = [{ productUrl: "" }],
-    } = productDetails;
-    const price = affiliateData[0].priceData.affiliatePrice;
+    const { localCurrency } = this.state;
+    const { productDetails, pricingData } = this.props;
+    const { brandName, productName } = productDetails;
+    //TODO: Handle multiple affiliate Links
+    const affiliateLink =
+      pricingData && !isEmpty(pricingData.affiliateLinks)
+        ? pricingData.affiliateLinks[0]
+        : "";
+    const { price } = affiliateLink;
     return (
       <div class="h-full w-full flex flex-col sm:justify-between">
         <div>
@@ -29,11 +42,13 @@ class ProductInfo extends PureComponent {
         <div class="mb-6 sm:mt-6">
           {price && (
             <span class="text-slate-gray uppercase font-light">
-              {`~£ ${(Math.round(price * 100) / 100).toFixed(2)}`}
+              {`~${localCurrency} ${(Math.round(price * 100) / 100).toFixed(
+                2
+              )}`}
             </span>
           )}
           <a
-            href={affiliateData[0].productUrl}
+            href={affiliateLink.productUrl || ""}
             target="_blank"
             rel="noopener noreferrer"
           >
