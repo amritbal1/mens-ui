@@ -6,7 +6,7 @@ import { Disclosure } from "@headlessui/react";
 import * as logo from "../../images/brand-logo.png";
 import { Dropdown } from "../SkinInfo/dropdown.js";
 import { COUNTRIES_OPTIONS } from "../../utils/countryEnum";
-
+import { CURRENCIES } from "../../utils/currencyEnum";
 class Navbar extends PureComponent {
   state = {
     selectedCountryOption: {},
@@ -29,6 +29,7 @@ class Navbar extends PureComponent {
   handleCountryDropdownChange = (selectedOption) => {
     this.setState({ selectedCountryOption: selectedOption });
     localStorage.setItem("ipCountry", selectedOption.value);
+    localStorage.setItem("localCurrency", CURRENCIES[selectedOption.value]);
   };
 
   render() {
@@ -62,7 +63,7 @@ class Navbar extends PureComponent {
                         value={selectedCountryOption}
                         inputValueObject={true}
                         overrideStyles={{
-                          placeholder: { fontWeight: 400 }
+                          placeholder: { fontWeight: 400 },
                         }}
                       />
                     </div>
