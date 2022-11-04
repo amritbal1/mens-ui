@@ -125,7 +125,7 @@ class ProductPage extends PureComponent {
       <div>
         <div class="flex flex-col items-center mb-2 sm:mb-6 justify-center">
           <div class="flex flex-col sm:flex sm:flex-row sm:mb-6">
-            <div class="w-300px h-300px md:w-450px md:h-450px self-center">
+            <div class="w-300px h-300px md:w-450px md:h-450px self-center sm:self-start">
               <Carousel
                 images={allProductImageUrls}
                 slidesToShow={1}
