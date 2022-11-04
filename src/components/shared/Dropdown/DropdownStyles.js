@@ -6,7 +6,12 @@ export const getSelectStyles = ({ overrideStyles = {} }) => {
   return {
     placeholder: (provided) => ({
       ...provided,
-      fontWeight: 200,
+      fontWeight:
+        overrideStyles &&
+        overrideStyles.placeholder &&
+        overrideStyles.placeholder.fontWeight
+          ? overrideStyles.placeholder.fontWeight
+          : 200,
       textOverflow: "ellipsis",
       maxWidth: "95%",
       whiteSpace: "nowrap",
@@ -19,6 +24,7 @@ export const getSelectStyles = ({ overrideStyles = {} }) => {
       borderRadius: "3rem",
       boxShadow: "0 1px 6px rgb(32 33 36 / 28%)",
       minHeight: "30px",
+      cursor: "pointer",
     }),
     indicatorSeparator: (provided) => ({
       ...provided,

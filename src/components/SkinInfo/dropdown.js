@@ -8,14 +8,16 @@ export const Dropdown = ({
   isDisabled = false,
   placeholder,
   value,
+  inputValueObject = false,
+  overrideStyles = {},
 }) => {
   const commonProps = { options, isDisabled, placeholder };
   return (
     <Select
       {...commonProps}
-      value={{ label: value, value }}
+      value={inputValueObject ? inputValueObject : { label: value, value }}
       onChange={handleChange}
-      styles={getSelectStyles({})}
+      styles={getSelectStyles({ overrideStyles })}
       components={{ Option: CustomOption }}
       noOptionsMessage={() => null}
       inputProps={{ readOnly: true }}

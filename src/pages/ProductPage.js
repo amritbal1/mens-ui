@@ -272,7 +272,7 @@ class ProductPage extends PureComponent {
       <div class="bg-white">
         <Navbar />
         <div class="h-60px"></div>
-        <div class={`py-8 sm:h-screen ${backgroundOpacity}`}>
+        <div class={`py-8 ${backgroundOpacity}`}>
           {this.renderProduct({ productData })}
         </div>
       </div>

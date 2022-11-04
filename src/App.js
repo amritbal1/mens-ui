@@ -28,7 +28,7 @@ class App extends PureComponent {
     return (
       <StyledEngineProvider injectFirst>
         <AppProvider>
-          <section class="w-screen h-screen font-sans">
+          <section class="w-screen h-screen bg-white font-sans">
             <AppContext.Consumer>
               {(context) => {
                 const { isBackgroundBlurred } = context;
