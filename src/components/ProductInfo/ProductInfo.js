@@ -86,7 +86,7 @@ class ProductInfo extends PureComponent {
                           } h-5 w-5 text-slate-gray`}
                         />
                       </Disclosure.Button>
-                      <Disclosure.Panel className="pt-4 pb-2 text-sm text-gray-500 font-light sm:max-h-40 md:max-h-44 sm:overflow-x-scroll sm:scrollbar">
+                      <Disclosure.Panel className="pt-4 pb-2 text-sm text-gray-500 font-light sm:max-h-40 sm:overflow-x-scroll sm:scrollbar">
                         {ingredients.join(", ")}
                       </Disclosure.Panel>
                     </>
