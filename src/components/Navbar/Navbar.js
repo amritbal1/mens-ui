@@ -19,6 +19,16 @@ class Navbar extends PureComponent {
     );
     this.setState({ selectedCountryOption });
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.userCountry !== prevProps.userCountry) {
+      const selectedCountryOption = COUNTRIES_OPTIONS.find(
+        (el) => el.value === this.props.userCountry
+      );
+      this.setState({ selectedCountryOption });
+    }
+  }
+
   handleLogoClick = () => {
     const { history } = this.props;
     const { isPanelOpen } = this.state;
@@ -27,9 +37,16 @@ class Navbar extends PureComponent {
   };
 
   handleCountryDropdownChange = (selectedOption) => {
-    this.setState({ selectedCountryOption: selectedOption });
+    const { handleCountryChange } = this.props;
+    this.setState({
+      selectedCountryOption: selectedOption,
+      selectedCountryValue: selectedOption.value,
+    });
     localStorage.setItem("ipCountry", selectedOption.value);
     localStorage.setItem("localCurrency", CURRENCIES[selectedOption.value]);
+    if (handleCountryChange) {
+      handleCountryChange({ userCountry: selectedOption.value });
+    }
   };
 
   render() {

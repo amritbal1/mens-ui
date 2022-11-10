@@ -59,7 +59,7 @@ class ProductPage extends PureComponent {
     this.setState({
       productData,
       allProductImageUrls,
-      pricingData
+      pricingData,
     });
   }
 
@@ -70,6 +70,10 @@ class ProductPage extends PureComponent {
     const { productId: currentProductId } = queryString.parse(
       this.props.location.search
     );
+    if (this.props.userCountry !== prevProps.userCountry) {
+      const pricingData = await getPricingData({ productId: currentProductId });
+      this.setState({ pricingData });
+    }
     //If the URL params (productId) change, fetch new data which gets passed into ReviewListProvider
     if (prevProductId !== currentProductId) {
       const pricingData = await getPricingData({ productId: currentProductId });
@@ -265,12 +269,15 @@ class ProductPage extends PureComponent {
 
   render() {
     const { productData } = this.state;
-    const { backgroundOpacity } = this.props;
+    const { backgroundOpacity, userCountry, handleCountryChange } = this.props;
     if (isEmpty(productData)) return null;
 
     return (
       <div class="bg-white">
-        <Navbar />
+        <Navbar
+          userCountry={userCountry}
+          handleCountryChange={handleCountryChange}
+        />
         <div class="h-60px"></div>
         <div class={`py-8 ${backgroundOpacity}`}>
           {this.renderProduct({ productData })}

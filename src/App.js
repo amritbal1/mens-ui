@@ -10,6 +10,10 @@ import AppContext from "./AppContext";
 import { StyledEngineProvider } from "@mui/material/styles";
 import { getUserLocation } from "./services/GeoLocationService";
 class App extends PureComponent {
+  state = {
+    userCountry: "",
+  };
+
   onRedirectCallback = (appState) => {
     this.props.history.push(
       !isEmpty(appState) && appState.returnTo
@@ -18,13 +22,21 @@ class App extends PureComponent {
     );
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     window.onbeforeunload = function () {
       window.scrollTo(0, 0);
     };
-    getUserLocation()
+    const userCountry = await getUserLocation();
+    this.setState({ userCountry: userCountry });
   }
+
+  //When user is on the product page and they change the country, we need to call the pricing API again with the new country to fetch new prices (and affiliate links) in correct currency
+  handleCountryChange = ({ userCountry }) => {
+    this.setState({ userCountry: userCountry });
+  };
+
   render() {
+    const { userCountry } = this.state;
     return (
       <StyledEngineProvider injectFirst>
         <AppProvider>
@@ -42,7 +54,11 @@ class App extends PureComponent {
                         exact
                         path="/"
                         render={(props) => {
-                          const allProps = { ...props, backgroundOpacity };
+                          const allProps = {
+                            ...props,
+                            backgroundOpacity,
+                            userCountry,
+                          };
                           return <LandingPageProductFinder {...allProps} />;
                         }}
                       />
@@ -50,13 +66,20 @@ class App extends PureComponent {
                         exact
                         path="/finder-results"
                         render={() => {
-                          return <RecommendationWrapper />;
+                          return (
+                            <RecommendationWrapper userCountry={userCountry} />
+                          );
                         }}
                       />
                       <Route
                         path="/product"
                         render={(props) => {
-                          const allProps = { ...props, backgroundOpacity };
+                          const allProps = {
+                            ...props,
+                            backgroundOpacity,
+                            userCountry,
+                            handleCountryChange: this.handleCountryChange,
+                          };
                           return <ProductPage {...allProps} />;
                         }}
                       />

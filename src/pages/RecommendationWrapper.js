@@ -113,7 +113,7 @@ class RecommendationWrapper extends Component {
     via-lilac-100
     to-lilac-200"
       >
-        <Navbar />
+        <Navbar userCountry={this.props.userCountry} />
         <div class="h-60px"></div>
         <div class="bg-gradient-to-r from-lilac-50 via-lilac-100 to-lilac-200">
           <div class="py-6 sm:py-10 px-5 sm:px-10 text-slate-gray text-base sm:text-xl font-light tracking-tight text-center font-montserrat">

@@ -7,20 +7,12 @@ import { CURRENCIES } from "../../utils/currencyEnum";
 import { isEmpty } from "../../utils/objectUtils";
 import { Disclosure } from "@headlessui/react";
 class ProductInfo extends PureComponent {
-  state = {
-    userCoulocalCurrencyntry: null,
-  };
-
-  componentDidMount() {
-    const { pricingData } = this.props;
-    const country =
-      pricingData && pricingData.country ? pricingData.country : "GB";
-    this.setState({ localCurrency: CURRENCIES[country] });
-  }
   render() {
-    const { localCurrency } = this.state;
     const { productDetails, pricingData } = this.props;
     const { brandName, productName, ingredients } = productDetails;
+    const country =
+      pricingData && pricingData.country ? pricingData.country : "GB";
+    const localCurrency = CURRENCIES[country];
     //TODO: Handle multiple affiliate Links
     const affiliateLink =
       pricingData && !isEmpty(pricingData.affiliateLinks)

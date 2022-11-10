@@ -6,4 +6,5 @@ export const getUserLocation = async () => {
   const userCountry = jsonResponse.country || "GB";
   localStorage.setItem("ipCountry", userCountry);
   localStorage.setItem("localCurrency", CURRENCIES[userCountry]);
+  return userCountry;
 };

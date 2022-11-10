@@ -3,6 +3,8 @@ import { PureComponent } from "react";
 import Navbar from "../components/Navbar/Navbar";
 
 class LandingPage extends PureComponent {
+
+
   render() {
     return (
       <div
@@ -11,7 +13,7 @@ class LandingPage extends PureComponent {
       via-lilac-100
       to-lilac-200"
       >
-        <Navbar />
+        <Navbar userCountry={this.props.userCountry} />
         <div class="h-60px"></div>
         <div class="flex flex-col md:pt-8 pb-7 px-2 font-montserrat">
           <div class="mx-auto w-full">
