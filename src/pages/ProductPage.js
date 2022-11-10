@@ -87,7 +87,7 @@ class ProductPage extends PureComponent {
       this.setState({
         productData,
         allProductImageUrls,
-        pricingData
+        pricingData,
       });
     }
   }
@@ -184,6 +184,7 @@ class ProductPage extends PureComponent {
               <div class="font-light text-sm font-normal uppercase tracking-wider text-slate-gray pb-4">
                 What the reviews say
               </div>
+
               <Disclosure>
                 {({ open }) => (
                   <>
