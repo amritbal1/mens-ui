@@ -245,12 +245,12 @@
       width: 950px;
     }
 
-    .w-450px {
-      width: 450px;
+    .w-600px {
+      width: 600px;
     }
 
-    .h-450px {
-      height: 450px;
+    .h-600px {
+      height: 600px;
     }
 
     .w-min-350px {
@@ -261,16 +261,24 @@
       min-width: 450px;
     }
 
+    .w-min-600px {
+      min-width: 600px;
+    }
+
     .h-min-450px {
       min-height: 450px;
+    }
+
+    .h-min-600px {
+      min-height: 600px;
     }
 
     .w-80px {
       width: 80px;
     }
 
-    .h-60px {
-      height: 60px;
+    .h-80px {
+      height: 80px;
     }
 
     .h-80px {

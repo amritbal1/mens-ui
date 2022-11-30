@@ -2,7 +2,7 @@ import { config } from "../../../../utils/config.js";
 import { FILTER_PILL_NAME } from "../../../../utils/enums.js";
 
 export const getFilterPillsConfig = ({ filterOptionClickFn }) => {
-  const { productCategoryOptions: productCategories, brandOptions } = config;
+  const { productCategoryOptions: productCategories, brandOptions, skinConcernOptions } = config;
 
   const productCategoriesPill = {
     label: FILTER_PILL_NAME.PRODUCT_CATEGORIES,
@@ -26,10 +26,10 @@ export const getFilterPillsConfig = ({ filterOptionClickFn }) => {
 
   const skinConcernsPill = {
     label: FILTER_PILL_NAME.SKIN_CONCERNS,
-    data: productCategories,
-    filterField: "filterProductCategoryValues",
-    allValuesField: "productCategoryValues",
-    urlParam: "productCategories",
+    data: skinConcernOptions,
+    filterField: "filterSkinConcernValues",
+    allValuesField: "skinConcernValues",
+    urlParam: "skinConcerns",
     filterOptionClickFn: filterOptionClickFn,
     isSingleSelect: false,
   };

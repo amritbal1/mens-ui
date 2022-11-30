@@ -38,18 +38,9 @@ export const createResultsPagePayload = async ({ overridePageNum }) => {
       min: minPriceAmount,
       max: maxPriceAmount,
     },
-    ethnicity: null,
-    //Currently get all categories
     productCategories: getValueFromUrl({ param: "productCategories" }),
     skinConcerns: getValueFromUrl({ param: "skinConcerns" }),
-    skinTypes: getValueFromUrl({ param: "skinTypes" }),
-    productCharacteristics: getValueFromUrl({
-      param: "productCharacteristics",
-    }),
     brands: brandsPayloadValue,
-    starRating: starRating,
-    withIngredients: getValueFromUrl({ param: "withIngredients" }),
-    withoutIngredients: getValueFromUrl({ param: "withoutIngredients" }),
   };
   return {
     pageSize: PAGE_SIZE.PRODUCT_RESULTS,

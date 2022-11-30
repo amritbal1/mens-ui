@@ -114,22 +114,17 @@ class RecommendationWrapper extends Component {
       filterOptionClickFn: this.filterOptionClickFn,
     });
     return (
-      <div
-        class="min-h-screen bg-gradient-to-r
-    from-lilac-50
-    via-lilac-100
-    to-lilac-200"
-      >
+      <div class="min-h-screen">
         <Navbar
           userCountry={this.props.userCountry}
           isFiltersPaneOpen={this.state.isPaneOpen}
         />
-        <div class="h-60px"></div>
-        <div class="flex flex-col lg:flex-row px-4 pt-10 bg-white min-h-screen">
+        <div class="h-80px"></div>
+        <div class="flex flex-col lg:flex-row px-4 pt-10 sm:px-16 bg-stone min-h-screen">
           <div class="hidden lg:block w-80 mr-4">
             <FiltersBar filtersConfig={filtersConfig} />
           </div>
-          <div class="block lg:hidden w-80 mr-4">
+          <div class="block lg:hidden w-80 mr-4 mb-10">
             <div
               onClick={this.handleMobileFiltersClick}
               class="flex items-center"

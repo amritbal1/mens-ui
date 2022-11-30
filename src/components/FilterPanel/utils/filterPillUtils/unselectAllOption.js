@@ -16,7 +16,7 @@ class UnselectAllOption extends Component {
   getUnselectAllOption = () => {
     return (
       <div>
-        <div class="px-2 py-1 flex justify-between">
+        <div class="py-1 flex justify-between">
           <div
             class="pb-2 my-auto text-base underline text-gray-500 cursor-pointer"
             onClick={this.handleUnselectAllClick}

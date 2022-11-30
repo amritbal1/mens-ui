@@ -56,18 +56,18 @@ class Navbar extends PureComponent {
     return (
       <div
         ref={this.wrapperRef}
-        class={`fixed h-60px top-0 bg-lilac-10 w-full ${Z_INDEX}`}
+        class={`fixed h-80px top-0 bg-stone w-full ${Z_INDEX}`}
       >
-        <Disclosure as="nav" className={`bg-white ${Z_INDEX}`}>
+        <Disclosure as="nav" className={`bg-stone h-80px shadow-md ${Z_INDEX}`}>
           {({ open }) => (
             <>
               <div className="mx-auto px-2 sm:px-6 lg:px-16">
-                <div className="flex items-center justify-between h-16 space-x-2">
+                <div className="flex items-center justify-between space-x-2">
                   <div className="flex items-center flex-shrink-0">
                     <div className="flex-shrink-0 px-2">
                       <img
                         onClick={this.handleLogoClick}
-                        className="h-16 w-16 cursor-pointer"
+                        className="w-16 cursor-pointer"
                         src={logo.default}
                         alt="Workflow"
                       />

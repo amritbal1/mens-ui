@@ -9,9 +9,7 @@ class CategorySelection extends Component {
         key !== "productCategories"
           ? "productCategories=null"
           : `${key}=${value}`
-      }&${key !== "skinTypes" ? "skinTypes=null" : `${key}=${value}`}&${
-        key !== "skinConcerns" ? "skinConcerns=null" : `${key}=${value}`
-      }`
+      }&${key !== "skinConcerns" ? "skinConcerns=null" : `${key}=${value}`}`
     );
   };
 

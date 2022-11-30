@@ -8,6 +8,20 @@ import { REGION, S3_BUCKET } from "../aws-config";
 import Navbar from "../components/Navbar/Navbar";
 import Carousel from "../components/Carousel/Carousel";
 import { getPricingData } from "../services/PricingDataService";
+import { Tab, Disclosure } from "@headlessui/react";
+import { PlusIcon, MinusIcon } from "@heroicons/react/20/solid";
+
+const TAB_BUTTON_STYLE =
+  "flex w-full justify-between py-4 text-left font-semibold pr-1 text-lg";
+
+const TAB_PANEL_STYLE =
+  "text-slate-gray font-semibold text-xl leading-8 tracking-wider mb-6";
+
+const DISCLOSURE_BUTTON_STYLE =
+  "flex w-full justify-between py-4 text-left font-semibold pr-1 text-base";
+
+const DISCLOSURE_PANEL_STLYE =
+  "mt-2 text-slate-gray text-sm sm:text-base leading-5 sm:leading-6 tracking-wider mb-6";
 
 //Page to display information for a single product
 class ProductPage extends PureComponent {
@@ -78,33 +92,139 @@ class ProductPage extends PureComponent {
 
   renderProduct = ({ productData }) => {
     const { allProductImageUrls, pricingData } = this.state;
-
+    const { ingredients = [], howToUse = "", benefits = "" } = productData;
     return (
       <div>
-        <div class="flex flex-col items-center mb-2 sm:mb-6 justify-center">
-          <div class="flex flex-col sm:flex sm:flex-row sm:mb-6">
-            <div class="w-300px h-300px md:w-450px md:h-450px self-center sm:self-start">
+        <div class="lg:grid lg:grid-cols-2">
+          <div class="bg-darkStone flex justify-center py-6 lg:py-12">
+            <div class="w-300px h-300px md:w-600px md:h-600px self-center justify-self-center">
               <Carousel
                 images={allProductImageUrls}
                 slidesToShow={1}
                 imageWidth={
-                  "w-min-300px h-min-300px md:w-min-450px md:h-min-450px"
+                  "w-min-300px h-min-300px md:w-min-600px md:h-min-600px"
                 }
                 handleImageClickFn={this.handleImageClickFn}
                 showCursorOnHover={false}
               />
             </div>
-            <div class="flex self-start w-screen pt-4 lg:pt-0 sm:max-w-xs md:pl-0 md:pr-4 lg:ml-14 sm:pb-4 px-5">
-              <ProductInfo
-                pricingData={pricingData}
-                productDetails={productData}
-              />
-            </div>
           </div>
-
-          <div className="max-w-2xl min-w-full pl-5 pr-3">
-            <div className="mx-auto w-full max-w-md rounded-2xl bg-white"></div>
+          <div class="flex pb-0 sm:pb-6 self-start w-full px-6 sm:px-16 pt-6 lg:py-12 bg-stone">
+            <ProductInfo
+              pricingData={pricingData}
+              productDetails={productData}
+            />
           </div>
+        </div>
+        {/* On Large Screens, show vertical tabs */}
+        <div class="hidden lg:block w-full px-16 py-6 flex bg-stone">
+          <Tab.Group vertical>
+            <span class="w-1/3">
+              <Tab.List className="flex flex-col">
+                <Tab
+                  className={({ selected }) =>
+                    `${TAB_BUTTON_STYLE} ${
+                      selected ? "text-slate-gray" : "text-gray-300"
+                    }`
+                  }
+                ></Tab>
+                <Tab
+                  className={({ selected }) =>
+                    `${TAB_BUTTON_STYLE} ${
+                      selected ? "text-slate-gray" : "text-gray-300"
+                    }`
+                  }
+                >
+                  How To Use
+                </Tab>
+                <Tab
+                  className={({ selected }) =>
+                    `${TAB_BUTTON_STYLE} ${
+                      selected ? "text-slate-gray" : "text-gray-300"
+                    }`
+                  }
+                >
+                  Ingredients
+                </Tab>
+              </Tab.List>
+            </span>
+            <span class="ml-8 w-2/3 pt-4 px-10">
+              <Tab.Panels>
+                <Tab.Panel class="text-lg leading-6">
+                  <div class={TAB_PANEL_STYLE}>Benefits</div>
+                  {benefits}
+                </Tab.Panel>
+                <Tab.Panel class="text-lg leading-6">
+                  <div class={TAB_PANEL_STYLE}>How To Use</div>
+                  {howToUse}
+                </Tab.Panel>
+                <Tab.Panel class="text-lg leading-8 tracking-wider">
+                  <div class={TAB_PANEL_STYLE}>Ingredients</div>
+                  {ingredients.join(", ")}
+                </Tab.Panel>
+              </Tab.Panels>
+            </span>
+          </Tab.Group>
+        </div>
+        {/* On Medium and Smaller Screens, show horizontal Disclosure menu */}
+        <div class="block lg:hidden w-full px-6 sm:px-16 pt-4 pb-10 bg-stone">
+          <Disclosure>
+            {({ open }) => (
+              <div class="border-b border-gray-300">
+                <Disclosure.Button className={DISCLOSURE_BUTTON_STYLE}>
+                  <div class="flex w-full justify-between">
+                    <span>Benefits</span>
+                    {open ? (
+                      <MinusIcon className="rotate-180 transform h-6 w-6 text-slate-gray" />
+                    ) : (
+                      <PlusIcon className="rotate-180 transform h-6 w-6 text-slate-gray" />
+                    )}
+                  </div>
+                </Disclosure.Button>
+                <Disclosure.Panel className={DISCLOSURE_PANEL_STLYE}>
+                  {benefits}
+                </Disclosure.Panel>
+              </div>
+            )}
+          </Disclosure>
+          <Disclosure>
+            {({ open }) => (
+              <div class="border-b border-gray-300">
+                <Disclosure.Button className={DISCLOSURE_BUTTON_STYLE}>
+                  <div class="flex w-full justify-between">
+                    <span>How To Use</span>
+                    {open ? (
+                      <MinusIcon className="rotate-180 transform h-6 w-6 text-slate-gray" />
+                    ) : (
+                      <PlusIcon className="rotate-180 transform h-6 w-6 text-slate-gray" />
+                    )}
+                  </div>
+                </Disclosure.Button>
+                <Disclosure.Panel className={DISCLOSURE_PANEL_STLYE}>
+                  {howToUse}
+                </Disclosure.Panel>
+              </div>
+            )}
+          </Disclosure>
+          <Disclosure>
+            {({ open }) => (
+              <div class="border-b border-gray-300">
+                <Disclosure.Button className={DISCLOSURE_BUTTON_STYLE}>
+                  <div class="flex w-full justify-between">
+                    <span>Ingredients</span>
+                    {open ? (
+                      <MinusIcon className="rotate-180 transform h-6 w-6 text-slate-gray" />
+                    ) : (
+                      <PlusIcon className="rotate-180 transform h-6 w-6 text-slate-gray" />
+                    )}
+                  </div>
+                </Disclosure.Button>
+                <Disclosure.Panel className={DISCLOSURE_PANEL_STLYE}>
+                  {ingredients.join(", ")}
+                </Disclosure.Panel>
+              </div>
+            )}
+          </Disclosure>
         </div>
       </div>
     );
@@ -116,13 +236,13 @@ class ProductPage extends PureComponent {
     if (isEmpty(productData)) return null;
 
     return (
-      <div class="bg-white">
+      <div class="bg-stone h-screen">
         <Navbar
           userCountry={userCountry}
           handleCountryChange={handleCountryChange}
         />
-        <div class="h-60px"></div>
-        <div class={`py-8 ${backgroundOpacity}`}>
+        <div class="h-80px"></div>
+        <div class={`${backgroundOpacity}`}>
           {this.renderProduct({ productData })}
         </div>
       </div>

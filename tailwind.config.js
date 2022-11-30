@@ -67,8 +67,9 @@ module.exports = {
         "slate-teal": "#3a5956",
         "dark-teal": "#195558",
         "light-purple": "#e6d9f8",
-        stone: "#ebebeb",
-        navItem: "#1c1c1f"
+        stone: "#f9f5f0",
+        darkStone: "#eae4dd",
+        navItem: "#1c1c1f",
       },
       gridTemplateColumns: {
         // Repeat with a min-width of 200px

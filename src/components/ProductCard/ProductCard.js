@@ -8,9 +8,7 @@ class ProductCard extends PureComponent {
 
   handleProductCardClick = async ({ productId }) => {
     const { history } = this.props;
-    history.push(
-      `/product?productId=${productId}`
-    );
+    history.push(`/product?productId=${productId}`);
   };
 
   handleMouseEnter = (e) => {
@@ -25,10 +23,11 @@ class ProductCard extends PureComponent {
     const { dbg_price, productDetails } = data;
     const { productName, brandName, mainImageUrl, productId } = productDetails;
     const s3ImageUrl = `https://s3.${REGION}.amazonaws.com/${S3_BUCKET}/${mainImageUrl}`;
+    const localCurrency = localStorage.getItem("localCurrency") || "£";
     return (
-      <div class="mb-8 p-4 sm:mb-4">
+      <div class="mb-4">
         <figure
-          class="max-w-20 mx-auto bg-white cursor-pointer transition-transform transform sm:hover:scale-105 sm:hover:shadow-lg hover:opacity-50 sm:hover:opacity-100"
+          class="h-full max-w-20 mx-auto bg-transparent cursor-pointer transition-transform transform sm:hover:shadow-md hover:opacity-50 sm:hover:opacity-100"
           onClick={() => this.handleProductCardClick({ productId: productId })}
         >
           <div>
@@ -43,18 +42,17 @@ class ProductCard extends PureComponent {
             </div>
           </div>
           <div class="h-1" />
-          <figcaption class="px-2 py-2 sm:py-4 sm:px-6">
-            <div class="text-base font-light text-slate-gray mb-2 uppercase">
+          <figcaption class="h-full pl-2 py-2 sm:py-4 sm:pl-4 flex flex-col content-between">
+            <div class="text-xs sm:text-sm lg:text-base text-slate-gray mb-2 uppercase">
               {brandName}
             </div>
             <div class="flex justify-between mb-4 text-slate-gray">
-              <div class="text-xs sm:text-lg text-slate-gray tracking-tight">
+              <div class="text-xs sm:text-base lg:text-lg text-slate-gray tracking-tighter font-bold">
                 {productName}
               </div>
             </div>
-
-            <div class="mb-2 sm:mb-4 flex justify-between w-full">
-              {dbg_price}
+            <div class="text-sm sm:text-base flex justify-between w-full">
+              {`~${localCurrency} ${dbg_price}`}
             </div>
           </figcaption>
         </figure>

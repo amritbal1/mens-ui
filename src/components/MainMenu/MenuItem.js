@@ -103,7 +103,7 @@ export default function MenuItem({
               <Popover.Panel static className="z-10 mx-auto">
                 <div
                   className={classNames(
-                    "w-full border flex flex-col py-1 absolute left-0 pl-3",
+                    "w-full shadow-md flex flex-col py-1 absolute left-0 pl-3",
                     "bg-white"
                   )}
                 >

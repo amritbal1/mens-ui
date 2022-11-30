@@ -27,29 +27,29 @@ const categoryConfig = [
 const skinConcernConfig = [
   {
     name: "Dry Skin",
-    key: "skinTypes",
-    value: "Dry",
+    key: "skinConcerns",
+    value: "dry-skin",
     imageUrl: moisturiser,
   },
   {
     name: "Sensitive Skin",
-    key: "skinTypes",
-    value: "Sensitive",
+    key: "skinConcerns",
+    value: "sensitive-skin",
     imageUrl: moisturiser,
   },
   {
     name: "Oily Skin",
-    key: "skinTypes",
-    value: "Oily",
+    key: "skinConcerns",
+    value: "oily-skin",
     imageUrl: moisturiser,
   },
   {
     name: "Anti Aging",
     key: "skinConcerns",
-    value: "Anti-aging",
+    value: "anti-aging",
     imageUrl: moisturiser,
   },
-  { name: "Acne", key: "skinConcerns", value: "Acne", imageUrl: moisturiser },
+  { name: "Acne", key: "skinConcerns", value: "acne", imageUrl: moisturiser },
 ];
 
 class HomePage extends PureComponent {

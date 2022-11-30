@@ -1,15 +1,11 @@
 import React, { PureComponent } from "react";
-import {
-  ArrowTopRightOnSquareIcon,
-  ChevronUpIcon,
-} from "@heroicons/react/24/solid";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 import { CURRENCIES } from "../../utils/currencyEnum";
 import { isEmpty } from "../../utils/objectUtils";
-import { Disclosure } from "@headlessui/react";
 class ProductInfo extends PureComponent {
   render() {
     const { productDetails, pricingData } = this.props;
-    const { brandName, productName, ingredients } = productDetails;
+    const { brandName, productName } = productDetails;
     const country =
       pricingData && pricingData.country ? pricingData.country : "GB";
     const localCurrency = CURRENCIES[country];
@@ -20,17 +16,17 @@ class ProductInfo extends PureComponent {
         : "";
     const { price } = affiliateLink;
     return (
-      <div class="h-full w-full flex flex-col sm:justify-between">
-        <div>
+      <div class="h-full w-full flex flex-col sm:justify-between bg-stone">
+        <div class="lg:mb-8">
           <div class="flex mb-2 mr-2 sm:mr-0">
             <div class="sm:px-0">
-              <div class="text-base font-light text-slate-gray mb-1">
+              <div class="text-sm sm:text-base lg:text-xl font-semibold tracking-tight text-slate-gray mb-1 uppercase">
                 {brandName}
               </div>
             </div>
           </div>
           <div>
-            <div class="uppercase font-bold tracking-wide-x text-base text-slate-gray sm:px-0 mb-6">
+            <div class="uppercase font-bold tracking-wide-x text-lg sm:text-xl lg:text-3xl text-slate-gray sm:px-0 mb-6">
               {productName}
             </div>
           </div>
@@ -38,11 +34,11 @@ class ProductInfo extends PureComponent {
         <div class="mb-4 sm:mt-6">
           <div class="mb-4">
             {price && (
-              <span class="text-slate-gray uppercase font-light">
+              <div class="text-slate-gray uppercase text-base sm:text-xl">
                 {`~${localCurrency} ${(Math.round(price * 100) / 100).toFixed(
                   2
                 )}`}
-              </span>
+              </div>
             )}
             <a
               href={affiliateLink.productUrl || ""}
@@ -50,43 +46,25 @@ class ProductInfo extends PureComponent {
               rel="noopener noreferrer"
             >
               <button
-                class="mt-2 w-full bg-gray-900 text-gray-50 tracking-wide py-3 sm:py-2 px-6 shadow-md focus:outline-none sm:hover:opacity-60"
+                class="mt-2 lg:mt-6 w-full lg:w-96 bg-gray-900 text-gray-50 tracking-wide py-2 sm:py-3 lg:py-4 px-6 shadow-md focus:outline-none sm:hover:opacity-60"
                 onMouseEnter={this.handleMouseEnter}
                 onMouseLeave={this.handleMouseLeave}
               >
-                <div class="w-full text-sm flex justify-between items-center">
+                <div class="w-full text-base sm:text-lg flex justify-between items-center">
                   <div />
                   <div>Shop Now</div>
                   <div>
-                    <ArrowTopRightOnSquareIcon className="self-end inline h-5 w-5 ml-3" />
+                    <ArrowTopRightOnSquareIcon className="self-start inline h-5 w-5 sm:h-6 sm:w-6 ml-3 stroke-2" />
                   </div>
                 </div>
               </button>
             </a>
           </div>
-          {!isEmpty(ingredients) && (
-            <div className="w-full">
-              <div className="mx-auto w-full max-w-md rounded-2xl bg-white p-2">
-                <Disclosure>
-                  {({ open }) => (
-                    <>
-                      <Disclosure.Button className="flex w-full justify-between border-b border-gray-400 py-1 text-left text-sm font-light text-slate-gray pr-1">
-                        <span>Ingredients</span>
-                        <ChevronUpIcon
-                          className={`${
-                            open ? "rotate-180 transform" : ""
-                          } h-5 w-5 text-slate-gray`}
-                        />
-                      </Disclosure.Button>
-                      <Disclosure.Panel className="pt-4 pb-2 text-sm text-gray-500 font-light sm:max-h-40 sm:overflow-y-scroll scrollbar">
-                        {ingredients.join(", ")}
-                      </Disclosure.Panel>
-                    </>
-                  )}
-                </Disclosure>
-              </div>
-            </div>
-          )}
+          <div class="pt-2 sm:pt-8 text-sm sm:text-lg">
+            {
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a arcu felis. Quisque eleifend mauris ut neque fringilla, ac tempus orci ullamcorper. Proin molestie neque in laoreet posuere. "
+            }
+          </div>
         </div>
       </div>
     );

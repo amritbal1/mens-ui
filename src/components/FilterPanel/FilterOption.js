@@ -49,7 +49,7 @@ class FilterOption extends Component {
 
     return (
       <div
-        class="cursor-pointer px-1 py-1 sm:px-2 sm:py-0"
+        class="cursor-pointer py-1 sm:py-0"
         selected={isSelected}
         onMouseEnter={this.handleOptionMouseEnter}
         onMouseLeave={this.handleOptionMouseLeave}
