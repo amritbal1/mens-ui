@@ -1,16 +1,27 @@
 import React, { Component } from "react";
 import { CheckIcon } from "@heroicons/react/24/outline";
-import {
-  checkIconStyle,
-  getCheckboxStyle,
-} from "./utils/filterPillUtils/checkboxStyling";
+import { checkIconStyle } from "./utils/filterPillUtils/checkboxStyling";
 import { getValueFromUrl } from "../../utils/urlUtils/urlValueGetter";
 
-class FilterOption extends Component {
-  // state = { showOnlyButton: false, hoverOnlyButton: false };
+const CHECKBOX_STYLE = `bg-white border border-gray-300 w-24px h-24px mr-2 flex-shrink-0 flex items-center justify-center`;
 
-  handleClick = ({isSelected }) => {
-    const { filterField, id, allValuesField, isSingleSelect, filterOptionClickFn, urlParam } = this.props;
+const HOVER_CHECKBOX_STYLE = `bg-white border border-gray-500 w-24px h-24px mr-2 flex-shrink-0 flex items-center justify-center`;
+
+const SELECTED_CHECKBOX_STYLE = `bg-white border border-black w-24px h-24px mr-2 flex-shrink-0 flex items-center justify-center`;
+class FilterOption extends Component {
+  state = {
+    checkboxStyle: CHECKBOX_STYLE,
+  };
+
+  handleClick = ({ isSelected }) => {
+    const {
+      filterField,
+      id,
+      allValuesField,
+      isSingleSelect,
+      filterOptionClickFn,
+      urlParam,
+    } = this.props;
     const newSelectionState = !isSelected;
     filterOptionClickFn({
       optionId: id,
@@ -18,48 +29,24 @@ class FilterOption extends Component {
       isSelected: newSelectionState,
       allValuesField,
       isSingleSelect,
-      urlParam
+      urlParam,
     });
   };
 
-  // handleOnlyButtonClick = () => {
-  //   const { filterField, id, allValuesField, filterOptionClickFn, urlParam } = this.props;
-  //   filterOptionClickFn({
-  //     optionId: id,
-  //     filterField,
-  //     isSelected: true,
-  //     allValuesField,
-  //     isOnlyOption: true,
-  //     urlParam
-  //   });
-  // };
+  handleOptionMouseEnter = () => {
+    this.setState({ checkboxStyle: HOVER_CHECKBOX_STYLE });
+  };
 
-  // handleOptionMouseEnter = () => {
-  //   this.setState({ showOnlyButton: true });
-  // };
-
-  // handleOptionMouseLeave = () => {
-  //   this.setState({ showOnlyButton: false });
-  // };
-
-  // handleOnlyButtonMouseEnter = () => {
-  //   this.setState({ hoverOnlyButton: true });
-  // };
-
-  // handleOnlyButtonMouseLeave = () => {
-  //   this.setState({ hoverOnlyButton: false });
-  // };
+  handleOptionMouseLeave = () => {
+    this.setState({ checkboxStyle: CHECKBOX_STYLE });
+  };
 
   getFilterOption = () => {
     const { label, id, urlParam } = this.props;
-    // const { showOnlyButton, hoverOnlyButton } = this.state;
+    const { checkboxStyle } = this.state;
     const value = getValueFromUrl({ param: urlParam });
     const isSelected = Array.isArray(value) ? value.includes(id) : value === id;
-    // const onlyButtonDisplayStyle = showOnlyButton ? "" : "hidden";
-    // const onlyButtonHoverStyle = hoverOnlyButton
-    //   ? "bg-lilac-50 text-lilac-700"
-    //   : "text-lilac-500";
-    // const onlyButtonStyle = `${onlyButtonHoverStyle} ${onlyButtonDisplayStyle} rounded-md px-2 py-1 my-auto text-xs`;
+
     return (
       <div
         class="cursor-pointer px-1 py-1 sm:px-2 sm:py-0"
@@ -69,22 +56,14 @@ class FilterOption extends Component {
       >
         <div class="flex justify-between w-min-165px">
           <div
-            class="flex py-0.5 sm:py-1 w-full items-center sm:hover:bg-lilac-50"
+            class="flex py-1 sm:py-2 w-full items-center"
             onClick={() => this.handleClick({ isSelected })}
           >
-            <div class={getCheckboxStyle()}>
+            <div class={isSelected ? SELECTED_CHECKBOX_STYLE : checkboxStyle}>
               {isSelected && <CheckIcon class={checkIconStyle} />}
             </div>
-            <span class="text-sm font-light text-slate-gray">{label}</span>
+            <span class="text-base font-light text-slate-gray">{label}</span>
           </div>
-          {/* <span
-            class={onlyButtonStyle}
-            onMouseEnter={this.handleOnlyButtonMouseEnter}
-            onMouseLeave={this.handleOnlyButtonMouseLeave}
-            onClick={() => this.handleOnlyButtonClick()}
-          >
-            Only
-          </span> */}
         </div>
       </div>
     );

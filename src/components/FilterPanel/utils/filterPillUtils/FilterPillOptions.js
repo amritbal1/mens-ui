@@ -1,5 +1,5 @@
 import FilterOption from "../../FilterOption";
-import SelectAllOption from "./selectAllOption";
+import UnselectAllOption from "./unselectAllOption";
 import PricePill from "./PricePill/PricePill";
 import React, { useEffect, useRef } from "react";
 import { FILTER_PILL_NAME } from "../../../../utils/enums";
@@ -11,26 +11,12 @@ const FilterPillOptions = ({
   label,
   urlParam,
   isSingleSelect = false,
-  handleClickOutsideOptionsContainer,
   filterOptionClickFn,
 }) => {
-  const handleClick = (e) => {
-    const clickedOutsideOptionsContainer =
-      optionsRef.current && !optionsRef.current.contains(e.target);
-    handleClickOutsideOptionsContainer({ clickedOutsideOptionsContainer });
-  };
 
   const optionsRef = useRef(null);
 
   useEffect(() => {}, [optionsRef]);
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClick);
-    return () => {
-      document.removeEventListener("mousedown", handleClick);
-    };
-    //eslint-disable-next-line
-  }, []);
 
   if (label === FILTER_PILL_NAME.PRICE) {
     return (
@@ -66,7 +52,7 @@ const FilterPillOptions = ({
   ) : (
     <div ref={optionsRef}>
       <div>
-        <SelectAllOption
+        <UnselectAllOption
           key={filterField}
           allValuesField={allValuesField}
           filterField={filterField}

@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withRouter } from "react-router-dom";
 import { Switch, Route } from "react-router-dom";
-import LandingPageProductFinder from "./pages/LandingPageProductFinder";
+import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import RecommendationWrapper from "./pages/RecommendationWrapper.js";
 import AppProvider from "./AppProvider";
@@ -59,12 +59,12 @@ class App extends PureComponent {
                             backgroundOpacity,
                             userCountry,
                           };
-                          return <LandingPageProductFinder {...allProps} />;
+                          return <HomePage {...allProps} />;
                         }}
                       />
                       <Route
                         exact
-                        path="/finder-results"
+                        path="/results"
                         render={() => {
                           return (
                             <RecommendationWrapper userCountry={userCountry} />

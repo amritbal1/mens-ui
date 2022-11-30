@@ -7,26 +7,8 @@ import { isEmpty } from "../utils/objectUtils";
 import { REGION, S3_BUCKET } from "../aws-config";
 import Navbar from "../components/Navbar/Navbar";
 import Carousel from "../components/Carousel/Carousel";
-import SkinInfo from "../components/SkinInfo/SkinInfo";
-import AttributeInfo from "../components/AttributeInfo/AttributeInfo";
-import {
-  SKIN_TYPE_ATTRIBUTES,
-  SKIN_CONCERN_ATTRIBUTES,
-  ATTRIBUTES,
-} from "../components/ProductCard/attributes";
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
-import { getArrayValue } from "../utils/urlUtils/urlValueGetter";
-import {
-  HandThumbUpIcon,
-  HandThumbDownIcon,
-} from "@heroicons/react/24/outline";
-import { Disclosure } from "@headlessui/react";
 import { getPricingData } from "../services/PricingDataService";
 
-const DISCLOSURE_BUTTON_STYLE =
-  "w-full flex justify-between rounded-lg bg-lilac-100 px-4 py-2 text-left text-sm font-medium text-dark-teal hover:bg-lilac-200 focus:outline-none focus-visible:ring focus-visible:ring-lilac-500 focus-visible:ring-opacity-75 w-96";
-const DISCLOSURE_PANEL_STYLE = "pb-2 text-sm text-gray-500";
-const CHEVRON_STYLE = "h-5 w-5 text-dark-teal";
 //Page to display information for a single product
 class ProductPage extends PureComponent {
   state = {
@@ -44,13 +26,10 @@ class ProductPage extends PureComponent {
 
   async componentDidMount() {
     const searchParams = queryString.parse(this.props.location.search);
-    const { productId, skinType, skinConcern } = searchParams;
-    const skinConcerns = getArrayValue({ parameterValue: skinConcern });
+    const { productId } = searchParams;
     const pricingData = await getPricingData({ productId });
     const productData = await getProductData({
       productId,
-      skinType,
-      skinConcerns,
     });
     if (!productData) return;
     const { additionalImages } = productData;
@@ -99,31 +78,6 @@ class ProductPage extends PureComponent {
 
   renderProduct = ({ productData }) => {
     const { allProductImageUrls, pricingData } = this.state;
-    const {
-      overallMetrics: {
-        attributeAnalysis,
-        skinTypeAnalysis,
-        skinConcernAnalysis,
-      },
-      querySkinType,
-      querySkinConcern,
-    } = productData;
-    const matchingSkinType = skinTypeAnalysis.find(
-      (el) => el.attribute === SKIN_TYPE_ATTRIBUTES[querySkinType]
-    );
-
-    const amendedAnalysisData = skinConcernAnalysis.map((data) => {
-      return data.attribute === "dry skin"
-        ? { ...data, attribute: "dryness" }
-        : data;
-    });
-
-    const matchingSkinConcerns = querySkinConcern.map((skinConcern) => {
-      const matching = amendedAnalysisData.find(
-        (el) => el.attribute === SKIN_CONCERN_ATTRIBUTES[skinConcern]
-      );
-      return matching.overallScore;
-    });
 
     return (
       <div>
@@ -144,124 +98,12 @@ class ProductPage extends PureComponent {
               <ProductInfo
                 pricingData={pricingData}
                 productDetails={productData}
-                attributeAnalysis={attributeAnalysis}
               />
             </div>
           </div>
 
           <div className="max-w-2xl min-w-full pl-5 pr-3">
-            <div className="mx-auto w-full max-w-md rounded-2xl bg-white">
-              {/* MATCHING SCORES  */}
-              <div class="text-sm font-light text-slate-gray pb-6 sm:pb-8 self-start sm:self-center sm:flex">
-                <span class="flex flex-shrink-0 items-start sm:mr-5">
-                  {` ${querySkinType} skin`}:
-                  <span class="flex flex-shrink-0 text-sm font-normal text-slate-gray ml-1">
-                    {matchingSkinType.overallScore}%{" "}
-                    {matchingSkinType.overallScore >= 50 ? (
-                      <HandThumbUpIcon class="inline self-center h-3 w-3 ml-1" />
-                    ) : (
-                      <HandThumbDownIcon class="inline self-center h-3 w-3 ml-1" />
-                    )}
-                  </span>
-                </span>
-                {querySkinConcern.map((concern, i) => {
-                  return (
-                    <span class="flex flex-shrink-0 items-start sm:mr-5">
-                      {` ${concern === "Breakout" ? "Breakouts" : concern}`}:
-                      <span class="flex flex-shrink-0 text-sm font-normal text-slate-gray ml-1">
-                        {matchingSkinConcerns[i]}%{" "}
-                        {matchingSkinConcerns[i] >= 50 ? (
-                          <HandThumbUpIcon class="inline self-center h-3 w-3 ml-1" />
-                        ) : (
-                          <HandThumbDownIcon class="inline self-center h-3 w-3 ml-1" />
-                        )}
-                      </span>
-                    </span>
-                  );
-                })}
-              </div>
-              {/* REVIEWS */}
-              <div class="font-light text-sm font-normal uppercase tracking-wider text-slate-gray pb-4">
-                What the reviews say
-              </div>
-
-              <Disclosure>
-                {({ open }) => (
-                  <>
-                    <Disclosure.Button className={DISCLOSURE_BUTTON_STYLE}>
-                      <span>Skin Types</span>
-                      {open ? (
-                        <ChevronDownIcon className={CHEVRON_STYLE} />
-                      ) : (
-                        <ChevronUpIcon className={CHEVRON_STYLE} />
-                      )}
-                    </Disclosure.Button>
-                    <Disclosure.Panel className={DISCLOSURE_PANEL_STYLE}>
-                      <SkinInfo
-                        analysisData={skinTypeAnalysis}
-                        infoValue={"skinType"}
-                        queryTerm={querySkinType}
-                      />
-                    </Disclosure.Panel>
-                  </>
-                )}
-              </Disclosure>
-              <Disclosure as="div" className="mt-2">
-                {({ open }) => (
-                  <>
-                    <Disclosure.Button className={DISCLOSURE_BUTTON_STYLE}>
-                      <span>Skin Concerns</span>
-                      {open ? (
-                        <ChevronDownIcon className={CHEVRON_STYLE} />
-                      ) : (
-                        <ChevronUpIcon className={CHEVRON_STYLE} />
-                      )}
-                    </Disclosure.Button>
-                    <Disclosure.Panel className={DISCLOSURE_PANEL_STYLE}>
-                      <SkinInfo
-                        analysisData={skinConcernAnalysis}
-                        infoValue={"skinConcern"}
-                        queryTerm={querySkinConcern}
-                      />
-                    </Disclosure.Panel>
-                  </>
-                )}
-              </Disclosure>
-              {attributeAnalysis.map((attribute) => {
-                const { attribute: attributeName, overallScore } = attribute;
-                return (
-                  <Disclosure as="div" className="mt-2">
-                    {({ open }) => (
-                      <>
-                        <Disclosure.Button className={DISCLOSURE_BUTTON_STYLE}>
-                          <span>{ATTRIBUTES[attributeName]}</span>
-                          <div class="flex">
-                            <span class="mr-1">{overallScore}%</span>
-                            {overallScore > 60 ? (
-                              <span>
-                                <HandThumbUpIcon class="h-4 w-4 inline mr-4" />
-                              </span>
-                            ) : (
-                              <span>
-                                <HandThumbDownIcon class="h-4 w-4 inline mr-4" />
-                              </span>
-                            )}
-                            {open ? (
-                              <ChevronDownIcon className={CHEVRON_STYLE} />
-                            ) : (
-                              <ChevronUpIcon className={CHEVRON_STYLE} />
-                            )}
-                          </div>
-                        </Disclosure.Button>
-                        <Disclosure.Panel className={DISCLOSURE_PANEL_STYLE}>
-                          <AttributeInfo analysisData={attribute} />
-                        </Disclosure.Panel>
-                      </>
-                    )}
-                  </Disclosure>
-                );
-              })}
-            </div>
+            <div className="mx-auto w-full max-w-md rounded-2xl bg-white"></div>
           </div>
         </div>
       </div>

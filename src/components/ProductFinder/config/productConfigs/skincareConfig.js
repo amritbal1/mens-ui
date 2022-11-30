@@ -34,45 +34,54 @@ export const skincareConfig = {
     {
       criteria: "skinType",
       options: [
-        { displayValue: "Oily", value: "Oily", imageUrl: oily.default },
-        { displayValue: "Dry", value: "Dry", imageUrl: dry.default },
+        { displayValue: "HA", value: "Oily", imageUrl: oily.default },
+        { displayValue: "Retinol", value: "Dry", imageUrl: dry.default },
         {
-          displayValue: "Combination",
+          displayValue: "BHA",
           value: "Combination",
           imageUrl: combination.default,
         },
         {
-          displayValue: "Sensitive",
+          displayValue: "AHA",
           value: "Sensitive",
           imageUrl: sensitive.default,
         },
+        { displayValue: "Vitamin C", value: "Dry", imageUrl: dry.default },
+        { displayValue: "Niacinamide", value: "Dry", imageUrl: dry.default },
+        { displayValue: "Squalane", value: "Dry", imageUrl: dry.default },
+        { displayValue: "Custom", value: "Dry", imageUrl: dry.default },
       ],
     },
     {
       criteria: "skinConcern",
       options: [
         {
-          displayValue: "Aging",
+          displayValue: "Alcohol",
           value: "Aging",
           imageUrl: aging.default,
         },
         {
-          displayValue: "Pigmentation",
+          displayValue: "Parabens",
           value: "Pigmentation",
           imageUrl: pigmentation.default,
         },
         {
-          displayValue: "Oiliness",
+          displayValue: "Silicon",
           value: "Oiliness",
           imageUrl: shine.default,
         },
         {
-          displayValue: "Breakouts",
+          displayValue: "Sulfate",
           value: "Breakout",
           imageUrl: breakout.default,
         },
         {
-          displayValue: "Dryness",
+          displayValue: "Fragrance",
+          value: "Dryness",
+          imageUrl: dryness.default,
+        },
+        {
+          displayValue: "Custom",
           value: "Dryness",
           imageUrl: dryness.default,
         },

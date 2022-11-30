@@ -1,18 +1,6 @@
-import {
-  // HandThumbUpIcon,
-  // HandThumbDownIcon,
-  ArrowRightIcon,
-} from "@heroicons/react/24/outline";
 import { PureComponent } from "react";
 import { REGION, S3_BUCKET } from "../../aws-config";
 import "./circle.css";
-import queryString from "query-string";
-import { getMatchDescriptor } from "../../utils/matchScore";
-
-const isSmallBreakpoint = window.screen.width <= 640;
-const styleObj = isSmallBreakpoint
-  ? { "--w": "3.3rem", "--l": "0.7rem" }
-  : { "--w": "5.3rem", "--l": "0.95rem" };
 class ProductCard extends PureComponent {
   state = {
     displayChevron: true,
@@ -20,11 +8,8 @@ class ProductCard extends PureComponent {
 
   handleProductCardClick = async ({ productId }) => {
     const { history } = this.props;
-    const searchParams = queryString.parse(window.location.search);
-    const skinType = searchParams["skinTypes"];
-    const skinConcern = searchParams["skinConcerns"];
     history.push(
-      `/product?productId=${productId}&skinType=${skinType}&skinConcern=${skinConcern}`
+      `/product?productId=${productId}`
     );
   };
 
@@ -37,79 +22,39 @@ class ProductCard extends PureComponent {
 
   render() {
     const { data } = this.props;
-    const { dbg_recommendationScore, productDetails } = data;
-    // const [price] = dbg_price;
+    const { dbg_price, productDetails } = data;
     const { productName, brandName, mainImageUrl, productId } = productDetails;
     const s3ImageUrl = `https://s3.${REGION}.amazonaws.com/${S3_BUCKET}/${mainImageUrl}`;
-    // const { criteriaData } = reviewData;
-    // const { skinTypeAnalysis, skinConcernAnalysis } = criteriaData;
-    // const { skinType, overallScore: skinTypeOverallScore } = skinTypeAnalysis;
-    // const { skinConcern, overallScore: skinConcernOverallScore } =
-    //   skinConcernAnalysis;
     return (
-      <div class="p-0.5 sm:p-4 mb-8 sm:mb-4">
+      <div class="mb-8 p-4 sm:mb-4">
         <figure
-          class="border rounded-xl max-w-20 mx-auto bg-white cursor-pointer transition-transform transform sm:hover:scale-105 sm:hover:shadow-lg hover:opacity-50 sm:hover:opacity-100 shadow-xl"
+          class="max-w-20 mx-auto bg-white cursor-pointer transition-transform transform sm:hover:scale-105 sm:hover:shadow-lg hover:opacity-50 sm:hover:opacity-100"
           onClick={() => this.handleProductCardClick({ productId: productId })}
         >
-          <div class="flex justify-end mt-4 mr-4">
-            <div class="flex items-center justify-center rounded-full">
-              <div class="flex flex-col justify-center items-center">
-                <div
-                  class="pie"
-                  style={{
-                    "--p": dbg_recommendationScore,
-                    "--c": "#73B8B2",
-                    "--b": "3px",
-                    ...styleObj,
-                  }}
-                >
-                  <div class="flex flex-col justify-center items-center">
-                    <div class="text-sm sm:text-xl text-slate-gray font-thin mb-1 sm:mb-2">
-                      {dbg_recommendationScore}
-                    </div>
-                    <div class="text-xxs sm:text-xs text-slate-gray font-extralight">
-                      Matching
-                    </div>
-                    <div class="text-xxs sm:text-xs text-slate-gray font-extralight">
-                      Score
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           <div>
             <div class="relative pt-full">
               <div class="absolute inset-0 h-full w-full my-auto mx-auto">
                 <img
                   src={s3ImageUrl}
                   alt="product"
-                  class="h-full w-full object-cover rounded-t-md"
+                  class="h-full w-full object-cover"
                 />
               </div>
             </div>
           </div>
-          <div class="h-2 border-b" />
+          <div class="h-1" />
           <figcaption class="px-2 py-2 sm:py-4 sm:px-6">
-            <div class="text-xs font-light text-slate-gray mb-2">
+            <div class="text-base font-light text-slate-gray mb-2 uppercase">
               {brandName}
             </div>
             <div class="flex justify-between mb-4 text-slate-gray">
-              <div class="text-xs sm:text-sm tracking-wide text-slate-gray">
+              <div class="text-xs sm:text-lg text-slate-gray tracking-tight">
                 {productName}
               </div>
             </div>
 
             <div class="mb-2 sm:mb-4 flex justify-between w-full">
-              <div class="text-slate-gray font-semibold uppercase text-sm sm:text-base">{`${getMatchDescriptor(
-                {
-                  overallScore: dbg_recommendationScore,
-                }
-              )} Match`}</div>
-              <div class="pt-1 pb-1">
-                <ArrowRightIcon class="text-slate-gray h-4 w-5 self-end mr-2" />
-              </div>
+              {dbg_price}
             </div>
           </figcaption>
         </figure>

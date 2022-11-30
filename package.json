@@ -24,6 +24,7 @@
     "react-scripts": "4.0.3",
     "react-select": "^4.1.0",
     "react-slick": "^0.28.1",
+    "react-sliding-pane": "^7.3.0",
     "slick-carousel": "^1.8.1"
   },
   "scripts": {

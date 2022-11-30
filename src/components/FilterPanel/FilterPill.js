@@ -57,10 +57,9 @@ class FilterPill extends Component {
       });
     } else {
       filterOptionClickFn({
-        isSelectAll: true,
+        isUnselectAll: false,
         allValuesField,
         filterField,
-        isSelectAllSelected: false,
         urlParam: urlParam,
       });
     }

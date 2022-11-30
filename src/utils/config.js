@@ -69,9 +69,9 @@ export const PRODUCT_CHARACTERISTICS_MAP_REVIEW_PAGE = {
 ///////BRANDS/////////
 
 const brandOptions = [
-  { value: "Antipodes", displayValue: "Antipodes" },
-  { value: "Biossance", displayValue: "Biossance" },
-  { value: "Evolve Organic Beauty", displayValue: "Evolve Organic Beauty" },
+  { value: "Elemis", displayValue: "Elemis" },
+  { value: "La Roche Posay", displayValue: "La Roche Posay" },
+  { value: "First Aid", displayValue: "First Aid" },
   { value: "Kora Organics", displayValue: "Kora Organics" },
 ];
 

@@ -26,12 +26,12 @@ export const getScreenToRender = ({
     <Screen
       key={"1"}
       index={"1"}
-      title={"What is your skin type?"}
+      title={"Select Included Ingredients"}
       config={skincareConfig.reviews[0].options}
       parentAnswerStateVariable={"reviewAnswerSkinTypes"}
       previousAnswers={reviewAnswerSkinTypes}
       handleOptionClick={handleOptionClick}
-      isMultiSelect={false}
+      isMultiSelect={true}
       includeTooltip={true}
       {...commonProps}
     />
@@ -40,7 +40,7 @@ export const getScreenToRender = ({
     <Screen
       key={"2"}
       index={"2"}
-      title={"What are your skin concerns?"}
+      title={"Select excluded ingredients"}
       config={skincareConfig.reviews[1].options}
       parentAnswerStateVariable={"reviewAnswerSkinConcerns"}
       previousAnswers={reviewAnswerSkinConcerns}

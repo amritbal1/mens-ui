@@ -51,12 +51,14 @@ class Navbar extends PureComponent {
 
   render() {
     const { selectedCountryOption } = this.state;
+    const { isFiltersPaneOpen = false } = this.props;
+    const Z_INDEX = isFiltersPaneOpen ? "" : "z-10";
     return (
       <div
         ref={this.wrapperRef}
-        class={`fixed h-60px top-0 z-50 bg-lilac-10 w-full`}
+        class={`fixed h-60px top-0 bg-lilac-10 w-full ${Z_INDEX}`}
       >
-        <Disclosure as="nav" className={`bg-white z-50 box-shadow-bottom`}>
+        <Disclosure as="nav" className={`bg-white ${Z_INDEX}`}>
           {({ open }) => (
             <>
               <div className="mx-auto px-2 sm:px-6 lg:px-16">

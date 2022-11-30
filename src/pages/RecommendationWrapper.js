@@ -1,23 +1,33 @@
 import React, { Component } from "react";
+import {
+  AdjustmentsHorizontalIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 import { getProductResultsData } from "../services/ProductResultsService/ProductResultsService";
 import { isEmpty } from "../utils/objectUtils";
 import { createResultsPagePayload } from "../utils/payloadUtils/payloadCreators/createResultsPagePayload";
 import Navbar from "../components/Navbar/Navbar";
 import RecommendationPage from "./RecommendationPage";
-import FilterPanel from "../components/FilterPanel/FilterPanel";
 import { getFilterPillsConfig } from "../components/FilterPanel/utils/filterPillUtils/getFilterPillsConfig";
 import {
   getValueFromUrl,
   splitArray,
 } from "../utils/urlUtils/urlValueGetter.js";
 import { setResultsPageUrl } from "../utils/urlUtils/urlValueSetter.js";
-import { configValues } from "../utils/config";
 import { withRouter } from "react-router-dom";
 import queryString from "query-string";
+import FiltersBar from "../components/FiltersBar/FiltersBar";
+import SlidingPane from "react-sliding-pane";
+import "../css/react-sliding-pane.css";
 
 class RecommendationWrapper extends Component {
   state = {
     results: [],
+    isPaneOpen: false,
+  };
+
+  handleMobileFiltersClick = () => {
+    this.setState({ isPaneOpen: true });
   };
 
   async componentDidMount() {
@@ -47,18 +57,15 @@ class RecommendationWrapper extends Component {
     filterField,
     optionId,
     isSelected,
-    isSelectAll,
-    isSelectAllSelected,
-    allValuesField,
+    isUnselectAll,
     isOnlyOption,
     isSingleSelect = false,
     urlParam,
   }) => {
     //filterField is the filter criteria e.g. filterBrand. optionId is the option selected within that criteria e.g. (Obagi)
     let filterValue;
-    if (isSelectAll) {
-      const allOptions = configValues[allValuesField];
-      filterValue = isSelectAllSelected ? allOptions : [];
+    if (isUnselectAll) {
+      filterValue = [];
     } else {
       if (
         filterField === "filterMinPrice" ||
@@ -103,7 +110,7 @@ class RecommendationWrapper extends Component {
 
   render() {
     const { results } = this.state;
-    const filterPillsConfig = getFilterPillsConfig({
+    const filtersConfig = getFilterPillsConfig({
       filterOptionClickFn: this.filterOptionClickFn,
     });
     return (
@@ -113,15 +120,41 @@ class RecommendationWrapper extends Component {
     via-lilac-100
     to-lilac-200"
       >
-        <Navbar userCountry={this.props.userCountry} />
+        <Navbar
+          userCountry={this.props.userCountry}
+          isFiltersPaneOpen={this.state.isPaneOpen}
+        />
         <div class="h-60px"></div>
-        <div class="bg-gradient-to-r from-lilac-50 via-lilac-100 to-lilac-200">
-          <div class="py-6 sm:py-10 px-5 sm:px-10 text-slate-gray text-base sm:text-xl font-light tracking-tight text-center font-montserrat">
-            Analysis of thousands of reviews shows these products are the
-            <b> perfect matches</b> for you!
+        <div class="flex flex-col lg:flex-row px-4 pt-10 bg-white min-h-screen">
+          <div class="hidden lg:block w-80 mr-4">
+            <FiltersBar filtersConfig={filtersConfig} />
           </div>
-          <div class="px-4 mb-4">
-            <FilterPanel filterPillsConfig={filterPillsConfig} />
+          <div class="block lg:hidden w-80 mr-4">
+            <div
+              onClick={this.handleMobileFiltersClick}
+              class="flex items-center"
+            >
+              <AdjustmentsHorizontalIcon class="h-5 w-5 inline mr-2 text-slate-gray" />
+              Filters
+            </div>
+            <SlidingPane
+              className="some-custom-class"
+              overlayClassName="some-custom-overlay-class"
+              isOpen={this.state.isPaneOpen}
+              hideHeader={true}
+              closeIcon={
+                <div>
+                  <XMarkIcon class="h-5 w-5" />
+                </div>
+              }
+              onRequestClose={() => {
+                // triggered on "<" on left top click or on outside click
+                this.setState({ isPaneOpen: false });
+              }}
+            >
+              <FiltersBar filtersConfig={filtersConfig} />
+              <br />
+            </SlidingPane>
           </div>
           <div>
             <RecommendationPage results={results} />

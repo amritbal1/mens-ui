@@ -24,13 +24,13 @@ class ProductInfo extends PureComponent {
         <div>
           <div class="flex mb-2 mr-2 sm:mr-0">
             <div class="sm:px-0">
-              <div class="text-sm font-light text-slate-gray mb-1">
+              <div class="text-base font-light text-slate-gray mb-1">
                 {brandName}
               </div>
             </div>
           </div>
           <div>
-            <div class="uppercase tracking-wide-x text-base text-slate-gray sm:px-0 mb-6">
+            <div class="uppercase font-bold tracking-wide-x text-base text-slate-gray sm:px-0 mb-6">
               {productName}
             </div>
           </div>
@@ -50,7 +50,7 @@ class ProductInfo extends PureComponent {
               rel="noopener noreferrer"
             >
               <button
-                class="mt-2 w-full bg-gray-900 text-gray-50 tracking-wide py-3 sm:py-2 px-6 rounded-lg shadow-md focus:outline-none sm:hover:opacity-60"
+                class="mt-2 w-full bg-gray-900 text-gray-50 tracking-wide py-3 sm:py-2 px-6 shadow-md focus:outline-none sm:hover:opacity-60"
                 onMouseEnter={this.handleMouseEnter}
                 onMouseLeave={this.handleMouseLeave}
               >

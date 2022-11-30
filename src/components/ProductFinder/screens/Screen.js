@@ -4,8 +4,6 @@ import { getSelectableOptions } from "../utils/optionsCreator";
 import { FinderHeading } from "../../shared/headings";
 import { getPreviouslySelectedAnswers } from "../utils/screenRenderer";
 import { getButtons } from "../utils/buttonDisabledRenderer";
-import { InformationCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { SKIN_TYPE_DESCRIPTION } from "../constants";
 
 const SCREEN_VALUE = {
   1: "skinType",
@@ -53,7 +51,7 @@ class Screen extends Component {
   };
 
   render() {
-    const { selectedOptions, showTooltipDiv } = this.state;
+    const { selectedOptions } = this.state;
     const {
       index,
       config,
@@ -64,8 +62,7 @@ class Screen extends Component {
       reviewAnswerSkinTypes,
       handlePreviousButtonClick,
       handleNextButtonClick,
-      handleSubmitButtonClick,
-      includeTooltip = false,
+      handleSubmitButtonClick
     } = this.props;
     const displayOptions =
       !isEmpty(config) &&
@@ -99,7 +96,7 @@ class Screen extends Component {
           </div>
         </div>
         <div class="flex justify-between w-full items-center">
-          {includeTooltip && (
+          {/* {includeTooltip && (
             <div class="flex">
               <div class="pl-4 sm:pl-12">
                 <div class="relative flex items-center justify-center">
@@ -142,7 +139,7 @@ class Screen extends Component {
                 What is my skin type?
               </span>
             </div>
-          )}
+          )} */}
           <div class={buttonStyle}>{[...buttons]}</div>
         </div>
       </div>
