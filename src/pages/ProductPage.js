@@ -12,13 +12,13 @@ import { Tab, Disclosure } from "@headlessui/react";
 import { PlusIcon, MinusIcon } from "@heroicons/react/20/solid";
 
 const TAB_BUTTON_STYLE =
-  "flex w-full justify-between py-4 text-left font-semibold pr-1 text-lg border-b";
+  "flex w-full justify-between py-4 text-left uppercase pr-1 text-lg border-b";
 
 const TAB_PANEL_STYLE =
-  "text-slate-gray font-semibold text-xl leading-8 tracking-wider mb-6";
+  "text-slate-gray text-lg leading-8 tracking-wider mb-6 uppercase";
 
 const DISCLOSURE_BUTTON_STYLE =
-  "flex w-full justify-between py-4 text-left font-semibold pr-1 text-base";
+  "flex w-full justify-between py-4 text-left pr-1 text-sm sm:text-base uppercase";
 
 const DISCLOSURE_PANEL_STLYE =
   "mt-2 text-slate-gray text-sm sm:text-base leading-5 sm:leading-6 tracking-wider mb-6";

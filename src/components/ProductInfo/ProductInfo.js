@@ -20,13 +20,13 @@ class ProductInfo extends PureComponent {
         <div class="lg:mb-8">
           <div class="flex mb-2 mr-2 sm:mr-0">
             <div class="sm:px-0">
-              <div class="text-sm sm:text-base lg:text-xl font-semibold tracking-tight text-slate-gray mb-1 uppercase">
+              <div class="text-sm sm:text-base lg:text-xl font-normal tracking-tight text-slate-gray mb-1 uppercase">
                 {brandName}
               </div>
             </div>
           </div>
           <div>
-            <div class="uppercase font-bold tracking-wide-x text-lg sm:text-xl lg:text-3xl text-slate-gray sm:px-0 mb-6">
+            <div class="uppercase font-semibold tracking-wide-x text-lg sm:text-xl lg:text-2xl text-slate-gray sm:px-0 mb-6">
               {productName}
             </div>
           </div>
