@@ -26,6 +26,7 @@ class PricePill extends PureComponent {
   };
 
   handleClearButton = ({ filterOptionClickFn }) => {
+    this.setState({ sliderValues: [0, MAX_PRICE_FILTER] });
     filterOptionClickFn({
       filterField: "filterMinPrice",
       urlParam: "minPrice",

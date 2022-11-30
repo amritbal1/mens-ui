@@ -12,7 +12,7 @@ import { Tab, Disclosure } from "@headlessui/react";
 import { PlusIcon, MinusIcon } from "@heroicons/react/20/solid";
 
 const TAB_BUTTON_STYLE =
-  "flex w-full justify-between py-4 text-left font-semibold pr-1 text-lg";
+  "flex w-full justify-between py-4 text-left font-semibold pr-1 text-lg border-b";
 
 const TAB_PANEL_STYLE =
   "text-slate-gray font-semibold text-xl leading-8 tracking-wider mb-6";
@@ -117,7 +117,7 @@ class ProductPage extends PureComponent {
           </div>
         </div>
         {/* On Large Screens, show vertical tabs */}
-        <div class="hidden lg:block w-full px-16 py-6 flex bg-stone">
+        <div class="hidden lg:flex w-full px-16 py-6 bg-stone">
           <Tab.Group vertical>
             <span class="w-1/3">
               <Tab.List className="flex flex-col">
@@ -127,7 +127,9 @@ class ProductPage extends PureComponent {
                       selected ? "text-slate-gray" : "text-gray-300"
                     }`
                   }
-                ></Tab>
+                >
+                  Benefits
+                </Tab>
                 <Tab
                   className={({ selected }) =>
                     `${TAB_BUTTON_STYLE} ${

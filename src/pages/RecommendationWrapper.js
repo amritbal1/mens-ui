@@ -129,12 +129,11 @@ class RecommendationWrapper extends Component {
               onClick={this.handleMobileFiltersClick}
               class="flex items-center"
             >
-              <AdjustmentsHorizontalIcon class="h-5 w-5 inline mr-2 text-slate-gray" />
+              <AdjustmentsHorizontalIcon class="text-sm sm:text-base h-5 w-5 inline mr-2 text-slate-gray" />
               Filters
             </div>
             <SlidingPane
-              className="some-custom-class"
-              overlayClassName="some-custom-overlay-class"
+              className="bg-stone"
               isOpen={this.state.isPaneOpen}
               hideHeader={true}
               closeIcon={

@@ -67,7 +67,7 @@ module.exports = {
         "slate-teal": "#3a5956",
         "dark-teal": "#195558",
         "light-purple": "#e6d9f8",
-        stone: "#f9f5f0",
+        stone: "#f6f2f0",
         darkStone: "#eae4dd",
         navItem: "#1c1c1f",
       },

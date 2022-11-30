@@ -56,13 +56,13 @@ class FilterOption extends Component {
       >
         <div class="flex justify-between w-min-165px">
           <div
-            class="flex py-1 sm:py-2 w-full items-center"
+            class="flex sm:py-2 w-full items-center"
             onClick={() => this.handleClick({ isSelected })}
           >
             <div class={isSelected ? SELECTED_CHECKBOX_STYLE : checkboxStyle}>
               {isSelected && <CheckIcon class={checkIconStyle} />}
             </div>
-            <span class="text-base font-light text-slate-gray">{label}</span>
+            <span class="text-sm sm:text-base font-light text-slate-gray">{label}</span>
           </div>
         </div>
       </div>
