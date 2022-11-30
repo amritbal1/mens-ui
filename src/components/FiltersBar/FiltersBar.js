@@ -5,7 +5,7 @@ import FilterPillOptions from "../FilterPanel/utils/filterPillUtils/FilterPillOp
 const BUTTON_STYLE =
   "flex w-full justify-between px-4 py-6 text-left text-base font-light focus:outline-none";
 
-const PANEL_STYLE = "px-4 pb-2 text-sm text-gray-500";
+const PANEL_STYLE = "px-4 pb-2 text-sm text-gray-500 max-h-72 overflow-y-scroll scrollbar";
 
 class FiltersBar extends Component {
   render() {

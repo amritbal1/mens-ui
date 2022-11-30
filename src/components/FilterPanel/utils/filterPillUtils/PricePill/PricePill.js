@@ -60,7 +60,7 @@ class PricePill extends PureComponent {
         <div class="flex justify-end py-2">
           <div>
             <button
-              class="px-3 py-1 text-lilac-700 md:hover:bg-lilac-50 rounded-md"
+              class="px-3 py-1 text-slate-gray md:hover:bg-gray-50 rounded-md"
               onClick={() =>
                 this.handleClearButton({
                   filterOptionClickFn,

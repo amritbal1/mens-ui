@@ -8,9 +8,8 @@ const finalTheme = createTheme({
     MuiSlider: {
       styleOverrides: {
         valueLabel: ({ ownerState, theme }) => ({
-          backgroundColor: "#73B8B2",
-          color: "white",
-          borderRadius: "20%",
+          backgroundColor: "transparent",
+          color: "black",
           padding: "0.25rem 0.55rem",
         }),
       },
