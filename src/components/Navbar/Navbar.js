@@ -56,9 +56,12 @@ class Navbar extends PureComponent {
     return (
       <div
         ref={this.wrapperRef}
-        class={`fixed h-80px top-0 bg-stone w-full ${Z_INDEX}`}
+        class={`fixed h-80px md:h-120px top-0 bg-light-gray w-full ${Z_INDEX}`}
       >
-        <Disclosure as="nav" className={`bg-stone h-80px shadow-md ${Z_INDEX}`}>
+        <Disclosure
+          as="nav"
+          className={`bg-light-gray h-80px md:h-120px shadow-md ${Z_INDEX}`}
+        >
           {({ open }) => (
             <>
               <div className="mx-auto px-2 sm:px-6 lg:px-16">

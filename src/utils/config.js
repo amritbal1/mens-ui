@@ -29,6 +29,14 @@ const brandOptions = [
   { value: "La Roche Posay", displayValue: "La Roche Posay" },
   { value: "First Aid", displayValue: "First Aid" },
   { value: "Kora Organics", displayValue: "Kora Organics" },
+  { value: "Elemis", displayValue: "Elemis" },
+  { value: "La Roche Posay", displayValue: "La Roche Posay" },
+  { value: "First Aid", displayValue: "First Aid" },
+  { value: "Kora Organics", displayValue: "Kora Organics" },
+  { value: "Elemis", displayValue: "Elemis" },
+  { value: "La Roche Posay", displayValue: "La Roche Posay" },
+  { value: "First Aid", displayValue: "First Aid" },
+  { value: "Kora Organics", displayValue: "Kora Organics" },
 ];
 
 const brandValues = getOptionValues({ options: brandOptions });

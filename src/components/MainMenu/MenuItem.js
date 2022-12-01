@@ -2,14 +2,18 @@ import { Fragment, useRef, useState, useEffect } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { isEmpty } from "../../utils/objectUtils";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { withRouter } from "react-router-dom";
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function MenuItem({
+const MenuItemComponent = function MenuItem({
   menuTitle,
   linksArray,
+  urlParam,
   showChevron = true,
+  history,
 }) {
   let timeout; // NodeJS.Timeout
   const timeoutDuration = 0;
@@ -47,8 +51,8 @@ export default function MenuItem({
   };
 
   const LINK_STYLES = classNames(
-    "py-3 px-2",
-    "text-base text-gray-900",
+    "w-full cursor-pointer pb-3 px-2",
+    "text-sm sm:text-base font-light text-slate-gray",
     "transition duration-500 ease-in-out",
     "transition-transform transform hover:translate-x-2"
   );
@@ -64,6 +68,19 @@ export default function MenuItem({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   });
+
+  const handleLinkClick = ({ href }) => {
+    if (urlParam === "brands") {
+      history.push(
+        `/results?brands=${href}&minPrice=null&maxPrice=null&productCategories=null&skinConcerns=null`
+      );
+    } else if (urlParam === "productCategories") {
+      history.push(
+        `/results?brands=null&minPrice=null&maxPrice=null&productCategories=${href}&skinConcerns=null`
+      );
+    }
+  };
+
   return (
     <div class="flex">
       <Popover className="relative mx-auto">
@@ -83,44 +100,50 @@ export default function MenuItem({
                 }
                 onClick={() => handleClick(open)}
               >
-                <span className="uppercase font-light text-lg text-navTitle">
+                <span className="uppercase font-medium text-sm text-slate-gray-light tracking-widest leading-5">
                   {menuTitle}
                 </span>
                 {showChevron && <ChevronDownIcon class="inline ml-1 w-4 h-4" />}
               </div>
             </Popover.Button>
 
-            <Transition
-              show={open}
-              as={Fragment}
-              enter="transition ease-out duration-200"
-              enterFrom="opacity-0 translate-y-1"
-              enterTo="opacity-100 translate-y-0"
-              leave="transition ease-in duration-150"
-              leaveFrom="opacity-100 translate-y-0"
-              leaveTo="opacity-0 translate-y-1"
-            >
-              <Popover.Panel static className="z-10 mx-auto">
-                <div
-                  className={classNames(
-                    "w-full shadow-md flex flex-col py-1 absolute left-0 pl-3",
-                    "bg-white"
-                  )}
-                >
-                  {!isEmpty(linksArray) &&
-                    linksArray.map(([title, href]) => (
-                      <Fragment key={"PopoverPanel<>" + title + href}>
-                        <a href={href} className={LINK_STYLES}>
-                          {title}
-                        </a>
-                      </Fragment>
-                    ))}
-                </div>
-              </Popover.Panel>
-            </Transition>
+            {!isEmpty(linksArray) && (
+              <Transition
+                show={open}
+                as={Fragment}
+                enter="transition ease-out duration-200"
+                enterFrom="opacity-0 translate-y-1"
+                enterTo="opacity-100 translate-y-0"
+                leave="transition ease-in duration-150"
+                leaveFrom="opacity-100 translate-y-0"
+                leaveTo="opacity-0 translate-y-1"
+              >
+                <Popover.Panel static className="z-10 -translate-x-1/2">
+                  <div
+                    className={classNames(
+                      "bg-white px-8 shadow-lg py-6 absolute left-0 w-56"
+                    )}
+                  >
+                    {!isEmpty(linksArray) &&
+                      linksArray.map(([title, href]) => (
+                        <Fragment key={"PopoverPanel<>" + title + href}>
+                          <div
+                            className={LINK_STYLES}
+                            onClick={() => handleLinkClick({ href })}
+                          >
+                            {title}
+                          </div>
+                        </Fragment>
+                      ))}
+                  </div>
+                </Popover.Panel>
+              </Transition>
+            )}
           </div>
         )}
       </Popover>
     </div>
   );
-}
+};
+
+export default withRouter(MenuItemComponent);

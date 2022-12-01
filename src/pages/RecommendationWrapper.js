@@ -6,7 +6,6 @@ import {
 import { getProductResultsData } from "../services/ProductResultsService/ProductResultsService";
 import { isEmpty } from "../utils/objectUtils";
 import { createResultsPagePayload } from "../utils/payloadUtils/payloadCreators/createResultsPagePayload";
-import Navbar from "../components/Navbar/Navbar";
 import RecommendationPage from "./RecommendationPage";
 import { getFilterPillsConfig } from "../components/FilterPanel/utils/filterPillUtils/getFilterPillsConfig";
 import {
@@ -19,6 +18,7 @@ import queryString from "query-string";
 import FiltersBar from "../components/FiltersBar/FiltersBar";
 import SlidingPane from "react-sliding-pane";
 import "../css/react-sliding-pane.css";
+import MainMenu from "../components/MainMenu/MainMenu";
 
 class RecommendationWrapper extends Component {
   state = {
@@ -115,12 +115,11 @@ class RecommendationWrapper extends Component {
     });
     return (
       <div class="min-h-screen">
-        <Navbar
+        <MainMenu
+          showMenuDropdowns={false}
           userCountry={this.props.userCountry}
-          isFiltersPaneOpen={this.state.isPaneOpen}
         />
-        <div class="h-80px"></div>
-        <div class="flex flex-col lg:flex-row px-4 pt-10 sm:px-16 bg-stone min-h-screen">
+        <div class="flex flex-col lg:flex-row px-4 pt-10 sm:px-16 bg-white min-h-screen lg:justify-center">
           <div class="hidden lg:block w-80 mr-4">
             <FiltersBar filtersConfig={filtersConfig} />
           </div>
@@ -129,11 +128,13 @@ class RecommendationWrapper extends Component {
               onClick={this.handleMobileFiltersClick}
               class="flex items-center"
             >
-              <AdjustmentsHorizontalIcon class="text-sm sm:text-base h-5 w-5 inline mr-2 text-slate-gray" />
-              Filters
+              <AdjustmentsHorizontalIcon class="text-sm sm:text-base h-5 w-5 inline mr-2 text-gray-600" />
+              <span class="text-xs sm:text-base uppercase font-light text-gray-600">
+                Filters
+              </span>
             </div>
             <SlidingPane
-              className="bg-stone"
+              className="bg-white"
               isOpen={this.state.isPaneOpen}
               hideHeader={true}
               closeIcon={

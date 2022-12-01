@@ -2053,6 +2053,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 80px;
 }
 
+.h-120px {
+  height: 120px;
+}
+
 .w-110px {
   width: 110px;
 }

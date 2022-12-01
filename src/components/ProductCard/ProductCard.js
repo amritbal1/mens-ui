@@ -42,17 +42,19 @@ class ProductCard extends PureComponent {
             </div>
           </div>
           <div class="h-1" />
-          <figcaption class="h-full pl-2 py-2 sm:py-4 sm:pl-4 flex flex-col content-between">
-            <div class="text-xs sm:text-sm lg:text-base text-slate-gray mb-2 uppercase">
+          <figcaption class="py-2 pt-4 sm:pt-10 flex flex-col content-between">
+            {/* <div class="text-xs sm:text-sm lg:text-base text-slate-gray mb-2">
               {brandName}
-            </div>
-            <div class="flex justify-between mb-4 text-slate-gray">
-              <div class="text-xs sm:text-base lg:text-lg text-slate-gray tracking-tighter font-bold">
+            </div> */}
+            <div class="text-center mb-4">
+              <div class="text-xs sm:text-sm text-slate-gray font-medium tracking-widest font-normal uppercase">
                 {productName}
               </div>
             </div>
-            <div class="text-sm sm:text-base flex justify-between w-full">
-              {`~${localCurrency} ${dbg_price}`}
+            <div class="text-center text-xs sm:text-sm text-slate-gray w-full font-light">
+              {`${localCurrency} ${(Math.round(dbg_price * 100) / 100).toFixed(
+                2
+              )}`}
             </div>
           </figcaption>
         </figure>

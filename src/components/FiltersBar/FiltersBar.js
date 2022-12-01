@@ -14,7 +14,7 @@ class FiltersBar extends Component {
     const { filtersConfig } = this.props;
     return (
       <div>
-        <div className="bg-stone px-4">
+        <div className="px-4">
           {filtersConfig.map((filter) => {
             const {
               label,
