@@ -35,7 +35,7 @@ class ProductInfo extends PureComponent {
           <div class="mb-4">
             <div class="mb-4">
               {price && (
-                <div class="text-slate-gray font-light uppercase text-base sm:text-xl">
+                <div class="text-slate-gray font-light uppercase text-sm sm:text-xl">
                   {`~${localCurrency} ${(Math.round(price * 100) / 100).toFixed(
                     2
                   )}`}
@@ -63,7 +63,7 @@ class ProductInfo extends PureComponent {
             </div>
           </div>
         </div>
-        <div class="pt-2 sm:pt-8 text-sm sm:text-lg font-light leading-8">
+        <div class="pt-2 sm:pt-8 text-sm sm:text-lg font-light leading-7">
           {
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a arcu felis. Quisque eleifend mauris ut neque fringilla, ac tempus orci ullamcorper. Proin molestie neque in laoreet posuere. "
           }

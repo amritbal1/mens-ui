@@ -129,7 +129,7 @@ class ProductPage extends PureComponent {
               />
             </div>
           </div>
-          <div class="h-full self-start w-full flex py-6 lg:py-12 px-6 sm:px-16">
+          <div class="bg-white h-full self-start w-full flex py-6 lg:py-12 px-6 sm:px-16">
             <ProductInfo
               pricingData={pricingData}
               productDetails={productData}
@@ -137,7 +137,7 @@ class ProductPage extends PureComponent {
           </div>
         </div>
         {/* TABS */}
-        <div className="w-full py-8 px-12 bg-light-gray">
+        <div className="w-full py-10 px-2 sm:py-8 sm:px-12 bg-light-gray">
           <Tab.Group>
             <Tab.List className="text-center">
               {Object.keys(categories).map((category) => (
@@ -145,8 +145,8 @@ class ProductPage extends PureComponent {
                   key={category}
                   className={({ selected }) =>
                     classNames(
-                      "font-normal text-slate-gray text-base uppercase tracking-widest mx-12 pb-6",
-                      selected ? "border-b" : ""
+                      "font-normal text-slate-gray text-xs sm:text-base uppercase tracking-widest mx-4 pb-4 sm:mx-12 sm:pb-6",
+                      selected ? "border-b-2" : ""
                     )
                   }
                 >
@@ -159,129 +159,15 @@ class ProductPage extends PureComponent {
                 <Tab.Panel
                   key={idx}
                   className={classNames(
-                    "rounded-xl bg-light-gray p-3",
-                    "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
+                    "bg-light-gray p-3",
+                   
                   )}
                 >
-                  <div class="font-light text-base leading-7">{item.content}</div>
+                  <div class="font-light text-xs sm:text-base leading-6 sm:leading-7">{item.content}</div>
                 </Tab.Panel>
               ))}
             </Tab.Panels>
           </Tab.Group>
-        </div>
-        {/* On Large Screens, show vertical tabs */}
-        {/* <div class="px-16 py-6 bg-white">
-          <Tab.Group>
-            <span>
-              <Tab.List>
-                <Tab
-                  className={({ selected }) =>
-                    `${TAB_BUTTON_STYLE} ${
-                      selected
-                        ? "text-slate-gray border-t"
-                        : "text-gray-300 border-t"
-                    }`
-                  }
-                >
-                  Benefits
-                </Tab>
-                <Tab
-                  className={({ selected }) =>
-                    `${TAB_BUTTON_STYLE} ${
-                      selected ? "text-slate-gray" : "text-gray-300"
-                    }`
-                  }
-                >
-                  How To Use
-                </Tab>
-                <Tab
-                  className={({ selected }) =>
-                    `${TAB_BUTTON_STYLE} ${
-                      selected ? "text-slate-gray" : "text-gray-300"
-                    }`
-                  }
-                >
-                  Ingredients
-                </Tab>
-              </Tab.List>
-            </span>
-            <span class="py-4 px-10 bg-light-gray border-t">
-              <Tab.Panels>
-                <Tab.Panel>
-                  <div class={TAB_PANEL_STYLE}>Benefits</div>
-                  <div class={TAB_PANEL_TEXT}>{benefits}</div>
-                </Tab.Panel>
-                <Tab.Panel class="text-lg leading-6">
-                  <div class={TAB_PANEL_STYLE}>How To Use</div>
-                  <div class={TAB_PANEL_TEXT}>{howToUse}</div>
-                </Tab.Panel>
-                <Tab.Panel>
-                  <div class={TAB_PANEL_STYLE}>Ingredients</div>
-                  <div class={TAB_PANEL_TEXT}>{ingredients.join(", ")}</div>
-                </Tab.Panel>
-              </Tab.Panels>
-            </span>
-          </Tab.Group>
-        </div> */}
-        {/* On Medium and Smaller Screens, show horizontal Disclosure menu */}
-        <div class="block lg:hidden w-full px-6 sm:px-16 pt-2 sm:pt-4 pb-10 bg-white">
-          <Disclosure>
-            {({ open }) => (
-              <div class="border-b border-gray-300">
-                <Disclosure.Button className={DISCLOSURE_BUTTON_STYLE}>
-                  <div class="flex w-full justify-between">
-                    <span>Benefits</span>
-                    {open ? (
-                      <MinusIcon className="h-5 w-5 sm:h-6 sm:w-6  text-slate-gray" />
-                    ) : (
-                      <PlusIcon className="h-5 w-5 sm:h-6 sm:w-6 text-slate-gray" />
-                    )}
-                  </div>
-                </Disclosure.Button>
-                <Disclosure.Panel className={DISCLOSURE_PANEL_STLYE}>
-                  {benefits}
-                </Disclosure.Panel>
-              </div>
-            )}
-          </Disclosure>
-          <Disclosure>
-            {({ open }) => (
-              <div class="border-b border-gray-300">
-                <Disclosure.Button className={DISCLOSURE_BUTTON_STYLE}>
-                  <div class="flex w-full justify-between">
-                    <span>How To Use</span>
-                    {open ? (
-                      <MinusIcon className="h-5 w-5 sm:h-6 sm:w-6  text-slate-gray" />
-                    ) : (
-                      <PlusIcon className="h-5 w-5 sm:h-6 sm:w-6 text-slate-gray" />
-                    )}
-                  </div>
-                </Disclosure.Button>
-                <Disclosure.Panel className={DISCLOSURE_PANEL_STLYE}>
-                  {howToUse}
-                </Disclosure.Panel>
-              </div>
-            )}
-          </Disclosure>
-          <Disclosure>
-            {({ open }) => (
-              <div class="border-b border-gray-300">
-                <Disclosure.Button className={DISCLOSURE_BUTTON_STYLE}>
-                  <div class="flex w-full justify-between">
-                    <span>Ingredients</span>
-                    {open ? (
-                      <MinusIcon className="h-5 w-5 sm:h-6 sm:w-6 text-slate-gray" />
-                    ) : (
-                      <PlusIcon className="h-5 w-5 sm:h-6 sm:w-6 text-slate-gray" />
-                    )}
-                  </div>
-                </Disclosure.Button>
-                <Disclosure.Panel className={DISCLOSURE_PANEL_STLYE}>
-                  {ingredients.join(", ")}
-                </Disclosure.Panel>
-              </div>
-            )}
-          </Disclosure>
         </div>
       </div>
     );
