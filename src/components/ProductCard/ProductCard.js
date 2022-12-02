@@ -21,7 +21,7 @@ class ProductCard extends PureComponent {
   render() {
     const { data } = this.props;
     const { dbg_price, productDetails } = data;
-    const { productName, brandName, mainImageUrl, productId } = productDetails;
+    const { productName, mainImageUrl, productId } = productDetails;
     const s3ImageUrl = `https://s3.${REGION}.amazonaws.com/${S3_BUCKET}/${mainImageUrl}`;
     const localCurrency = localStorage.getItem("localCurrency") || "£";
     return (

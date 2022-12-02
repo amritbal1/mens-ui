@@ -4,7 +4,7 @@ import { withAuth0 } from "@auth0/auth0-react";
 import AppContext from "../../AppContext";
 import { Disclosure } from "@headlessui/react";
 import * as logo from "../../images/brand-logo.png";
-import { Dropdown } from "../SkinInfo/dropdown.js";
+import { Dropdown } from "../MainMenu/dropdown.js";
 import { COUNTRIES_OPTIONS } from "../../utils/countryEnum";
 import { CURRENCIES } from "../../utils/currencyEnum";
 class Navbar extends PureComponent {

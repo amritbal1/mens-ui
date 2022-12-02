@@ -59,7 +59,12 @@ class App extends PureComponent {
                             backgroundOpacity,
                             userCountry,
                           };
-                          return <HomePage {...allProps} />;
+                          return (
+                            <HomePage
+                              {...allProps}
+                              handleCountryChange={this.handleCountryChange}
+                            />
+                          );
                         }}
                       />
                       <Route
@@ -67,7 +72,10 @@ class App extends PureComponent {
                         path="/results"
                         render={() => {
                           return (
-                            <RecommendationWrapper userCountry={userCountry} />
+                            <RecommendationWrapper
+                              userCountry={userCountry}
+                              handleCountryChange={this.handleCountryChange}
+                            />
                           );
                         }}
                       />

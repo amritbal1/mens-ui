@@ -7,23 +7,8 @@ import { isEmpty } from "../utils/objectUtils";
 import { REGION, S3_BUCKET } from "../aws-config";
 import Carousel from "../components/Carousel/Carousel";
 import { getPricingData } from "../services/PricingDataService";
-import { Tab, Disclosure } from "@headlessui/react";
-import { PlusIcon, MinusIcon } from "@heroicons/react/20/solid";
+import { Tab } from "@headlessui/react";
 import MainMenu from "../components/MainMenu/MainMenu";
-
-const TAB_BUTTON_STYLE =
-  "justify-between py-4 text-left uppercase pr-1 text-lg border-b";
-
-const TAB_PANEL_STYLE =
-  "text-slate-gray text-lg leading-8 tracking-wider mb-6 uppercase";
-
-const TAB_PANEL_TEXT = "text-base leading-7 text-slate-gray-light";
-
-const DISCLOSURE_BUTTON_STYLE =
-  "flex w-full justify-between py-4 text-left pr-1 text-sm sm:text-base uppercase";
-
-const DISCLOSURE_PANEL_STLYE =
-  "mt-2 text-slate-gray text-sm sm:text-base leading-5 sm:leading-6 tracking-wider mb-6";
 
 //Page to display information for a single product
 function classNames(...classes) {
@@ -158,12 +143,11 @@ class ProductPage extends PureComponent {
               {Object.values(categories).map((item, idx) => (
                 <Tab.Panel
                   key={idx}
-                  className={classNames(
-                    "bg-light-gray p-3",
-                   
-                  )}
+                  className={classNames("bg-light-gray p-3")}
                 >
-                  <div class="font-light text-xs sm:text-base leading-6 sm:leading-7">{item.content}</div>
+                  <div class="font-light text-xs sm:text-base leading-6 sm:leading-7">
+                    {item.content}
+                  </div>
                 </Tab.Panel>
               ))}
             </Tab.Panels>
@@ -180,7 +164,10 @@ class ProductPage extends PureComponent {
 
     return (
       <div class="bg-white h-screen">
-        <MainMenu userCountry={userCountry} />
+        <MainMenu
+          userCountry={userCountry}
+          handleCountryChange={handleCountryChange}
+        />
         <div class={`${backgroundOpacity}`}>
           {this.renderProduct({ productData })}
         </div>

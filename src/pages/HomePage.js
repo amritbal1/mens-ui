@@ -54,12 +54,16 @@ const skinConcernConfig = [
 
 class HomePage extends PureComponent {
   render() {
+    const { userCountry, handleCountryChange } = this.props;
     return (
       <div class="min-h-screen pb-6 mx-auto">
         {/* <Navbar userCountry={this.props.userCountry} /> */}
         {/* <div class="h-60px"></div> */}
         <div>
-          <MainMenu userCountry={this.props.userCountry} />
+          <MainMenu
+            userCountry={userCountry}
+            handleCountryChange={handleCountryChange}
+          />
         </div>
         <div class="flex flex-col md:pt-8 pb-7 px-2 font-montserrat">
           <div class="pb-8">Shop by category</div>

@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { Disclosure } from "@headlessui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import { withRouter } from "react-router-dom";
+import { Dropdown } from "./dropdown";
+import { COUNTRIES_OPTIONS } from "../../utils/countryEnum";
 
 const BUTTON_STYLE =
-  "w-full px-4 py-5 text-left uppercase tracking-widest text-sm sm:text-base font-medium focus:outline-none";
+  "w-full px-4 py-5 text-left uppercase tracking-widest text-sm sm:text-base font-medium focus:outline-none text-slate-gray";
 
 const PANEL_STYLE =
   "flex flex-col pl-8 pr-4 pb-2 text-sm text-gray-500 max-h-72 overflow-y-scroll scrollbar";
@@ -23,7 +25,12 @@ class MobileMenuBar extends Component {
     }
   };
   render() {
-    const { brandsArray, productCategoriesArray } = this.props;
+    const {
+      brandsArray,
+      productCategoriesArray,
+      handleCountryDropdownChange,
+      selectedCountryOption,
+    } = this.props;
     return (
       <div>
         <Disclosure>
@@ -96,6 +103,18 @@ class MobileMenuBar extends Component {
             </div>
           )}
         </Disclosure>
+        <div class="w-full pt-20">
+          <Dropdown
+            options={COUNTRIES_OPTIONS}
+            handleChange={handleCountryDropdownChange}
+            placeholder={selectedCountryOption.label}
+            value={selectedCountryOption}
+            inputValueObject={true}
+            overrideStyles={{
+              menuBarStyles: true,
+            }}
+          />
+        </div>
       </div>
     );
   }

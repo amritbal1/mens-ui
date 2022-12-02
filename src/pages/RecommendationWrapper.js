@@ -40,6 +40,13 @@ class RecommendationWrapper extends Component {
 
   //Listen to URL changes - as filters are updated, they update the URL params
   async componentDidUpdate(prevProps) {
+    if (this.props.userCountry !== prevProps.userCountry) {
+      const payload = await createResultsPagePayload({});
+      const resultsData = await getProductResultsData({ payload });
+      if (!resultsData) return;
+      const { results } = resultsData;
+      this.setState({ results: results });
+    }
     if (this.props.location && this.props.location.search) {
       const urlHasNewParams =
         this.props.location.search !== prevProps.location.search;
@@ -113,11 +120,13 @@ class RecommendationWrapper extends Component {
     const filtersConfig = getFilterPillsConfig({
       filterOptionClickFn: this.filterOptionClickFn,
     });
+    const { userCountry, handleCountryChange } = this.props;
     return (
       <div class="min-h-screen">
         <MainMenu
           showMenuDropdowns={false}
-          userCountry={this.props.userCountry}
+          userCountry={userCountry}
+          handleCountryChange={handleCountryChange}
         />
         <div class="flex flex-col lg:flex-row px-4 pt-10 sm:px-16 bg-white min-h-screen lg:justify-center">
           <div class="hidden lg:block w-80 mr-4">
