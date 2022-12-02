@@ -2017,6 +2017,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 220px;
 }
 
+.h-220px {
+  height: 220px;
+}
+
 .w-300px {
   width: 300px;
 }

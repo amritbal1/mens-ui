@@ -20,14 +20,14 @@ class CategorySelection extends Component {
         {config.map((category) => {
           const { key, value, name, imageUrl } = category;
           return (
-            <div class="px-10">
+            <div class="px-10 cursor-pointer hover:opacity-60">
               <img
                 src={imageUrl.default}
                 alt="skin"
-                class="h-100px w-100px rounded-full border cursor-pointer"
+                class="h-220px w-220px flex flex-shrink-0 rounded-full border cursor-pointer"
                 onClick={() => this.handleCategoryClick({ key, value })}
               />
-              <div class="pt-5 justify-self-end text-center">{name}</div>
+              <div class="pt-5 justify-self-end text-center uppercase text-lg">{name}</div>
             </div>
           );
         })}
