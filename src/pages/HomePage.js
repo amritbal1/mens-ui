@@ -2,7 +2,8 @@ import { PureComponent } from "react";
 import CategorySelection from "../components/CategorySelection";
 import MainMenu from "../components/MainMenu/MainMenu";
 import * as moisturiser from "../images/skin.png";
-
+import * as banner from "../images/bottles.png";
+import "./homepage.css";
 const categoryConfig = [
   {
     name: "Moisturisers",
@@ -56,14 +57,21 @@ class HomePage extends PureComponent {
   render() {
     const { userCountry, handleCountryChange } = this.props;
     return (
-      <div class="min-h-screen pb-6 mx-auto">
-        {/* <Navbar userCountry={this.props.userCountry} /> */}
-        {/* <div class="h-60px"></div> */}
+      <div class="h-screen pb-6 mx-auto">
         <div>
           <MainMenu
             userCountry={userCountry}
             handleCountryChange={handleCountryChange}
           />
+        </div>
+        <div id="wrapper-1">
+          <div id="wrapper-2">
+            <span id="wrapper-3">
+              <span id="wrapper-4">
+                <img id="bannerImage" alt="banner" src={banner.default} />
+              </span>
+            </span>
+          </div>
         </div>
         <div class="flex flex-col md:pt-8 pb-7 px-2 font-montserrat">
           <div class="pb-8">Shop by category</div>
