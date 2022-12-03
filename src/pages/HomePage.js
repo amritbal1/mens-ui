@@ -2,12 +2,19 @@ import { PureComponent } from "react";
 import { withRouter } from "react-router-dom";
 import CategorySelection from "../components/CategorySelection";
 import MainMenu from "../components/MainMenu/MainMenu";
-import * as moisturiser from "../images/moisturiser.jpeg";
-import * as cleanser from "../images/cleanser.jpeg";
-import * as serum from "../images/serum.jpg";
-import * as exfoliator from "../images/exfoliator.jpg";
 import * as banner from "../images/bottles_2.jpeg";
 import "./homepage.css";
+// Product Categories
+import * as moisturiser from "../images/moisturiser.jpg";
+import * as cleanser from "../images/cleanser.jpeg";
+import * as serum from "../images/serum.jpg";
+import * as exfoliator from "../images/exfoliator.jpeg";
+// SKIN TYPES
+import * as drySkin from "../images/dry_skin.jpg";
+import * as sensitiveSkin from "../images/sensitive_skin.jpg";
+import * as oilySkin from "../images/oily_skin.jpg";
+import * as antiAging from "../images/anti_aging.jpeg";
+import * as acne from "../images/acne.jpg";
 
 const categoryConfig = [
   {
@@ -38,30 +45,30 @@ const categoryConfig = [
 
 const skinConcernConfig = [
   {
+    name: "Oily Skin",
+    key: "skinConcerns",
+    value: "oily-skin",
+    imageUrl: oilySkin,
+  },
+  {
     name: "Dry Skin",
     key: "skinConcerns",
     value: "dry-skin",
-    imageUrl: moisturiser,
+    imageUrl: drySkin,
   },
   {
     name: "Sensitive Skin",
     key: "skinConcerns",
     value: "sensitive-skin",
-    imageUrl: moisturiser,
-  },
-  {
-    name: "Oily Skin",
-    key: "skinConcerns",
-    value: "oily-skin",
-    imageUrl: moisturiser,
+    imageUrl: sensitiveSkin,
   },
   {
     name: "Anti Aging",
     key: "skinConcerns",
     value: "anti-aging",
-    imageUrl: moisturiser,
+    imageUrl: antiAging,
   },
-  { name: "Acne", key: "skinConcerns", value: "acne", imageUrl: moisturiser },
+  { name: "Acne", key: "skinConcerns", value: "acne", imageUrl: acne },
 ];
 
 class HomePage extends PureComponent {
@@ -76,16 +83,16 @@ class HomePage extends PureComponent {
     const { userCountry, handleCountryChange } = this.props;
     return (
       <div class="h-screen pb-6 mx-auto">
-        <div>
-          <MainMenu
-            userCountry={userCountry}
-            handleCountryChange={handleCountryChange}
-          />
-        </div>
         <div id="wrapper-1">
           <div id="wrapper-2">
             <span id="wrapper-3">
               <span id="wrapper-4">
+                <div class="bg-transparent absolute top-0 w-full">
+                  <MainMenu
+                    userCountry={userCountry}
+                    handleCountryChange={handleCountryChange}
+                  />
+                </div>
                 <img id="bannerImage" alt="banner" src={banner.default} />
                 <div class="absolute right-12 bottom-1/2 w-96 px-6">
                   <div class="text-white text-4xl font-thin">
@@ -104,15 +111,22 @@ class HomePage extends PureComponent {
             </span>
           </div>
         </div>
-        <div class="flex flex-col pb-7 px-2 font-montserrat">
-          <div class="bg-light-gray py-10">
-            <div class="pb-8 text-center text-3xl uppercase font-thin tracking-tighter">
+        <div class="flex flex-col pb-7 font-montserrat">
+          <div class="bg-light-gray py-10 md:py-20">
+            <div class="pb-12 md:pb-20 text-center text-xl sm:text-2xl md:text-3xl uppercase font-light tracking-tighter">
               Shop by category
             </div>
-            <CategorySelection config={categoryConfig} />
+            <CategorySelection
+              config={categoryConfig}
+              type="productCategories"
+            />
           </div>
-          <div class="py-8">Shop by skin type or concern</div>
-          <CategorySelection config={skinConcernConfig} />
+          <div class="bg-light-gray py-10">
+            <div class="pb-12 md:pb-20 text-center text-xl md:text-3xl uppercase font-light tracking-tighter">
+              Shop by skin concern
+            </div>
+            <CategorySelection config={skinConcernConfig} type="skinConcerns" />
+          </div>
         </div>
       </div>
     );

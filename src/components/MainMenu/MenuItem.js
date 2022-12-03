@@ -96,11 +96,11 @@ const MenuItemComponent = function MenuItem({
             >
               <div
                 class={
-                  "text-gray-800 flex justify-center items-center focus:outline-none py-3 px-6"
+                  "flex justify-center items-center focus:outline-none py-3 px-6"
                 }
                 onClick={() => handleClick(open)}
               >
-                <span className="uppercase font-medium text-sm text-slate-gray-light tracking-widest leading-5">
+                <span className="uppercase font-medium text-sm tracking-widest leading-5">
                   {menuTitle}
                 </span>
                 {showChevron && <ChevronDownIcon class="inline ml-1 w-4 h-4" />}

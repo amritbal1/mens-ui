@@ -2013,12 +2013,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 150px;
 }
 
-.w-220px {
-  width: 220px;
+.h-210px {
+  height: 210px;
 }
 
-.h-220px {
-  height: 220px;
+.w-220px {
+  width: 220px;
 }
 
 .w-300px {

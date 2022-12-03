@@ -5,6 +5,9 @@ module.exports = {
   darkMode: false,
   theme: {
     extend: {
+      heights: {
+        200: "200px",
+      },
       screens: {
         xs: "470px",
         ...screens,
@@ -68,7 +71,7 @@ module.exports = {
         "slate-teal": "#3a5956",
         "dark-teal": "#195558",
         "light-purple": "#e6d9f8",
-        "light-gray": "#faf9f9",
+        "light-gray": "#ececec",
         stone: "#f6f2f0",
         darkStone: "#eae4dd",
         navItem: "#1c1c1f",

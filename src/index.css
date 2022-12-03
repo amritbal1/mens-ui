@@ -89,6 +89,10 @@
       height: 20px;
     }
 
+    .h-200px {
+      height: 200px;
+    }
+
     .h-25px {
       height: 25px;
     }
@@ -398,6 +402,10 @@
 
     .h-150px {
       height: 150px;
+    }
+
+    .w-130px {
+      width: 130px;
     }
 
     .h-130px {

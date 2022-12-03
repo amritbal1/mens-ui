@@ -69,10 +69,10 @@ class MainMenu extends Component {
     const { showMenuDropdowns = true } = this.props;
     const { selectedCountryOption } = this.state;
     return (
-      <div class="px-6 sm:px-12 flex border-b items-center h-20 justify-between bg-light-gray">
+      <div class="px-6 sm:px-12 flex items-center h-20 justify-between bg-transparent text-white">
         <div class="block sm:hidden">
           <Bars2Icon
-            class="inline h-7 w-7 text-slate-gray"
+            class="inline h-7 w-7"
             onClick={this.handleBurgerMenuClick}
           />
         </div>
@@ -100,7 +100,7 @@ class MainMenu extends Component {
             />
           </div>
         )}
-        <div class="hidden sm:block text-navTitle">
+        <div class="hidden sm:block">
           <div class="w-40">
             <Dropdown
               options={COUNTRIES_OPTIONS}
@@ -115,7 +115,7 @@ class MainMenu extends Component {
           </div>
         </div>
         <SlidingPane
-          className="bg-white"
+          className="bg-light-gray"
           from="left"
           isOpen={this.state.isPaneOpenLeft}
           hideHeader={true}
