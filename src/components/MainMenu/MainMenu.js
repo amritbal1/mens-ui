@@ -69,7 +69,7 @@ class MainMenu extends Component {
     const { showMenuDropdowns = true } = this.props;
     const { selectedCountryOption } = this.state;
     return (
-      <div class="px-6 sm:px-12 flex items-center h-20 justify-between bg-transparent text-white">
+      <div class="px-6 sm:px-12 flex items-center h-20 justify-between bg-transparent text-slate-gray">
         <div class="block sm:hidden">
           <Bars2Icon
             class="inline h-7 w-7"

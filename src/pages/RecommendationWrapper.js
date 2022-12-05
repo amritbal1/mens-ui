@@ -128,6 +128,7 @@ class RecommendationWrapper extends Component {
           userCountry={userCountry}
           handleCountryChange={handleCountryChange}
         />
+
         <div class="flex flex-col lg:flex-row px-4 pt-10 sm:px-16 bg-white min-h-screen lg:justify-center">
           <div class="hidden lg:block w-80 mr-4">
             <FiltersBar filtersConfig={filtersConfig} />
@@ -160,9 +161,7 @@ class RecommendationWrapper extends Component {
               <br />
             </SlidingPane>
           </div>
-          <div>
-            <RecommendationPage results={results} />
-          </div>
+          <RecommendationPage results={results} />
         </div>
       </div>
     );

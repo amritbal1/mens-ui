@@ -51,7 +51,7 @@ const MenuItemComponent = function MenuItem({
   };
 
   const LINK_STYLES = classNames(
-    "w-full cursor-pointer pb-3 px-2",
+    "w-full text-left cursor-pointer pb-3 px-2",
     "text-sm sm:text-base font-light text-slate-gray",
     "transition duration-500 ease-in-out",
     "transition-transform transform hover:translate-x-2"
@@ -100,7 +100,7 @@ const MenuItemComponent = function MenuItem({
                 }
                 onClick={() => handleClick(open)}
               >
-                <span className="uppercase font-medium text-sm tracking-widest leading-5">
+                <span className="uppercase font-medium text-base tracking-widest leading-5">
                   {menuTitle}
                 </span>
                 {showChevron && <ChevronDownIcon class="inline ml-1 w-4 h-4" />}
@@ -121,7 +121,7 @@ const MenuItemComponent = function MenuItem({
                 <Popover.Panel static className="z-10 -translate-x-1/2">
                   <div
                     className={classNames(
-                      "bg-white px-8 shadow-lg py-6 absolute left-0 w-56"
+                      "bg-white px-4 shadow-lg py-4 absolute left-0 w-48"
                     )}
                   >
                     {!isEmpty(linksArray) &&

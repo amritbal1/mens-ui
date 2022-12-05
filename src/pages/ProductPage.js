@@ -122,7 +122,7 @@ class ProductPage extends PureComponent {
           </div>
         </div>
         {/* TABS */}
-        <div className="w-full py-10 px-2 sm:py-8 sm:px-12 bg-light-gray">
+        <div className="w-full py-10 px-2 sm:py-8 sm:px-12 bg-light-gray mx-0">
           <Tab.Group>
             <Tab.List className="text-center">
               {Object.keys(categories).map((category) => (
@@ -131,7 +131,7 @@ class ProductPage extends PureComponent {
                   className={({ selected }) =>
                     classNames(
                       "font-normal text-slate-gray text-xs sm:text-base uppercase tracking-widest mx-4 pb-4 sm:mx-12 sm:pb-6",
-                      selected ? "border-b-2" : ""
+                      selected ? "border-b-2 border-moonlitMedium" : ""
                     )
                   }
                 >

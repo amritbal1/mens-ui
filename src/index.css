@@ -149,6 +149,10 @@
       width: 100px;
     }
 
+    .w-600px {
+      width: 600px;
+    }
+
     .w-max-1600px {
       max-width: 1600px;
     }
@@ -315,6 +319,10 @@
 
     .w-max-125px {
       max-width: 125px;
+    }
+
+    .w-max-250px {
+      max-width: 250px;
     }
 
     .h-max-450 {
