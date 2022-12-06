@@ -37,18 +37,15 @@ const skinConcernValues = getOptionValues({ options: skinConcernOptions });
 ///////BRANDS/////////
 
 const brandOptions = [
-  { value: "Elemis", displayValue: "Elemis" },
-  { value: "La Roche Posay", displayValue: "La Roche Posay" },
+  { value: "The Ordinary", displayValue: "The Ordinary" },
+  { value: "Dermalogica", displayValue: "Dermalogica" },
+  { value: "Cosrx", displayValue: "Cosrx" },
+  { value: "REN", displayValue: "REN" },
+  { value: "CeraVe", displayValue: "CeraVe" },
+  { value: "Sukin", displayValue: "Sukin" },
+  { value: "Vichy", displayValue: "Vichy" },
   { value: "First Aid", displayValue: "First Aid" },
-  { value: "Kora Organics", displayValue: "Kora Organics" },
-  { value: "Elemis", displayValue: "Elemis" },
   { value: "La Roche Posay", displayValue: "La Roche Posay" },
-  { value: "First Aid", displayValue: "First Aid" },
-  { value: "Kora Organics", displayValue: "Kora Organics" },
-  { value: "Elemis", displayValue: "Elemis" },
-  { value: "La Roche Posay", displayValue: "La Roche Posay" },
-  { value: "First Aid", displayValue: "First Aid" },
-  { value: "Kora Organics", displayValue: "Kora Organics" },
 ];
 
 const brandValues = getOptionValues({ options: brandOptions });
