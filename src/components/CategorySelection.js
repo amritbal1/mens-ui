@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import { CURRENCIES } from "../utils/currencyEnum";
+import { isEmpty } from "../utils/objectUtils";
 
 class CategorySelection extends Component {
   handleCategoryClick = ({ key, value }) => {
@@ -19,14 +21,23 @@ class CategorySelection extends Component {
   };
 
   render() {
-    const { config = [], type } = this.props;
+    const { config = [], type, pricingData = [] } = this.props;
+    const localCurrency =
+      !isEmpty(pricingData) &&
+      !isEmpty(pricingData[0]) &&
+      !isEmpty(pricingData[0].country) &&
+      CURRENCIES[pricingData[0].country];
     return (
       <div
         class={`overflow-y-scroll scrollbar w-full flex justify-start ${
-          type === "skinConcerns" ? "xl:justify-center" : "lg:justify-center"
+          type === "skinConcerns"
+            ? "xl:justify-center"
+            : type === "product"
+            ? ""
+            : "lg:justify-center"
         }`}
       >
-        {config.map((category) => {
+        {config.map((category, index) => {
           const { key, value, name, imageUrl } = category;
           return (
             <div
@@ -42,11 +53,23 @@ class CategorySelection extends Component {
               />
               <div
                 class={`pt-3 justify-self-end text-center uppercase text-xs ${
-                  type === "product" ? "w-max-250px sm:text-xs md:text-xs lg:text-sm font-medium" : "sm:text-sm md:text-base lg:text-lg"
+                  type === "product"
+                    ? "w-max-250px sm:text-xs md:text-xs lg:text-sm"
+                    : "sm:text-sm md:text-base lg:text-lg"
                 }`}
               >
                 {name}
               </div>
+              {!isEmpty(pricingData) && pricingData.length === config.length && (
+                <div
+                  class={`pt-3 justify-self-end text-center uppercase text-sm`}
+                >
+                  {localCurrency}
+                  {(Math.round(pricingData[index].price * 100) / 100).toFixed(
+                    2
+                  )}
+                </div>
+              )}
             </div>
           );
         })}

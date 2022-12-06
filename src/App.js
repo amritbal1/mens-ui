@@ -11,7 +11,7 @@ import { StyledEngineProvider } from "@mui/material/styles";
 import { getUserLocation } from "./services/GeoLocationService";
 class App extends PureComponent {
   state = {
-    userCountry: "",
+    userCountry: "GB",
   };
 
   onRedirectCallback = (appState) => {
@@ -26,7 +26,8 @@ class App extends PureComponent {
     window.onbeforeunload = function () {
       window.scrollTo(0, 0);
     };
-    const userCountry = await getUserLocation();
+    const userCountry =
+      localStorage.getItem("ipCountry") || (await getUserLocation());
     this.setState({ userCountry: userCountry });
   }
 
@@ -57,11 +58,11 @@ class App extends PureComponent {
                           const allProps = {
                             ...props,
                             backgroundOpacity,
-                            userCountry,
                           };
                           return (
                             <HomePage
                               {...allProps}
+                              userCountry={userCountry}
                               handleCountryChange={this.handleCountryChange}
                             />
                           );
@@ -85,10 +86,14 @@ class App extends PureComponent {
                           const allProps = {
                             ...props,
                             backgroundOpacity,
-                            userCountry,
                             handleCountryChange: this.handleCountryChange,
                           };
-                          return <ProductPage {...allProps} />;
+                          return (
+                            <ProductPage
+                              {...allProps}
+                              userCountry={userCountry}
+                            />
+                          );
                         }}
                       />
                     </Switch>

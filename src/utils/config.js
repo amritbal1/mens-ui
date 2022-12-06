@@ -1,3 +1,15 @@
+// Product Categories Images
+import * as moisturiser from "../images/moisturiser.jpg";
+import * as cleanser from "../images/cleanser.jpeg";
+import * as serum from "../images/serum.jpg";
+import * as exfoliator from "../images/exfoliator.jpeg";
+// Skin Concern Images
+import * as drySkin from "../images/dry_skin.jpg";
+import * as sensitiveSkin from "../images/sensitive_skin.jpg";
+import * as oilySkin from "../images/oily_skin.jpg";
+import * as antiAging from "../images/anti_aging.jpeg";
+import * as acne from "../images/acne.jpg";
+
 const getOptionValues = ({ options }) => {
   return options.map((option) => option.value);
 };
@@ -116,3 +128,59 @@ export const config = {
   withIngredientsOptions,
   withoutIngredientsOptions,
 };
+
+//////////////////// CONFIG FOR NAVBAR DROPDOWNS /////////////
+export const categoryConfig = [
+  {
+    name: "Moisturisers",
+    key: "productCategories",
+    value: "Moisturiser",
+    imageUrl: moisturiser.default,
+  },
+  {
+    name: "Cleansers",
+    key: "productCategories",
+    value: "Cleanser",
+    imageUrl: cleanser.default,
+  },
+  {
+    name: "Serums",
+    key: "productCategories",
+    value: "Serum",
+    imageUrl: serum.default,
+  },
+  {
+    name: "Exfoliators",
+    key: "productCategories",
+    value: "Exfoliator",
+    imageUrl: exfoliator.default,
+  },
+];
+
+export const skinConcernConfig = [
+  {
+    name: "Oily Skin",
+    key: "skinConcerns",
+    value: "oily-skin",
+    imageUrl: oilySkin.default,
+  },
+  {
+    name: "Dry Skin",
+    key: "skinConcerns",
+    value: "dry-skin",
+    imageUrl: drySkin.default,
+  },
+  {
+    name: "Sensitive Skin",
+    key: "skinConcerns",
+    value: "sensitive-skin",
+    imageUrl: sensitiveSkin.default,
+  },
+  {
+    name: "Anti Aging",
+    key: "skinConcerns",
+    value: "anti-aging",
+    imageUrl: antiAging.default,
+  },
+  { name: "Acne", key: "skinConcerns", value: "acne", imageUrl: acne.default },
+];

@@ -5,103 +5,82 @@ import MainMenu from "../components/MainMenu/MainMenu";
 import { getTrendingProducts } from "../services/TrendingProductsService";
 import { isEmpty } from "../utils/objectUtils";
 import { REGION, S3_BUCKET } from "../aws-config";
+import { categoryConfig, skinConcernConfig } from "../utils/config";
+import "../css/homepage.css";
 // Banner Images
 import * as banner_md from "../images/lumin_500.jpeg";
 import * as banner_sm from "../images/banner_sm.jpeg";
 import * as banner_lg from "../images/lumin_wide.jpeg";
-import "./homepage.css";
-// Product Categories Images
-import * as moisturiser from "../images/moisturiser.jpg";
-import * as cleanser from "../images/cleanser.jpeg";
-import * as serum from "../images/serum.jpg";
-import * as exfoliator from "../images/exfoliator.jpeg";
-// Skin Concern Images
-import * as drySkin from "../images/dry_skin.jpg";
-import * as sensitiveSkin from "../images/sensitive_skin.jpg";
-import * as oilySkin from "../images/oily_skin.jpg";
-import * as antiAging from "../images/anti_aging.jpeg";
-import * as acne from "../images/acne.jpg";
+import { getPricingData } from "../services/PricingDataService";
 
 const isMdScreen = window.screen.width >= 768 && window.screen.width < 1024;
 const isLgScreen = window.screen.width >= 1024;
 
-const categoryConfig = [
-  {
-    name: "Moisturisers",
-    key: "productCategories",
-    value: "Moisturiser",
-    imageUrl: moisturiser.default,
-  },
-  {
-    name: "Cleansers",
-    key: "productCategories",
-    value: "Cleanser",
-    imageUrl: cleanser.default,
-  },
-  {
-    name: "Serums",
-    key: "productCategories",
-    value: "Serum",
-    imageUrl: serum.default,
-  },
-  {
-    name: "Exfoliators",
-    key: "productCategories",
-    value: "Exfoliator",
-    imageUrl: exfoliator.default,
-  },
-];
-
-const skinConcernConfig = [
-  {
-    name: "Oily Skin",
-    key: "skinConcerns",
-    value: "oily-skin",
-    imageUrl: oilySkin.default,
-  },
-  {
-    name: "Dry Skin",
-    key: "skinConcerns",
-    value: "dry-skin",
-    imageUrl: drySkin.default,
-  },
-  {
-    name: "Sensitive Skin",
-    key: "skinConcerns",
-    value: "sensitive-skin",
-    imageUrl: sensitiveSkin.default,
-  },
-  {
-    name: "Anti Aging",
-    key: "skinConcerns",
-    value: "anti-aging",
-    imageUrl: antiAging.default,
-  },
-  { name: "Acne", key: "skinConcerns", value: "acne", imageUrl: acne.default },
-];
-
 class HomePage extends PureComponent {
   state = {
     trendingProductsConfig: [],
+    pricingData: [],
   };
 
   async componentDidMount() {
-    const trendingProducts = await getTrendingProducts();
-    const trendingProductsConfig = !isEmpty(trendingProducts)
-      ? trendingProducts.map((product) => {
-          const { productName, brandName, mainImageUrl, productId } = product;
-          const s3ImageUrl = `https://s3.${REGION}.amazonaws.com/${S3_BUCKET}/${mainImageUrl[0]}`;
-          return {
-            name: productName,
-            brandName,
-            key: "product",
-            value: productId,
-            imageUrl: s3ImageUrl,
-          };
-        })
-      : [];
-    this.setState({ trendingProductsConfig: trendingProductsConfig });
+    const { userCountry } = this.props;
+    this.updateData({ userCountry });
   }
+
+  async componentDidUpdate(prevProps, prevState) {
+    if (this.props.userCountry !== prevProps.userCountry) {
+      const { trendingProductsConfig } = this.state;
+      const pricingData = [];
+      if (isEmpty(trendingProductsConfig)) {
+        this.updateData({ userCountry: this.props.userCountry });
+      } else {
+        await Promise.all(
+          trendingProductsConfig.map(async (product) => {
+            const { productId } = product;
+            const { affiliateLinks, country } = await getPricingData({
+              productId,
+              country: this.props.userCountry,
+            });
+            const price =
+              !isEmpty(affiliateLinks) &&
+              !isEmpty(affiliateLinks[0]) &&
+              affiliateLinks[0].price;
+            pricingData.push({ country, price });
+          })
+        );
+        this.setState({ pricingData });
+      }
+    }
+  }
+
+  updateData = async ({ userCountry }) => {
+    const trendingProducts = await getTrendingProducts();
+    const pricingData = [];
+    const trendingProductsConfig = await Promise.all(
+      trendingProducts.map(async (product) => {
+        const { productName, brandName, mainImageUrl, productId } = product;
+        const { affiliateLinks, country } = await getPricingData({
+          productId,
+          country: userCountry,
+        });
+        const price =
+          !isEmpty(affiliateLinks) &&
+          !isEmpty(affiliateLinks[0]) &&
+          affiliateLinks[0].price;
+        pricingData.push({ country, price });
+        const s3ImageUrl = `https://s3.${REGION}.amazonaws.com/${S3_BUCKET}/${mainImageUrl[0]}`;
+        return {
+          productId,
+          name: productName,
+          brandName,
+          key: "product",
+          value: productId,
+          imageUrl: s3ImageUrl,
+        };
+      })
+    );
+    this.setState({ trendingProductsConfig, pricingData });
+  };
 
   handleShopNowClick = () => {
     const { history } = this.props;
@@ -111,7 +90,7 @@ class HomePage extends PureComponent {
   };
 
   render() {
-    const { trendingProductsConfig } = this.state;
+    const { trendingProductsConfig, pricingData } = this.state;
     const { userCountry, handleCountryChange } = this.props;
     let bannerImage = banner_sm;
     if (isMdScreen && !isLgScreen) {
@@ -166,7 +145,11 @@ class HomePage extends PureComponent {
             <div class="pb-12 md:pb-20 text-center text-xl md:text-3xl uppercase font-light tracking-tighter">
               Trending Products
             </div>
-            <CategorySelection config={trendingProductsConfig} type="product" />
+            <CategorySelection
+              config={trendingProductsConfig}
+              type="product"
+              pricingData={pricingData}
+            />
           </div>
           <div class="bg-white py-10">
             <div class="pb-12 md:pb-20 text-center text-xl md:text-3xl uppercase font-light tracking-tighter">
