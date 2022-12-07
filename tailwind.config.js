@@ -72,12 +72,13 @@ module.exports = {
         "dark-teal": "#195558",
         "light-purple": "#e6d9f8",
         "light-gray": "#f5f5f5",
-        stone: "#f6f2f0",
-        darkStone: "#eae4dd",
+        stone: "#fafafa",
+        darkStone: "#f4f2f0",
         navItem: "#1c1c1f",
         moonlitDark: "#0F2027",
         moonlitMedium: "#203A43",
         moonlitLight: "#5d90a6"
+
       },
       gridTemplateColumns: {
         // Repeat with a min-width of 200px
