@@ -21,18 +21,18 @@ class ProductCard extends PureComponent {
   render() {
     const { data } = this.props;
     const { dbg_price, productDetails } = data;
-    const { productName, mainImageUrl, productId } = productDetails;
+    const { productName, mainImageUrl, productId, brandName } = productDetails;
     const s3ImageUrl = `https://s3.${REGION}.amazonaws.com/${S3_BUCKET}/${mainImageUrl}`;
     const localCurrency = localStorage.getItem("localCurrency") || "£";
     return (
       <div class="mb-4">
         <figure
-          class="h-full max-w-20 mx-auto bg-transparent cursor-pointer transition-transform transform sm:hover:shadow-md sm:hover:opacity-50 sm:hover:opacity-100"
+          class="mx-auto bg-darkStone cursor-pointer transition-transform transform sm:hover:shadow-md sm:hover:opacity-50 sm:hover:opacity-100"
           onClick={() => this.handleProductCardClick({ productId: productId })}
         >
           <div>
             <div class="relative pt-full">
-              <div class="absolute inset-0 h-full w-full my-auto mx-auto">
+              <div class="absolute inset-0 pt-4 h-full w-full my-auto mx-auto">
                 <img
                   src={s3ImageUrl}
                   alt="product"
@@ -42,16 +42,16 @@ class ProductCard extends PureComponent {
             </div>
           </div>
           <div class="h-1" />
-          <figcaption class="py-2 pt-4 sm:pt-10 flex flex-col content-between">
-            {/* <div class="text-xs sm:text-sm lg:text-base text-slate-gray mb-2">
+          <figcaption class="py-4 sm:py-6 sm:px-4 flex flex-col content-between">
+            <div class="text-center tracking-tighter text-xs sm:text-sm lg:text-base text-slate-gray mb-2">
               {brandName}
-            </div> */}
+            </div>
             <div class="text-center mb-4">
-              <div class="text-xs sm:text-sm text-slate-gray font-medium tracking-widest font-normal uppercase">
+              <div class="text-xs sm:text-base text-slate-gray font-medium tracking-widest font-normal uppercase">
                 {productName}
               </div>
             </div>
-            <div class="text-center text-xs sm:text-sm text-slate-gray w-full font-light">
+            <div class="text-center text-xs sm:text-base text-slate-gray w-full font-light">
               {`${localCurrency} ${(Math.round(dbg_price * 100) / 100).toFixed(
                 2
               )}`}

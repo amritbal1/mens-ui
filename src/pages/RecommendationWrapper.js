@@ -122,15 +122,15 @@ class RecommendationWrapper extends Component {
     });
     const { userCountry, handleCountryChange } = this.props;
     return (
-      <div class="min-h-screen">
+      <div class="min-h-screen pb-12">
         <MainMenu
           showMenuDropdowns={false}
           userCountry={userCountry}
           handleCountryChange={handleCountryChange}
         />
 
-        <div class="flex flex-col lg:flex-row px-4 pt-10 sm:px-16 bg-white min-h-screen lg:justify-center">
-          <div class="hidden lg:block w-80 mr-4">
+        <div class="flex flex-col lg:flex-row px-4 pt-10 sm:px-16 bg-stone min-h-screen lg:justify-center">
+          <div class="hidden lg:block w-96 mr-4">
             <FiltersBar filtersConfig={filtersConfig} />
           </div>
           <div class="block lg:hidden w-80 mr-4 mb-10">
@@ -144,7 +144,7 @@ class RecommendationWrapper extends Component {
               </span>
             </div>
             <SlidingPane
-              className="bg-white"
+              className="bg-stone"
               isOpen={this.state.isPaneOpen}
               hideHeader={true}
               closeIcon={

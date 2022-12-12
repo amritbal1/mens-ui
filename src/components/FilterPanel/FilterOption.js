@@ -3,11 +3,11 @@ import { CheckIcon } from "@heroicons/react/24/outline";
 import { checkIconStyle } from "./utils/filterPillUtils/checkboxStyling";
 import { getValueFromUrl } from "../../utils/urlUtils/urlValueGetter";
 
-const CHECKBOX_STYLE = `bg-white border border-gray-400 w-24px h-24px mr-2 flex-shrink-0 flex items-center justify-center`;
+const CHECKBOX_STYLE = `bg-stone border border-gray-400 w-24px h-24px mr-2 flex-shrink-0 flex items-center justify-center`;
 
-const HOVER_CHECKBOX_STYLE = `bg-white border border-gray-700 w-24px h-24px mr-2 flex-shrink-0 flex items-center justify-center`;
+const HOVER_CHECKBOX_STYLE = `bg-stone border border-gray-700 w-24px h-24px mr-2 flex-shrink-0 flex items-center justify-center`;
 
-const SELECTED_CHECKBOX_STYLE = `bg-white w-24px h-24px mr-2 flex-shrink-0 flex items-center justify-center`;
+const SELECTED_CHECKBOX_STYLE = `bg-stone w-24px h-24px mr-2 flex-shrink-0 flex items-center justify-center`;
 class FilterOption extends Component {
   state = {
     checkboxStyle: CHECKBOX_STYLE,

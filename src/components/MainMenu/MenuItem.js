@@ -121,7 +121,7 @@ const MenuItemComponent = function MenuItem({
                 <Popover.Panel static className="z-10 -translate-x-1/2">
                   <div
                     className={classNames(
-                      "bg-white px-4 shadow-lg py-4 absolute left-0 w-48"
+                      "bg-stone px-4 shadow-lg py-4 absolute left-0 w-48"
                     )}
                   >
                     {!isEmpty(linksArray) &&

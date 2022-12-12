@@ -30,6 +30,7 @@ module.exports = {
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
+        oldStandard: ["Old Standard TT", "sans-serif"],
       },
       transitionProperty: {
         visibility: "visibility",
@@ -77,8 +78,7 @@ module.exports = {
         navItem: "#1c1c1f",
         moonlitDark: "#0F2027",
         moonlitMedium: "#203A43",
-        moonlitLight: "#5d90a6"
-
+        moonlitLight: "#5d90a6",
       },
       gridTemplateColumns: {
         // Repeat with a min-width of 200px

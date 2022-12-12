@@ -115,7 +115,7 @@ class MainMenu extends Component {
           </div>
         </div>
         <SlidingPane
-          className="bg-light-gray"
+          className="bg-stone"
           from="left"
           isOpen={this.state.isPaneOpenLeft}
           hideHeader={true}

@@ -16,7 +16,7 @@ class RecommendationPage extends PureComponent {
 
   render() {
     return (
-      <div class="w-full px-2 sm:px-0 grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-4 sm:gap-x-14 sm:gap-y-8 font-montserrat">
+      <div class="w-full px-2 sm:px-0 grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-4 sm:gap-x-20 sm:gap-y-12 font-montserrat">
         {this.getFormattedResults()}
       </div>
     );

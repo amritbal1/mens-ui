@@ -37,10 +37,11 @@ class HomePage extends PureComponent {
         await Promise.all(
           trendingProductsConfig.map(async (product) => {
             const { productId } = product;
-            const { affiliateLinks, country } = await getPricingData({
+            const data = await getPricingData({
               productId,
               country: this.props.userCountry,
-            });
+            }) || [];
+            const { affiliateLinks = [], country = "" } = data;
             const price =
               !isEmpty(affiliateLinks) &&
               !isEmpty(affiliateLinks[0]) &&
@@ -59,10 +60,11 @@ class HomePage extends PureComponent {
     const trendingProductsConfig = await Promise.all(
       trendingProducts.map(async (product) => {
         const { productName, brandName, mainImageUrl, productId } = product;
-        const { affiliateLinks, country } = await getPricingData({
+        const data = await getPricingData({
           productId,
           country: userCountry,
-        });
+        }) || [];
+        const { affiliateLinks = [], country = "" } = data;
         const price =
           !isEmpty(affiliateLinks) &&
           !isEmpty(affiliateLinks[0]) &&
@@ -132,8 +134,8 @@ class HomePage extends PureComponent {
           </div>
         </div>
         <div class="flex flex-col pb-7 font-montserrat">
-          <div class="bg-white py-10 md:py-20">
-            <div class="pb-12 md:pb-20 text-center text-xl sm:text-2xl md:text-3xl uppercase font-light tracking-tighter">
+          <div class="bg-stone py-10 md:py-24">
+            <div class="pb-12 md:pb-20 text-center text-xl sm:text-2xl md:text-4xl uppercase font-light tracking-tighter font-oldStandard">
               Shop by category
             </div>
             <CategorySelection
@@ -141,8 +143,8 @@ class HomePage extends PureComponent {
               type="productCategories"
             />
           </div>
-          <div class="bg-light-gray py-10">
-            <div class="pb-12 md:pb-20 text-center text-xl md:text-3xl uppercase font-light tracking-tighter">
+          <div class="bg-darkStone py-10 md:py-24">
+            <div class="pb-12 md:pb-20 text-center text-xl md:text-4xl uppercase font-light tracking-tighter font-oldStandard">
               Trending Products
             </div>
             <CategorySelection
@@ -151,8 +153,8 @@ class HomePage extends PureComponent {
               pricingData={pricingData}
             />
           </div>
-          <div class="bg-white py-10">
-            <div class="pb-12 md:pb-20 text-center text-xl md:text-3xl uppercase font-light tracking-tighter">
+          <div class="bg-stone py-10 md:py-24">
+            <div class="pb-12 md:pb-20 text-center text-xl md:text-4xl uppercase font-light tracking-tighter font-oldStandard">
               Shop by skin concern
             </div>
             <CategorySelection config={skinConcernConfig} type="skinConcerns" />

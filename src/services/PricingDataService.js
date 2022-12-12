@@ -14,6 +14,6 @@ export const getPricingData = async ({ productId, country }) => {
       : null;
   } catch (e) {
     console.error("Error getting data from PricingData service: ", e);
-    return {};
+    return [];
   }
 };

@@ -1,8 +1,3 @@
-// Product Categories Images
-import * as moisturiser from "../images/moisturiser.jpg";
-import * as cleanser from "../images/cleanser.jpeg";
-import * as serum from "../images/serum.jpg";
-import * as exfoliator from "../images/exfoliator.jpeg";
 // Skin Concern Images
 import * as drySkin from "../images/dry_skin.jpg";
 import * as sensitiveSkin from "../images/sensitive_skin.jpg";
@@ -37,15 +32,15 @@ const skinConcernValues = getOptionValues({ options: skinConcernOptions });
 ///////BRANDS/////////
 
 const brandOptions = [
-  { value: "The Ordinary", displayValue: "The Ordinary" },
-  { value: "Dermalogica", displayValue: "Dermalogica" },
-  { value: "Cosrx", displayValue: "Cosrx" },
-  { value: "REN", displayValue: "REN" },
-  { value: "CeraVe", displayValue: "CeraVe" },
-  { value: "Sukin", displayValue: "Sukin" },
+  { value: "Malin + Goetz", displayValue: "Malin + Goetz" },
+  { value: "Anthony", displayValue: "Anthony" },
+  { value: "Kiehl's", displayValue: "Kiehl's" },
+  { value: "Aesop", displayValue: "Aesop" },
   { value: "Vichy", displayValue: "Vichy" },
-  { value: "First Aid", displayValue: "First Aid" },
   { value: "La Roche Posay", displayValue: "La Roche Posay" },
+  { value: "Medik8", displayValue: "Medik8" },
+  { value: "de Mamiel", displayValue: "de Mamiel" },
+  { value: "Grown Alchemist", displayValue: "Grown Alchemist" },
 ];
 
 const brandValues = getOptionValues({ options: brandOptions });
@@ -132,25 +127,19 @@ export const categoryConfig = [
     name: "Moisturisers",
     key: "productCategories",
     value: "Moisturiser",
-    imageUrl: moisturiser.default,
+    imageUrl: "https://s3.eu-west-1.amazonaws.com/nova-s3-media/products/grown_alchemist_age_repair_cream/image_1.png",
   },
   {
     name: "Cleansers",
     key: "productCategories",
     value: "Cleanser",
-    imageUrl: cleanser.default,
+    imageUrl: "https://s3.eu-west-1.amazonaws.com/nova-s3-media/products/grown_alchemist_gel_cleanser/image_1.png",
   },
   {
     name: "Serums",
     key: "productCategories",
     value: "Serum",
-    imageUrl: serum.default,
-  },
-  {
-    name: "Exfoliators",
-    key: "productCategories",
-    value: "Exfoliator",
-    imageUrl: exfoliator.default,
+    imageUrl: "https://s3.eu-west-1.amazonaws.com/nova-s3-media/products/aesop_parsley_serum/image_1.png",
   },
 ];
 

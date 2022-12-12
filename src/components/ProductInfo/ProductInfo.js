@@ -5,7 +5,7 @@ import { isEmpty } from "../../utils/objectUtils";
 class ProductInfo extends PureComponent {
   render() {
     const { productDetails, pricingData } = this.props;
-    const { brandName, productName } = productDetails;
+    const { brandName, productName, productDescription } = productDetails;
     const country =
       pricingData && pricingData.country ? pricingData.country : "GB";
     const localCurrency = CURRENCIES[country];
@@ -21,13 +21,13 @@ class ProductInfo extends PureComponent {
           <div class="lg:mb-16">
             <div class="flex mb-2 mr-2 sm:mr-0">
               <div class="sm:px-0">
-                <div class="text-sm sm:text-base lg:text-xl font-normal tracking-tight text-slate-gray mb-1">
+                <div class="text-sm sm:text-base lg:text-lg font-normal tracking-tight text-slate-gray mb-1 uppercase font-oldStandard">
                   {brandName}
                 </div>
               </div>
             </div>
             <div>
-              <div class="uppercase font-normal tracking-wide-x text-lg sm:text-2xl text-slate-gray sm:px-0 mb-6">
+              <div class="uppercase font-normal tracking-tight text-xl sm:text-3xl text-slate-gray sm:px-0 mb-6 font-oldStandard">
                 {productName}
               </div>
             </div>
@@ -53,7 +53,9 @@ class ProductInfo extends PureComponent {
                 >
                   <div class="w-full text-base sm:text-lg flex justify-between items-center">
                     <div />
-                    <div class="tracking-widest uppercase text-sm">Shop Now</div>
+                    <div class="tracking-widest uppercase text-sm">
+                      Shop Now
+                    </div>
                     <div>
                       <ArrowTopRightOnSquareIcon className="self-start inline h-5 w-5 sm:h-6 sm:w-6 ml-3 stroke-2" />
                     </div>
@@ -64,9 +66,7 @@ class ProductInfo extends PureComponent {
           </div>
         </div>
         <div class="pt-2 sm:pt-8 text-sm sm:text-lg font-light leading-7">
-          {
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a arcu felis. Quisque eleifend mauris ut neque fringilla, ac tempus orci ullamcorper. Proin molestie neque in laoreet posuere. "
-          }
+          {productDescription}
         </div>
       </div>
     );
