@@ -52,7 +52,7 @@ const MenuItemComponent = function MenuItem({
 
   const LINK_STYLES = classNames(
     "w-full text-left cursor-pointer pb-3 px-2",
-    "text-sm sm:text-base font-light text-slate-gray",
+    "text-sm font-light text-slate-gray",
     "transition duration-500 ease-in-out",
     "transition-transform transform hover:translate-x-2"
   );
@@ -96,11 +96,11 @@ const MenuItemComponent = function MenuItem({
             >
               <div
                 class={
-                  "flex justify-center items-center focus:outline-none py-3 px-6"
+                  "flex justify-center items-center focus:outline-none py-3 px-4"
                 }
                 onClick={() => handleClick(open)}
               >
-                <span className="uppercase font-medium text-base tracking-widest leading-5">
+                <span className="uppercase text-sm tracking-tight leading-5">
                   {menuTitle}
                 </span>
                 {showChevron && <ChevronDownIcon class="inline ml-1 w-4 h-4" />}

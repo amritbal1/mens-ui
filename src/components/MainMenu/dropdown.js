@@ -19,8 +19,8 @@ export const Dropdown = ({
       {...commonProps}
       placeholder={
         <div class="flex justify-center items-center text-slate-gray">
-          <span>{placeholder}</span>
-          <ChevronDownIcon class="ml-2 inline h-5 w-5 text-slate-gray" />
+          <span class="text-xs">{placeholder}</span>
+          <ChevronDownIcon class="ml-2 inline h-3 w-3 text-slate-gray" />
         </div>
       }
       value={inputValueObject ? inputValueObject : { label: value, value }}

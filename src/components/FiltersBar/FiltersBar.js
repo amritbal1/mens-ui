@@ -4,10 +4,10 @@ import { PlusIcon, MinusIcon } from "@heroicons/react/20/solid";
 import FilterPillOptions from "../FilterPanel/utils/filterPillUtils/FilterPillOptions";
 import { getPillName } from "../FilterPanel/utils/filterPillUtils/filterPillNameUtils";
 const BUTTON_STYLE =
-  "w-full px-4 py-3 sm:py-4 text-left uppercase tracking-widest text-sm sm:text-base font-light focus:outline-none";
+  "w-full px-4 py-2 text-left uppercase tracking-widest text-sm font-light focus:outline-none";
 
 const PANEL_STYLE =
-  "px-4 pb-2 text-sm text-gray-500 max-h-72 overflow-y-scroll scrollbar";
+  "px-4 pb-2 text-xs text-gray-500 max-h-72 overflow-y-scroll scrollbar";
 
 class FiltersBar extends Component {
   render() {

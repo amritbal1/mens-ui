@@ -30,11 +30,7 @@ class CategorySelection extends Component {
     return (
       <div
         class={`overflow-y-scroll scrollbar w-full flex justify-start ${
-          type === "skinConcerns"
-            ? "xl:justify-center"
-            : type === "product"
-            ? ""
-            : "lg:justify-center"
+          type === "productCategories" ? "lg:justify-center" : ""
         }`}
       >
         {config.map((category, index) => {
@@ -48,16 +44,14 @@ class CategorySelection extends Component {
                 alt="skin"
                 class={`h-130px w-130px sm:h-150px sm:w-150px md:h-180px md:w-180px lg:h-200px lg:w-200px cursor-pointer ${
                   type === "product" ? "" : "rounded-full"
-                } ${
-                  type === "productCategories" ? "p-2 bg-darkStone" : ""
-                }`}
+                } ${type === "productCategories" ? "p-2 bg-darkStone" : "p-2"}`}
                 onClick={() => this.handleCategoryClick({ key, value })}
               />
               <div
                 class={`pt-3 justify-self-end text-center uppercase text-xs ${
                   type === "product"
-                    ? "w-max-250px sm:text-xs md:text-xs lg:text-sm"
-                    : "sm:text-sm md:text-base lg:text-lg"
+                    ? "w-max-250px sm:text-xs lg:text-sm"
+                    : "sm:text-xs lg:text-sm"
                 }`}
               >
                 {name}

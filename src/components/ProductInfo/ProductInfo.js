@@ -47,7 +47,7 @@ class ProductInfo extends PureComponent {
                 rel="noopener noreferrer"
               >
                 <button
-                  class="mt-2 lg:mt-6 w-full lg:w-96 bg-gray-900 text-gray-50 tracking-wide py-2 sm:py-3 lg:py-4 px-6 shadow-md focus:outline-none sm:hover:opacity-60"
+                  class="mt-2 lg:mt-6 w-full bg-gray-900 text-gray-50 tracking-wide py-2 sm:py-3 px-6 shadow-md focus:outline-none sm:hover:opacity-60"
                   onMouseEnter={this.handleMouseEnter}
                   onMouseLeave={this.handleMouseLeave}
                 >
@@ -65,7 +65,7 @@ class ProductInfo extends PureComponent {
             </div>
           </div>
         </div>
-        <div class="pt-2 sm:pt-8 text-sm sm:text-lg font-light leading-7">
+        <div class="pt-2 sm:pt-8 text-sm font-light leading-7">
           {productDescription}
         </div>
       </div>

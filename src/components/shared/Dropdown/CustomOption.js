@@ -6,7 +6,7 @@ const getLabelSpan = ({ data }) => {
   const label = data.label;
   return (
     <div class="mb-1">
-      <span class="ml-3 block truncate text-sm">{label}</span>
+      <span class="ml-3 block truncate text-xs">{label}</span>
     </div>
   );
 };

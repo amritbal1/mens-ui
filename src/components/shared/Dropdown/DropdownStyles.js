@@ -12,7 +12,7 @@ export const getSelectStyles = ({ overrideStyles = {} }) => {
       overflow: "hidden",
       textTransform: "uppercase",
       fontWeight: overrideStyles.menuBarStyles ? 500 : 400,
-      fontSize: overrideStyles.menuBarStyles ? "0.875rem" : "0.875rem",
+      fontSize: "0.75rem",
       fontStyle: overrideStyles.menuBarStyles ? "italic" : "normal",
       letterSpacing: overrideStyles.menuBarStyles ? "0.1em" : "normal",
       paddingLeft: overrideStyles.menuBarStyles ? "1rem" : provided.marginLeft,
@@ -76,7 +76,7 @@ export const getSelectStyles = ({ overrideStyles = {} }) => {
           ? overrideStyles.valueContainerHeight
           : provided.height,
       padding: overrideStyles.menuBarStyles ? "0rem 0rem" : "0.2rem 0.5rem",
-      fontSize: "0.875rem",
+      fontSize: "0.75rem",
       color: "#2f3033",
       fontWeight: 300,
       justifyContent: overrideStyles.menuBarStyles ? "start" : "center",

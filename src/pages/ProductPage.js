@@ -141,7 +141,7 @@ class ProductPage extends PureComponent {
                   key={category}
                   className={({ selected }) =>
                     classNames(
-                      "font-normal text-slate-gray text-xs sm:text-base uppercase tracking-widest mx-4 pb-4 sm:mx-12 sm:pb-6",
+                      "font-normal text-slate-gray text-xs sm:text-sm uppercase tracking-widest mx-4 pb-4 sm:mx-12 sm:pb-6",
                       selected ? "border-b-2 border-moonlitMedium" : ""
                     )
                   }
@@ -152,11 +152,11 @@ class ProductPage extends PureComponent {
             </Tab.List>
             <Tab.Panels className="mt-2">
               {Object.values(categories).map((item, idx) => (
-                <Tab.Panel key={idx} className={classNames("px-3 pb-3 pt-12")}>
-                  <div class="font-light text-xs sm:text-base leading-6 sm:leading-7">
+                <Tab.Panel key={idx} className={classNames("px-3 pb-3 pt-10")}>
+                  <div class="font-light text-xs leading-6 sm:leading-7">
                     {Array.isArray(item.content)
                       ? item.content.map((info) => (
-                          <div class="mb-6">
+                          <div class="mb-4">
                             {item.id === "benefits" ? (
                               <CheckIcon class="inline h-4 w-4 text-gray-500 mr-4" />
                             ) : (

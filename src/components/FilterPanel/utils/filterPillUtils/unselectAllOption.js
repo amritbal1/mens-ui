@@ -18,7 +18,7 @@ class UnselectAllOption extends Component {
       <div>
         <div class="py-1 flex justify-between">
           <div
-            class="pb-2 my-auto text-sm sm:text-base underline text-gray-500 cursor-pointer"
+            class="pb-2 my-auto text-xs underline text-gray-500 cursor-pointer"
             onClick={this.handleUnselectAllClick}
           >
             Unselect all
