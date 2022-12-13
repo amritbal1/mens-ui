@@ -161,7 +161,7 @@ class RecommendationWrapper extends Component {
               <br />
             </SlidingPane>
           </div>
-          <RecommendationPage results={results} />
+          <RecommendationPage results={results}  userCountry={userCountry} />
         </div>
       </div>
     );

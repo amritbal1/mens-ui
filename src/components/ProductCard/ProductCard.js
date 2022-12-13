@@ -1,5 +1,7 @@
 import { PureComponent } from "react";
 import { REGION, S3_BUCKET } from "../../aws-config";
+import { getPricingData } from "../../services/PricingDataService";
+import { isEmpty } from "../../utils/objectUtils";
 import "./circle.css";
 class ProductCard extends PureComponent {
   state = {
@@ -18,9 +20,60 @@ class ProductCard extends PureComponent {
     this.setState({ displayChevron: true });
   };
 
+  async componentDidMount() {
+    const { data } = this.props;
+    const { productDetails } = data;
+    const { productId } = productDetails;
+    const pricingData =
+      (await getPricingData({
+        productId,
+        country: this.props.userCountry,
+      })) || [];
+    const { affiliateLinks = [] } = pricingData;
+    const price =
+      !isEmpty(affiliateLinks) &&
+      !isEmpty(affiliateLinks[0]) &&
+      affiliateLinks[0].price;
+    this.setState({ price: price });
+  }
+
+  async componentDidUpdate(prevProps) {
+    if (this.props.userCountry !== prevProps.userCountry) {
+      const { data } = this.props;
+      const { productDetails } = data;
+      const { productId } = productDetails;
+      const pricingData =
+        (await getPricingData({
+          productId,
+          country: this.props.userCountry,
+        })) || [];
+      const { affiliateLinks = [] } = pricingData;
+      const price =
+        !isEmpty(affiliateLinks) &&
+        !isEmpty(affiliateLinks[0]) &&
+        affiliateLinks[0].price;
+      this.setState({ price: price });
+    }
+  }
+
+  getPricing = async ({ productId }) => {
+    const data =
+      (await getPricingData({
+        productId,
+        country: this.props.userCountry,
+      })) || [];
+    const { affiliateLinks = [] } = data;
+    return (
+      !isEmpty(affiliateLinks) &&
+      !isEmpty(affiliateLinks[0]) &&
+      affiliateLinks[0].price
+    );
+  };
+
   render() {
     const { data } = this.props;
-    const { dbg_price, productDetails } = data;
+    const { price } = this.state;
+    const { productDetails } = data;
     const { productName, mainImageUrl, productId, brandName } = productDetails;
     const s3ImageUrl = `https://s3.${REGION}.amazonaws.com/${S3_BUCKET}/${mainImageUrl}`;
     const localCurrency = localStorage.getItem("localCurrency") || "£";
@@ -52,9 +105,7 @@ class ProductCard extends PureComponent {
               </div>
             </div>
             <div class="text-center text-xs text-slate-gray w-full font-light">
-              {`${localCurrency} ${(Math.round(dbg_price * 100) / 100).toFixed(
-                2
-              )}`}
+              {`${localCurrency} ${(Math.round(price * 100) / 100).toFixed(2)}`}
             </div>
           </figcaption>
         </figure>

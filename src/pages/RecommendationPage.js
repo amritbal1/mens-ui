@@ -5,12 +5,19 @@ import ProductCard from "../components/ProductCard/ProductCard";
 //Page to display recommended products
 class RecommendationPage extends PureComponent {
   getFormattedResults = () => {
-    const { history, results } = this.props;
+    const { history, results, userCountry } = this.props;
     return results.map((result) => {
       const {
         productDetails: { productId },
       } = result;
-      return <ProductCard key={productId} data={result} history={history} />;
+      return (
+        <ProductCard
+          key={productId}
+          data={result}
+          history={history}
+          userCountry={userCountry}
+        />
+      );
     });
   };
 
