@@ -112,7 +112,7 @@ class ProductPage extends PureComponent {
     return (
       <div class="w-full mx-auto pb-6 min-h-screen bg-stone">
         <div class="lg:grid lg:grid-cols-2 lg:max-w-7xl mx-auto">
-          <div class="flex justify-center py-6 lg:py-12">
+          <div class="flex justify-center w-full bg-darkStone my-6 lg:my-12">
             <div class="w-300px h-300px md:w-600px md:h-600px self-center justify-self-center bg-darkStone">
               <Carousel
                 images={allProductImageUrls}
