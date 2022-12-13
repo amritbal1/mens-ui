@@ -62,7 +62,7 @@ class FilterOption extends Component {
             <div class={isSelected ? SELECTED_CHECKBOX_STYLE : checkboxStyle}>
               {isSelected && <CheckIcon class={checkIconStyle} />}
             </div>
-            <span class="text-sm font-light text-slate-gray">{label}</span>
+            <span class="text-xs font-light text-slate-gray">{label}</span>
           </div>
         </div>
       </div>

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Disclosure } from "@headlessui/react";
-import { PlusIcon, MinusIcon } from "@heroicons/react/20/solid";
+import { PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
 import FilterPillOptions from "../FilterPanel/utils/filterPillUtils/FilterPillOptions";
 import { getPillName } from "../FilterPanel/utils/filterPillUtils/filterPillNameUtils";
 const BUTTON_STYLE =
-  "w-full px-4 py-2 text-left uppercase tracking-widest text-sm font-light focus:outline-none";
+  "w-full px-4 py-2 text-left uppercase tracking-widest text-xs font-light focus:outline-none";
 
 const PANEL_STYLE =
   "px-4 pb-2 text-xs text-gray-500 max-h-72 overflow-y-scroll scrollbar";
@@ -32,11 +32,11 @@ class FiltersBar extends Component {
                   <div class="border-b">
                     <Disclosure.Button className={BUTTON_STYLE}>
                       <div class="flex w-full justify-between">
-                        <span>{label}</span>
+                        <span class="font-normal">{label}</span>
                         {open ? (
-                          <MinusIcon className="rotate-180 transform  h-4 w-4 sm:h-6 sm:w- text-slate-gray" />
+                          <MinusIcon className="rotate-180 transform  h-4 w-4 text-slate-gray" />
                         ) : (
-                          <PlusIcon className="rotate-180 transform h-4 w-4 sm:h-6 sm:w-6 text-slate-gray" />
+                          <PlusIcon className="rotate-180 transform h-4 w-4 text-slate-gray" />
                         )}
                       </div>
                       <div class="text-gray-600 sm:mt-1 normal-case tracking-tighter">
