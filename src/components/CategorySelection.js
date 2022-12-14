@@ -44,7 +44,7 @@ class CategorySelection extends Component {
                 alt="skin"
                 class={`h-130px w-130px sm:h-150px sm:w-150px md:h-180px md:w-180px lg:h-200px lg:w-200px cursor-pointer ${
                   type === "product" ? "" : "rounded-full"
-                } ${type === "productCategories" ? "p-2 bg-darkStone" : "p-2"}`}
+                } ${type === "productCategories" ? "p-2 bg-darkStone" : "p-2 sm:p-4"}`}
                 onClick={() => this.handleCategoryClick({ key, value })}
               />
               <div

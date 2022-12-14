@@ -253,12 +253,12 @@
       width: 950px;
     }
 
-    .w-600px {
-      width: 600px;
+    .w-500px {
+      width: 500px;
     }
 
-    .h-600px {
-      height: 600px;
+    .h-500px {
+      height: 500px;
     }
 
     .w-min-350px {
@@ -269,16 +269,16 @@
       min-width: 450px;
     }
 
-    .w-min-600px {
-      min-width: 600px;
+    .w-min-500px {
+      min-width: 500px;
     }
 
     .h-min-450px {
       min-height: 450px;
     }
 
-    .h-min-600px {
-      min-height: 600px;
+    .h-min-500px {
+      min-height: 500px;
     }
 
     .w-80px {

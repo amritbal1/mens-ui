@@ -29,8 +29,7 @@ module.exports = {
         xxs: "0.65rem",
       },
       fontFamily: {
-        montserrat: ["Montserrat", "sans-serif"],
-        oldStandard: ["Old Standard TT", "sans-serif"],
+        jost: ["Jost", "sans-serif"],
       },
       transitionProperty: {
         visibility: "visibility",

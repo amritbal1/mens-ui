@@ -112,13 +112,13 @@ class ProductPage extends PureComponent {
     return (
       <div class="w-full mx-auto pb-6 min-h-screen bg-stone">
         <div class="lg:grid lg:grid-cols-2 lg:max-w-7xl mx-auto">
-          <div class="flex justify-center w-full bg-darkStone my-6 lg:my-12">
-            <div class="w-300px h-300px md:w-600px md:h-600px self-center justify-self-center bg-darkStone">
+          <div class="flex justify-center w-full bg-darkStone my-6">
+            <div class="w-300px h-300px md:w-500px md:h-500px self-center justify-self-center bg-darkStone">
               <Carousel
                 images={allProductImageUrls}
                 slidesToShow={1}
                 imageWidth={
-                  "w-min-300px h-min-300px md:w-min-600px md:h-min-600px"
+                  "w-min-300px h-min-300px md:w-min-500px md:h-min-500px"
                 }
                 handleImageClickFn={this.handleImageClickFn}
                 showCursorOnHover={false}
@@ -153,7 +153,7 @@ class ProductPage extends PureComponent {
             <Tab.Panels className="mt-2">
               {Object.values(categories).map((item, idx) => (
                 <Tab.Panel key={idx} className={classNames("px-3 pb-3 pt-10")}>
-                  <div class="font-light text-xs leading-6 sm:leading-7">
+                  <div class="font-light text-sm leading-6 sm:leading-7">
                     {Array.isArray(item.content)
                       ? item.content.map((info) => (
                           <div class="mb-4">

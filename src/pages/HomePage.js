@@ -101,7 +101,7 @@ class HomePage extends PureComponent {
       bannerImage = banner_lg;
     }
     return (
-      <div class="h-screen pb-6 mx-auto w-full relative font-montserrat">
+      <div class="h-screen pb-6 mx-auto w-full relative font-jost">
         <div class="bg-transparent absolute top-0 w-full z-50">
           <MainMenu
             userCountry={userCountry}
@@ -117,11 +117,11 @@ class HomePage extends PureComponent {
                 </span>
                 <img id="bannerImage" alt="banner" src={bannerImage.default} />
                 <div class="w-full sm:w-80 md:w-96 xl:w-600px mx-auto sm:mx-6 lg:mx-16 absolute bottom-0 xl:left-1/5 xl:top-1/3 sm:right-0 px-6 xl:px-0 pb-4 xs:pb-10 flex flex-col items-center justify-center">
-                  <div class="pb-4 text-3xl sm:text-3xl w-80 md:w-96 xl:w-600px text-transparent bg-clip-text bg-gradient-to-br from-moonlitDark via-moonlitMedium to-moonlitLight tracking-widest leading-12 uppercase font-light">
-                    Men's premium skincare products
+                  <div class="pb-6 text-2xl sm:text-3xl w-80 md:w-96 xl:w-600px text-transparent bg-clip-text bg-gradient-to-br from-moonlitDark via-moonlitMedium to-moonlitLight tracking-widest leading-8 md:leading-12 uppercase font-light">
+                    Premium skincare for the modern male
                   </div>
                   <button
-                    class="mt-2 lg:mt-6 w-3/5 border border-moonlitDark bg-transparent text-moonlitDark py-2 sm:py-3 px-4 focus:outline-none sm:hover:bg-moonlitMedium sm:hover:text-gray-100 w-96"
+                    class="lg:mt-6 w-3/5 border border-moonlitDark bg-transparent text-moonlitDark py-2 sm:py-3 px-4 focus:outline-none sm:hover:bg-moonlitMedium sm:hover:text-gray-100 w-96"
                     onClick={this.handleShopNowClick}
                   >
                     <div class="w-full text-base text-center tracking-widest uppercase text-xs sm:text-sm">
@@ -133,9 +133,9 @@ class HomePage extends PureComponent {
             </span>
           </div>
         </div>
-        <div class="flex flex-col pb-7 font-montserrat">
+        <div class="flex flex-col pb-7 font-jost">
           <div class="bg-stone py-10 md:py-16">
-            <div class="pb-12 md:pb-16 text-center text-xl sm:text-2xl md:text-3xl uppercase font-light tracking-tighter font-oldStandard">
+            <div class="pb-12 md:pb-16 text-center text-xl sm:text-2xl uppercase font-medium tracking-tighter font-jost">
               Shop by category
             </div>
             <CategorySelection
@@ -144,7 +144,7 @@ class HomePage extends PureComponent {
             />
           </div>
           <div class="bg-darkStone py-10 md:py-16">
-            <div class="pb-12 md:pb-16 text-center text-xl md:text-3xl uppercase font-light tracking-tighter font-oldStandard">
+            <div class="pb-12 md:pb-16 text-center text-xl sm:text-2xl uppercase font-medium tracking-tighter font-jost">
               Trending Products
             </div>
             <CategorySelection
@@ -154,7 +154,7 @@ class HomePage extends PureComponent {
             />
           </div>
           <div class="bg-stone py-10 md:py-16">
-            <div class="pb-12 md:pb-16 text-center text-xl md:text-3xl uppercase font-light tracking-tighter font-oldStandard">
+            <div class="pb-12 md:pb-16 text-center text-xl sm:text-2xl uppercase font-medium tracking-tighter font-jost">
               Shop by skin concern
             </div>
             <CategorySelection config={skinConcernConfig} type="skinConcerns" />

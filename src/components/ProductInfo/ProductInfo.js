@@ -21,13 +21,13 @@ class ProductInfo extends PureComponent {
           <div class="lg:mb-16">
             <div class="flex mb-2 mr-2 sm:mr-0">
               <div class="sm:px-0">
-                <div class="text-sm sm:text-base lg:text-lg font-normal tracking-tight text-slate-gray mb-1 uppercase font-oldStandard">
+                <div class="text-sm sm:text-base lg:text-lg font-normal tracking-tight text-slate-gray mb-1 uppercase">
                   {brandName}
                 </div>
               </div>
             </div>
             <div>
-              <div class="uppercase font-normal tracking-tight text-xl sm:text-3xl text-slate-gray sm:px-0 mb-6 font-oldStandard">
+              <div class="uppercase font-normal tracking-tight text-2xl sm:text-3xl text-slate-gray sm:px-0 mb-6">
                 {productName}
               </div>
             </div>
@@ -35,7 +35,7 @@ class ProductInfo extends PureComponent {
           <div class="mb-4">
             <div class="mb-4">
               {price && (
-                <div class="text-slate-gray font-light uppercase text-sm sm:text-xl">
+                <div class="text-slate-gray font-light uppercase text-base sm:text-xl">
                   {`~${localCurrency} ${(Math.round(price * 100) / 100).toFixed(
                     2
                   )}`}
@@ -65,7 +65,7 @@ class ProductInfo extends PureComponent {
             </div>
           </div>
         </div>
-        <div class="pt-2 sm:pt-8 text-sm font-light leading-7">
+        <div class="pt-2 sm:pt-8 text-sm font-light leading-6">
           {productDescription}
         </div>
       </div>

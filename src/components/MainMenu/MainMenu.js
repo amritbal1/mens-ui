@@ -76,10 +76,10 @@ class MainMenu extends Component {
             onClick={this.handleBurgerMenuClick}
           />
         </div>
-        <div className="flex-shrink-0 px-4">
+        <div className="flex-shrink-0">
           <img
             onClick={this.handleLogoClick}
-            className="h-12 w-12 cursor-pointer"
+            className="h-20 w-20 sm:h-24 sm:w-24 cursor-pointer"
             src={logo.default}
             alt="Workflow"
           />
