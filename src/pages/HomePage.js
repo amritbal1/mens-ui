@@ -37,10 +37,11 @@ class HomePage extends PureComponent {
         await Promise.all(
           trendingProductsConfig.map(async (product) => {
             const { productId } = product;
-            const data = await getPricingData({
-              productId,
-              country: this.props.userCountry,
-            }) || [];
+            const data =
+              (await getPricingData({
+                productId,
+                country: this.props.userCountry,
+              })) || [];
             const { affiliateLinks = [], country = "" } = data;
             const price =
               !isEmpty(affiliateLinks) &&
@@ -57,13 +58,15 @@ class HomePage extends PureComponent {
   updateData = async ({ userCountry }) => {
     const trendingProducts = await getTrendingProducts();
     const pricingData = [];
+    if (isEmpty(trendingProducts)) return;
     const trendingProductsConfig = await Promise.all(
       trendingProducts.map(async (product) => {
         const { productName, brandName, mainImageUrl, productId } = product;
-        const data = await getPricingData({
-          productId,
-          country: userCountry,
-        }) || [];
+        const data =
+          (await getPricingData({
+            productId,
+            country: userCountry,
+          })) || [];
         const { affiliateLinks = [], country = "" } = data;
         const price =
           !isEmpty(affiliateLinks) &&
@@ -133,9 +136,9 @@ class HomePage extends PureComponent {
             </span>
           </div>
         </div>
-        <div class="flex flex-col pb-7 font-jost">
+        <div class="flex flex-col pb-7">
           <div class="bg-stone py-10 md:py-16">
-            <div class="pb-12 md:pb-16 text-center text-xl sm:text-2xl uppercase font-medium tracking-tighter font-jost">
+            <div class="pb-12 md:pb-16 text-center text-xl sm:text-2xl uppercase font-bold tracking-tighter font-tenorSans">
               Shop by category
             </div>
             <CategorySelection
@@ -144,7 +147,7 @@ class HomePage extends PureComponent {
             />
           </div>
           <div class="bg-darkStone py-10 md:py-16">
-            <div class="pb-12 md:pb-16 text-center text-xl sm:text-2xl uppercase font-medium tracking-tighter font-jost">
+            <div class="pb-12 md:pb-16 text-center text-xl sm:text-2xl uppercase font-bold tracking-tighter font-tenorSans">
               Trending Products
             </div>
             <CategorySelection
@@ -154,7 +157,7 @@ class HomePage extends PureComponent {
             />
           </div>
           <div class="bg-stone py-10 md:py-16">
-            <div class="pb-12 md:pb-16 text-center text-xl sm:text-2xl uppercase font-medium tracking-tighter font-jost">
+            <div class="pb-12 md:pb-16 text-center text-xl sm:text-2xl uppercase font-bold tracking-tighter font-tenorSans">
               Shop by skin concern
             </div>
             <CategorySelection config={skinConcernConfig} type="skinConcerns" />

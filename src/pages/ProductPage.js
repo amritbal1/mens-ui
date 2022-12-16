@@ -118,7 +118,7 @@ class ProductPage extends PureComponent {
                 images={allProductImageUrls}
                 slidesToShow={1}
                 imageWidth={
-                  "w-min-300px h-min-300px md:w-min-500px md:h-min-500px"
+                  "w-min-300px h-min-300px md:w-min-500px md:h-min-500px z-50"
                 }
                 handleImageClickFn={this.handleImageClickFn}
                 showCursorOnHover={false}

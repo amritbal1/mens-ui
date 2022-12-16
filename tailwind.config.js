@@ -30,6 +30,7 @@ module.exports = {
       },
       fontFamily: {
         jost: ["Jost", "sans-serif"],
+        tenorSans: ["Tenor Sans", "sans-serif"],
       },
       transitionProperty: {
         visibility: "visibility",

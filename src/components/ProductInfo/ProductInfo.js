@@ -27,7 +27,7 @@ class ProductInfo extends PureComponent {
               </div>
             </div>
             <div>
-              <div class="uppercase font-normal tracking-tight text-2xl sm:text-3xl text-slate-gray sm:px-0 mb-6">
+              <div class="uppercase font-normal text-2xl sm:text-3xl text-slate-gray sm:px-0 mb-6 font-tenorSans">
                 {productName}
               </div>
             </div>
